@@ -1,0 +1,37 @@
+# purrr
+
+
+```{r}
+library(tidyverse)
+ls("package:purrr")
+```
+
+## map functions
+
+```{r}
+example("map")
+example("map_at")
+example("map_chr")
+example("map_dbl")
+example("map_df")
+example("map_dfc")
+example("map_dfr")
+example("map_int")
+example("map_lgl")
+example("map_vec")
+```
+
+## map2 functions
+
+```{r}
+example("map2")
+example("map2_chr")
+example("map2_dbl")
+example("map2_df")
+example("map2_dfc")
+example("map2_dfr")
+example("map2_int")
+example("map2_lgl")
+example("map2_raw")
+example("map2_vec")
+```

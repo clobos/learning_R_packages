@@ -1,0 +1,320 @@
+# dplyr (60 minutos)
+
+## Carrega pacotes a serem usados
+
+```{r}
+#install.packages("tidyverse") 
+#install.packages("dplyr")     
+#install.packages("tidyr")     
+#install.packages("ggplot2")   
+
+library(tidyverse)
+# Manipulação de dados
+#library(dplyr)
+
+# Visualização de gráficos
+library(ggplot2)
+library(gridExtra)
+library(patchwork)
+library(plotly)
+library(esquisse)
+
+# Para dados gráfico de perfis
+library(nlme)
+```
+
+## Descrição dos dados `mpg` 
+
+Dados de economia de combustível de 1999 a 2008 para *38 modelos populares de carros*. Este conjunto de dados contém um subconjunto dos dados de economia de combustível que a EPA disponibiliza em *https://fueleconomy.gov/*. Ele contém apenas modelos que tiveram um novo lançamento a cada ano entre 1999 e 2008 - isso foi usado como um substituto para a popularidade do carro. Um *data frame* com 234 linhas e 11 variáveis:
+
+  - *manufacturer* nome do fabricante 
+
+  - *model* nome do modelo
+
+  - *displ* cilindrada do motor, em litros
+
+  - *year* ano de fabricação
+
+  - *cyl* número de cilindros
+
+  - *trans* tipo de transmissão
+
+  - *drv* o tipo de trem de força, onde **f = tração dianteira**, **r = tração traseira** e **4 = 4wd**
+
+  - *cty* milhas urbanas  por galão
+
+  - *hwy* milhas rodoviárias por galão
+
+  - *fl* tipo de combustível
+
+  - *class* "tipo" de carro
+  
+```{r}
+#help("mpg")
+library(tidyverse)
+dados <- mpg
+glimpse(dados)
+
+dados <- mutate(.data = dados, 
+                across(where(is.character), 
+                as.factor))
+#View(df) 
+glimpse(dados)
+```
+
+
+## Lista de funções do pacote dplyr
+
+```{r}
+ls("package:dplyr")
+```
+
+
+## Operador Pipe
+
+```{r}
+sqrt(log(44))
+
+44 %>% log %>% sqrt
+```
+
+## select() para colunas
+
+```{r}
+select(dados, manufacturer, model, year)
+
+select(dados, starts_with("m"))
+
+select(dados, contains("r"))
+
+select(dados, ends_with("y"))
+
+select(dados, matches("[abc]"))
+select(dados, starts_with("m"), starts_with("c")) 
+select(dados, ends_with("l"), ends_with("s")) 
+
+select(dados, 1:3)      
+select(dados, c(2,5,7)) 
+
+select(dados, manufacturer:cyl) 
+select(dados,-(manufacturer:cyl))
+``` 
+
+
+##   rename()
+
+```{r}
+dados1 <- rename(dados, 
+              mnfc = manufacturer,
+              mod = model)
+dados1
+
+select(dados,
+       mnfc = manufacturer,
+       mod = model)
+
+select(dados,
+       mnfc = manufacturer,
+       mod = model,
+       everything())
+```
+
+## mutate() para colunas
+
+```{r}
+mutate(dados, sqrt_cty = sqrt(cty))
+names(dados)
+
+dados<- mutate(dados, sqrt_cty = sqrt(cty))
+names(dados)
+
+dados <- mutate(dados,
+`soma de variáveis` = (cty + hwy) / 2)
+names(dados)
+
+dados <- mutate(dados,
+             car = paste(manufacturer, model, sep = " "),
+             `cyl / trans` = paste(cyl, " cylinders", " / ", trans, " transmission", sep = ""))
+dados
+```
+
+## transmute() 
+
+```{r}
+transmute(dados,
+          `avg miles per gallon` = (cty + hwy) / 2)
+
+transmute(dados,
+          car = paste(manufacturer, model, sep = " "),
+          `cyl / trans` = paste(cyl, " cylinders", " / ", trans, " transmission", sep = ""))
+```
+
+
+## filter()  para linhas
+
+```{r}
+filter(dados, manufacturer == "audi") 
+
+filter(dados, manufacturer == "audi" & year == "1999") 
+
+filter(dados, manufacturer == "audi", year == 1999) 
+
+filter(dados, manufacturer == "audi" | manufacturer == "dodge") %>%
+  print(n = 20)
+
+filter(dados, manufacturer %in% c("audi", "dodge")) %>%
+  print(n = 20)
+
+filter(dados, hwy >= 30) %>% 
+  select(hwy) %>%
+  print(n = 26)
+
+filter(dados, year != 1999) %>% 
+  select(year) %>%
+  print(n = 30)
+
+filter(dados, between(cty,15, 22)) 
+```
+
+
+## slice() para linhas
+
+```{r}
+slice(dados, 1:5)
+# dados[1:5,]
+
+slice(dados, 20:30)
+# dados[20:30,]
+```
+
+
+## arrange() para linhas
+
+```{r}
+# ordenar "displ" de menor a maior
+arrange(dados, displ)
+
+arrange(dados, displ) %>% 
+  print(n=20)
+
+# ordenar "displ" de maior a  menor
+arrange(dados, desc(displ))
+
+arrange(dados, desc(displ)) %>% 
+  print(n=20)
+
+select(dados, displ, cty) %>% 
+  arrange(displ, cty) %>% 
+  print(n = 20)
+
+select(dados, displ, cty) %>% 
+  arrange(displ, desc(cty)) %>% 
+  print(n = 20)
+```
+
+
+## distinct() para linhas
+
+```{r}
+dados_exemplo <- data.frame(id = 1:3,
+                         name = c("John", "Max", "Julia"))
+dados_exemplo
+
+# bind_rows == rbind()
+dados_exemplo<- bind_rows(dados_exemplo, slice(dados_exemplo, 2)) 
+dados_exemplo
+
+distinct(dados_exemplo)
+
+
+dados_exemplo2 <- data.frame(id = c(1,1,2),
+                         name = c("John", "Max", "Julia"))
+dados_exemplo2
+distinct(dados_exemplo2)
+
+dados_duplicados <- select(dados, manufacturer, model)
+dados_duplicados
+
+dados_nao_duplicados <- distinct(dados_duplicados)
+dados_nao_duplicados
+```
+
+## summarise()
+
+```{r}
+summarise(dados, `média hwy` = mean(hwy))
+
+summarise(dados, 
+          `num. de dados` = n(),
+          `num. modelos` = n_distinct(model))
+# levels(dados$model)
+summarise(dados, 
+          `mín. hwy` = min(hwy, na.rm = TRUE),
+          `mín. cty` = min(cty, na.rm = TRUE),
+          `máx. hwy` = max(hwy, na.rm = TRUE),
+          `máx. cty` = max(cty, na.rm = TRUE))
+
+dados %>%
+  summarise_at(c("hwy", "cty"), list(min, max), na.rm = TRUE)
+
+dados %>%
+  summarise_if(is.numeric, list(min, max), na.rm = TRUE) 
+
+dados %>%
+  summarise_if(is.numeric, min, na.rm = TRUE) 
+
+dados %>%
+  summarise_if(is.numeric, max, na.rm = TRUE) 
+
+Tiago<- function(dados){
+  sd(dados)/mean(dados)
+}
+
+dados %>%
+  summarise_if(is.numeric, Tiago) 
+```
+
+## group_by() 
+
+```{r}
+group_by(dados, manufacturer)
+
+dados %>% 
+  group_by(manufacturer) %>%
+  summarise(`num. carros` = n())
+
+dados %>% 
+  group_by(model) %>%
+  summarise(`média hwy` = mean(hwy),
+          `min. hwy` = min(hwy),
+          `max. hwy` = max(hwy))
+```
+
+## count()
+
+```{r}
+count(dados)
+
+dados %>% 
+  group_by(manufacturer) %>%
+  count()
+
+# Equivalente com o código anterior
+dados %>% 
+  group_by(manufacturer) %>%
+  summarise(cars = n())
+```
+
+## sample_n() 
+
+```{r}
+set.seed(567)
+sample_n(dados, size = 10, replace = F)
+sample_n(dados, size = 10, replace = T)
+```
+
+## sample_frac() 
+
+```{r}
+sample_frac(dados, size = 0.1, replace = F)
+```

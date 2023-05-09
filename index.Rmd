@@ -1,0 +1,100 @@
+--- 
+title: "Learning R packages"
+author: "Cristian Villegas"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Intro
+
+## Carrega pacotes a serem usados
+
+```{r}
+#install.packages("tidyverse") 
+#install.packages("dplyr")     
+#install.packages("tidyr")     
+#install.packages("ggplot2")   
+
+library(tidyverse)
+# Manipulação de dados
+#library(dplyr)
+
+# Visualização de gráficos
+library(ggplot2)
+library(gridExtra)
+library(patchwork)
+library(plotly)
+library(esquisse)
+
+# Para dados gráfico de perfis
+library(nlme)
+```
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'ggplot2', 'purrr', 'dplyr',
+  'tibble'), 'packages.bib')
+```
+
+Ver como citar referências @tidyverse2019, @R-tidyverse, @R-tidyr, @R-ggplot2, @R-purrr, @R-dplyr, @R-knitr, @R-bookdown
+
+
+## Alguns atalhos no Rstudio
+
+Para considerar
+
+  > Operador Pipe (%>%): Ctrl + Shift + M (Windows) ou Cmd + Shift + M (Mac).
+
+  > Criar novos chunks: Ctrl + Alt + I (Windows) ou Cmd + Option + I (Mac).
+  
+
+
+
+## Descrição dos dados `mpg` 
+
+Dados de economia de combustível de 1999 a 2008 para *38 modelos populares de carros*. Este conjunto de dados contém um subconjunto dos dados de economia de combustível que a EPA disponibiliza em *https://fueleconomy.gov/*. Ele contém apenas modelos que tiveram um novo lançamento a cada ano entre 1999 e 2008 - isso foi usado como um substituto para a popularidade do carro. Um *data frame* com 234 linhas e 11 variáveis:
+
+  - *manufacturer* nome do fabricante 
+
+  - *model* nome do modelo
+
+  - *displ* cilindrada do motor, em litros
+
+  - *year* ano de fabricação
+
+  - *cyl* número de cilindros
+
+  - *trans* tipo de transmissão
+
+  - *drv* o tipo de trem de força, onde **f = tração dianteira**, **r = tração traseira** e **4 = 4wd**
+
+  - *cty* milhas urbanas  por galão
+
+  - *hwy* milhas rodoviárias por galão
+
+  - *fl* tipo de combustível
+
+  - *class* "tipo" de carro
+  
+```{r}
+#help("mpg")
+dados <- mpg
+glimpse(dados)
+
+dados <- mutate(.data = dados, 
+                across(where(is.character), 
+                as.factor))
+#View(df) 
+glimpse(dados)
+```

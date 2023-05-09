@@ -1,0 +1,446 @@
+# ggplot2 (60 minutos)
+
+## Carrega pacotes a serem usados
+
+```{r}
+#install.packages("tidyverse") 
+#install.packages("dplyr")     
+#install.packages("tidyr")     
+#install.packages("ggplot2")   
+
+library(tidyverse)
+# Manipulação de dados
+#library(dplyr)
+
+# Visualização de gráficos
+library(ggplot2)
+library(gridExtra)
+library(patchwork)
+library(plotly)
+library(esquisse)
+
+# Para dados gráfico de perfis
+library(nlme)
+```
+
+Alguns links
+
+[The R Graph Gallery](https://r-graph-gallery.com/)
+
+[120 registered extensions available to explore](https://exts.ggplot2.tidyverse.org/gallery/)
+
+[link 1: patchwork](https://patchwork.data-imaginist.com/articles/guides/assembly.html)
+
+[link 2: patchwork](https://patchwork.data-imaginist.com/articles/patchwork.html)
+
+
+## Lista de funções do pacote ggplot2
+
+```{r, eval=FALSE}
+ls("package:ggplot2")
+```
+
+## Primeiros passos usando geom_point
+
+```{r}
+dados <- mpg
+ggplot(dados)
+
+ggplot(dados, aes(x = cty, y = hwy))
+
+# Alternativas
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point()
+
+ggplot(dados) + 
+  geom_point(aes(x = cty, y = hwy))
+
+ggplot() + 
+  geom_point(data = dados, aes(x = cty, y = hwy))
+# Fim 
+
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point(colour = "red")
+
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point(colour = "red", size = 6)
+
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point(colour = "red", size = 6, shape = 10)
+
+# Alternativa
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point(colour = "red", size = 6, shape = "circle plus")
+
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point(colour = "red", size = 6, shape = 10)+
+  labs(x = "cty (city miles per gallon hwy)", 
+       y = "hwy (highway miles per gallon)", 
+       title = "Pensar em algum título...", 
+       subtitle = "Escrever alguma coisa")
+```
+
+### Mais detalhes sobre geom_point 
+
+> geom_point() understands the following aesthetics (required aesthetics are in bold):
+
+  - x
+
+  - y
+
+  - alpha
+
+  - colour
+
+  - fill
+
+  - group
+
+  - shape
+
+  - size
+
+  - stroke
+  
+```{r}
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point()
+
+ggplot(dados, aes(x = cty, y = hwy, col = factor(year))) + 
+  geom_point() + 
+  labs(col = "year")
+
+# Alternativa
+ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) + 
+  geom_point() + 
+  labs(col = "class")+
+  scale_color_brewer(type = "qual")
+
+ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) + 
+  geom_point() + 
+  labs(col = "class")+
+  scale_color_brewer(type = "div")
+
+ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) + 
+  geom_point() + 
+  labs(col = "class")+
+  scale_color_brewer(palette = "Set1", name = "Tipo de carro")+
+  scale_y_continuous(breaks = seq(10,60,3))+
+  scale_x_continuous(breaks = seq(10,40,3))+
+  theme_minimal()
+
+ggplot(dados, aes(x = cty, y = hwy, alpha = factor(year))) + 
+  geom_point() + 
+  labs(alpha = "year")
+
+ggplot(dados, aes(x = cty, y = hwy, size = factor(year))) + 
+  geom_point() + 
+  labs(size = "year")
+
+# Alternativa
+ggplot(dados, aes(x = cty, y = hwy, col = cty <= 20)) + 
+  geom_point() + 
+  geom_vline(xintercept = 20)+
+  labs(col = "year")
+
+# Erro comum
+ggplot(dados, aes(x = cty, y = hwy, col = "red")) + 
+  geom_point()+
+  labs(col = "year")
+
+ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point(col = "red")+
+  labs(col = "year")
+# Fim  Erro comum
+
+ggplot(dados, aes(x = cty, y = hwy, shape = factor(year))) + 
+  geom_point(col = "red") + 
+  labs(shape = "year")
+
+ggplot(dados, aes(x = cty, y = hwy, size = class)) + 
+  geom_point() + 
+  labs(size = "class")
+
+ggplot(dados, aes(x = cty, y = hwy, 
+                  size = class, 
+                  col = class)) + 
+  geom_point() + 
+  guides(colour = guide_legend("Tipo de carro (color)"),
+         size = guide_legend("Tipo de carro (size)"))
+
+ggplot(dados, aes(x = cty, y = hwy, 
+                  size = class, 
+                  col = class)) + 
+  geom_point() + 
+  labs(col = "Tipo de Carro", size = "Tipo de Carro")+
+  guides(col = "legend")
+```
+
+## smooth, boxplot, histogram
+
+
+```{r}
+v1<- ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_point(col = "blue")+
+  geom_smooth(method = mgcv::gam,
+              formula = y ~ s(x, bs = "cs") ,
+              col = "red", 
+              se = FALSE)
+v1
+
+v2 <- ggplot(dados, aes(x = cty)) + 
+  geom_boxplot(fill = "red")
+v2
+
+v3 <- ggplot(dados, aes(x = cty)) + 
+  geom_histogram(bins = 10, fill = "red", col = "blue", lwd=2)
+v3
+
+v4<- ggplot(dados, aes(x = cty)) + 
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 10, fill = "yellow", col = "red") +
+  geom_density(col = "blue", lwd =3)
+v4
+
+# Adicional (estatístic experimental)
+ggplot(dados, aes(x = drv, y = cty, col = drv)) + 
+  geom_boxplot()+
+  theme_bw()+
+  theme(legend.position = "none")
+```
+
+## gridExtra e patchwork
+
+
+Alguns links
+
+[link 1: patchwork](https://patchwork.data-imaginist.com/articles/guides/assembly.html)
+
+[link 2: patchwork](https://patchwork.data-imaginist.com/articles/patchwork.html)
+
+```{r}
+# gridExtra
+grid.arrange(v1, v2, v3, v4) 
+
+# patchwork
+v1 + v2
+v1 | v2
+v1 / v2
+
+v1 + v2 + v3
+v1 + (v2 + v3)
+v1 | (v2 / v3)
+v1 / (v2 + v3)
+
+v1 + v2 + v3 + v4 
+v1/(v2+v3+v4)
+v1  + (v2 + v3 + v4)
+v1  + v2 + (v3 + v4)
+(v1 | v2 | v3) / v4
+```
+
+
+## bar, col, density, density2d
+
+```{r}
+v5 <- ggplot(dados , aes(x = manufacturer)) + 
+  geom_bar()+ 
+  theme(axis.text.x = element_text(angle = 45))
+v5
+
+# Dúvidas no geom_col
+v6 <- ggplot(dados , aes(x = manufacturer, y = cty)) + 
+  geom_col()+
+  theme(axis.text.x = element_text(angle = 45))
+v6
+
+dados %>% 
+  select(manufacturer, cty) %>% 
+  group_by(manufacturer) %>% 
+  summarise(soma_total_cty = sum(cty),
+            n = n())
+
+# dados %>% 
+#   filter(manufacturer == "audi") %>% 
+#   select(cty) %>% 
+#   sum()
+v7 <- ggplot(dados , aes(x = cty)) + 
+  geom_density()
+v7
+
+v8 <- ggplot(dados, aes(x = cty, y = hwy)) + 
+  geom_density2d()+
+  geom_point(colour = "red")
+v8
+
+
+(v5+v6)/ (v7 + v8)
+
+# Deixar pra depois...
+ dados %>% 
+    select(manufacturer, hwy, year) %>% 
+    filter(manufacturer == "audi", year == "1999") %>% 
+    summarise(media = max(hwy))
+```
+
+```{r, eval=FALSE}
+# plotly
+ggplotly(
+ggplot(dados, aes(x = manufacturer, y = hwy, fill = factor(year))) + 
+  geom_col(position = "dodge") + 
+  labs(fill = "year") +
+  theme(axis.text.x = element_text(angle = 45)))
+
+dados %>% select(manufacturer, hwy, year) %>% 
+  group_by(manufacturer, year) %>% 
+  summarise(media = mean(hwy))
+```
+
+```{r}
+# Para pensar
+
+(dados_trat <- data.frame(tratamento = LETTERS[1:3], 
+                         resposta = c(2.3, 1.9, 3.2)))
+
+ggplot(dados_trat, aes(tratamento, resposta)) +
+  geom_col(fill = "red")
+
+# Mais detalhes...
+dados %>% select(manufacturer, hwy, year) %>% 
+  group_by(manufacturer, year) %>% 
+  summarise(media = mean(hwy), .groups = "drop") %>% 
+  ggplot(aes(x = manufacturer, y = media, fill = factor(year)))+
+  geom_col(position = "dodge")+
+  labs(fill = "year") +
+  theme(axis.text.x = element_text(angle = 45))
+
+```
+
+## facet_grid, facet_wrap
+
+```{r}
+p1<- ggplot(dados, aes(x = cty, y = hwy)) +
+  geom_point()
+p1
+
+p1 + facet_grid(rows = vars(cyl))
+p1 + facet_grid(cols = vars(cyl))
+p1 + facet_grid(~cyl)
+p1 + facet_grid(rows = vars(year), cols =vars(cyl))
+p1 + facet_grid(year~cyl)
+
+p1 + facet_wrap(year ~ cyl)
+p1 + facet_wrap(cyl ~ year)
+p1 + facet_wrap(~cyl + year)
+p1 + facet_wrap(~year + cyl)
+p1 + facet_wrap(year ~ cyl, ncol = 4)
+p1 + facet_wrap(cyl ~ year, ncol = 4)
+```
+
+
+## stat_function
+
+```{r}
+a<- -3 # média
+b<- 4  # desv. padrão
+ggplot(data.frame(x = c(a - 3*b, a + 3*b)), aes(x)) + 
+  stat_function(fun = dnorm, args = list(mean = a, sd = b))+
+  geom_vline(xintercept = c(a - 3*b, a, a + 3*b), col = "red", lty = 2)+
+  theme_minimal()
+```
+
+## stat_summary
+
+```{r}
+ggplot(dados, aes(x = manufacturer, y = hwy)) + 
+  geom_boxplot()+
+  geom_point(col = "red", size=0.8)+
+  stat_summary(fun = mean, col = "blue")+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 45))
+```
+
+## theme_*()
+
+```{r}
+a1<- p1 + theme_bw() + labs(title = "theme_bw()")
+a2<- p1 + theme_classic() + labs(title = "theme_classic()")
+a3<- p1 + theme_light() + labs(title = "theme_light()")
+a4<- p1 + theme_minimal() + labs(title = "theme_minimal()")
+
+a1 + a2 + a3 + a4
+```
+
+
+## Gráfico de perfis (Spaguetti plot)
+
+```{r}
+glimpse(Orange)
+
+ggplot(Orange, aes(x = age, y = circumference, group = Tree, 
+                   col = Tree)) +
+  geom_line()+
+  stat_summary(aes(group = 1), fun = mean, col = "red", 
+               geom = "line", size = 1, show.legend = FALSE,
+               linetype = 2)+
+  xlim(0, 1600)+
+  theme_minimal()
+
+ggplot(Orange, aes(x = age, y = circumference, group = Tree)) +
+  geom_line()+
+  xlim(0, 1600)+
+  facet_wrap(~Tree)+
+  theme_minimal()+
+  theme(legend.position = "none")
+ 
+```
+
+## plotly
+
+[plotly cran](https://cran.r-project.org/web/packages/plotly/index.html)
+
+[Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/)
+
+[Plotly R Open Source Graphing Library](https://plotly.com/r/)
+
+```{r, eval=FALSE}
+ggplotly(v1)
+ggplotly(v2)
+ggplotly(v4)
+ggplotly(v5)
+```
+
+
+## esquisse
+
+Alguns links de interesse
+
+[esquisse](https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html)
+
+[esquisse + shiny](https://cran.r-project.org/web/packages/esquisse/vignettes/shiny-usage.html)
+
+```{r, eval=FALSE}
+esquisser(dados)
+```
+
+## Exemplo esquisse
+
+```{r}
+ggplot(dados) +
+  aes(x = displ, y = hwy, colour = drv) +
+  geom_point(shape = "circle", size = 1.85) +
+  scale_color_hue(direction = 1) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+
+```{r}
+ggplot(dados) +
+  aes(x = displ, y = cty, colour = class, size = cty) +
+  geom_point(shape = "circle") +
+  scale_color_hue(direction = 1) +
+  theme(legend.position = "top") +
+  facet_wrap(vars(drv))
+```
+
