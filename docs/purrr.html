@@ -1,0 +1,2214 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 purrr | Learning R packages</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 purrr | Learning R packages" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 purrr | Learning R packages" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Cristian Villegas" />
+
+
+<meta name="date" content="2023-05-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggplot2-60-minutos.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning R packages</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#carrega-pacotes-a-serem-usados"><i class="fa fa-check"></i><b>1.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#alguns-atalhos-no-rstudio"><i class="fa fa-check"></i><b>1.2</b> Alguns atalhos no Rstudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#descrição-dos-dados-mpg"><i class="fa fa-check"></i><b>1.3</b> Descrição dos dados <code>mpg</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html"><i class="fa fa-check"></i><b>2</b> dplyr (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#carrega-pacotes-a-serem-usados-1"><i class="fa fa-check"></i><b>2.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="2.2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#descrição-dos-dados-mpg-1"><i class="fa fa-check"></i><b>2.2</b> Descrição dos dados <code>mpg</code></a></li>
+<li class="chapter" data-level="2.3" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#lista-de-funções-do-pacote-dplyr"><i class="fa fa-check"></i><b>2.3</b> Lista de funções do pacote dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#operador-pipe"><i class="fa fa-check"></i><b>2.4</b> Operador Pipe</a></li>
+<li class="chapter" data-level="2.5" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#select-para-colunas"><i class="fa fa-check"></i><b>2.5</b> select() para colunas</a></li>
+<li class="chapter" data-level="2.6" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#rename"><i class="fa fa-check"></i><b>2.6</b> rename()</a></li>
+<li class="chapter" data-level="2.7" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#mutate-para-colunas"><i class="fa fa-check"></i><b>2.7</b> mutate() para colunas</a></li>
+<li class="chapter" data-level="2.8" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#transmute"><i class="fa fa-check"></i><b>2.8</b> transmute()</a></li>
+<li class="chapter" data-level="2.9" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#filter-para-linhas"><i class="fa fa-check"></i><b>2.9</b> filter() para linhas</a></li>
+<li class="chapter" data-level="2.10" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#slice-para-linhas"><i class="fa fa-check"></i><b>2.10</b> slice() para linhas</a></li>
+<li class="chapter" data-level="2.11" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#arrange-para-linhas"><i class="fa fa-check"></i><b>2.11</b> arrange() para linhas</a></li>
+<li class="chapter" data-level="2.12" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#distinct-para-linhas"><i class="fa fa-check"></i><b>2.12</b> distinct() para linhas</a></li>
+<li class="chapter" data-level="2.13" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#summarise"><i class="fa fa-check"></i><b>2.13</b> summarise()</a></li>
+<li class="chapter" data-level="2.14" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#group_by"><i class="fa fa-check"></i><b>2.14</b> group_by()</a></li>
+<li class="chapter" data-level="2.15" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#count"><i class="fa fa-check"></i><b>2.15</b> count()</a></li>
+<li class="chapter" data-level="2.16" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_n"><i class="fa fa-check"></i><b>2.16</b> sample_n()</a></li>
+<li class="chapter" data-level="2.17" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_frac"><i class="fa fa-check"></i><b>2.17</b> sample_frac()</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html"><i class="fa fa-check"></i><b>3</b> ggplot2 (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#carrega-pacotes-a-serem-usados-2"><i class="fa fa-check"></i><b>3.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#lista-de-funções-do-pacote-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Lista de funções do pacote ggplot2</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#primeiros-passos-usando-geom_point"><i class="fa fa-check"></i><b>3.3</b> Primeiros passos usando geom_point</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#mais-detalhes-sobre-geom_point"><i class="fa fa-check"></i><b>3.3.1</b> Mais detalhes sobre geom_point</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#smooth-boxplot-histogram"><i class="fa fa-check"></i><b>3.4</b> smooth, boxplot, histogram</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gridextra-e-patchwork"><i class="fa fa-check"></i><b>3.5</b> gridExtra e patchwork</a></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#bar-col-density-density2d"><i class="fa fa-check"></i><b>3.6</b> bar, col, density, density2d</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#facet_grid-facet_wrap"><i class="fa fa-check"></i><b>3.7</b> facet_grid, facet_wrap</a></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_function"><i class="fa fa-check"></i><b>3.8</b> stat_function</a></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_summary"><i class="fa fa-check"></i><b>3.9</b> stat_summary</a></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#theme_"><i class="fa fa-check"></i><b>3.10</b> theme_*()</a></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gráfico-de-perfis-spaguetti-plot"><i class="fa fa-check"></i><b>3.11</b> Gráfico de perfis (Spaguetti plot)</a></li>
+<li class="chapter" data-level="3.12" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#plotly"><i class="fa fa-check"></i><b>3.12</b> plotly</a></li>
+<li class="chapter" data-level="3.13" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#esquisse"><i class="fa fa-check"></i><b>3.13</b> esquisse</a></li>
+<li class="chapter" data-level="3.14" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#exemplo-esquisse"><i class="fa fa-check"></i><b>3.14</b> Exemplo esquisse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>4</b> purrr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="purrr.html"><a href="purrr.html#map-functions"><i class="fa fa-check"></i><b>4.1</b> map functions</a></li>
+<li class="chapter" data-level="4.2" data-path="purrr.html"><a href="purrr.html#map2-functions"><i class="fa fa-check"></i><b>4.2</b> map2 functions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning R packages</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="purrr" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> purrr<a href="purrr.html#purrr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="purrr.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb221-2"><a href="purrr.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:purrr&quot;</span>)</span></code></pre></div>
+<pre><code>##   [1] &quot;%@%&quot;                 &quot;%||%&quot;                &quot;%&gt;%&quot;                
+##   [4] &quot;accumulate&quot;          &quot;accumulate_right&quot;    &quot;accumulate2&quot;        
+##   [7] &quot;array_branch&quot;        &quot;array_tree&quot;          &quot;as_mapper&quot;          
+##  [10] &quot;as_vector&quot;           &quot;assign_in&quot;           &quot;at_depth&quot;           
+##  [13] &quot;attr_getter&quot;         &quot;auto_browse&quot;         &quot;chuck&quot;              
+##  [16] &quot;compact&quot;             &quot;compose&quot;             &quot;cross&quot;              
+##  [19] &quot;cross_d&quot;             &quot;cross_df&quot;            &quot;cross_n&quot;            
+##  [22] &quot;cross2&quot;              &quot;cross3&quot;              &quot;detect&quot;             
+##  [25] &quot;detect_index&quot;        &quot;discard&quot;             &quot;discard_at&quot;         
+##  [28] &quot;done&quot;                &quot;every&quot;               &quot;exec&quot;               
+##  [31] &quot;flatten&quot;             &quot;flatten_chr&quot;         &quot;flatten_dbl&quot;        
+##  [34] &quot;flatten_df&quot;          &quot;flatten_dfc&quot;         &quot;flatten_dfr&quot;        
+##  [37] &quot;flatten_int&quot;         &quot;flatten_lgl&quot;         &quot;flatten_raw&quot;        
+##  [40] &quot;has_element&quot;         &quot;head_while&quot;          &quot;imap&quot;               
+##  [43] &quot;imap_chr&quot;            &quot;imap_dbl&quot;            &quot;imap_dfc&quot;           
+##  [46] &quot;imap_dfr&quot;            &quot;imap_int&quot;            &quot;imap_lgl&quot;           
+##  [49] &quot;imap_raw&quot;            &quot;imodify&quot;             &quot;insistently&quot;        
+##  [52] &quot;invoke&quot;              &quot;invoke_map&quot;          &quot;invoke_map_chr&quot;     
+##  [55] &quot;invoke_map_dbl&quot;      &quot;invoke_map_df&quot;       &quot;invoke_map_dfc&quot;     
+##  [58] &quot;invoke_map_dfr&quot;      &quot;invoke_map_int&quot;      &quot;invoke_map_lgl&quot;     
+##  [61] &quot;invoke_map_raw&quot;      &quot;is_atomic&quot;           &quot;is_bare_atomic&quot;     
+##  [64] &quot;is_bare_character&quot;   &quot;is_bare_double&quot;      &quot;is_bare_integer&quot;    
+##  [67] &quot;is_bare_list&quot;        &quot;is_bare_logical&quot;     &quot;is_bare_numeric&quot;    
+##  [70] &quot;is_bare_vector&quot;      &quot;is_character&quot;        &quot;is_double&quot;          
+##  [73] &quot;is_empty&quot;            &quot;is_formula&quot;          &quot;is_function&quot;        
+##  [76] &quot;is_integer&quot;          &quot;is_list&quot;             &quot;is_logical&quot;         
+##  [79] &quot;is_null&quot;             &quot;is_rate&quot;             &quot;is_scalar_atomic&quot;   
+##  [82] &quot;is_scalar_character&quot; &quot;is_scalar_double&quot;    &quot;is_scalar_integer&quot;  
+##  [85] &quot;is_scalar_list&quot;      &quot;is_scalar_logical&quot;   &quot;is_scalar_vector&quot;   
+##  [88] &quot;is_vector&quot;           &quot;iwalk&quot;               &quot;keep&quot;               
+##  [91] &quot;keep_at&quot;             &quot;lift&quot;                &quot;lift_dl&quot;            
+##  [94] &quot;lift_dv&quot;             &quot;lift_ld&quot;             &quot;lift_lv&quot;            
+##  [97] &quot;lift_vd&quot;             &quot;lift_vl&quot;             &quot;list_along&quot;         
+## [100] &quot;list_assign&quot;         &quot;list_c&quot;              &quot;list_cbind&quot;         
+## [103] &quot;list_flatten&quot;        &quot;list_merge&quot;          &quot;list_modify&quot;        
+## [106] &quot;list_rbind&quot;          &quot;list_simplify&quot;       &quot;list_transpose&quot;     
+## [109] &quot;lmap&quot;                &quot;lmap_at&quot;             &quot;lmap_if&quot;            
+## [112] &quot;map&quot;                 &quot;map_at&quot;              &quot;map_chr&quot;            
+## [115] &quot;map_dbl&quot;             &quot;map_depth&quot;           &quot;map_df&quot;             
+## [118] &quot;map_dfc&quot;             &quot;map_dfr&quot;             &quot;map_if&quot;             
+## [121] &quot;map_int&quot;             &quot;map_lgl&quot;             &quot;map_raw&quot;            
+## [124] &quot;map_vec&quot;             &quot;map2&quot;                &quot;map2_chr&quot;           
+## [127] &quot;map2_dbl&quot;            &quot;map2_df&quot;             &quot;map2_dfc&quot;           
+## [130] &quot;map2_dfr&quot;            &quot;map2_int&quot;            &quot;map2_lgl&quot;           
+## [133] &quot;map2_raw&quot;            &quot;map2_vec&quot;            &quot;modify&quot;             
+## [136] &quot;modify_at&quot;           &quot;modify_depth&quot;        &quot;modify_if&quot;          
+## [139] &quot;modify_in&quot;           &quot;modify_tree&quot;         &quot;modify2&quot;            
+## [142] &quot;negate&quot;              &quot;none&quot;                &quot;partial&quot;            
+## [145] &quot;pluck&quot;               &quot;pluck_depth&quot;         &quot;pluck_exists&quot;       
+## [148] &quot;pluck&lt;-&quot;             &quot;pmap&quot;                &quot;pmap_chr&quot;           
+## [151] &quot;pmap_dbl&quot;            &quot;pmap_df&quot;             &quot;pmap_dfc&quot;           
+## [154] &quot;pmap_dfr&quot;            &quot;pmap_int&quot;            &quot;pmap_lgl&quot;           
+## [157] &quot;pmap_raw&quot;            &quot;pmap_vec&quot;            &quot;possibly&quot;           
+## [160] &quot;prepend&quot;             &quot;pwalk&quot;               &quot;quietly&quot;            
+## [163] &quot;rate_backoff&quot;        &quot;rate_delay&quot;          &quot;rate_reset&quot;         
+## [166] &quot;rate_sleep&quot;          &quot;rbernoulli&quot;          &quot;rdunif&quot;             
+## [169] &quot;reduce&quot;              &quot;reduce_right&quot;        &quot;reduce2&quot;            
+## [172] &quot;reduce2_right&quot;       &quot;rep_along&quot;           &quot;rerun&quot;              
+## [175] &quot;safely&quot;              &quot;set_names&quot;           &quot;simplify&quot;           
+## [178] &quot;simplify_all&quot;        &quot;slowly&quot;              &quot;some&quot;               
+## [181] &quot;splice&quot;              &quot;tail_while&quot;          &quot;transpose&quot;          
+## [184] &quot;update_list&quot;         &quot;vec_depth&quot;           &quot;walk&quot;               
+## [187] &quot;walk2&quot;               &quot;when&quot;                &quot;zap&quot;</code></pre>
+<div id="map-functions" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> map functions<a href="purrr.html#map-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="purrr.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## map&gt; # Compute normal distributions from an atomic vector
+## map&gt; 1:10 |&gt;
+## map+   map(rnorm, n = 10)
+## [[1]]
+##  [1] 3.4227915 0.5562945 0.5783935 1.1037784 1.7674708 1.3019755 1.9538366
+##  [8] 1.5219171 0.7646488 1.9305802
+## 
+## [[2]]
+##  [1] 1.9246039 0.4278578 1.9849417 4.0407729 1.7703830 2.2911507 4.1766524
+##  [8] 0.1269272 1.8381840 1.9652703
+## 
+## [[3]]
+##  [1] 3.528425 3.814830 2.738892 2.622357 2.717425 3.318517 3.826397 3.402707
+##  [9] 3.245369 2.557114
+## 
+## [[4]]
+##  [1] 5.442486 2.272852 2.306078 4.581656 3.941353 2.886619 4.206319 5.969180
+##  [9] 4.285965 4.917115
+## 
+## [[5]]
+##  [1] 4.588525 4.345247 3.059070 4.452700 4.712290 5.137308 3.574640 3.886825
+##  [9] 4.376737 5.682278
+## 
+## [[6]]
+##  [1] 5.181620 8.351211 5.651700 6.299482 5.051354 8.124654 6.221064 6.694361
+##  [9] 5.134668 5.354538
+## 
+## [[7]]
+##  [1] 6.759325 7.471865 6.094415 7.159456 6.603345 6.410130 7.700877 5.732207
+##  [9] 6.399620 6.971319
+## 
+## [[8]]
+##  [1] 7.807495 8.006455 7.004296 7.274800 7.234007 9.568186 7.725682 7.648573
+##  [9] 7.965731 8.588828
+## 
+## [[9]]
+##  [1]  7.468378  7.898013 10.328154  9.054652  8.726736 10.582874  7.917829
+##  [8]  8.517617  9.130397  7.898263
+## 
+## [[10]]
+##  [1] 10.254320 10.153207  9.456223  9.743526  9.947470  9.947613  9.978104
+##  [8]  9.944393 12.867041  9.491287
+## 
+## 
+## map&gt; # You can also use an anonymous function
+## map&gt; 1:10 |&gt;
+## map+   map(\(x) rnorm(10, x))
+## [[1]]
+##  [1] 1.4653692 1.3882607 1.0319477 1.4538359 0.8653103 0.9818103 0.7427702
+##  [8] 2.4924125 0.4984923 1.8434063
+## 
+## [[2]]
+##  [1] 0.6575189 0.5853158 2.1192695 3.1420723 3.5202368 1.7385827 2.8146012
+##  [8] 2.1478598 1.4397442 2.0212378
+## 
+## [[3]]
+##  [1] 2.796271 2.743258 1.902486 2.174415 2.321086 1.241756 2.806844 3.069781
+##  [9] 1.896410 3.213967
+## 
+## [[4]]
+##  [1] 4.699223 4.819480 3.986850 3.147934 3.111270 3.769582 4.273498 4.137615
+##  [9] 4.792570 5.100806
+## 
+## [[5]]
+##  [1] 6.070146 3.628936 5.390666 4.065244 4.819581 2.995637 3.175926 3.705626
+##  [9] 5.327466 5.621965
+## 
+## [[6]]
+##  [1] 4.082899 5.281427 5.667658 5.337786 4.870593 5.219958 5.141326 5.566014
+##  [9] 6.063065 7.451955
+## 
+## [[7]]
+##  [1] 5.818516 7.503881 8.298007 8.427188 5.607851 6.506048 6.080059 7.825166
+##  [9] 6.095495 6.983059
+## 
+## [[8]]
+##  [1] 7.310142 8.920368 6.753787 9.627703 7.012016 7.779028 8.065273 8.695298
+##  [9] 8.370470 8.946446
+## 
+## [[9]]
+##  [1] 10.223622  9.705049 10.919345  9.118275  9.470402  8.343313  8.522981
+##  [8]  7.715608  8.228937  8.153892
+## 
+## [[10]]
+##  [1] 10.165750 11.313159 10.135560  9.815706  9.761997  9.760760 11.092981
+##  [8] 12.054046  9.564145  8.573474
+## 
+## 
+## map&gt; # Simplify output to a vector instead of a list by computing the mean of the distributions
+## map&gt; 1:10 |&gt;
+## map+   map(rnorm, n = 10) |&gt;  # output a list
+## map+   map_dbl(mean)           # output an atomic vector
+##  [1]  0.7401882  2.0916608  2.4729717  4.1941310  4.3751982  6.4641568
+##  [7]  6.7557280  7.6074078  9.0928942 10.1898862
+## 
+## map&gt; # Using set_names() with character vectors is handy to keep track
+## map&gt; # of the original inputs:
+## map&gt; set_names(c(&quot;foo&quot;, &quot;bar&quot;)) |&gt; map_chr(paste0, &quot;:suffix&quot;)
+##          foo          bar 
+## &quot;foo:suffix&quot; &quot;bar:suffix&quot; 
+## 
+## map&gt; # Working with lists
+## map&gt; favorite_desserts &lt;- list(Sophia = &quot;banana bread&quot;, Eliott = &quot;pancakes&quot;, Karina = &quot;chocolate cake&quot;)
+## 
+## map&gt; favorite_desserts |&gt; map_chr(\(food) paste(food, &quot;rocks!&quot;))
+##                  Sophia                  Eliott                  Karina 
+##   &quot;banana bread rocks!&quot;       &quot;pancakes rocks!&quot; &quot;chocolate cake rocks!&quot; 
+## 
+## map&gt; # Extract by name or position
+## map&gt; # .default specifies value for elements that are missing or NULL
+## map&gt; l1 &lt;- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
+## 
+## map&gt; l1 |&gt; map(&quot;a&quot;, .default = &quot;???&quot;)
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;???&quot;
+## 
+## [[3]]
+## [1] &quot;???&quot;
+## 
+## 
+## map&gt; l1 |&gt; map_int(&quot;b&quot;, .default = NA)
+## [1] NA  2  3
+## 
+## map&gt; l1 |&gt; map_int(2, .default = NA)
+## [1] NA  2 NA
+## 
+## map&gt; # Supply multiple values to index deeply into a list
+## map&gt; l2 &lt;- list(
+## map+   list(num = 1:3,     letters[1:3]),
+## map+   list(num = 101:103, letters[4:6]),
+## map+   list()
+## map+ )
+## 
+## map&gt; l2 |&gt; map(c(2, 2))
+## [[1]]
+## [1] &quot;b&quot;
+## 
+## [[2]]
+## [1] &quot;e&quot;
+## 
+## [[3]]
+## NULL
+## 
+## 
+## map&gt; # Use a list to build an extractor that mixes numeric indices and names,
+## map&gt; # and .default to provide a default value if the element does not exist
+## map&gt; l2 |&gt; map(list(&quot;num&quot;, 3))
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 103
+## 
+## [[3]]
+## NULL
+## 
+## 
+## map&gt; l2 |&gt; map_int(list(&quot;num&quot;, 3), .default = NA)
+## [1]   3 103  NA
+## 
+## map&gt; # Working with data frames
+## map&gt; # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
+## map&gt; mtcars |&gt; map_dbl(sum)
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
+##       am     gear     carb 
+##   13.000  118.000   90.000 
+## 
+## map&gt; # A more realistic example: split a data frame into pieces, fit a
+## map&gt; # model to each piece, summarise and extract R^2
+## map&gt; mtcars |&gt;
+## map+   split(mtcars$cyl) |&gt;
+## map+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## map+   map(summary) |&gt;
+## map+   map_dbl(&quot;r.squared&quot;)
+##         4         6         8 
+## 0.5086326 0.4645102 0.4229655</code></pre>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="purrr.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_at&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## map_at&gt; # Use a predicate function to decide whether to map a function:
+## map_at&gt; iris |&gt; map_if(is.factor, as.character) |&gt; str()
+## List of 5
+##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : chr [1:150] &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; ...
+## 
+## map_at&gt; # Specify an alternative with the `.else` argument:
+## map_at&gt; iris |&gt; map_if(is.factor, as.character, .else = as.integer) |&gt; str()
+## List of 5
+##  $ Sepal.Length: int [1:150] 5 4 4 4 5 5 4 5 4 4 ...
+##  $ Sepal.Width : int [1:150] 3 3 3 3 3 3 3 3 2 3 ...
+##  $ Petal.Length: int [1:150] 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Petal.Width : int [1:150] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Species     : chr [1:150] &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; &quot;setosa&quot; ...
+## 
+## map_at&gt; # Use numeric vector of positions select elements to change:
+## map_at&gt; iris |&gt; map_at(c(4, 5), is.numeric) |&gt; str()
+## List of 5
+##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : logi TRUE
+##  $ Species     : logi FALSE
+## 
+## map_at&gt; # Use vector of names to specify which elements to change:
+## map_at&gt; iris |&gt; map_at(&quot;Species&quot;, toupper) |&gt; str()
+## List of 5
+##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+##  $ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+##  $ Species     : chr [1:150] &quot;SETOSA&quot; &quot;SETOSA&quot; &quot;SETOSA&quot; &quot;SETOSA&quot; ...</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="purrr.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_chr&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp_chr&gt; # Compute normal distributions from an atomic vector
+## mp_chr&gt; 1:10 |&gt;
+## mp_chr+   map(rnorm, n = 10)
+## [[1]]
+##  [1]  1.0068383  1.8742467  0.6149887  0.5348532  0.9808235  2.5946148
+##  [7]  1.8532632  1.5447999 -0.4688683  1.0847635
+## 
+## [[2]]
+##  [1] 3.315259 2.897638 2.558229 2.108180 3.175341 2.030966 3.873527 2.727374
+##  [9] 1.227531 2.170441
+## 
+## [[3]]
+##  [1] 2.002316 3.172793 1.434978 2.335289 3.128632 2.682349 2.182090 3.491598
+##  [9] 3.193407 1.910083
+## 
+## [[4]]
+##  [1] 3.590554 3.417109 3.986594 2.444459 4.467160 2.872323 4.401744 5.037747
+##  [9] 2.499660 4.840630
+## 
+## [[5]]
+##  [1] 2.949669 4.269048 4.131746 5.220924 4.251317 2.985941 4.520868 3.966945
+##  [9] 5.759651 5.031149
+## 
+## [[6]]
+##  [1] 5.455317 5.337369 6.340106 5.559877 7.062452 7.439826 6.235158 6.714417
+##  [9] 5.566950 5.209869
+## 
+## [[7]]
+##  [1] 7.225328 5.785861 6.191306 5.559568 7.333777 7.874659 7.397085 7.511655
+##  [9] 7.035457 8.565282
+## 
+## [[8]]
+##  [1]  9.499747  8.559358  8.566084  8.435872  9.231086  7.434397 10.210168
+##  [8]  8.430040  6.468241  8.031148
+## 
+## [[9]]
+##  [1]  8.967565  7.669497 10.235208  9.051394  8.732482  9.638900  6.719280
+##  [8]  8.998589  9.735001  8.562167
+## 
+## [[10]]
+##  [1] 10.395638 10.326543  9.402625 10.986502 11.307875 10.563452  9.385014
+##  [8] 10.904741  9.693875 11.493628
+## 
+## 
+## mp_chr&gt; # You can also use an anonymous function
+## mp_chr&gt; 1:10 |&gt;
+## mp_chr+   map(\(x) rnorm(10, x))
+## [[1]]
+##  [1]  1.1940007  1.2160002  0.7633762  0.7778411  1.2048014  1.4363720
+##  [7]  1.1661496 -0.1515759 -0.3811876  1.9311726
+## 
+## [[2]]
+##  [1] 0.9317052 2.9115510 1.9087439 2.0040123 3.4467795 0.6774343 3.0023997
+##  [8] 3.4817460 3.3106918 2.8832619
+## 
+## [[3]]
+##  [1] 1.971407 2.473861 3.789445 4.080289 3.161884 4.192958 3.053015 3.651906
+##  [9] 4.239476 1.821208
+## 
+## [[4]]
+##  [1] 4.088963 3.009027 4.935167 3.356045 3.365986 4.507939 4.442282 4.121762
+##  [9] 4.124109 1.896212
+## 
+## [[5]]
+##  [1] 4.625766 5.366967 2.930184 5.001544 3.639850 4.864609 3.877792 5.936365
+##  [9] 3.914441 3.222121
+## 
+## [[6]]
+##  [1] 7.250567 6.980029 5.379965 5.963222 6.519868 5.543293 5.716278 4.894704
+##  [9] 5.885295 8.268970
+## 
+## [[7]]
+##  [1] 6.632952 6.820462 7.606352 6.473488 7.597671 5.752108 7.941285 5.654091
+##  [9] 6.923558 6.562355
+## 
+## [[8]]
+##  [1] 6.787182 7.879227 8.260680 8.023448 8.027866 6.750783 6.085629 6.988263
+##  [9] 7.429751 9.222333
+## 
+## [[9]]
+##  [1]  8.910237  7.587927  9.377269  8.617304  8.551994  7.988263  9.748852
+##  [8] 10.301968  8.218454 10.525187
+## 
+## [[10]]
+##  [1] 10.207079 12.305144 10.130634 11.960758  9.521668  6.319598 11.457606
+##  [8] 10.749438 11.593125  9.759600
+## 
+## 
+## mp_chr&gt; # Simplify output to a vector instead of a list by computing the mean of the distributions
+## mp_chr&gt; 1:10 |&gt;
+## mp_chr+   map(rnorm, n = 10) |&gt;  # output a list
+## mp_chr+   map_dbl(mean)           # output an atomic vector
+##  [1]  1.306092  2.010512  2.939084  3.915969  4.768335  5.798347  6.707390
+##  [8]  7.950560  8.944462 10.036085
+## 
+## mp_chr&gt; # Using set_names() with character vectors is handy to keep track
+## mp_chr&gt; # of the original inputs:
+## mp_chr&gt; set_names(c(&quot;foo&quot;, &quot;bar&quot;)) |&gt; map_chr(paste0, &quot;:suffix&quot;)
+##          foo          bar 
+## &quot;foo:suffix&quot; &quot;bar:suffix&quot; 
+## 
+## mp_chr&gt; # Working with lists
+## mp_chr&gt; favorite_desserts &lt;- list(Sophia = &quot;banana bread&quot;, Eliott = &quot;pancakes&quot;, Karina = &quot;chocolate cake&quot;)
+## 
+## mp_chr&gt; favorite_desserts |&gt; map_chr(\(food) paste(food, &quot;rocks!&quot;))
+##                  Sophia                  Eliott                  Karina 
+##   &quot;banana bread rocks!&quot;       &quot;pancakes rocks!&quot; &quot;chocolate cake rocks!&quot; 
+## 
+## mp_chr&gt; # Extract by name or position
+## mp_chr&gt; # .default specifies value for elements that are missing or NULL
+## mp_chr&gt; l1 &lt;- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
+## 
+## mp_chr&gt; l1 |&gt; map(&quot;a&quot;, .default = &quot;???&quot;)
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;???&quot;
+## 
+## [[3]]
+## [1] &quot;???&quot;
+## 
+## 
+## mp_chr&gt; l1 |&gt; map_int(&quot;b&quot;, .default = NA)
+## [1] NA  2  3
+## 
+## mp_chr&gt; l1 |&gt; map_int(2, .default = NA)
+## [1] NA  2 NA
+## 
+## mp_chr&gt; # Supply multiple values to index deeply into a list
+## mp_chr&gt; l2 &lt;- list(
+## mp_chr+   list(num = 1:3,     letters[1:3]),
+## mp_chr+   list(num = 101:103, letters[4:6]),
+## mp_chr+   list()
+## mp_chr+ )
+## 
+## mp_chr&gt; l2 |&gt; map(c(2, 2))
+## [[1]]
+## [1] &quot;b&quot;
+## 
+## [[2]]
+## [1] &quot;e&quot;
+## 
+## [[3]]
+## NULL
+## 
+## 
+## mp_chr&gt; # Use a list to build an extractor that mixes numeric indices and names,
+## mp_chr&gt; # and .default to provide a default value if the element does not exist
+## mp_chr&gt; l2 |&gt; map(list(&quot;num&quot;, 3))
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 103
+## 
+## [[3]]
+## NULL
+## 
+## 
+## mp_chr&gt; l2 |&gt; map_int(list(&quot;num&quot;, 3), .default = NA)
+## [1]   3 103  NA
+## 
+## mp_chr&gt; # Working with data frames
+## mp_chr&gt; # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
+## mp_chr&gt; mtcars |&gt; map_dbl(sum)
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
+##       am     gear     carb 
+##   13.000  118.000   90.000 
+## 
+## mp_chr&gt; # A more realistic example: split a data frame into pieces, fit a
+## mp_chr&gt; # model to each piece, summarise and extract R^2
+## mp_chr&gt; mtcars |&gt;
+## mp_chr+   split(mtcars$cyl) |&gt;
+## mp_chr+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp_chr+   map(summary) |&gt;
+## mp_chr+   map_dbl(&quot;r.squared&quot;)
+##         4         6         8 
+## 0.5086326 0.4645102 0.4229655</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="purrr.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dbl&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp_dbl&gt; # Compute normal distributions from an atomic vector
+## mp_dbl&gt; 1:10 |&gt;
+## mp_dbl+   map(rnorm, n = 10)
+## [[1]]
+##  [1] -0.2003622  1.5280561  0.8970340 -0.5704387  1.2142092  0.8486974
+##  [7]  1.9872077  1.2558931  2.3428686  0.9094883
+## 
+## [[2]]
+##  [1] 1.5954688 1.7544410 2.0663667 1.9064362 0.6143824 1.3345073 1.4044440
+##  [8] 0.7678414 1.5019057 1.8545468
+## 
+## [[3]]
+##  [1] 2.023493 2.870705 3.027891 3.534184 2.504992 3.697290 2.981002 1.973128
+##  [9] 3.794557 2.953874
+## 
+## [[4]]
+##  [1] 5.654983 4.369978 2.810768 4.394122 3.042392 2.895159 3.732480 3.577456
+##  [9] 2.949389 3.139977
+## 
+## [[5]]
+##  [1] 6.451990 5.655777 4.578628 4.475167 3.511581 5.438912 4.096100 6.337568
+##  [9] 6.277743 6.473290
+## 
+## [[6]]
+##  [1] 6.701314 5.279354 5.032750 5.150315 5.771744 4.956395 5.011913 7.380020
+##  [9] 5.154245 4.809015
+## 
+## [[7]]
+##  [1] 5.618042 6.608705 5.198741 8.021983 5.476292 8.522425 8.403453 7.248484
+##  [9] 8.207490 8.295792
+## 
+## [[8]]
+##  [1] 8.409436 8.862805 5.175262 7.936492 8.513879 8.038389 6.179228 6.671406
+##  [9] 7.263369 6.766855
+## 
+## [[9]]
+##  [1] 8.075683 7.912750 9.886395 7.691866 9.319549 8.394526 9.919844 9.990569
+##  [9] 7.716549 8.639392
+## 
+## [[10]]
+##  [1]  8.589421  8.841837  8.784877 12.495707 10.613377 10.379434  9.785230
+##  [8]  9.108118 10.300218  9.759969
+## 
+## 
+## mp_dbl&gt; # You can also use an anonymous function
+## mp_dbl&gt; 1:10 |&gt;
+## mp_dbl+   map(\(x) rnorm(10, x))
+## [[1]]
+##  [1] 1.5001772 0.8061898 1.0215502 0.5087368 0.2112070 0.5388967 0.1132226
+##  [8] 0.7010926 1.2137739 2.0580810
+## 
+## [[2]]
+##  [1] 2.5625567 2.4778784 2.2145988 0.7743261 1.1686166 1.5733426 3.5268571
+##  [8] 1.4493044 1.1012504 3.0403929
+## 
+## [[3]]
+##  [1] 2.098776 2.694227 3.212515 3.359984 3.186201 2.822668 4.354981 1.478393
+##  [9] 4.238315 2.498746
+## 
+## [[4]]
+##  [1] 5.816921 4.848964 3.007330 2.368427 4.159776 3.102378 4.492722 4.878915
+##  [9] 2.044364 2.471788
+## 
+## [[5]]
+##  [1] 8.015956 5.240027 4.945720 3.856931 6.159654 5.575643 3.819709 4.639630
+##  [9] 6.458721 5.205081
+## 
+## [[6]]
+##  [1] 6.462299 6.590601 5.589528 6.816750 4.702695 6.778739 5.736338 5.927952
+##  [9] 6.785875 6.706670
+## 
+## [[7]]
+##  [1] 6.114177 8.395354 7.800895 5.772470 5.644210 5.183651 7.135765 5.745749
+##  [9] 6.109164 6.764034
+## 
+## [[8]]
+##  [1] 7.712221 7.395466 7.630046 5.890775 7.159324 7.703109 9.014629 7.707483
+##  [9] 9.500615 6.673802
+## 
+## [[9]]
+##  [1]  9.127909  7.786993  9.875138  9.530288 10.363304  9.397270 10.292220
+##  [8]  8.457506  8.263461 10.691203
+## 
+## [[10]]
+##  [1]  7.689390 10.982182  9.781502  9.794237 10.113009  9.215965 10.104751
+##  [8]  9.757022 11.696100  9.516418
+## 
+## 
+## mp_dbl&gt; # Simplify output to a vector instead of a list by computing the mean of the distributions
+## mp_dbl&gt; 1:10 |&gt;
+## mp_dbl+   map(rnorm, n = 10) |&gt;  # output a list
+## mp_dbl+   map_dbl(mean)           # output an atomic vector
+##  [1] 1.089099 1.956344 3.432808 3.520782 5.141980 6.137672 6.617857 7.840767
+##  [9] 9.501236 9.700153
+## 
+## mp_dbl&gt; # Using set_names() with character vectors is handy to keep track
+## mp_dbl&gt; # of the original inputs:
+## mp_dbl&gt; set_names(c(&quot;foo&quot;, &quot;bar&quot;)) |&gt; map_chr(paste0, &quot;:suffix&quot;)
+##          foo          bar 
+## &quot;foo:suffix&quot; &quot;bar:suffix&quot; 
+## 
+## mp_dbl&gt; # Working with lists
+## mp_dbl&gt; favorite_desserts &lt;- list(Sophia = &quot;banana bread&quot;, Eliott = &quot;pancakes&quot;, Karina = &quot;chocolate cake&quot;)
+## 
+## mp_dbl&gt; favorite_desserts |&gt; map_chr(\(food) paste(food, &quot;rocks!&quot;))
+##                  Sophia                  Eliott                  Karina 
+##   &quot;banana bread rocks!&quot;       &quot;pancakes rocks!&quot; &quot;chocolate cake rocks!&quot; 
+## 
+## mp_dbl&gt; # Extract by name or position
+## mp_dbl&gt; # .default specifies value for elements that are missing or NULL
+## mp_dbl&gt; l1 &lt;- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
+## 
+## mp_dbl&gt; l1 |&gt; map(&quot;a&quot;, .default = &quot;???&quot;)
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;???&quot;
+## 
+## [[3]]
+## [1] &quot;???&quot;
+## 
+## 
+## mp_dbl&gt; l1 |&gt; map_int(&quot;b&quot;, .default = NA)
+## [1] NA  2  3
+## 
+## mp_dbl&gt; l1 |&gt; map_int(2, .default = NA)
+## [1] NA  2 NA
+## 
+## mp_dbl&gt; # Supply multiple values to index deeply into a list
+## mp_dbl&gt; l2 &lt;- list(
+## mp_dbl+   list(num = 1:3,     letters[1:3]),
+## mp_dbl+   list(num = 101:103, letters[4:6]),
+## mp_dbl+   list()
+## mp_dbl+ )
+## 
+## mp_dbl&gt; l2 |&gt; map(c(2, 2))
+## [[1]]
+## [1] &quot;b&quot;
+## 
+## [[2]]
+## [1] &quot;e&quot;
+## 
+## [[3]]
+## NULL
+## 
+## 
+## mp_dbl&gt; # Use a list to build an extractor that mixes numeric indices and names,
+## mp_dbl&gt; # and .default to provide a default value if the element does not exist
+## mp_dbl&gt; l2 |&gt; map(list(&quot;num&quot;, 3))
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 103
+## 
+## [[3]]
+## NULL
+## 
+## 
+## mp_dbl&gt; l2 |&gt; map_int(list(&quot;num&quot;, 3), .default = NA)
+## [1]   3 103  NA
+## 
+## mp_dbl&gt; # Working with data frames
+## mp_dbl&gt; # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
+## mp_dbl&gt; mtcars |&gt; map_dbl(sum)
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
+##       am     gear     carb 
+##   13.000  118.000   90.000 
+## 
+## mp_dbl&gt; # A more realistic example: split a data frame into pieces, fit a
+## mp_dbl&gt; # model to each piece, summarise and extract R^2
+## mp_dbl&gt; mtcars |&gt;
+## mp_dbl+   split(mtcars$cyl) |&gt;
+## mp_dbl+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp_dbl+   map(summary) |&gt;
+## mp_dbl+   map_dbl(&quot;r.squared&quot;)
+##         4         6         8 
+## 0.5086326 0.4645102 0.4229655</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="purrr.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_df&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## map_df&gt; # map ---------------------------------------------
+## map_df&gt; # Was:
+## map_df&gt; mtcars |&gt;
+## map_df+   split(mtcars$cyl) |&gt;
+## map_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## map_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## map_df&gt; # Now:
+## map_df&gt; mtcars |&gt;
+## map_df+   split(mtcars$cyl) |&gt;
+## map_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## map_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |&gt;
+## map_df+   list_rbind()
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## map_df&gt; # map2 ---------------------------------------------
+## map_df&gt; 
+## map_df&gt; ex_fun &lt;- function(arg1, arg2){
+## map_df+   col &lt;- arg1 + arg2
+## map_df+   x &lt;- as.data.frame(col)
+## map_df+ }
+## 
+## map_df&gt; arg1 &lt;- 1:4
+## 
+## map_df&gt; arg2 &lt;- 10:13
+## 
+## map_df&gt; # was
+## map_df&gt; map2_dfr(arg1, arg2, ex_fun)
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## map_df&gt; # now
+## map_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_rbind()
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## map_df&gt; # was
+## map_df&gt; map2_dfc(arg1, arg2, ex_fun)
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17
+## 
+## map_df&gt; # now
+## map_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_cbind()
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="purrr.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dfc&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp_dfc&gt; # map ---------------------------------------------
+## mp_dfc&gt; # Was:
+## mp_dfc&gt; mtcars |&gt;
+## mp_dfc+   split(mtcars$cyl) |&gt;
+## mp_dfc+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp_dfc+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp_dfc&gt; # Now:
+## mp_dfc&gt; mtcars |&gt;
+## mp_dfc+   split(mtcars$cyl) |&gt;
+## mp_dfc+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp_dfc+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |&gt;
+## mp_dfc+   list_rbind()
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp_dfc&gt; # map2 ---------------------------------------------
+## mp_dfc&gt; 
+## mp_dfc&gt; ex_fun &lt;- function(arg1, arg2){
+## mp_dfc+   col &lt;- arg1 + arg2
+## mp_dfc+   x &lt;- as.data.frame(col)
+## mp_dfc+ }
+## 
+## mp_dfc&gt; arg1 &lt;- 1:4
+## 
+## mp_dfc&gt; arg2 &lt;- 10:13
+## 
+## mp_dfc&gt; # was
+## mp_dfc&gt; map2_dfr(arg1, arg2, ex_fun)
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp_dfc&gt; # now
+## mp_dfc&gt; map2(arg1, arg2, ex_fun) |&gt; list_rbind()
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp_dfc&gt; # was
+## mp_dfc&gt; map2_dfc(arg1, arg2, ex_fun)
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17
+## 
+## mp_dfc&gt; # now
+## mp_dfc&gt; map2(arg1, arg2, ex_fun) |&gt; list_cbind()
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="purrr.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dfr&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp_dfr&gt; # map ---------------------------------------------
+## mp_dfr&gt; # Was:
+## mp_dfr&gt; mtcars |&gt;
+## mp_dfr+   split(mtcars$cyl) |&gt;
+## mp_dfr+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp_dfr+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp_dfr&gt; # Now:
+## mp_dfr&gt; mtcars |&gt;
+## mp_dfr+   split(mtcars$cyl) |&gt;
+## mp_dfr+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp_dfr+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |&gt;
+## mp_dfr+   list_rbind()
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp_dfr&gt; # map2 ---------------------------------------------
+## mp_dfr&gt; 
+## mp_dfr&gt; ex_fun &lt;- function(arg1, arg2){
+## mp_dfr+   col &lt;- arg1 + arg2
+## mp_dfr+   x &lt;- as.data.frame(col)
+## mp_dfr+ }
+## 
+## mp_dfr&gt; arg1 &lt;- 1:4
+## 
+## mp_dfr&gt; arg2 &lt;- 10:13
+## 
+## mp_dfr&gt; # was
+## mp_dfr&gt; map2_dfr(arg1, arg2, ex_fun)
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp_dfr&gt; # now
+## mp_dfr&gt; map2(arg1, arg2, ex_fun) |&gt; list_rbind()
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp_dfr&gt; # was
+## mp_dfr&gt; map2_dfc(arg1, arg2, ex_fun)
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17
+## 
+## mp_dfr&gt; # now
+## mp_dfr&gt; map2(arg1, arg2, ex_fun) |&gt; list_cbind()
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="purrr.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_int&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## map_nt&gt; # Compute normal distributions from an atomic vector
+## map_nt&gt; 1:10 |&gt;
+## map_nt+   map(rnorm, n = 10)
+## [[1]]
+##  [1] -0.45025897  0.06891766  2.09977775 -0.64798363  1.17580365  0.86299081
+##  [7]  2.71011355  1.35034928  0.37780055  3.33086967
+## 
+## [[2]]
+##  [1] 0.4027428 0.8096802 1.5278872 0.7858311 0.8812956 1.9625017 2.4964615
+##  [8] 0.1087158 1.0122734 1.0015745
+## 
+## [[3]]
+##  [1] 3.085883 2.723483 5.169577 1.432769 3.490104 2.192081 2.444069 4.600173
+##  [9] 1.998246 4.878160
+## 
+## [[4]]
+##  [1] 3.112159 3.385053 2.110734 4.598390 4.998019 3.761371 3.061745 4.190581
+##  [9] 3.666348 2.716072
+## 
+## [[5]]
+##  [1] 5.376115 5.602843 5.642842 4.156423 5.154252 4.961575 4.846474 4.098562
+##  [9] 5.507939 4.743495
+## 
+## [[6]]
+##  [1] 4.176213 5.776562 2.527260 7.402756 5.395049 4.818491 6.911258 8.497411
+##  [9] 5.701861 6.380725
+## 
+## [[7]]
+##  [1] 5.659900 7.028140 6.620525 7.629573 5.595742 5.676135 6.928742 6.831138
+##  [9] 7.378269 7.877700
+## 
+## [[8]]
+##  [1]  6.722658 10.183352  8.534536  7.034857  8.596419  7.834080  7.324914
+##  [8]  8.572491  8.727029  7.963417
+## 
+## [[9]]
+##  [1]  7.633804 10.922516  7.559582 10.298666 10.288217 10.215988  8.487903
+##  [8]  8.651001  9.613372 11.085749
+## 
+## [[10]]
+##  [1]  9.228800  8.360394 10.301952 12.036662  8.232986 10.194249  7.550620
+##  [8] 10.248752 10.189030 10.914888
+## 
+## 
+## map_nt&gt; # You can also use an anonymous function
+## map_nt&gt; 1:10 |&gt;
+## map_nt+   map(\(x) rnorm(10, x))
+## [[1]]
+##  [1]  1.09312843 -0.06193882  1.59282217 -0.72895114  0.87262857  1.90974664
+##  [7]  0.64466791  0.92504958  1.64415434  0.45683877
+## 
+## [[2]]
+##  [1]  2.28751814  2.45777309  1.73786790  3.25041197  3.31487601  0.83648830
+##  [7]  2.89304476  1.74005802 -0.08994746  2.15356466
+## 
+## [[3]]
+##  [1] 3.1955625 3.2227278 1.5151065 2.8159070 2.2605722 3.4314063 2.1685024
+##  [8] 0.4936166 2.7772557 4.2523459
+## 
+## [[4]]
+##  [1] 4.213360 5.267165 3.627772 4.538455 4.501160 3.040814 5.158264 2.548457
+##  [9] 2.410137 3.718372
+## 
+## [[5]]
+##  [1] 2.594895 6.081334 4.804234 4.378132 3.863119 5.897580 4.777595 4.552615
+##  [9] 6.039130 6.983300
+## 
+## [[6]]
+##  [1] 4.269169 5.263873 6.842628 6.370673 6.662064 8.499360 6.389190 3.841559
+##  [9] 6.055076 6.059261
+## 
+## [[7]]
+##  [1] 7.293186 6.262460 7.765123 9.757840 6.217125 7.007388 9.640583 7.677985
+##  [9] 5.724758 5.943778
+## 
+## [[8]]
+##  [1] 8.234211 6.540582 8.624927 6.298066 7.204635 8.662722 7.499894 6.796043
+##  [9] 8.815775 9.017453
+## 
+## [[9]]
+##  [1]  9.352164  9.287892  7.300060  9.519677  9.071494 10.678960  8.660784
+##  [8]  8.347910  7.521422  8.461680
+## 
+## [[10]]
+##  [1] 11.286042 10.353684 10.104158  8.393660 10.066116 11.215402 10.413647
+##  [8]  9.570977 10.716489 11.682406
+## 
+## 
+## map_nt&gt; # Simplify output to a vector instead of a list by computing the mean of the distributions
+## map_nt&gt; 1:10 |&gt;
+## map_nt+   map(rnorm, n = 10) |&gt;  # output a list
+## map_nt+   map_dbl(mean)           # output an atomic vector
+##  [1]  1.359565  1.457077  2.843263  3.947156  4.844924  6.037905  7.266564
+##  [8]  7.876624  9.107003 10.164666
+## 
+## map_nt&gt; # Using set_names() with character vectors is handy to keep track
+## map_nt&gt; # of the original inputs:
+## map_nt&gt; set_names(c(&quot;foo&quot;, &quot;bar&quot;)) |&gt; map_chr(paste0, &quot;:suffix&quot;)
+##          foo          bar 
+## &quot;foo:suffix&quot; &quot;bar:suffix&quot; 
+## 
+## map_nt&gt; # Working with lists
+## map_nt&gt; favorite_desserts &lt;- list(Sophia = &quot;banana bread&quot;, Eliott = &quot;pancakes&quot;, Karina = &quot;chocolate cake&quot;)
+## 
+## map_nt&gt; favorite_desserts |&gt; map_chr(\(food) paste(food, &quot;rocks!&quot;))
+##                  Sophia                  Eliott                  Karina 
+##   &quot;banana bread rocks!&quot;       &quot;pancakes rocks!&quot; &quot;chocolate cake rocks!&quot; 
+## 
+## map_nt&gt; # Extract by name or position
+## map_nt&gt; # .default specifies value for elements that are missing or NULL
+## map_nt&gt; l1 &lt;- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
+## 
+## map_nt&gt; l1 |&gt; map(&quot;a&quot;, .default = &quot;???&quot;)
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;???&quot;
+## 
+## [[3]]
+## [1] &quot;???&quot;
+## 
+## 
+## map_nt&gt; l1 |&gt; map_int(&quot;b&quot;, .default = NA)
+## [1] NA  2  3
+## 
+## map_nt&gt; l1 |&gt; map_int(2, .default = NA)
+## [1] NA  2 NA
+## 
+## map_nt&gt; # Supply multiple values to index deeply into a list
+## map_nt&gt; l2 &lt;- list(
+## map_nt+   list(num = 1:3,     letters[1:3]),
+## map_nt+   list(num = 101:103, letters[4:6]),
+## map_nt+   list()
+## map_nt+ )
+## 
+## map_nt&gt; l2 |&gt; map(c(2, 2))
+## [[1]]
+## [1] &quot;b&quot;
+## 
+## [[2]]
+## [1] &quot;e&quot;
+## 
+## [[3]]
+## NULL
+## 
+## 
+## map_nt&gt; # Use a list to build an extractor that mixes numeric indices and names,
+## map_nt&gt; # and .default to provide a default value if the element does not exist
+## map_nt&gt; l2 |&gt; map(list(&quot;num&quot;, 3))
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 103
+## 
+## [[3]]
+## NULL
+## 
+## 
+## map_nt&gt; l2 |&gt; map_int(list(&quot;num&quot;, 3), .default = NA)
+## [1]   3 103  NA
+## 
+## map_nt&gt; # Working with data frames
+## map_nt&gt; # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
+## map_nt&gt; mtcars |&gt; map_dbl(sum)
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
+##       am     gear     carb 
+##   13.000  118.000   90.000 
+## 
+## map_nt&gt; # A more realistic example: split a data frame into pieces, fit a
+## map_nt&gt; # model to each piece, summarise and extract R^2
+## map_nt&gt; mtcars |&gt;
+## map_nt+   split(mtcars$cyl) |&gt;
+## map_nt+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## map_nt+   map(summary) |&gt;
+## map_nt+   map_dbl(&quot;r.squared&quot;)
+##         4         6         8 
+## 0.5086326 0.4645102 0.4229655</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="purrr.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_lgl&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp_lgl&gt; # Compute normal distributions from an atomic vector
+## mp_lgl&gt; 1:10 |&gt;
+## mp_lgl+   map(rnorm, n = 10)
+## [[1]]
+##  [1]  0.5967523  0.4543398  0.7229271  1.1224787 -0.1883174  1.6431103
+##  [7]  0.9234561  0.1566172  0.9897688  0.1013542
+## 
+## [[2]]
+##  [1] 2.249635 2.271085 1.833473 1.438773 2.485872 2.795750 2.944785 1.894406
+##  [9] 1.708322 1.555596
+## 
+## [[3]]
+##  [1] 3.722642 1.560125 3.133018 2.407314 2.628768 2.665615 3.369843 1.923551
+##  [9] 3.011656 4.381971
+## 
+## [[4]]
+##  [1] 2.951523 4.268072 4.109736 3.660655 3.597182 3.916465 4.943514 4.986009
+##  [9] 5.079893 3.339539
+## 
+## [[5]]
+##  [1] 4.978122 5.795189 6.199343 6.655605 5.592086 5.719723 6.367421 4.340504
+##  [9] 5.067664 4.161115
+## 
+## [[6]]
+##  [1] 5.787469 7.779894 6.864474 5.671061 6.613280 6.185962 4.734759 6.327404
+##  [9] 6.318867 5.431653
+## 
+## [[7]]
+##  [1] 8.846869 5.883103 7.798493 6.435714 4.327976 6.525301 8.460801 8.537752
+##  [9] 7.648991 7.981946
+## 
+## [[8]]
+##  [1] 10.174872  6.999568  6.337164  9.290724  9.821949  7.021981  7.989047
+##  [8]  7.077178  9.285724  7.184304
+## 
+## [[9]]
+##  [1] 10.761108  8.800876 10.026637  8.015376  9.317565  9.626211  8.587623
+##  [8]  9.159688  9.205834  9.409177
+## 
+## [[10]]
+##  [1]  8.363103  9.853529  9.847140 11.879810 10.597633  8.418214 10.199696
+##  [8] 10.358009  8.899231 10.210242
+## 
+## 
+## mp_lgl&gt; # You can also use an anonymous function
+## mp_lgl&gt; 1:10 |&gt;
+## mp_lgl+   map(\(x) rnorm(10, x))
+## [[1]]
+##  [1] 3.1771013 1.8159584 1.4289906 1.5107763 2.6566006 1.4424619 0.9061077
+##  [8] 1.7682737 0.5883041 3.4265299
+## 
+## [[2]]
+##  [1]  0.40277444  1.70123532  0.89036148  2.90126094 -0.30565519  1.47657438
+##  [7]  0.06219026  1.77137229  3.77829601  2.17550588
+## 
+## [[3]]
+##  [1] 1.654754 2.880518 2.937644 3.195766 3.552514 1.240369 2.451757 3.038929
+##  [9] 2.884125 3.632229
+## 
+## [[4]]
+##  [1] 4.457169 4.864380 3.868448 4.067985 4.344373 2.766224 2.714609 3.772730
+##  [9] 4.798967 2.613569
+## 
+## [[5]]
+##  [1] 2.184839 4.422465 6.351459 4.626574 3.901772 4.627055 6.367493 7.327617
+##  [9] 3.506576 5.230564
+## 
+## [[6]]
+##  [1] 7.145823 8.027571 6.274576 7.775256 5.611583 6.708294 5.731473 4.307705
+##  [9] 6.725675 4.613325
+## 
+## [[7]]
+##  [1] 6.301121 6.791611 6.814216 8.092097 5.163208 5.872318 7.064465 7.165874
+##  [9] 6.452052 7.590932
+## 
+## [[8]]
+##  [1] 5.641506 7.588642 7.612029 9.884990 7.622542 9.217096 7.853424 7.330919
+##  [9] 7.322830 8.074373
+## 
+## [[9]]
+##  [1] 10.148466  9.357763  8.961347  6.785676  8.586804  7.570045  8.996043
+##  [8]  8.474778  8.793706  8.332182
+## 
+## [[10]]
+##  [1] 10.273571 10.200351 11.508384  9.715150  8.908599  9.771903  9.035531
+##  [8]  9.659311  9.541459  8.839349
+## 
+## 
+## mp_lgl&gt; # Simplify output to a vector instead of a list by computing the mean of the distributions
+## mp_lgl&gt; 1:10 |&gt;
+## mp_lgl+   map(rnorm, n = 10) |&gt;  # output a list
+## mp_lgl+   map_dbl(mean)           # output an atomic vector
+##  [1] 0.9662241 1.8904035 2.6958717 3.5409975 5.1600459 5.8384142 7.2778627
+##  [8] 8.1608093 9.2702172 9.9323402
+## 
+## mp_lgl&gt; # Using set_names() with character vectors is handy to keep track
+## mp_lgl&gt; # of the original inputs:
+## mp_lgl&gt; set_names(c(&quot;foo&quot;, &quot;bar&quot;)) |&gt; map_chr(paste0, &quot;:suffix&quot;)
+##          foo          bar 
+## &quot;foo:suffix&quot; &quot;bar:suffix&quot; 
+## 
+## mp_lgl&gt; # Working with lists
+## mp_lgl&gt; favorite_desserts &lt;- list(Sophia = &quot;banana bread&quot;, Eliott = &quot;pancakes&quot;, Karina = &quot;chocolate cake&quot;)
+## 
+## mp_lgl&gt; favorite_desserts |&gt; map_chr(\(food) paste(food, &quot;rocks!&quot;))
+##                  Sophia                  Eliott                  Karina 
+##   &quot;banana bread rocks!&quot;       &quot;pancakes rocks!&quot; &quot;chocolate cake rocks!&quot; 
+## 
+## mp_lgl&gt; # Extract by name or position
+## mp_lgl&gt; # .default specifies value for elements that are missing or NULL
+## mp_lgl&gt; l1 &lt;- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
+## 
+## mp_lgl&gt; l1 |&gt; map(&quot;a&quot;, .default = &quot;???&quot;)
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;???&quot;
+## 
+## [[3]]
+## [1] &quot;???&quot;
+## 
+## 
+## mp_lgl&gt; l1 |&gt; map_int(&quot;b&quot;, .default = NA)
+## [1] NA  2  3
+## 
+## mp_lgl&gt; l1 |&gt; map_int(2, .default = NA)
+## [1] NA  2 NA
+## 
+## mp_lgl&gt; # Supply multiple values to index deeply into a list
+## mp_lgl&gt; l2 &lt;- list(
+## mp_lgl+   list(num = 1:3,     letters[1:3]),
+## mp_lgl+   list(num = 101:103, letters[4:6]),
+## mp_lgl+   list()
+## mp_lgl+ )
+## 
+## mp_lgl&gt; l2 |&gt; map(c(2, 2))
+## [[1]]
+## [1] &quot;b&quot;
+## 
+## [[2]]
+## [1] &quot;e&quot;
+## 
+## [[3]]
+## NULL
+## 
+## 
+## mp_lgl&gt; # Use a list to build an extractor that mixes numeric indices and names,
+## mp_lgl&gt; # and .default to provide a default value if the element does not exist
+## mp_lgl&gt; l2 |&gt; map(list(&quot;num&quot;, 3))
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 103
+## 
+## [[3]]
+## NULL
+## 
+## 
+## mp_lgl&gt; l2 |&gt; map_int(list(&quot;num&quot;, 3), .default = NA)
+## [1]   3 103  NA
+## 
+## mp_lgl&gt; # Working with data frames
+## mp_lgl&gt; # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
+## mp_lgl&gt; mtcars |&gt; map_dbl(sum)
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
+##       am     gear     carb 
+##   13.000  118.000   90.000 
+## 
+## mp_lgl&gt; # A more realistic example: split a data frame into pieces, fit a
+## mp_lgl&gt; # model to each piece, summarise and extract R^2
+## mp_lgl&gt; mtcars |&gt;
+## mp_lgl+   split(mtcars$cyl) |&gt;
+## mp_lgl+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp_lgl+   map(summary) |&gt;
+## mp_lgl+   map_dbl(&quot;r.squared&quot;)
+##         4         6         8 
+## 0.5086326 0.4645102 0.4229655</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="purrr.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_vec&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## map_vc&gt; # Compute normal distributions from an atomic vector
+## map_vc&gt; 1:10 |&gt;
+## map_vc+   map(rnorm, n = 10)
+## [[1]]
+##  [1]  1.38604203  1.90757243  1.14096149  0.26168655  0.94621313  1.59193933
+##  [7] -0.56901828  0.77648032 -0.09472079  1.78294145
+## 
+## [[2]]
+##  [1] 2.045503 1.599628 2.679135 1.835012 2.018672 3.451387 3.843036 1.810334
+##  [9] 1.234081 1.870294
+## 
+## [[3]]
+##  [1] 2.784606 2.206926 3.445134 4.740863 0.791004 2.044555 3.558974 3.342120
+##  [9] 2.841481 4.572336
+## 
+## [[4]]
+##  [1] 3.996307 3.996027 3.956678 3.350192 3.333226 2.580734 4.307078 4.111929
+##  [9] 4.975616 3.503758
+## 
+## [[5]]
+##  [1] 5.569839 5.320121 4.993411 6.318104 5.334916 4.031843 3.736078 5.471868
+##  [9] 5.431147 4.761344
+## 
+## [[6]]
+##  [1] 4.832436 8.033939 6.218581 6.644334 5.874621 7.291922 6.616711 7.083095
+##  [9] 4.766555 7.400469
+## 
+## [[7]]
+##  [1] 7.557319 6.398632 5.231254 7.443476 7.900966 5.725895 6.827429 7.443030
+##  [9] 8.059383 7.128839
+## 
+## [[8]]
+##  [1] 6.339567 7.406427 9.657051 9.007508 8.975620 6.815804 6.776850 6.663811
+##  [9] 8.687691 7.953286
+## 
+## [[9]]
+##  [1]  8.020960  7.911821  7.772110  9.034803  9.248288 10.949059  7.389669
+##  [8]  9.063325  8.306870  9.513994
+## 
+## [[10]]
+##  [1]  9.024628  9.562471 10.100891  9.743682 10.239434 10.147486 10.528321
+##  [8] 10.291289 10.531867  9.909024
+## 
+## 
+## map_vc&gt; # You can also use an anonymous function
+## map_vc&gt; 1:10 |&gt;
+## map_vc+   map(\(x) rnorm(10, x))
+## [[1]]
+##  [1]  1.0309642  0.6536577  0.8535970  2.8410275  1.8561963  0.3587650
+##  [7]  2.8559758  1.0457273 -0.5229198  2.2037231
+## 
+## [[2]]
+##  [1]  0.9595716896  2.7957391163  1.6584107866 -0.0001670537  1.6866315039
+##  [6]  1.3286277270  4.1194751206  2.3764106279  2.2157162622  1.8030145253
+## 
+## [[3]]
+##  [1] 2.548308 1.547875 1.496325 2.301854 1.021169 3.048753 2.656265 4.320587
+##  [9] 2.877774 2.963500
+## 
+## [[4]]
+##  [1] 6.430777 5.171786 4.523788 4.571040 2.783211 5.687297 5.262559 4.181712
+##  [9] 4.398829 3.464428
+## 
+## [[5]]
+##  [1] 5.027874 5.960727 3.748245 6.222732 4.078046 3.572125 5.405297 5.058458
+##  [9] 4.953512 4.884571
+## 
+## [[6]]
+##  [1] 6.918714 6.082971 4.949108 6.325203 6.848302 6.031539 5.617526 6.809709
+##  [9] 6.657336 6.057574
+## 
+## [[7]]
+##  [1] 6.230131 6.106821 6.649912 7.126289 5.869520 7.758372 6.430557 6.898726
+##  [9] 7.785129 6.954427
+## 
+## [[8]]
+##  [1] 7.620063 7.346343 7.920957 5.819790 8.372425 8.778131 9.322884 9.202213
+##  [9] 7.148310 6.686473
+## 
+## [[9]]
+##  [1]  9.095652 10.978532 10.176599  7.220106 10.019266  8.149967  7.394095
+##  [8]  9.664111  8.528827  9.164621
+## 
+## [[10]]
+##  [1] 12.311992 10.286122  8.697783  9.964146 10.731348  9.179534  7.653186
+##  [8] 10.236401 10.841314 11.158109
+## 
+## 
+## map_vc&gt; # Simplify output to a vector instead of a list by computing the mean of the distributions
+## map_vc&gt; 1:10 |&gt;
+## map_vc+   map(rnorm, n = 10) |&gt;  # output a list
+## map_vc+   map_dbl(mean)           # output an atomic vector
+##  [1]  1.174141  2.337727  3.713061  4.455184  5.559091  6.325876  7.296157
+##  [8]  7.772128  9.323966 10.255760
+## 
+## map_vc&gt; # Using set_names() with character vectors is handy to keep track
+## map_vc&gt; # of the original inputs:
+## map_vc&gt; set_names(c(&quot;foo&quot;, &quot;bar&quot;)) |&gt; map_chr(paste0, &quot;:suffix&quot;)
+##          foo          bar 
+## &quot;foo:suffix&quot; &quot;bar:suffix&quot; 
+## 
+## map_vc&gt; # Working with lists
+## map_vc&gt; favorite_desserts &lt;- list(Sophia = &quot;banana bread&quot;, Eliott = &quot;pancakes&quot;, Karina = &quot;chocolate cake&quot;)
+## 
+## map_vc&gt; favorite_desserts |&gt; map_chr(\(food) paste(food, &quot;rocks!&quot;))
+##                  Sophia                  Eliott                  Karina 
+##   &quot;banana bread rocks!&quot;       &quot;pancakes rocks!&quot; &quot;chocolate cake rocks!&quot; 
+## 
+## map_vc&gt; # Extract by name or position
+## map_vc&gt; # .default specifies value for elements that are missing or NULL
+## map_vc&gt; l1 &lt;- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
+## 
+## map_vc&gt; l1 |&gt; map(&quot;a&quot;, .default = &quot;???&quot;)
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] &quot;???&quot;
+## 
+## [[3]]
+## [1] &quot;???&quot;
+## 
+## 
+## map_vc&gt; l1 |&gt; map_int(&quot;b&quot;, .default = NA)
+## [1] NA  2  3
+## 
+## map_vc&gt; l1 |&gt; map_int(2, .default = NA)
+## [1] NA  2 NA
+## 
+## map_vc&gt; # Supply multiple values to index deeply into a list
+## map_vc&gt; l2 &lt;- list(
+## map_vc+   list(num = 1:3,     letters[1:3]),
+## map_vc+   list(num = 101:103, letters[4:6]),
+## map_vc+   list()
+## map_vc+ )
+## 
+## map_vc&gt; l2 |&gt; map(c(2, 2))
+## [[1]]
+## [1] &quot;b&quot;
+## 
+## [[2]]
+## [1] &quot;e&quot;
+## 
+## [[3]]
+## NULL
+## 
+## 
+## map_vc&gt; # Use a list to build an extractor that mixes numeric indices and names,
+## map_vc&gt; # and .default to provide a default value if the element does not exist
+## map_vc&gt; l2 |&gt; map(list(&quot;num&quot;, 3))
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 103
+## 
+## [[3]]
+## NULL
+## 
+## 
+## map_vc&gt; l2 |&gt; map_int(list(&quot;num&quot;, 3), .default = NA)
+## [1]   3 103  NA
+## 
+## map_vc&gt; # Working with data frames
+## map_vc&gt; # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
+## map_vc&gt; mtcars |&gt; map_dbl(sum)
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
+##       am     gear     carb 
+##   13.000  118.000   90.000 
+## 
+## map_vc&gt; # A more realistic example: split a data frame into pieces, fit a
+## map_vc&gt; # model to each piece, summarise and extract R^2
+## map_vc&gt; mtcars |&gt;
+## map_vc+   split(mtcars$cyl) |&gt;
+## map_vc+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## map_vc+   map(summary) |&gt;
+## map_vc+   map_dbl(&quot;r.squared&quot;)
+##         4         6         8 
+## 0.5086326 0.4645102 0.4229655</code></pre>
+</div>
+<div id="map2-functions" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> map2 functions<a href="purrr.html#map2-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="purrr.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## map2&gt; x &lt;- list(1, 1, 1)
+## 
+## map2&gt; y &lt;- list(10, 20, 30)
+## 
+## map2&gt; map2(x, y, \(x, y) x + y)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## map2&gt; # Or just
+## map2&gt; map2(x, y, `+`)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## map2&gt; # Split into pieces, fit model to each piece, then predict
+## map2&gt; by_cyl &lt;- mtcars |&gt; split(mtcars$cyl)
+## 
+## map2&gt; mods &lt;- by_cyl |&gt; map(\(df) lm(mpg ~ wt, data = df))
+## 
+## map2&gt; map2(mods, by_cyl, predict)
+## $`4`
+##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
+##       26.47010       21.55719       21.78307       27.14774       30.45125 
+## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
+##       29.20890       25.65128       28.64420       27.48656       31.02725 
+##     Volvo 142E 
+##       23.87247 
+## 
+## $`6`
+##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
+##       21.12497       20.41604       19.47080       18.78968       18.84528 
+##      Merc 280C   Ferrari Dino 
+##       18.84528       20.70795 
+## 
+## $`8`
+##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
+##            16.32604            16.04103            14.94481            15.69024 
+##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
+##            15.58061            12.35773            11.97625            12.14945 
+##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
+##            16.15065            16.33700            15.44907            15.43811 
+##      Ford Pantera L       Maserati Bora 
+##            16.91800            16.04103</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="purrr.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_chr&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_ch&gt; x &lt;- list(1, 1, 1)
+## 
+## mp2_ch&gt; y &lt;- list(10, 20, 30)
+## 
+## mp2_ch&gt; map2(x, y, \(x, y) x + y)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_ch&gt; # Or just
+## mp2_ch&gt; map2(x, y, `+`)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_ch&gt; # Split into pieces, fit model to each piece, then predict
+## mp2_ch&gt; by_cyl &lt;- mtcars |&gt; split(mtcars$cyl)
+## 
+## mp2_ch&gt; mods &lt;- by_cyl |&gt; map(\(df) lm(mpg ~ wt, data = df))
+## 
+## mp2_ch&gt; map2(mods, by_cyl, predict)
+## $`4`
+##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
+##       26.47010       21.55719       21.78307       27.14774       30.45125 
+## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
+##       29.20890       25.65128       28.64420       27.48656       31.02725 
+##     Volvo 142E 
+##       23.87247 
+## 
+## $`6`
+##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
+##       21.12497       20.41604       19.47080       18.78968       18.84528 
+##      Merc 280C   Ferrari Dino 
+##       18.84528       20.70795 
+## 
+## $`8`
+##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
+##            16.32604            16.04103            14.94481            15.69024 
+##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
+##            15.58061            12.35773            11.97625            12.14945 
+##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
+##            16.15065            16.33700            15.44907            15.43811 
+##      Ford Pantera L       Maserati Bora 
+##            16.91800            16.04103</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="purrr.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dbl&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_db&gt; x &lt;- list(1, 1, 1)
+## 
+## mp2_db&gt; y &lt;- list(10, 20, 30)
+## 
+## mp2_db&gt; map2(x, y, \(x, y) x + y)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_db&gt; # Or just
+## mp2_db&gt; map2(x, y, `+`)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_db&gt; # Split into pieces, fit model to each piece, then predict
+## mp2_db&gt; by_cyl &lt;- mtcars |&gt; split(mtcars$cyl)
+## 
+## mp2_db&gt; mods &lt;- by_cyl |&gt; map(\(df) lm(mpg ~ wt, data = df))
+## 
+## mp2_db&gt; map2(mods, by_cyl, predict)
+## $`4`
+##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
+##       26.47010       21.55719       21.78307       27.14774       30.45125 
+## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
+##       29.20890       25.65128       28.64420       27.48656       31.02725 
+##     Volvo 142E 
+##       23.87247 
+## 
+## $`6`
+##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
+##       21.12497       20.41604       19.47080       18.78968       18.84528 
+##      Merc 280C   Ferrari Dino 
+##       18.84528       20.70795 
+## 
+## $`8`
+##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
+##            16.32604            16.04103            14.94481            15.69024 
+##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
+##            15.58061            12.35773            11.97625            12.14945 
+##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
+##            16.15065            16.33700            15.44907            15.43811 
+##      Ford Pantera L       Maserati Bora 
+##            16.91800            16.04103</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="purrr.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_df&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_df&gt; # map ---------------------------------------------
+## mp2_df&gt; # Was:
+## mp2_df&gt; mtcars |&gt;
+## mp2_df+   split(mtcars$cyl) |&gt;
+## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp2_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp2_df&gt; # Now:
+## mp2_df&gt; mtcars |&gt;
+## mp2_df+   split(mtcars$cyl) |&gt;
+## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp2_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |&gt;
+## mp2_df+   list_rbind()
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp2_df&gt; # map2 ---------------------------------------------
+## mp2_df&gt; 
+## mp2_df&gt; ex_fun &lt;- function(arg1, arg2){
+## mp2_df+   col &lt;- arg1 + arg2
+## mp2_df+   x &lt;- as.data.frame(col)
+## mp2_df+ }
+## 
+## mp2_df&gt; arg1 &lt;- 1:4
+## 
+## mp2_df&gt; arg2 &lt;- 10:13
+## 
+## mp2_df&gt; # was
+## mp2_df&gt; map2_dfr(arg1, arg2, ex_fun)
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp2_df&gt; # now
+## mp2_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_rbind()
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp2_df&gt; # was
+## mp2_df&gt; map2_dfc(arg1, arg2, ex_fun)
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17
+## 
+## mp2_df&gt; # now
+## mp2_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_cbind()
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17</code></pre>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="purrr.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dfc&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_df&gt; # map ---------------------------------------------
+## mp2_df&gt; # Was:
+## mp2_df&gt; mtcars |&gt;
+## mp2_df+   split(mtcars$cyl) |&gt;
+## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp2_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp2_df&gt; # Now:
+## mp2_df&gt; mtcars |&gt;
+## mp2_df+   split(mtcars$cyl) |&gt;
+## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp2_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |&gt;
+## mp2_df+   list_rbind()
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp2_df&gt; # map2 ---------------------------------------------
+## mp2_df&gt; 
+## mp2_df&gt; ex_fun &lt;- function(arg1, arg2){
+## mp2_df+   col &lt;- arg1 + arg2
+## mp2_df+   x &lt;- as.data.frame(col)
+## mp2_df+ }
+## 
+## mp2_df&gt; arg1 &lt;- 1:4
+## 
+## mp2_df&gt; arg2 &lt;- 10:13
+## 
+## mp2_df&gt; # was
+## mp2_df&gt; map2_dfr(arg1, arg2, ex_fun)
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp2_df&gt; # now
+## mp2_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_rbind()
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp2_df&gt; # was
+## mp2_df&gt; map2_dfc(arg1, arg2, ex_fun)
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17
+## 
+## mp2_df&gt; # now
+## mp2_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_cbind()
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="purrr.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dfr&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_df&gt; # map ---------------------------------------------
+## mp2_df&gt; # Was:
+## mp2_df&gt; mtcars |&gt;
+## mp2_df+   split(mtcars$cyl) |&gt;
+## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp2_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp2_df&gt; # Now:
+## mp2_df&gt; mtcars |&gt;
+## mp2_df+   split(mtcars$cyl) |&gt;
+## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |&gt;
+## mp2_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |&gt;
+## mp2_df+   list_rbind()
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+## 
+## mp2_df&gt; # map2 ---------------------------------------------
+## mp2_df&gt; 
+## mp2_df&gt; ex_fun &lt;- function(arg1, arg2){
+## mp2_df+   col &lt;- arg1 + arg2
+## mp2_df+   x &lt;- as.data.frame(col)
+## mp2_df+ }
+## 
+## mp2_df&gt; arg1 &lt;- 1:4
+## 
+## mp2_df&gt; arg2 &lt;- 10:13
+## 
+## mp2_df&gt; # was
+## mp2_df&gt; map2_dfr(arg1, arg2, ex_fun)
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp2_df&gt; # now
+## mp2_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_rbind()
+##   col
+## 1  11
+## 2  13
+## 3  15
+## 4  17
+## 
+## mp2_df&gt; # was
+## mp2_df&gt; map2_dfc(arg1, arg2, ex_fun)
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17
+## 
+## mp2_df&gt; # now
+## mp2_df&gt; map2(arg1, arg2, ex_fun) |&gt; list_cbind()
+##   col...1 col...2 col...3 col...4
+## 1      11      13      15      17</code></pre>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="purrr.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_int&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_nt&gt; x &lt;- list(1, 1, 1)
+## 
+## mp2_nt&gt; y &lt;- list(10, 20, 30)
+## 
+## mp2_nt&gt; map2(x, y, \(x, y) x + y)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_nt&gt; # Or just
+## mp2_nt&gt; map2(x, y, `+`)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_nt&gt; # Split into pieces, fit model to each piece, then predict
+## mp2_nt&gt; by_cyl &lt;- mtcars |&gt; split(mtcars$cyl)
+## 
+## mp2_nt&gt; mods &lt;- by_cyl |&gt; map(\(df) lm(mpg ~ wt, data = df))
+## 
+## mp2_nt&gt; map2(mods, by_cyl, predict)
+## $`4`
+##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
+##       26.47010       21.55719       21.78307       27.14774       30.45125 
+## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
+##       29.20890       25.65128       28.64420       27.48656       31.02725 
+##     Volvo 142E 
+##       23.87247 
+## 
+## $`6`
+##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
+##       21.12497       20.41604       19.47080       18.78968       18.84528 
+##      Merc 280C   Ferrari Dino 
+##       18.84528       20.70795 
+## 
+## $`8`
+##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
+##            16.32604            16.04103            14.94481            15.69024 
+##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
+##            15.58061            12.35773            11.97625            12.14945 
+##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
+##            16.15065            16.33700            15.44907            15.43811 
+##      Ford Pantera L       Maserati Bora 
+##            16.91800            16.04103</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="purrr.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_lgl&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_lg&gt; x &lt;- list(1, 1, 1)
+## 
+## mp2_lg&gt; y &lt;- list(10, 20, 30)
+## 
+## mp2_lg&gt; map2(x, y, \(x, y) x + y)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_lg&gt; # Or just
+## mp2_lg&gt; map2(x, y, `+`)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_lg&gt; # Split into pieces, fit model to each piece, then predict
+## mp2_lg&gt; by_cyl &lt;- mtcars |&gt; split(mtcars$cyl)
+## 
+## mp2_lg&gt; mods &lt;- by_cyl |&gt; map(\(df) lm(mpg ~ wt, data = df))
+## 
+## mp2_lg&gt; map2(mods, by_cyl, predict)
+## $`4`
+##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
+##       26.47010       21.55719       21.78307       27.14774       30.45125 
+## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
+##       29.20890       25.65128       28.64420       27.48656       31.02725 
+##     Volvo 142E 
+##       23.87247 
+## 
+## $`6`
+##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
+##       21.12497       20.41604       19.47080       18.78968       18.84528 
+##      Merc 280C   Ferrari Dino 
+##       18.84528       20.70795 
+## 
+## $`8`
+##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
+##            16.32604            16.04103            14.94481            15.69024 
+##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
+##            15.58061            12.35773            11.97625            12.14945 
+##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
+##            16.15065            16.33700            15.44907            15.43811 
+##      Ford Pantera L       Maserati Bora 
+##            16.91800            16.04103</code></pre>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="purrr.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_raw&quot;</span>)</span>
+<span id="cb259-2"><a href="purrr.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_vec&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## mp2_vc&gt; x &lt;- list(1, 1, 1)
+## 
+## mp2_vc&gt; y &lt;- list(10, 20, 30)
+## 
+## mp2_vc&gt; map2(x, y, \(x, y) x + y)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_vc&gt; # Or just
+## mp2_vc&gt; map2(x, y, `+`)
+## [[1]]
+## [1] 11
+## 
+## [[2]]
+## [1] 21
+## 
+## [[3]]
+## [1] 31
+## 
+## 
+## mp2_vc&gt; # Split into pieces, fit model to each piece, then predict
+## mp2_vc&gt; by_cyl &lt;- mtcars |&gt; split(mtcars$cyl)
+## 
+## mp2_vc&gt; mods &lt;- by_cyl |&gt; map(\(df) lm(mpg ~ wt, data = df))
+## 
+## mp2_vc&gt; map2(mods, by_cyl, predict)
+## $`4`
+##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
+##       26.47010       21.55719       21.78307       27.14774       30.45125 
+## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
+##       29.20890       25.65128       28.64420       27.48656       31.02725 
+##     Volvo 142E 
+##       23.87247 
+## 
+## $`6`
+##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
+##       21.12497       20.41604       19.47080       18.78968       18.84528 
+##      Merc 280C   Ferrari Dino 
+##       18.84528       20.70795 
+## 
+## $`8`
+##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
+##            16.32604            16.04103            14.94481            15.69024 
+##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
+##            15.58061            12.35773            11.97625            12.14945 
+##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
+##            16.15065            16.33700            15.44907            15.43811 
+##      Ford Pantera L       Maserati Bora 
+##            16.91800            16.04103</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggplot2-60-minutos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03_purrr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["learning_R.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
