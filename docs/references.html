@@ -8,7 +8,7 @@
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 The HTML output format for this example is bookdown::gitbook,
 set in the _output.yml file.</p>" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="References | Learning R packages" />
   <meta property="og:type" content="book" />
@@ -29,14 +29,14 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Cristian Villegas" />
 
 
-<meta name="date" content="2023-05-09" />
+<meta name="date" content="2023-05-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="purrr.html"/>
+<link rel="prev" href="broom-and-dplyr.html"/>
 
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -212,9 +212,25 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="4" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>4</b> purrr</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="purrr.html"><a href="purrr.html#map-functions"><i class="fa fa-check"></i><b>4.1</b> map functions</a></li>
-<li class="chapter" data-level="4.2" data-path="purrr.html"><a href="purrr.html#map2-functions"><i class="fa fa-check"></i><b>4.2</b> map2 functions</a></li>
+<li class="chapter" data-level="4.1" data-path="purrr.html"><a href="purrr.html#apply-a-function-to-each-element-of-a-list-or-atomic-vector"><i class="fa fa-check"></i><b>4.1</b> Apply a function to each element of a list or atomic vector</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="purrr.html"><a href="purrr.html#usage"><i class="fa fa-check"></i><b>4.1.1</b> Usage</a></li>
+<li class="chapter" data-level="4.1.2" data-path="purrr.html"><a href="purrr.html#arguments"><i class="fa fa-check"></i><b>4.1.2</b> Arguments</a></li>
+<li class="chapter" data-level="4.1.3" data-path="purrr.html"><a href="purrr.html#value"><i class="fa fa-check"></i><b>4.1.3</b> Value</a></li>
+<li class="chapter" data-level="4.1.4" data-path="purrr.html"><a href="purrr.html#see-also"><i class="fa fa-check"></i><b>4.1.4</b> See Also</a></li>
 </ul></li>
+<li class="chapter" data-level="4.2" data-path="purrr.html"><a href="purrr.html#examples"><i class="fa fa-check"></i><b>4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.3" data-path="purrr.html"><a href="purrr.html#map-functions"><i class="fa fa-check"></i><b>4.3</b> map functions</a></li>
+<li class="chapter" data-level="4.4" data-path="purrr.html"><a href="purrr.html#map2-functions"><i class="fa fa-check"></i><b>4.4</b> map2 functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#nest"><i class="fa fa-check"></i><b>5.1</b> nest()</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#unnest"><i class="fa fa-check"></i><b>5.2</b> unnest()</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#exemplos-da-ajuda-do-r"><i class="fa fa-check"></i><b>5.3</b> Exemplos da ajuda do R</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyr.html"><a href="tidyr.html#mais-detalhes"><i class="fa fa-check"></i><b>5.4</b> Mais detalhes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html"><i class="fa fa-check"></i><b>6</b> broom and dplyr</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -241,28 +257,28 @@ div.csl-indent {
 
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div class="csl-entry">
-Wickham, Hadley. 2023. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+Henry, Lionel, and Hadley Wickham. 2022. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.
+</div>
+<div class="csl-entry">
+Wickham, Hadley. 2022. <em>Tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
 </div>
 <div class="csl-entry">
 Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>“Welcome to the <span class="nocase">tidyverse</span>.”</span> <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2023. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.
+Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, and Dewey Dunnington. 2022. <em>Ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, and Davis Vaughan. 2023. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+Wickham, Hadley, Romain François, Lionel Henry, and Kirill Müller. 2022. <em>Dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, and Lionel Henry. 2023. <em>Purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.
+Wickham, Hadley, and Maximilian Girlich. 2022. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
 </div>
 <div class="csl-entry">
-Wickham, Hadley, Davis Vaughan, and Maximilian Girlich. 2023. <em>Tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+Xie, Yihui. 2022a. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
 </div>
 <div class="csl-entry">
-Xie, Yihui. 2023a. <em>Bookdown: Authoring Books and Technical Documents with r Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
-</div>
-<div class="csl-entry">
-———. 2023b. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
+———. 2022b. <em>Knitr: A General-Purpose Package for Dynamic Report Generation in r</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
 </div>
 </div>
 </div>
@@ -271,7 +287,7 @@ Xie, Yihui. 2023a. <em>Bookdown: Authoring Books and Technical Documents with r 
           </div>
         </div>
       </div>
-<a href="purrr.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="broom-and-dplyr.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -303,7 +319,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04_referencias.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05_referencias.Rmd",
 "text": "Edit"
 },
 "history": {
