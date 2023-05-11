@@ -14,13 +14,13 @@ mtcars %>%
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ## # Groups:   cyl [3]
 ##     cyl data              
 ##   <dbl> <list>            
-## 1     6 <tibble [7 × 10]> 
-## 2     4 <tibble [11 × 10]>
-## 3     8 <tibble [14 × 10]>
+## 1     6 <tibble [7 x 10]> 
+## 2     4 <tibble [11 x 10]>
+## 3     8 <tibble [14 x 10]>
 ```
 
 ```r
@@ -35,13 +35,13 @@ um
 ```
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ## # Groups:   cyl [3]
 ##     cyl data               linMod coeffs    slope
 ##   <dbl> <list>             <list> <list>    <dbl>
-## 1     6 <tibble [7 × 10]>  <lm>   <dbl [2]> -2.78
-## 2     4 <tibble [11 × 10]> <lm>   <dbl [2]> -5.65
-## 3     8 <tibble [14 × 10]> <lm>   <dbl [2]> -2.19
+## 1     6 <tibble [7 x 10]>  <lm>   <dbl [2]> -2.78
+## 2     4 <tibble [11 x 10]> <lm>   <dbl [2]> -5.65
+## 3     8 <tibble [14 x 10]> <lm>   <dbl [2]> -2.19
 ```
 
 ```r
@@ -128,13 +128,13 @@ dois
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ## # Groups:   cyl [3]
 ##     cyl data               model 
 ##   <dbl> <list>             <list>
-## 1     6 <tibble [7 × 10]>  <lm>  
-## 2     4 <tibble [11 × 10]> <lm>  
-## 3     8 <tibble [14 × 10]> <lm>
+## 1     6 <tibble [7 x 10]>  <lm>  
+## 2     4 <tibble [11 x 10]> <lm>  
+## 3     8 <tibble [14 x 10]> <lm>
 ```
 
 ```r
@@ -151,7 +151,7 @@ dois$data
 
 ```
 ## [[1]]
-## # A tibble: 7 × 10
+## # A tibble: 7 x 10
 ##     mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 ## 1  21    160    110  3.9   2.62  16.5     0     1     4     4
@@ -163,7 +163,7 @@ dois$data
 ## 7  19.7  145    175  3.62  2.77  15.5     0     1     5     6
 ## 
 ## [[2]]
-## # A tibble: 11 × 10
+## # A tibble: 11 x 10
 ##      mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 ##  1  22.8 108      93  3.85  2.32  18.6     1     1     4     1
@@ -179,7 +179,7 @@ dois$data
 ## 11  21.4 121     109  4.11  2.78  18.6     1     1     4     2
 ## 
 ## [[3]]
-## # A tibble: 14 × 10
+## # A tibble: 14 x 10
 ##      mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 ##  1  18.7  360    175  3.15  3.44  17.0     0     0     3     2
@@ -255,13 +255,13 @@ tres
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ## # Groups:   cyl [3]
 ##     cyl data               model     
 ##   <dbl> <list>             <list>    
-## 1     6 <tibble [7 × 10]>  <dbl [7]> 
-## 2     4 <tibble [11 × 10]> <dbl [11]>
-## 3     8 <tibble [14 × 10]> <dbl [14]>
+## 1     6 <tibble [7 x 10]>  <dbl [7]> 
+## 2     4 <tibble [11 x 10]> <dbl [11]>
+## 3     8 <tibble [14 x 10]> <dbl [14]>
 ```
 
 ```r
@@ -306,7 +306,7 @@ um %>%
 ```
 
 ```
-## # A tibble: 32 × 14
+## # A tibble: 32 x 14
 ## # Groups:   cyl [3]
 ##      cyl   mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb linMod
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <list>
@@ -320,7 +320,7 @@ um %>%
 ##  8     4  22.8  108     93  3.85  2.32  18.6     1     1     4     1 <lm>  
 ##  9     4  24.4  147.    62  3.69  3.19  20       1     0     4     2 <lm>  
 ## 10     4  22.8  141.    95  3.92  3.15  22.9     1     0     4     2 <lm>  
-## # … with 22 more rows, and 2 more variables: coeffs <list>, slope <dbl>
+## # ... with 22 more rows, and 2 more variables: coeffs <list>, slope <dbl>
 ```
 
 
@@ -335,7 +335,7 @@ df
 ```
 
 ```
-## # A tibble: 6 × 3
+## # A tibble: 6 x 3
 ##       x     y     z
 ##   <dbl> <int> <int>
 ## 1     1     1     6
@@ -354,12 +354,12 @@ df %>%
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##       x data            
 ##   <dbl> <list>          
-## 1     1 <tibble [3 × 2]>
-## 2     2 <tibble [2 × 2]>
-## 3     3 <tibble [1 × 2]>
+## 1     1 <tibble [3 x 2]>
+## 2     2 <tibble [2 x 2]>
+## 3     3 <tibble [1 x 2]>
 ```
 
 ```r
@@ -369,7 +369,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##       x           y           z
 ##   <dbl> <list<int>> <list<int>>
 ## 1     1         [3]         [3]
@@ -384,12 +384,12 @@ df %>%
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##       x data            
 ##   <dbl> <list>          
-## 1     1 <tibble [3 × 2]>
-## 2     2 <tibble [2 × 2]>
-## 3     3 <tibble [1 × 2]>
+## 1     1 <tibble [3 x 2]>
+## 2     2 <tibble [2 x 2]>
+## 3     3 <tibble [1 x 2]>
 ```
 
 ```r
@@ -398,12 +398,12 @@ iris %>%
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##   Species    data             
 ##   <fct>      <list>           
-## 1 setosa     <tibble [50 × 4]>
-## 2 versicolor <tibble [50 × 4]>
-## 3 virginica  <tibble [50 × 4]>
+## 1 setosa     <tibble [50 x 4]>
+## 2 versicolor <tibble [50 x 4]>
+## 3 virginica  <tibble [50 x 4]>
 ```
 
 ```r
@@ -413,12 +413,12 @@ iris %>%
 ```
 
 ```
-## # A tibble: 3 × 2
+## # A tibble: 3 x 2
 ##   Species    data             
 ##   <fct>      <list>           
-## 1 setosa     <tibble [50 × 4]>
-## 2 versicolor <tibble [50 × 4]>
-## 3 virginica  <tibble [50 × 4]>
+## 1 setosa     <tibble [50 x 4]>
+## 2 versicolor <tibble [50 x 4]>
+## 3 virginica  <tibble [50 x 4]>
 ```
 
 ```r
@@ -427,12 +427,12 @@ iris %>%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   Species    petal             sepal            
 ##   <fct>      <list>            <list>           
-## 1 setosa     <tibble [50 × 2]> <tibble [50 × 2]>
-## 2 versicolor <tibble [50 × 2]> <tibble [50 × 2]>
-## 3 virginica  <tibble [50 × 2]> <tibble [50 × 2]>
+## 1 setosa     <tibble [50 x 2]> <tibble [50 x 2]>
+## 2 versicolor <tibble [50 x 2]> <tibble [50 x 2]>
+## 3 virginica  <tibble [50 x 2]> <tibble [50 x 2]>
 ```
 
 ```r
@@ -441,12 +441,12 @@ iris %>%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   Species    width             length           
 ##   <fct>      <list>            <list>           
-## 1 setosa     <tibble [50 × 2]> <tibble [50 × 2]>
-## 2 versicolor <tibble [50 × 2]> <tibble [50 × 2]>
-## 3 virginica  <tibble [50 × 2]> <tibble [50 × 2]>
+## 1 setosa     <tibble [50 x 2]> <tibble [50 x 2]>
+## 2 versicolor <tibble [50 x 2]> <tibble [50 x 2]>
+## 3 virginica  <tibble [50 x 2]> <tibble [50 x 2]>
 ```
 
 ```r
@@ -457,29 +457,29 @@ fish_encounters %>%
 ```
 
 ```
-## # A tibble: 19 × 2
+## # A tibble: 19 x 2
 ## # Groups:   fish [19]
 ##    fish  data             
 ##    <fct> <list>           
-##  1 4842  <tibble [11 × 2]>
-##  2 4843  <tibble [11 × 2]>
-##  3 4844  <tibble [11 × 2]>
-##  4 4845  <tibble [5 × 2]> 
-##  5 4847  <tibble [3 × 2]> 
-##  6 4848  <tibble [4 × 2]> 
-##  7 4849  <tibble [2 × 2]> 
-##  8 4850  <tibble [6 × 2]> 
-##  9 4851  <tibble [2 × 2]> 
-## 10 4854  <tibble [2 × 2]> 
-## 11 4855  <tibble [5 × 2]> 
-## 12 4857  <tibble [9 × 2]> 
-## 13 4858  <tibble [11 × 2]>
-## 14 4859  <tibble [5 × 2]> 
-## 15 4861  <tibble [11 × 2]>
-## 16 4862  <tibble [9 × 2]> 
-## 17 4863  <tibble [2 × 2]> 
-## 18 4864  <tibble [2 × 2]> 
-## 19 4865  <tibble [3 × 2]>
+##  1 4842  <tibble [11 x 2]>
+##  2 4843  <tibble [11 x 2]>
+##  3 4844  <tibble [11 x 2]>
+##  4 4845  <tibble [5 x 2]> 
+##  5 4847  <tibble [3 x 2]> 
+##  6 4848  <tibble [4 x 2]> 
+##  7 4849  <tibble [2 x 2]> 
+##  8 4850  <tibble [6 x 2]> 
+##  9 4851  <tibble [2 x 2]> 
+## 10 4854  <tibble [2 x 2]> 
+## 11 4855  <tibble [5 x 2]> 
+## 12 4857  <tibble [9 x 2]> 
+## 13 4858  <tibble [11 x 2]>
+## 14 4859  <tibble [5 x 2]> 
+## 15 4861  <tibble [11 x 2]>
+## 16 4862  <tibble [9 x 2]> 
+## 17 4863  <tibble [2 x 2]> 
+## 18 4864  <tibble [2 x 2]> 
+## 19 4865  <tibble [3 x 2]>
 ```
 
 ```r
@@ -491,13 +491,13 @@ mtcars %>%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ## # Groups:   cyl [3]
 ##     cyl data               models
 ##   <dbl> <list>             <list>
-## 1     6 <tibble [7 × 10]>  <lm>  
-## 2     4 <tibble [11 × 10]> <lm>  
-## 3     8 <tibble [14 × 10]> <lm>
+## 1     6 <tibble [7 x 10]>  <lm>  
+## 2     4 <tibble [11 x 10]> <lm>  
+## 3     8 <tibble [14 x 10]> <lm>
 ```
 
 ```r
@@ -516,7 +516,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 4 × 3
+## # A tibble: 4 x 3
 ##       x     a     b
 ##   <int> <dbl> <dbl>
 ## 1     2     1     2
@@ -531,7 +531,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 5 × 3
+## # A tibble: 5 x 3
 ##       x     a     b
 ##   <int> <dbl> <dbl>
 ## 1     1    NA    NA
@@ -555,7 +555,7 @@ df
 ```
 
 ```
-## # A tibble: 2 × 3
+## # A tibble: 2 x 3
 ##   a         b             c
 ##   <list>    <list>    <dbl>
 ## 1 <chr [2]> <int [2]>    11
@@ -568,7 +568,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 3 × 3
+## # A tibble: 3 x 3
 ##   a         b     c
 ##   <chr> <dbl> <dbl>
 ## 1 a         1    11
@@ -585,7 +585,7 @@ df %>%
 ```
 
 ```
-## # A tibble: 5 × 3
+## # A tibble: 5 x 3
 ##   a         b     c
 ##   <chr> <dbl> <dbl>
 ## 1 a         1    11

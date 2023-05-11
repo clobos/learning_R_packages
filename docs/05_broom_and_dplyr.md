@@ -25,7 +25,7 @@ Orange
 ```
 
 ```
-## # A tibble: 35 × 3
+## # A tibble: 35 x 3
 ##    Tree    age circumference
 ##    <ord> <dbl>         <dbl>
 ##  1 1       118            30
@@ -38,7 +38,7 @@ Orange
 ##  8 2       118            33
 ##  9 2       484            69
 ## 10 2       664           111
-## # … with 25 more rows
+## # ... with 25 more rows
 ```
 
 This contains 35 observations of three variables: `Tree`, `age`, and `circumference`. `Tree` is a factor with five levels describing five trees. As might be expected, age and circumference are correlated:
@@ -57,7 +57,7 @@ ggplot(Orange, aes(age, circumference, color = Tree)) +
   geom_line()
 ```
 
-<img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
 
 Suppose you want to test for correlations individually *within* each tree. You can do this with dplyr's `group_by`:
 
@@ -69,7 +69,7 @@ Orange %>%
 ```
 
 ```
-## # A tibble: 5 × 2
+## # A tibble: 5 x 2
 ##   Tree  correlation
 ##   <ord>       <dbl>
 ## 1 3           0.988
@@ -111,11 +111,11 @@ tidy(ct)
 ```
 
 ```
-## # A tibble: 1 × 8
-##   estimate statistic  p.value parameter conf.low conf.high method        alter…¹
+## # A tibble: 1 x 8
+##   estimate statistic  p.value parameter conf.low conf.high method        alter~1
 ##      <dbl>     <dbl>    <dbl>     <int>    <dbl>     <dbl> <chr>         <chr>  
-## 1    0.914      12.9 1.93e-14        33    0.834     0.956 Pearson's pr… two.si…
-## # … with abbreviated variable name ¹​alternative
+## 1    0.914      12.9 1.93e-14        33    0.834     0.956 Pearson's pr~ two.si~
+## # ... with abbreviated variable name 1: alternative
 ```
 
 Often, we want to perform multiple tests or fit multiple models, each on a different part of the data. In this case, we recommend a `nest-map-unnest` workflow. For example, suppose we want to perform correlation tests for each different tree. We start by `nest`ing our data based on the group of interest:
@@ -135,14 +135,14 @@ nested %>%
 ```
 
 ```
-## # A tibble: 5 × 3
+## # A tibble: 5 x 3
 ##   Tree  data             test   
 ##   <ord> <list>           <list> 
-## 1 1     <tibble [7 × 2]> <htest>
-## 2 2     <tibble [7 × 2]> <htest>
-## 3 3     <tibble [7 × 2]> <htest>
-## 4 4     <tibble [7 × 2]> <htest>
-## 5 5     <tibble [7 × 2]> <htest>
+## 1 1     <tibble [7 x 2]> <htest>
+## 2 2     <tibble [7 x 2]> <htest>
+## 3 3     <tibble [7 x 2]> <htest>
+## 4 4     <tibble [7 x 2]> <htest>
+## 5 5     <tibble [7 x 2]> <htest>
 ```
 
 This results in a list-column of S3 objects. We want to tidy each of the objects, which we can also do with `map`.
@@ -157,14 +157,14 @@ nested %>%
 ```
 
 ```
-## # A tibble: 5 × 4
+## # A tibble: 5 x 4
 ##   Tree  data             test    tidied          
 ##   <ord> <list>           <list>  <list>          
-## 1 1     <tibble [7 × 2]> <htest> <tibble [1 × 8]>
-## 2 2     <tibble [7 × 2]> <htest> <tibble [1 × 8]>
-## 3 3     <tibble [7 × 2]> <htest> <tibble [1 × 8]>
-## 4 4     <tibble [7 × 2]> <htest> <tibble [1 × 8]>
-## 5 5     <tibble [7 × 2]> <htest> <tibble [1 × 8]>
+## 1 1     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 2 2     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 3 3     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 4 4     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 5 5     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
 ```
 
 Finally, we want to unnest the tidied data frames so we can see the results in a flat tibble. All together, this looks like:
@@ -181,16 +181,16 @@ Orange %>%
 ```
 
 ```
-## # A tibble: 5 × 11
-##   Tree  data     test    estimate stati…¹ p.value param…² conf.…³ conf.…⁴ method
+## # A tibble: 5 x 11
+##   Tree  data     test    estimate stati~1 p.value param~2 conf.~3 conf.~4 method
 ##   <ord> <list>   <list>     <dbl>   <dbl>   <dbl>   <int>   <dbl>   <dbl> <chr> 
-## 1 1     <tibble> <htest>    0.985    13.0 4.85e-5       5   0.901   0.998 Pears…
-## 2 2     <tibble> <htest>    0.987    13.9 3.43e-5       5   0.914   0.998 Pears…
-## 3 3     <tibble> <htest>    0.988    14.4 2.90e-5       5   0.919   0.998 Pears…
-## 4 4     <tibble> <htest>    0.984    12.5 5.73e-5       5   0.895   0.998 Pears…
-## 5 5     <tibble> <htest>    0.988    14.1 3.18e-5       5   0.916   0.998 Pears…
-## # … with 1 more variable: alternative <chr>, and abbreviated variable names
-## #   ¹​statistic, ²​parameter, ³​conf.low, ⁴​conf.high
+## 1 1     <tibble> <htest>    0.985    13.0 4.85e-5       5   0.901   0.998 Pears~
+## 2 2     <tibble> <htest>    0.987    13.9 3.43e-5       5   0.914   0.998 Pears~
+## 3 3     <tibble> <htest>    0.988    14.4 2.90e-5       5   0.919   0.998 Pears~
+## 4 4     <tibble> <htest>    0.984    12.5 5.73e-5       5   0.895   0.998 Pears~
+## 5 5     <tibble> <htest>    0.988    14.1 3.18e-5       5   0.916   0.998 Pears~
+## # ... with 1 more variable: alternative <chr>, and abbreviated variable names
+## #   1: statistic, 2: parameter, 3: conf.low, 4: conf.high
 ```
 
 This workflow becomes even more useful when applied to regressions. Untidy output for a regression looks like:
@@ -230,7 +230,7 @@ tidy(lm_fit)
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term          estimate std.error statistic  p.value
 ##   <chr>            <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)      16.6     78.1       0.212 8.33e- 1
@@ -251,20 +251,20 @@ Orange %>%
 ```
 
 ```
-## # A tibble: 10 × 8
-##    Tree  data             fit    term          estimate std.er…¹ stati…² p.value
+## # A tibble: 10 x 8
+##    Tree  data             fit    term          estimate std.er~1 stati~2 p.value
 ##    <ord> <list>           <list> <chr>            <dbl>    <dbl>   <dbl>   <dbl>
-##  1 1     <tibble [7 × 2]> <lm>   (Intercept)    -265.     98.6    -2.68  4.36e-2
-##  2 1     <tibble [7 × 2]> <lm>   circumference    11.9     0.919  13.0   4.85e-5
-##  3 2     <tibble [7 × 2]> <lm>   (Intercept)    -132.     83.1    -1.59  1.72e-1
-##  4 2     <tibble [7 × 2]> <lm>   circumference     7.80    0.560  13.9   3.43e-5
-##  5 3     <tibble [7 × 2]> <lm>   (Intercept)    -210.     85.3    -2.46  5.74e-2
-##  6 3     <tibble [7 × 2]> <lm>   circumference    12.0     0.835  14.4   2.90e-5
-##  7 4     <tibble [7 × 2]> <lm>   (Intercept)     -76.5    88.3    -0.867 4.26e-1
-##  8 4     <tibble [7 × 2]> <lm>   circumference     7.17    0.572  12.5   5.73e-5
-##  9 5     <tibble [7 × 2]> <lm>   (Intercept)     -54.5    76.9    -0.709 5.10e-1
-## 10 5     <tibble [7 × 2]> <lm>   circumference     8.79    0.621  14.1   3.18e-5
-## # … with abbreviated variable names ¹​std.error, ²​statistic
+##  1 1     <tibble [7 x 2]> <lm>   (Intercept)    -265.     98.6    -2.68  4.36e-2
+##  2 1     <tibble [7 x 2]> <lm>   circumference    11.9     0.919  13.0   4.85e-5
+##  3 2     <tibble [7 x 2]> <lm>   (Intercept)    -132.     83.1    -1.59  1.72e-1
+##  4 2     <tibble [7 x 2]> <lm>   circumference     7.80    0.560  13.9   3.43e-5
+##  5 3     <tibble [7 x 2]> <lm>   (Intercept)    -210.     85.3    -2.46  5.74e-2
+##  6 3     <tibble [7 x 2]> <lm>   circumference    12.0     0.835  14.4   2.90e-5
+##  7 4     <tibble [7 x 2]> <lm>   (Intercept)     -76.5    88.3    -0.867 4.26e-1
+##  8 4     <tibble [7 x 2]> <lm>   circumference     7.17    0.572  12.5   5.73e-5
+##  9 5     <tibble [7 x 2]> <lm>   (Intercept)     -54.5    76.9    -0.709 5.10e-1
+## 10 5     <tibble [7 x 2]> <lm>   circumference     8.79    0.621  14.1   3.18e-5
+## # ... with abbreviated variable names 1: std.error, 2: statistic
 ```
 
 You can just as easily use multiple predictors in the regressions, as shown here on the `mtcars` dataset. We nest the data into automatic and manual cars (the `am` column), then perform the regression within each nested tibble.
@@ -277,7 +277,7 @@ mtcars
 ```
 
 ```
-## # A tibble: 32 × 11
+## # A tibble: 32 x 11
 ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
 ##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
@@ -290,7 +290,7 @@ mtcars
 ##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
 ##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
 ## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
-## # … with 22 more rows
+## # ... with 22 more rows
 ```
 
 ```r
@@ -304,18 +304,18 @@ mtcars %>%
 ```
 
 ```
-## # A tibble: 8 × 8
-##      am data               fit    term        estimate std.error stati…¹ p.value
+## # A tibble: 8 x 8
+##      am data               fit    term        estimate std.error stati~1 p.value
 ##   <dbl> <list>             <list> <chr>          <dbl>     <dbl>   <dbl>   <dbl>
-## 1     1 <tibble [13 × 10]> <lm>   (Intercept)   4.28      3.46    1.24   2.47e-1
-## 2     1 <tibble [13 × 10]> <lm>   mpg          -0.101     0.0294 -3.43   7.50e-3
-## 3     1 <tibble [13 × 10]> <lm>   qsec          0.0398    0.151   0.264  7.98e-1
-## 4     1 <tibble [13 × 10]> <lm>   gear         -0.0229    0.349  -0.0656 9.49e-1
-## 5     0 <tibble [19 × 10]> <lm>   (Intercept)   4.92      1.40    3.52   3.09e-3
-## 6     0 <tibble [19 × 10]> <lm>   mpg          -0.192     0.0443 -4.33   5.91e-4
-## 7     0 <tibble [19 × 10]> <lm>   qsec          0.0919    0.0983  0.935  3.65e-1
-## 8     0 <tibble [19 × 10]> <lm>   gear          0.147     0.368   0.398  6.96e-1
-## # … with abbreviated variable name ¹​statistic
+## 1     1 <tibble [13 x 10]> <lm>   (Intercept)   4.28      3.46    1.24   2.47e-1
+## 2     1 <tibble [13 x 10]> <lm>   mpg          -0.101     0.0294 -3.43   7.50e-3
+## 3     1 <tibble [13 x 10]> <lm>   qsec          0.0398    0.151   0.264  7.98e-1
+## 4     1 <tibble [13 x 10]> <lm>   gear         -0.0229    0.349  -0.0656 9.49e-1
+## 5     0 <tibble [19 x 10]> <lm>   (Intercept)   4.92      1.40    3.52   3.09e-3
+## 6     0 <tibble [19 x 10]> <lm>   mpg          -0.192     0.0443 -4.33   5.91e-4
+## 7     0 <tibble [19 x 10]> <lm>   qsec          0.0919    0.0983  0.935  3.65e-1
+## 8     0 <tibble [19 x 10]> <lm>   gear          0.147     0.368   0.398  6.96e-1
+## # ... with abbreviated variable name 1: statistic
 ```
 
 What if you want not just the `tidy` output, but the `augment` and `glance` outputs as well, while still performing each regression only once? Since we're using list-columns, we can just fit the model once and use multiple list-columns to store the tidied, glanced and augmented outputs.
@@ -336,19 +336,19 @@ regressions %>%
 ```
 
 ```
-## # A tibble: 8 × 10
-##      am data     fit    term   estim…¹ std.e…² stati…³ p.value glanced  augmen…⁴
+## # A tibble: 8 x 10
+##      am data     fit    term   estim~1 std.e~2 stati~3 p.value glanced  augmen~4
 ##   <dbl> <list>   <list> <chr>    <dbl>   <dbl>   <dbl>   <dbl> <list>   <list>  
-## 1     1 <tibble> <lm>   (Inte…  4.28    3.46    1.24   2.47e-1 <tibble> <tibble>
+## 1     1 <tibble> <lm>   (Inte~  4.28    3.46    1.24   2.47e-1 <tibble> <tibble>
 ## 2     1 <tibble> <lm>   mpg    -0.101   0.0294 -3.43   7.50e-3 <tibble> <tibble>
 ## 3     1 <tibble> <lm>   qsec    0.0398  0.151   0.264  7.98e-1 <tibble> <tibble>
 ## 4     1 <tibble> <lm>   gear   -0.0229  0.349  -0.0656 9.49e-1 <tibble> <tibble>
-## 5     0 <tibble> <lm>   (Inte…  4.92    1.40    3.52   3.09e-3 <tibble> <tibble>
+## 5     0 <tibble> <lm>   (Inte~  4.92    1.40    3.52   3.09e-3 <tibble> <tibble>
 ## 6     0 <tibble> <lm>   mpg    -0.192   0.0443 -4.33   5.91e-4 <tibble> <tibble>
 ## 7     0 <tibble> <lm>   qsec    0.0919  0.0983  0.935  3.65e-1 <tibble> <tibble>
 ## 8     0 <tibble> <lm>   gear    0.147   0.368   0.398  6.96e-1 <tibble> <tibble>
-## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic,
-## #   ⁴​augmented
+## # ... with abbreviated variable names 1: estimate, 2: std.error, 3: statistic,
+## #   4: augmented
 ```
 
 ```r
@@ -357,14 +357,14 @@ regressions %>%
 ```
 
 ```
-## # A tibble: 2 × 17
-##      am data     fit    tidied   r.squared adj.r.s…¹ sigma stati…² p.value    df
+## # A tibble: 2 x 17
+##      am data     fit    tidied   r.squared adj.r.s~1 sigma stati~2 p.value    df
 ##   <dbl> <list>   <list> <list>       <dbl>     <dbl> <dbl>   <dbl>   <dbl> <dbl>
 ## 1     1 <tibble> <lm>   <tibble>     0.833     0.778 0.291   15.0  7.59e-4     3
 ## 2     0 <tibble> <lm>   <tibble>     0.625     0.550 0.522    8.32 1.70e-3     3
-## # … with 7 more variables: logLik <dbl>, AIC <dbl>, BIC <dbl>, deviance <dbl>,
-## #   df.residual <int>, nobs <int>, augmented <list>, and abbreviated variable
-## #   names ¹​adj.r.squared, ²​statistic
+## # ... with 7 more variables: logLik <dbl>, AIC <dbl>, BIC <dbl>,
+## #   deviance <dbl>, df.residual <int>, nobs <int>, augmented <list>, and
+## #   abbreviated variable names 1: adj.r.squared, 2: statistic
 ```
 
 ```r
@@ -373,7 +373,7 @@ regressions %>%
 ```
 
 ```
-## # A tibble: 32 × 15
+## # A tibble: 32 x 15
 ##       am data     fit    tidied   glanced     wt   mpg  qsec  gear .fitted
 ##    <dbl> <list>   <list> <list>   <list>   <dbl> <dbl> <dbl> <dbl>   <dbl>
 ##  1     1 <tibble> <lm>   <tibble> <tibble>  2.62  21    16.5     4    2.73
@@ -386,7 +386,7 @@ regressions %>%
 ##  8     1 <tibble> <lm>   <tibble> <tibble>  2.14  26    16.7     5    2.21
 ##  9     1 <tibble> <lm>   <tibble> <tibble>  1.51  30.4  16.9     5    1.77
 ## 10     1 <tibble> <lm>   <tibble> <tibble>  3.17  15.8  14.5     5    3.15
-## # … with 22 more rows, and 5 more variables: .resid <dbl>, .hat <dbl>,
+## # ... with 22 more rows, and 5 more variables: .resid <dbl>, .hat <dbl>,
 ## #   .sigma <dbl>, .cooksd <dbl>, .std.resid <dbl>
 ```
 
@@ -415,7 +415,7 @@ ggplot(mtcars, aes(mpg, wt)) +
     geom_point()
 ```
 
-<img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
 
 We might use the method of nonlinear least squares (via the `nls` function) to fit a model.
 
@@ -448,7 +448,7 @@ ggplot(mtcars, aes(wt, mpg)) +
     geom_line(aes(y = predict(nlsfit)))
 ```
 
-<img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
 
 While this does provide a p-value and confidence intervals for the parameters, these are based on model assumptions that may not hold in real data. Bootstrapping is a popular method for providing confidence intervals and predictions that are more robust to the nature of the data.
 
@@ -470,7 +470,7 @@ boots
 
 ```
 ## # Bootstrap sampling 
-## # A tibble: 100 × 2
+## # A tibble: 100 x 2
 ##    splits          id          
 ##    <list>          <chr>       
 ##  1 <split [32/13]> Bootstrap001
@@ -483,7 +483,7 @@ boots
 ##  8 <split [32/13]> Bootstrap008
 ##  9 <split [32/11]> Bootstrap009
 ## 10 <split [32/11]> Bootstrap010
-## # … with 90 more rows
+## # ... with 90 more rows
 ```
 
 We create a helper function to fit an `nls` model on each bootstrap sample, and then use `purrr::map` to apply this function to all the bootstrap samples at once. Similarly, we create a column of tidy coefficient information by unnesting.
@@ -501,20 +501,20 @@ boot_models
 
 ```
 ## # Bootstrap sampling 
-## # A tibble: 100 × 4
+## # A tibble: 100 x 4
 ##    splits          id           model  coef_info       
 ##    <list>          <chr>        <list> <list>          
-##  1 <split [32/13]> Bootstrap001 <nls>  <tibble [2 × 5]>
-##  2 <split [32/10]> Bootstrap002 <nls>  <tibble [2 × 5]>
-##  3 <split [32/13]> Bootstrap003 <nls>  <tibble [2 × 5]>
-##  4 <split [32/11]> Bootstrap004 <nls>  <tibble [2 × 5]>
-##  5 <split [32/9]>  Bootstrap005 <nls>  <tibble [2 × 5]>
-##  6 <split [32/10]> Bootstrap006 <nls>  <tibble [2 × 5]>
-##  7 <split [32/11]> Bootstrap007 <nls>  <tibble [2 × 5]>
-##  8 <split [32/13]> Bootstrap008 <nls>  <tibble [2 × 5]>
-##  9 <split [32/11]> Bootstrap009 <nls>  <tibble [2 × 5]>
-## 10 <split [32/11]> Bootstrap010 <nls>  <tibble [2 × 5]>
-## # … with 90 more rows
+##  1 <split [32/13]> Bootstrap001 <nls>  <tibble [2 x 5]>
+##  2 <split [32/10]> Bootstrap002 <nls>  <tibble [2 x 5]>
+##  3 <split [32/13]> Bootstrap003 <nls>  <tibble [2 x 5]>
+##  4 <split [32/11]> Bootstrap004 <nls>  <tibble [2 x 5]>
+##  5 <split [32/9]>  Bootstrap005 <nls>  <tibble [2 x 5]>
+##  6 <split [32/10]> Bootstrap006 <nls>  <tibble [2 x 5]>
+##  7 <split [32/11]> Bootstrap007 <nls>  <tibble [2 x 5]>
+##  8 <split [32/13]> Bootstrap008 <nls>  <tibble [2 x 5]>
+##  9 <split [32/11]> Bootstrap009 <nls>  <tibble [2 x 5]>
+## 10 <split [32/11]> Bootstrap010 <nls>  <tibble [2 x 5]>
+## # ... with 90 more rows
 ```
 
 ```r
@@ -530,8 +530,8 @@ boot_coefs
 ```
 
 ```
-## # A tibble: 200 × 8
-##    splits          id           model  term  estimate std.error stati…¹  p.value
+## # A tibble: 200 x 8
+##    splits          id           model  term  estimate std.error stati~1  p.value
 ##    <list>          <chr>        <list> <chr>    <dbl>     <dbl>   <dbl>    <dbl>
 ##  1 <split [32/13]> Bootstrap001 <nls>  k        42.1       4.05   10.4  1.91e-11
 ##  2 <split [32/13]> Bootstrap001 <nls>  b         5.39      1.43    3.78 6.93e- 4
@@ -543,7 +543,7 @@ boot_coefs
 ##  8 <split [32/11]> Bootstrap004 <nls>  b         4.75      1.62    2.93 6.38e- 3
 ##  9 <split [32/9]>  Bootstrap005 <nls>  k        43.6       4.63    9.41 1.85e-10
 ## 10 <split [32/9]>  Bootstrap005 <nls>  b         5.89      1.68    3.51 1.44e- 3
-## # … with 190 more rows, and abbreviated variable name ¹​statistic
+## # ... with 190 more rows, and abbreviated variable name 1: statistic
 ```
 
 We can then calculate confidence intervals (using what is called the percentile method):
@@ -558,7 +558,7 @@ boot_coefs %>%
 ```
 
 ```
-## # A tibble: 2 × 3
+## # A tibble: 2 x 3
 ##   term     low  high
 ##   <chr>  <dbl> <dbl>
 ## 1 b      0.283  6.74
@@ -574,7 +574,7 @@ ggplot(boot_coefs, aes(estimate)) +
     facet_wrap(~ term, scales = "free")
 ```
 
-<img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
 
 Or we can use `augment` to visualize the uncertainty in the curve:
 
@@ -587,7 +587,7 @@ boot_aug
 ```
 
 ```
-## # A tibble: 3,200 × 8
+## # A tibble: 3,200 x 8
 ##    splits          id           model  coef_info   mpg    wt .fitted .resid
 ##    <list>          <chr>        <list> <list>    <dbl> <dbl>   <dbl>  <dbl>
 ##  1 <split [32/13]> Bootstrap001 <nls>  <tibble>   18.7  3.44    17.6  1.08 
@@ -600,7 +600,7 @@ boot_aug
 ##  8 <split [32/13]> Bootstrap001 <nls>  <tibble>   21    2.62    21.4 -0.448
 ##  9 <split [32/13]> Bootstrap001 <nls>  <tibble>   19.2  3.84    16.3  2.87 
 ## 10 <split [32/13]> Bootstrap001 <nls>  <tibble>   21    2.62    21.4 -0.448
-## # … with 3,190 more rows
+## # ... with 3,190 more rows
 ```
 
 
@@ -610,7 +610,7 @@ ggplot(boot_aug, aes(wt, mpg)) +
     geom_line(aes(y = .fitted, group = id), alpha=.2)
 ```
 
-<img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-24-1.pdf)<!-- --> 
 
 With only a few small changes, we could easily perform bootstrapping with other kinds of predictive or hypothesis testing models, since the `tidy` and `augment` functions works for many statistical outputs. As another example, we could use `smooth.spline`, which fits a cubic smoothing spline to data:
 
@@ -630,7 +630,7 @@ ggplot(splines_aug, aes(x, y)) +
     geom_line(aes(y = .fitted, group = id), alpha = 0.2)
 ```
 
-<img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-25-1.png" width="672" />
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
 
 
 ## Mais detalhes (glance)
@@ -644,7 +644,7 @@ tidy(fit)
 ```
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term        estimate std.error statistic  p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 (Intercept)  -58.0       8.64      -6.71 2.75e- 7
@@ -657,12 +657,12 @@ glance(fit)
 ```
 
 ```
-## # A tibble: 1 × 12
-##   r.squared adj.r.squa…¹ sigma stati…²  p.value    df logLik   AIC   BIC devia…³
+## # A tibble: 1 x 12
+##   r.squared adj.r.squa~1 sigma stati~2  p.value    df logLik   AIC   BIC devia~3
 ##       <dbl>        <dbl> <dbl>   <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>
 ## 1     0.948        0.944  3.88    255. 1.07e-18     2  -84.5  177.  183.    422.
-## # … with 2 more variables: df.residual <int>, nobs <int>, and abbreviated
-## #   variable names ¹​adj.r.squared, ²​statistic, ³​deviance
+## # ... with 2 more variables: df.residual <int>, nobs <int>, and abbreviated
+## #   variable names 1: adj.r.squared, 2: statistic, 3: deviance
 ```
 
 ```r
@@ -670,7 +670,7 @@ augment(fit, data = trees)
 ```
 
 ```
-## # A tibble: 31 × 9
+## # A tibble: 31 x 9
 ##    Girth Height Volume .fitted .resid   .hat .sigma   .cooksd .std.resid
 ##    <dbl>  <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>     <dbl>      <dbl>
 ##  1   8.3     70   10.3    4.84  5.46  0.116    3.79 0.0978        1.50  
@@ -683,7 +683,7 @@ augment(fit, data = trees)
 ##  8  11       75   18.2   19.2  -1.05  0.0515   3.95 0.00138      -0.277 
 ##  9  11.1     80   22.6   21.4   1.19  0.0920   3.95 0.00348       0.321 
 ## 10  11.2     75   19.9   20.2  -0.288 0.0480   3.95 0.0000968    -0.0759
-## # … with 21 more rows
+## # ... with 21 more rows
 ```
 
 ```r
@@ -837,7 +837,7 @@ tidy(mod)
 ```
 
 ```
-## # A tibble: 2 × 7
+## # A tibble: 2 x 7
 ##   term                   df.residual   rss    df    sumsq statistic p.value
 ##   <chr>                        <dbl> <dbl> <dbl>    <dbl>     <dbl>   <dbl>
 ## 1 mpg ~ wt + qsec + disp          28  195.    NA NA       NA         NA    
@@ -849,7 +849,7 @@ glance(mod)
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##   deviance df.residual
 ##      <dbl>       <dbl>
 ## 1     195.          29
@@ -863,12 +863,12 @@ tidy(mod_lht)
 ```
 
 ```
-## # A tibble: 1 × 10
-##   term      null.value estim…¹ std.e…² stati…³ p.value df.re…⁴   rss    df sumsq
+## # A tibble: 1 x 10
+##   term      null.value estim~1 std.e~2 stati~3 p.value df.re~4   rss    df sumsq
 ##   <chr>          <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl> <dbl> <dbl> <dbl>
 ## 1 wt - disp          0   -5.03    1.23    16.6 3.39e-4      28  195.     1  116.
-## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic,
-## #   ⁴​df.residual
+## # ... with abbreviated variable names 1: estimate, 2: std.error, 3: statistic,
+## #   4: df.residual
 ```
 
 ```r
@@ -876,7 +876,7 @@ glance(mod_lht)
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##   deviance df.residual
 ##      <dbl>       <dbl>
 ## 1     195.          28
@@ -894,7 +894,7 @@ tidy(nn)
 ```
 
 ```
-## # A tibble: 2 × 5
+## # A tibble: 2 x 5
 ##   term  estimate std.error statistic  p.value
 ##   <chr>    <dbl>     <dbl>     <dbl>    <dbl>
 ## 1 k       49.7      3.79        13.1 5.96e-14
@@ -906,7 +906,7 @@ augment(nn)
 ```
 
 ```
-## # A tibble: 32 × 4
+## # A tibble: 32 x 4
 ##      mpg    wt .fitted .resid
 ##    <dbl> <dbl>   <dbl>  <dbl>
 ##  1  21    2.62    23.0 -2.01 
@@ -919,7 +919,7 @@ augment(nn)
 ##  8  24.4  3.19    19.5  4.93 
 ##  9  22.8  3.15    19.7  3.10 
 ## 10  19.2  3.44    18.1  1.11 
-## # … with 22 more rows
+## # ... with 22 more rows
 ```
 
 ```r
@@ -927,7 +927,7 @@ glance(nn)
 ```
 
 ```
-## # A tibble: 1 × 9
+## # A tibble: 1 x 9
 ##   sigma isConv     finTol logLik   AIC   BIC deviance df.residual  nobs
 ##   <dbl> <lgl>       <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 ## 1  2.67 TRUE   0.00000204  -75.8  158.  162.     214.          30    32
@@ -939,7 +939,7 @@ ggplot(augment(nn), aes(wt, mpg)) +
   geom_line(aes(y = .fitted))
 ```
 
-<img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-27-1.png" width="672" />
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
 
 ```r
 newdata <- head(mtcars)
@@ -949,7 +949,7 @@ augment(nn, newdata = newdata)
 ```
 
 ```
-## # A tibble: 6 × 12
+## # A tibble: 6 x 12
 ##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb .fitted
 ##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
 ## 1  21       6   160   110  3.9   3.62  16.5     0     1     4     4    17.2
@@ -986,7 +986,7 @@ glance(g)
 ```
 
 ```
-## # A tibble: 1 × 8
+## # A tibble: 1 x 8
 ##   null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs
 ##           <dbl>   <int>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
 ## 1          43.2      31  -14.8  33.7  36.6     29.7          30    32
@@ -1025,7 +1025,7 @@ tidy(g)
 ```
 
 ```
-## # A tibble: 1 × 5
+## # A tibble: 1 x 5
 ##   term    edf ref.df statistic p.value
 ##   <chr> <dbl>  <dbl>     <dbl>   <dbl>
 ## 1 s(hp)  2.36   3.02      6.34 0.00218
@@ -1036,7 +1036,7 @@ tidy(g, parametric = TRUE)
 ```
 
 ```
-## # A tibble: 3 × 5
+## # A tibble: 3 x 5
 ##   term        estimate std.error statistic p.value
 ##   <chr>          <dbl>     <dbl>     <dbl>   <dbl>
 ## 1 (Intercept)  16.7        9.83      1.70  0.101  
@@ -1049,7 +1049,7 @@ glance(g)
 ```
 
 ```
-## # A tibble: 1 × 7
+## # A tibble: 1 x 7
 ##      df logLik   AIC   BIC deviance df.residual  nobs
 ##   <dbl>  <dbl> <dbl> <dbl>    <dbl>       <dbl> <int>
 ## 1  5.36  -74.4  162.  171.     196.        26.6    32
@@ -1060,7 +1060,7 @@ augment(g)
 ```
 
 ```
-## # A tibble: 32 × 10
+## # A tibble: 32 x 10
 ##      mpg    am  qsec    hp .fitted .se.fit .resid   .hat .sigma  .cooksd
 ##    <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>  <dbl>  <dbl> <lgl>     <dbl>
 ##  1  21       1  16.5   110    24.3   1.03  -3.25  0.145  NA     0.0529  
@@ -1073,7 +1073,7 @@ augment(g)
 ##  8  24.4     0  20      62    25.0   1.45  -0.618 0.287  NA     0.00545 
 ##  9  22.8     0  22.9    95    21.8   1.81   0.959 0.446  NA     0.0340  
 ## 10  19.2     0  18.3   123    19.0   0.864  0.211 0.102  NA     0.000142
-## # … with 22 more rows
+## # ... with 22 more rows
 ```
 
 ## links
