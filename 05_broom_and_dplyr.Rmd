@@ -275,6 +275,89 @@ ggplot(splines_aug, aes(x, y)) +
     geom_line(aes(y = .fitted, group = id), alpha = 0.2)
 ```
 
+
+## Mais detalhes (glance)
+
+### lm()
+
+```{r}
+fit <- lm(Volume ~ Girth + Height, trees)
+tidy(fit)
+
+glance(fit)
+
+augment(fit, data = trees)
+
+methods("tidy")
+methods("glance")
+methods("augment")
+
+#tirei da ajuda do R!
+# fit models
+a <- lm(mpg ~ wt + qsec + disp, mtcars)
+b <- lm(mpg ~ wt + qsec, mtcars)
+
+mod <- anova(a, b)
+
+# summarize model fit with tidiers
+tidy(mod)
+glance(mod)
+
+# car::linearHypothesis() example
+library(car)
+mod_lht <- linearHypothesis(a, "wt - disp")
+tidy(mod_lht)
+glance(mod_lht)
+```
+
+### nls()
+
+```{r}
+# fit model
+nn <- nls(mpg ~ k * e^wt, data = mtcars, start = list(k = 1, e = 2))
+
+# summarize model fit with tidiers + visualization
+tidy(nn)
+augment(nn)
+glance(nn)
+
+ggplot(augment(nn), aes(wt, mpg)) +
+  geom_point() +
+  geom_line(aes(y = .fitted))
+
+newdata <- head(mtcars)
+newdata$wt <- newdata$wt + 1
+
+augment(nn, newdata = newdata)
+```
+
+### glm()
+
+```{r}
+g <- glm(am ~ mpg, mtcars, family = "binomial")
+g
+glance(g)
+```
+
+
+### gam()
+
+```{r}
+
+# load libraries for models and data
+library(mgcv)
+
+# fit model
+g <- gam(mpg ~ s(hp) + am + qsec, data = mtcars)
+g
+
+# summarize model fit with tidiers
+tidy(g)
+tidy(g, parametric = TRUE)
+glance(g)
+augment(g)
+```
+
 ## links
 
 https://www.youtube.com/watch?v=1bnhT8tlCJQ&list=PLBnFxG6owe1F-3y0_aphRZ5YHH06Qr1Kj

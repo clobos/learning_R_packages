@@ -776,3 +776,39 @@ ggplot(dados) +
 
 ![](02_ggplot2_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
 
+
+
+[esquisse + shiny](https://cran.r-project.org/web/packages/esquisse/vignettes/shiny-usage.html)
+
+
+```r
+esquisser(dados)
+```
+
+## Exemplo esquisse
+
+
+```r
+ggplot(dados) +
+  aes(x = displ, y = hwy, colour = drv) +
+  geom_point(shape = "circle", size = 1.85) +
+  scale_color_hue(direction = 1) +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+
+
+
+```r
+ggplot(dados) +
+  aes(x = displ, y = cty, colour = class, size = cty) +
+  geom_point(shape = "circle") +
+  scale_color_hue(direction = 1) +
+  theme(legend.position = "top") +
+  facet_wrap(vars(drv))
+```
+
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+

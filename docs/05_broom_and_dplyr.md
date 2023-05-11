@@ -632,6 +632,450 @@ ggplot(splines_aug, aes(x, y)) +
 
 ![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
 
+
+## Mais detalhes (glance)
+
+### lm()
+
+
+```r
+fit <- lm(Volume ~ Girth + Height, trees)
+tidy(fit)
+```
+
+```
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   <chr>          <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)  -58.0       8.64      -6.71 2.75e- 7
+## 2 Girth          4.71      0.264     17.8  8.22e-17
+## 3 Height         0.339     0.130      2.61 1.45e- 2
+```
+
+```r
+glance(fit)
+```
+
+```
+## # A tibble: 1 x 12
+##   r.squared adj.r.squa~1 sigma stati~2  p.value    df logLik   AIC   BIC devia~3
+##       <dbl>        <dbl> <dbl>   <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>
+## 1     0.948        0.944  3.88    255. 1.07e-18     2  -84.5  177.  183.    422.
+## # ... with 2 more variables: df.residual <int>, nobs <int>, and abbreviated
+## #   variable names 1: adj.r.squared, 2: statistic, 3: deviance
+```
+
+```r
+augment(fit, data = trees)
+```
+
+```
+## # A tibble: 31 x 9
+##    Girth Height Volume .fitted .resid   .hat .sigma   .cooksd .std.resid
+##    <dbl>  <dbl>  <dbl>   <dbl>  <dbl>  <dbl>  <dbl>     <dbl>      <dbl>
+##  1   8.3     70   10.3    4.84  5.46  0.116    3.79 0.0978        1.50  
+##  2   8.6     65   10.3    4.55  5.75  0.147    3.77 0.148         1.60  
+##  3   8.8     63   10.2    4.82  5.38  0.177    3.78 0.167         1.53  
+##  4  10.5     72   16.4   15.9   0.526 0.0592   3.95 0.000409      0.140 
+##  5  10.7     81   18.8   19.9  -1.07  0.121    3.95 0.00394      -0.294 
+##  6  10.8     83   19.7   21.0  -1.32  0.156    3.94 0.00840      -0.370 
+##  7  11       66   15.6   16.2  -0.593 0.115    3.95 0.00114      -0.162 
+##  8  11       75   18.2   19.2  -1.05  0.0515   3.95 0.00138      -0.277 
+##  9  11.1     80   22.6   21.4   1.19  0.0920   3.95 0.00348       0.321 
+## 10  11.2     75   19.9   20.2  -0.288 0.0480   3.95 0.0000968    -0.0759
+## # ... with 21 more rows
+```
+
+```r
+methods("tidy")
+```
+
+```
+##   [1] tidy.aareg*                    tidy.acf*                     
+##   [3] tidy.anova*                    tidy.aov*                     
+##   [5] tidy.aovlist*                  tidy.Arima*                   
+##   [7] tidy.betamfx*                  tidy.betareg*                 
+##   [9] tidy.biglm*                    tidy.binDesign*               
+##  [11] tidy.binWidth*                 tidy.boot*                    
+##  [13] tidy.btergm*                   tidy.cch*                     
+##  [15] tidy.character*                tidy.cld*                     
+##  [17] tidy.clm*                      tidy.clmm*                    
+##  [19] tidy.coeftest*                 tidy.confint.glht*            
+##  [21] tidy.confusionMatrix*          tidy.coxph*                   
+##  [23] tidy.crr*                      tidy.cv.glmnet*               
+##  [25] tidy.data.frame*               tidy.default*                 
+##  [27] tidy.density*                  tidy.dist*                    
+##  [29] tidy.drc*                      tidy.durbinWatsonTest*        
+##  [31] tidy.emmGrid*                  tidy.epi.2by2*                
+##  [33] tidy.ergm*                     tidy.factanal*                
+##  [35] tidy.felm*                     tidy.fitdistr*                
+##  [37] tidy.fixest*                   tidy.ftable*                  
+##  [39] tidy.gam*                      tidy.Gam*                     
+##  [41] tidy.garch*                    tidy.geeglm*                  
+##  [43] tidy.glht*                     tidy.glm*                     
+##  [45] tidy.glmnet*                   tidy.glmrob*                  
+##  [47] tidy.glmRob*                   tidy.gmm*                     
+##  [49] tidy.htest*                    tidy.ivreg*                   
+##  [51] tidy.kappa*                    tidy.kde*                     
+##  [53] tidy.Kendall*                  tidy.kmeans*                  
+##  [55] tidy.lavaan*                   tidy.leveneTest*              
+##  [57] tidy.Line*                     tidy.Lines*                   
+##  [59] tidy.list*                     tidy.lm*                      
+##  [61] tidy.lm.beta*                  tidy.lmodel2*                 
+##  [63] tidy.lmrob*                    tidy.lmRob*                   
+##  [65] tidy.logical*                  tidy.logitmfx*                
+##  [67] tidy.lsmobj*                   tidy.manova*                  
+##  [69] tidy.map*                      tidy.margins*                 
+##  [71] tidy.Mclust*                   tidy.mediate*                 
+##  [73] tidy.mfx*                      tidy.mjoint*                  
+##  [75] tidy.mle2*                     tidy.mlm*                     
+##  [77] tidy.mlogit*                   tidy.muhaz*                   
+##  [79] tidy.multinom*                 tidy.negbin*                  
+##  [81] tidy.negbinmfx*                tidy.nested_cv*               
+##  [83] tidy.nlrq*                     tidy.nls*                     
+##  [85] tidy.NULL*                     tidy.numeric*                 
+##  [87] tidy.orcutt*                   tidy.pairwise.htest*          
+##  [89] tidy.pam*                      tidy.plm*                     
+##  [91] tidy.poissonmfx*               tidy.poLCA*                   
+##  [93] tidy.polr*                     tidy.Polygon*                 
+##  [95] tidy.Polygons*                 tidy.power.htest*             
+##  [97] tidy.prcomp*                   tidy.probitmfx*               
+##  [99] tidy.pyears*                   tidy.rcorr*                   
+## [101] tidy.ref.grid*                 tidy.regsubsets*              
+## [103] tidy.ridgelm*                  tidy.rlm*                     
+## [105] tidy.rma*                      tidy.roc*                     
+## [107] tidy.rq*                       tidy.rqs*                     
+## [109] tidy.rset*                     tidy.rsplit*                  
+## [111] tidy.sarlm*                    tidy.Sarlm*                   
+## [113] tidy.SpatialLinesDataFrame*    tidy.SpatialPolygons*         
+## [115] tidy.SpatialPolygonsDataFrame* tidy.spec*                    
+## [117] tidy.speedglm*                 tidy.speedlm*                 
+## [119] tidy.summary.glht*             tidy.summary.lm*              
+## [121] tidy.summary.plm*              tidy.summary_emm*             
+## [123] tidy.summaryDefault*           tidy.survdiff*                
+## [125] tidy.survexp*                  tidy.survfit*                 
+## [127] tidy.survreg*                  tidy.svyglm*                  
+## [129] tidy.svyolr*                   tidy.systemfit*               
+## [131] tidy.table*                    tidy.tobit*                   
+## [133] tidy.ts*                       tidy.TukeyHSD*                
+## [135] tidy.varest*                   tidy.vfold_cv*                
+## [137] tidy.zoo*                     
+## see '?methods' for accessing help and source code
+```
+
+```r
+methods("glance")
+```
+
+```
+##  [1] glance.aareg*            glance.anova*            glance.aov*             
+##  [4] glance.Arima*            glance.betamfx*          glance.betareg*         
+##  [7] glance.biglm*            glance.binDesign*        glance.cch*             
+## [10] glance.clm*              glance.clmm*             glance.coeftest*        
+## [13] glance.coxph*            glance.crr*              glance.cv.glmnet*       
+## [16] glance.data.frame*       glance.default*          glance.drc*             
+## [19] glance.durbinWatsonTest* glance.ergm*             glance.factanal*        
+## [22] glance.felm*             glance.fitdistr*         glance.fixest*          
+## [25] glance.gam*              glance.Gam*              glance.garch*           
+## [28] glance.geeglm*           glance.glm*              glance.glmnet*          
+## [31] glance.glmRob*           glance.gmm*              glance.htest*           
+## [34] glance.ivreg*            glance.kmeans*           glance.lavaan*          
+## [37] glance.list*             glance.lm*               glance.lmodel2*         
+## [40] glance.lmrob*            glance.lmRob*            glance.logitmfx*        
+## [43] glance.margins*          glance.Mclust*           glance.mfx*             
+## [46] glance.mjoint*           glance.mlogit*           glance.muhaz*           
+## [49] glance.multinom*         glance.negbin*           glance.negbinmfx*       
+## [52] glance.nlrq*             glance.nls*              glance.NULL*            
+## [55] glance.orcutt*           glance.pam*              glance.plm*             
+## [58] glance.poissonmfx*       glance.poLCA*            glance.polr*            
+## [61] glance.probitmfx*        glance.pyears*           glance.ridgelm*         
+## [64] glance.rlm*              glance.rma*              glance.rq*              
+## [67] glance.rqs*              glance.sarlm*            glance.Sarlm*           
+## [70] glance.smooth.spline*    glance.speedglm*         glance.speedlm*         
+## [73] glance.summary.lm*       glance.summaryDefault*   glance.survdiff*        
+## [76] glance.survexp*          glance.survfit*          glance.survreg*         
+## [79] glance.svyglm*           glance.svyolr*           glance.tbl_df*          
+## [82] glance.varest*          
+## see '?methods' for accessing help and source code
+```
+
+```r
+methods("augment")
+```
+
+```
+##  [1] augment.betamfx*       augment.betareg*       augment.clm*          
+##  [4] augment.coxph*         augment.data.frame*    augment.decomposed.ts*
+##  [7] augment.default*       augment.drc*           augment.factanal*     
+## [10] augment.felm*          augment.fixest*        augment.gam*          
+## [13] augment.glm*           augment.glmrob*        augment.glmRob*       
+## [16] augment.htest*         augment.ivreg*         augment.kmeans*       
+## [19] augment.lm*            augment.lmrob*         augment.lmRob*        
+## [22] augment.loess*         augment.logitmfx*      augment.margins*      
+## [25] augment.Mclust*        augment.mfx*           augment.mjoint*       
+## [28] augment.mlogit*        augment.negbinmfx*     augment.nlrq*         
+## [31] augment.nls*           augment.NULL*          augment.pam*          
+## [34] augment.plm*           augment.poissonmfx*    augment.poLCA*        
+## [37] augment.polr*          augment.prcomp*        augment.probitmfx*    
+## [40] augment.rlm*           augment.rma*           augment.rq*           
+## [43] augment.rqs*           augment.sarlm*         augment.Sarlm*        
+## [46] augment.smooth.spline* augment.speedglm*      augment.speedlm*      
+## [49] augment.stl*           augment.survreg*      
+## see '?methods' for accessing help and source code
+```
+
+```r
+#tirei da ajuda do R!
+# fit models
+a <- lm(mpg ~ wt + qsec + disp, mtcars)
+b <- lm(mpg ~ wt + qsec, mtcars)
+
+mod <- anova(a, b)
+
+# summarize model fit with tidiers
+tidy(mod)
+```
+
+```
+## # A tibble: 2 x 7
+##   term                   df.residual   rss    df    sumsq statistic p.value
+##   <chr>                        <dbl> <dbl> <dbl>    <dbl>     <dbl>   <dbl>
+## 1 mpg ~ wt + qsec + disp          28  195.    NA NA       NA         NA    
+## 2 mpg ~ wt + qsec                 29  195.    -1 -0.00102  0.000147   0.990
+```
+
+```r
+glance(mod)
+```
+
+```
+## # A tibble: 1 x 2
+##   deviance df.residual
+##      <dbl>       <dbl>
+## 1     195.          29
+```
+
+```r
+# car::linearHypothesis() example
+library(car)
+mod_lht <- linearHypothesis(a, "wt - disp")
+tidy(mod_lht)
+```
+
+```
+## # A tibble: 1 x 10
+##   term      null.value estim~1 std.e~2 stati~3 p.value df.re~4   rss    df sumsq
+##   <chr>          <dbl>   <dbl>   <dbl>   <dbl>   <dbl>   <dbl> <dbl> <dbl> <dbl>
+## 1 wt - disp          0   -5.03    1.23    16.6 3.39e-4      28  195.     1  116.
+## # ... with abbreviated variable names 1: estimate, 2: std.error, 3: statistic,
+## #   4: df.residual
+```
+
+```r
+glance(mod_lht)
+```
+
+```
+## # A tibble: 1 x 2
+##   deviance df.residual
+##      <dbl>       <dbl>
+## 1     195.          28
+```
+
+### nls()
+
+
+```r
+# fit model
+nn <- nls(mpg ~ k * e^wt, data = mtcars, start = list(k = 1, e = 2))
+
+# summarize model fit with tidiers + visualization
+tidy(nn)
+```
+
+```
+## # A tibble: 2 x 5
+##   term  estimate std.error statistic  p.value
+##   <chr>    <dbl>     <dbl>     <dbl>    <dbl>
+## 1 k       49.7      3.79        13.1 5.96e-14
+## 2 e        0.746    0.0199      37.5 8.86e-27
+```
+
+```r
+augment(nn)
+```
+
+```
+## # A tibble: 32 x 4
+##      mpg    wt .fitted .resid
+##    <dbl> <dbl>   <dbl>  <dbl>
+##  1  21    2.62    23.0 -2.01 
+##  2  21    2.88    21.4 -0.352
+##  3  22.8  2.32    25.1 -2.33 
+##  4  21.4  3.22    19.3  2.08 
+##  5  18.7  3.44    18.1  0.611
+##  6  18.1  3.46    18.0  0.117
+##  7  14.3  3.57    17.4 -3.11 
+##  8  24.4  3.19    19.5  4.93 
+##  9  22.8  3.15    19.7  3.10 
+## 10  19.2  3.44    18.1  1.11 
+## # ... with 22 more rows
+```
+
+```r
+glance(nn)
+```
+
+```
+## # A tibble: 1 x 9
+##   sigma isConv     finTol logLik   AIC   BIC deviance df.residual  nobs
+##   <dbl> <lgl>       <dbl>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
+## 1  2.67 TRUE   0.00000204  -75.8  158.  162.     214.          30    32
+```
+
+```r
+ggplot(augment(nn), aes(wt, mpg)) +
+  geom_point() +
+  geom_line(aes(y = .fitted))
+```
+
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-27-1.pdf)<!-- --> 
+
+```r
+newdata <- head(mtcars)
+newdata$wt <- newdata$wt + 1
+
+augment(nn, newdata = newdata)
+```
+
+```
+## # A tibble: 6 x 12
+##     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb .fitted
+##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>   <dbl>
+## 1  21       6   160   110  3.9   3.62  16.5     0     1     4     4    17.2
+## 2  21       6   160   110  3.9   3.88  17.0     0     1     4     4    15.9
+## 3  22.8     4   108    93  3.85  3.32  18.6     1     1     4     1    18.7
+## 4  21.4     6   258   110  3.08  4.22  19.4     1     0     3     1    14.4
+## 5  18.7     8   360   175  3.15  4.44  17.0     0     0     3     2    13.5
+## 6  18.1     6   225   105  2.76  4.46  20.2     1     0     3     1    13.4
+```
+
+### glm()
+
+
+```r
+g <- glm(am ~ mpg, mtcars, family = "binomial")
+g
+```
+
+```
+## 
+## Call:  glm(formula = am ~ mpg, family = "binomial", data = mtcars)
+## 
+## Coefficients:
+## (Intercept)          mpg  
+##      -6.604        0.307  
+## 
+## Degrees of Freedom: 31 Total (i.e. Null);  30 Residual
+## Null Deviance:	    43.23 
+## Residual Deviance: 29.68 	AIC: 33.68
+```
+
+```r
+glance(g)
+```
+
+```
+## # A tibble: 1 x 8
+##   null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs
+##           <dbl>   <int>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>
+## 1          43.2      31  -14.8  33.7  36.6     29.7          30    32
+```
+
+
+### gam()
+
+
+```r
+# load libraries for models and data
+library(mgcv)
+
+# fit model
+g <- gam(mpg ~ s(hp) + am + qsec, data = mtcars)
+g
+```
+
+```
+## 
+## Family: gaussian 
+## Link function: identity 
+## 
+## Formula:
+## mpg ~ s(hp) + am + qsec
+## 
+## Estimated degrees of freedom:
+## 2.36  total = 5.36 
+## 
+## GCV score: 8.837538
+```
+
+```r
+# summarize model fit with tidiers
+tidy(g)
+```
+
+```
+## # A tibble: 1 x 5
+##   term    edf ref.df statistic p.value
+##   <chr> <dbl>  <dbl>     <dbl>   <dbl>
+## 1 s(hp)  2.36   3.02      6.34 0.00218
+```
+
+```r
+tidy(g, parametric = TRUE)
+```
+
+```
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic p.value
+##   <chr>          <dbl>     <dbl>     <dbl>   <dbl>
+## 1 (Intercept)  16.7        9.83      1.70  0.101  
+## 2 am            4.37       1.56      2.81  0.00918
+## 3 qsec          0.0904     0.525     0.172 0.865
+```
+
+```r
+glance(g)
+```
+
+```
+## # A tibble: 1 x 7
+##      df logLik   AIC   BIC deviance df.residual  nobs
+##   <dbl>  <dbl> <dbl> <dbl>    <dbl>       <dbl> <int>
+## 1  5.36  -74.4  162.  171.     196.        26.6    32
+```
+
+```r
+augment(g)
+```
+
+```
+## # A tibble: 32 x 10
+##      mpg    am  qsec    hp .fitted .se.fit .resid   .hat .sigma  .cooksd
+##    <dbl> <dbl> <dbl> <dbl>   <dbl>   <dbl>  <dbl>  <dbl> <lgl>     <dbl>
+##  1  21       1  16.5   110    24.3   1.03  -3.25  0.145  NA     0.0529  
+##  2  21       1  17.0   110    24.3   0.925 -3.30  0.116  NA     0.0411  
+##  3  22.8     1  18.6    93    26.0   0.894 -3.22  0.109  NA     0.0359  
+##  4  21.4     0  19.4   110    20.2   0.827  1.25  0.0930 NA     0.00448 
+##  5  18.7     0  17.0   175    15.7   0.815  3.02  0.0902 NA     0.0251  
+##  6  18.1     0  20.2   105    20.7   0.914 -2.56  0.113  NA     0.0240  
+##  7  14.3     0  15.8   245    12.7   1.11   1.63  0.167  NA     0.0162  
+##  8  24.4     0  20      62    25.0   1.45  -0.618 0.287  NA     0.00545 
+##  9  22.8     0  22.9    95    21.8   1.81   0.959 0.446  NA     0.0340  
+## 10  19.2     0  18.3   123    19.0   0.864  0.211 0.102  NA     0.000142
+## # ... with 22 more rows
+```
+
 ## links
 
 https://www.youtube.com/watch?v=1bnhT8tlCJQ&list=PLBnFxG6owe1F-3y0_aphRZ5YHH06Qr1Kj

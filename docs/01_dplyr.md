@@ -1605,3 +1605,19 @@ sample_frac(dados, size = 0.1, replace = F)
 ## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
 ## #   1: manufacturer, 2: sqrt_cty
 ```
+� model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
+##  1 toyota    coro…   1.8  2008     4 manu… f        28    37 r     comp…    5.29
+##  2 lincoln   navi…   5.4  1999     8 auto… r        11    17 r     suv      3.32
+##  3 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
+##  4 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
+##  5 nissan    path…   4    2008     6 auto… 4        14    20 p     suv      3.74
+##  6 toyota    camry   3.5  2008     6 auto… f        19    28 r     mids…    4.36
+##  7 subaru    impr…   2.5  2008     4 auto… 4        20    25 p     comp…    4.47
+##  8 toyota    toyo…   3.4  1999     6 auto… 4        15    19 r     pick…    3.87
+##  9 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
+## 10 toyota    coro…   1.8  1999     4 manu… f        26    35 r     comp…    5.10
+## # … with 13 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty
+```
