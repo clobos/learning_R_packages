@@ -50,13 +50,13 @@ dados <- mpg
 ggplot(dados)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-2.png" width="672" />
 
 ```r
 # Alternativas
@@ -64,21 +64,21 @@ ggplot(dados, aes(x = cty, y = hwy)) +
   geom_point()
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-3.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-3.png" width="672" />
 
 ```r
 ggplot(dados) + 
   geom_point(aes(x = cty, y = hwy))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-4.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-4.png" width="672" />
 
 ```r
 ggplot() + 
   geom_point(data = dados, aes(x = cty, y = hwy))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-5.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-5.png" width="672" />
 
 ```r
 # Fim 
@@ -87,21 +87,21 @@ ggplot(dados, aes(x = cty, y = hwy)) +
   geom_point(colour = "red")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-6.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-6.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy)) + 
   geom_point(colour = "red", size = 6)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-7.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-7.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy)) + 
   geom_point(colour = "red", size = 6, shape = 10)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-8.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-8.png" width="672" />
 
 ```r
 # Alternativa
@@ -109,7 +109,7 @@ ggplot(dados, aes(x = cty, y = hwy)) +
   geom_point(colour = "red", size = 6, shape = "circle plus")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-9.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-9.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy)) + 
@@ -120,7 +120,7 @@ ggplot(dados, aes(x = cty, y = hwy)) +
        subtitle = "Escrever alguma coisa")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-3-10.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-3-10.png" width="672" />
 
 ### Mais detalhes sobre geom_point 
 
@@ -150,7 +150,7 @@ ggplot(dados, aes(x = cty, y = hwy)) +
   geom_point()
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, col = factor(year))) + 
@@ -158,7 +158,7 @@ ggplot(dados, aes(x = cty, y = hwy, col = factor(year))) +
   labs(col = "year")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-2.png" width="672" />
 
 ```r
 # Alternativa
@@ -168,7 +168,7 @@ ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) +
   scale_color_brewer(type = "qual")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-3.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-3.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) + 
@@ -177,7 +177,7 @@ ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) +
   scale_color_brewer(type = "div")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-4.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-4.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) + 
@@ -189,7 +189,7 @@ ggplot(dados, aes(x = cty, y = hwy, col = factor(class))) +
   theme_minimal()
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-5.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-5.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, alpha = factor(year))) + 
@@ -197,7 +197,7 @@ ggplot(dados, aes(x = cty, y = hwy, alpha = factor(year))) +
   labs(alpha = "year")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-6.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-6.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, size = factor(year))) + 
@@ -205,7 +205,7 @@ ggplot(dados, aes(x = cty, y = hwy, size = factor(year))) +
   labs(size = "year")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-7.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-7.png" width="672" />
 
 ```r
 # Alternativa
@@ -215,7 +215,7 @@ ggplot(dados, aes(x = cty, y = hwy, col = cty <= 20)) +
   labs(col = "year")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-8.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-8.png" width="672" />
 
 ```r
 # Erro comum
@@ -224,7 +224,7 @@ ggplot(dados, aes(x = cty, y = hwy, col = "red")) +
   labs(col = "year")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-9.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-9.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy)) + 
@@ -232,7 +232,7 @@ ggplot(dados, aes(x = cty, y = hwy)) +
   labs(col = "year")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-10.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-10.png" width="672" />
 
 ```r
 # Fim  Erro comum
@@ -242,7 +242,7 @@ ggplot(dados, aes(x = cty, y = hwy, shape = factor(year))) +
   labs(shape = "year")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-11.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-11.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, size = class)) + 
@@ -250,7 +250,7 @@ ggplot(dados, aes(x = cty, y = hwy, size = class)) +
   labs(size = "class")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-12.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-12.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, 
@@ -261,7 +261,7 @@ ggplot(dados, aes(x = cty, y = hwy,
          size = guide_legend("Tipo de carro (size)"))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-13.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-13.png" width="672" />
 
 ```r
 ggplot(dados, aes(x = cty, y = hwy, 
@@ -272,7 +272,7 @@ ggplot(dados, aes(x = cty, y = hwy,
   guides(col = "legend")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-4-14.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-4-14.png" width="672" />
 
 ## smooth, boxplot, histogram
 
@@ -288,7 +288,7 @@ v1<- ggplot(dados, aes(x = cty, y = hwy)) +
 v1
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
 ```r
 v2 <- ggplot(dados, aes(x = cty)) + 
@@ -296,7 +296,7 @@ v2 <- ggplot(dados, aes(x = cty)) +
 v2
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-5-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-5-2.png" width="672" />
 
 ```r
 v3 <- ggplot(dados, aes(x = cty)) + 
@@ -304,7 +304,7 @@ v3 <- ggplot(dados, aes(x = cty)) +
 v3
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-5-3.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-5-3.png" width="672" />
 
 ```r
 v4<- ggplot(dados, aes(x = cty)) + 
@@ -314,7 +314,7 @@ v4<- ggplot(dados, aes(x = cty)) +
 v4
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-5-4.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-5-4.png" width="672" />
 
 ```r
 # Adicional (estatístic experimental)
@@ -324,7 +324,7 @@ ggplot(dados, aes(x = drv, y = cty, col = drv)) +
   theme(legend.position = "none")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-5-5.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-5-5.png" width="672" />
 
 ## gridExtra e patchwork
 
@@ -341,80 +341,80 @@ Alguns links
 grid.arrange(v1, v2, v3, v4) 
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" />
 
 ```r
 # patchwork
 v1 + v2
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-2.png" width="672" />
 
 ```r
 v1 | v2
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-3.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-3.png" width="672" />
 
 ```r
 v1 / v2
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-4.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-4.png" width="672" />
 
 ```r
 v1 + v2 + v3
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-5.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-5.png" width="672" />
 
 ```r
 v1 + (v2 + v3)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-6.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-6.png" width="672" />
 
 ```r
 v1 | (v2 / v3)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-7.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-7.png" width="672" />
 
 ```r
 v1 / (v2 + v3)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-8.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-8.png" width="672" />
 
 ```r
 v1 + v2 + v3 + v4 
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-9.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-9.png" width="672" />
 
 ```r
 v1/(v2+v3+v4)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-10.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-10.png" width="672" />
 
 ```r
 v1  + (v2 + v3 + v4)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-11.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-11.png" width="672" />
 
 ```r
 v1  + v2 + (v3 + v4)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-12.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-12.png" width="672" />
 
 ```r
 (v1 | v2 | v3) / v4
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-6-13.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-6-13.png" width="672" />
 
 
 ## bar, col, density, density2d
@@ -427,7 +427,7 @@ v5 <- ggplot(dados , aes(x = manufacturer)) +
 v5
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-7-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" />
 
 ```r
 # Dúvidas no geom_col
@@ -437,7 +437,7 @@ v6 <- ggplot(dados , aes(x = manufacturer, y = cty)) +
 v6
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-7-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-7-2.png" width="672" />
 
 ```r
 dados %>% 
@@ -448,7 +448,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 15 x 3
+## # A tibble: 15 × 3
 ##    manufacturer soma_total_cty     n
 ##    <chr>                 <int> <int>
 ##  1 audi                    317    18
@@ -478,7 +478,7 @@ v7 <- ggplot(dados , aes(x = cty)) +
 v7
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-7-3.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-7-3.png" width="672" />
 
 ```r
 v8 <- ggplot(dados, aes(x = cty, y = hwy)) + 
@@ -487,13 +487,13 @@ v8 <- ggplot(dados, aes(x = cty, y = hwy)) +
 v8
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-7-4.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-7-4.png" width="672" />
 
 ```r
 (v5+v6)/ (v7 + v8)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-7-5.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-7-5.png" width="672" />
 
 ```r
 # Deixar pra depois...
@@ -504,7 +504,7 @@ v8
 ```
 
 ```
-## # A tibble: 1 x 1
+## # A tibble: 1 × 1
 ##   media
 ##   <int>
 ## 1    29
@@ -544,7 +544,7 @@ ggplot(dados_trat, aes(tratamento, resposta)) +
   geom_col(fill = "red")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-9-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 ```r
 # Mais detalhes...
@@ -557,7 +557,7 @@ dados %>% select(manufacturer, hwy, year) %>%
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-9-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-9-2.png" width="672" />
 
 ## facet_grid, facet_wrap
 
@@ -568,73 +568,73 @@ p1<- ggplot(dados, aes(x = cty, y = hwy)) +
 p1
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 ```r
 p1 + facet_grid(rows = vars(cyl))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-2.png" width="672" />
 
 ```r
 p1 + facet_grid(cols = vars(cyl))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-3.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-3.png" width="672" />
 
 ```r
 p1 + facet_grid(~cyl)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-4.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-4.png" width="672" />
 
 ```r
 p1 + facet_grid(rows = vars(year), cols =vars(cyl))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-5.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-5.png" width="672" />
 
 ```r
 p1 + facet_grid(year~cyl)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-6.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-6.png" width="672" />
 
 ```r
 p1 + facet_wrap(year ~ cyl)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-7.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-7.png" width="672" />
 
 ```r
 p1 + facet_wrap(cyl ~ year)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-8.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-8.png" width="672" />
 
 ```r
 p1 + facet_wrap(~cyl + year)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-9.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-9.png" width="672" />
 
 ```r
 p1 + facet_wrap(~year + cyl)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-10.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-10.png" width="672" />
 
 ```r
 p1 + facet_wrap(year ~ cyl, ncol = 4)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-11.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-11.png" width="672" />
 
 ```r
 p1 + facet_wrap(cyl ~ year, ncol = 4)
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-10-12.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-10-12.png" width="672" />
 
 
 ## stat_function
@@ -649,7 +649,7 @@ ggplot(data.frame(x = c(a - 3*b, a + 3*b)), aes(x)) +
   theme_minimal()
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-11-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 ## stat_summary
 
@@ -663,7 +663,7 @@ ggplot(dados, aes(x = manufacturer, y = hwy)) +
   theme(axis.text.x = element_text(angle = 45))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-12-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 ## theme_*()
 
@@ -677,7 +677,7 @@ a4<- p1 + theme_minimal() + labs(title = "theme_minimal()")
 a1 + a2 + a3 + a4
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-13-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
 
 ## Gráfico de perfis (Spaguetti plot)
@@ -690,9 +690,9 @@ glimpse(Orange)
 ```
 ## Rows: 35
 ## Columns: 3
-## $ Tree          <ord> 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3,~
-## $ age           <dbl> 118, 484, 664, 1004, 1231, 1372, 1582, 118, 484, 664, 10~
-## $ circumference <dbl> 30, 58, 87, 115, 120, 142, 145, 33, 69, 111, 156, 172, 2~
+## $ Tree          <ord> 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3,…
+## $ age           <dbl> 118, 484, 664, 1004, 1231, 1372, 1582, 118, 484, 664, 10…
+## $ circumference <dbl> 30, 58, 87, 115, 120, 142, 145, 33, 69, 111, 156, 172, 2…
 ```
 
 ```r
@@ -706,7 +706,7 @@ ggplot(Orange, aes(x = age, y = circumference, group = Tree,
   theme_minimal()
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-14-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
 ```r
 ggplot(Orange, aes(x = age, y = circumference, group = Tree)) +
@@ -717,7 +717,7 @@ ggplot(Orange, aes(x = age, y = circumference, group = Tree)) +
   theme(legend.position = "none")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-14-2.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-14-2.png" width="672" />
 
 ## plotly
 
@@ -761,7 +761,7 @@ ggplot(dados) +
   theme(legend.position = "top")
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
 
 
@@ -774,5 +774,5 @@ ggplot(dados) +
   facet_wrap(vars(drv))
 ```
 
-![](02_ggplot2_files/figure-latex/unnamed-chunk-18-1.pdf)<!-- --> 
+<img src="02_ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" />
 
