@@ -46,9 +46,6 @@ knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'ggplot2', 'purrr', 'dplyr', 'tibble'), 'packages.bib')
 ```
 
-Ver como citar referências @tidyverse2019, @R-tidyverse, @R-tidyr, @R-ggplot2, @R-purrr, @R-dplyr, @R-knitr, @R-bookdown
-
-
 ## Alguns atalhos no Rstudio
 
 Para considerar

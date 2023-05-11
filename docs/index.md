@@ -43,9 +43,6 @@ library(nlme)
 
 
 
-Ver como citar referências @tidyverse2019, @R-tidyverse, @R-tidyr, @R-ggplot2, @R-purrr, @R-dplyr, @R-knitr, @R-bookdown
-
-
 ## Alguns atalhos no Rstudio
 
 Para considerar

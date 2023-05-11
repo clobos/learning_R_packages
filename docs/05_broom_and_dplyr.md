@@ -643,3 +643,6 @@ https://bookdown.org/Maxine/r4ds/nesting.html
 https://livro.curso-r.com/7-3-tidyr.html
 
 http://leg.ufpr.br/~walmes/cursoR/data-vis/slides/04-tidyr.pdf
+
+
+Ver como citar referências @tidyverse2019, @R-tidyverse, @R-tidyr, @R-ggplot2, @R-purrr, @R-dplyr, @R-knitr, @R-bookdown
