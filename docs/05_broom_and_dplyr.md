@@ -398,6 +398,240 @@ By combining the estimates and p-values across all groups into the same tidy dat
 
 In each of these cases, we can easily filter, facet, or distinguish based on the `term` column. In short, this makes the tools of tidy data analysis available for the *results* of data analysis and models, not just the inputs.
 
+
+## Tidy bootstrapping
+
+Another place where combining model fits in a tidy way becomes useful is when performing bootstrapping or permutation tests. These approaches have been explored before, for instance by [Andrew MacDonald here](http://rstudio-pubs-static.s3.amazonaws.com/19698_a4c472606e3c43e4b94720506e49bb7b.html), and [Hadley has explored efficient support for bootstrapping](https://github.com/hadley/dplyr/issues/269) as a potential enhancement to dplyr. broom fits naturally with dplyr in performing these analyses.
+
+Bootstrapping consists of randomly sampling a dataset with replacement, then performing the analysis individually on each bootstrapped replicate. The variation in the resulting estimate is then a reasonable approximation of the variance in our estimate.
+
+Let's say we want to fit a nonlinear model to the weight/mileage relationship in the `mtcars` dataset.
+
+
+```r
+library(ggplot2)
+theme_set(theme_minimal())
+ggplot(mtcars, aes(mpg, wt)) + 
+    geom_point()
+```
+
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-16-1.pdf)<!-- --> 
+
+We might use the method of nonlinear least squares (via the `nls` function) to fit a model.
+
+
+```r
+nlsfit <- nls(mpg ~ k / wt + b, mtcars, start = list(k = 1, b = 0))
+summary(nlsfit)
+```
+
+```
+## 
+## Formula: mpg ~ k/wt + b
+## 
+## Parameters:
+##   Estimate Std. Error t value Pr(>|t|)    
+## k   45.829      4.249  10.786 7.64e-12 ***
+## b    4.386      1.536   2.855  0.00774 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.774 on 30 degrees of freedom
+## 
+## Number of iterations to convergence: 1 
+## Achieved convergence tolerance: 2.877e-08
+```
+
+```r
+ggplot(mtcars, aes(wt, mpg)) +
+    geom_point() +
+    geom_line(aes(y = predict(nlsfit)))
+```
+
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-17-1.pdf)<!-- --> 
+
+While this does provide a p-value and confidence intervals for the parameters, these are based on model assumptions that may not hold in real data. Bootstrapping is a popular method for providing confidence intervals and predictions that are more robust to the nature of the data.
+
+We can use the `bootstraps` function in the **rsample** package to sample bootstrap replications. First, we construct 100 bootstrap replications of the data, each of which has been randomly sampled with replacement. The resulting object is an `rset`, which is a dataframe with a column of `rsplit` objects.
+
+An `rsplit` object has two main components: an analysis dataset and an assessment dataset, accessible via `analysis(rsplit)` and `assessment(rsplit)` respectively. For bootstrap samples, the analysis dataset is the bootstrap sample itself, and the assessment dataset consists of all the out of bag samples.
+
+
+```r
+library(dplyr)
+library(rsample)
+library(broom)
+library(purrr)
+library(tidyr)
+set.seed(27)
+boots <- bootstraps(mtcars, times = 100)
+boots
+```
+
+```
+## # Bootstrap sampling 
+## # A tibble: 100 x 2
+##    splits          id          
+##    <list>          <chr>       
+##  1 <split [32/13]> Bootstrap001
+##  2 <split [32/10]> Bootstrap002
+##  3 <split [32/13]> Bootstrap003
+##  4 <split [32/11]> Bootstrap004
+##  5 <split [32/9]>  Bootstrap005
+##  6 <split [32/10]> Bootstrap006
+##  7 <split [32/11]> Bootstrap007
+##  8 <split [32/13]> Bootstrap008
+##  9 <split [32/11]> Bootstrap009
+## 10 <split [32/11]> Bootstrap010
+## # ... with 90 more rows
+```
+
+We create a helper function to fit an `nls` model on each bootstrap sample, and then use `purrr::map` to apply this function to all the bootstrap samples at once. Similarly, we create a column of tidy coefficient information by unnesting.
+
+
+```r
+fit_nls_on_bootstrap <- function(split) {
+    nls(mpg ~ k / wt + b, analysis(split), start = list(k = 1, b = 0))
+}
+boot_models <- boots %>% 
+    mutate(model = map(splits, fit_nls_on_bootstrap),
+           coef_info = map(model, tidy))
+boot_models
+```
+
+```
+## # Bootstrap sampling 
+## # A tibble: 100 x 4
+##    splits          id           model  coef_info       
+##    <list>          <chr>        <list> <list>          
+##  1 <split [32/13]> Bootstrap001 <nls>  <tibble [2 x 5]>
+##  2 <split [32/10]> Bootstrap002 <nls>  <tibble [2 x 5]>
+##  3 <split [32/13]> Bootstrap003 <nls>  <tibble [2 x 5]>
+##  4 <split [32/11]> Bootstrap004 <nls>  <tibble [2 x 5]>
+##  5 <split [32/9]>  Bootstrap005 <nls>  <tibble [2 x 5]>
+##  6 <split [32/10]> Bootstrap006 <nls>  <tibble [2 x 5]>
+##  7 <split [32/11]> Bootstrap007 <nls>  <tibble [2 x 5]>
+##  8 <split [32/13]> Bootstrap008 <nls>  <tibble [2 x 5]>
+##  9 <split [32/11]> Bootstrap009 <nls>  <tibble [2 x 5]>
+## 10 <split [32/11]> Bootstrap010 <nls>  <tibble [2 x 5]>
+## # ... with 90 more rows
+```
+
+```r
+boot_coefs <- boot_models %>% 
+    unnest(coef_info)
+```
+
+The unnested coefficient information contains a summary of each replication combined in a single data frame:
+
+
+```r
+boot_coefs
+```
+
+```
+## # A tibble: 200 x 8
+##    splits          id           model  term  estimate std.error stati~1  p.value
+##    <list>          <chr>        <list> <chr>    <dbl>     <dbl>   <dbl>    <dbl>
+##  1 <split [32/13]> Bootstrap001 <nls>  k        42.1       4.05   10.4  1.91e-11
+##  2 <split [32/13]> Bootstrap001 <nls>  b         5.39      1.43    3.78 6.93e- 4
+##  3 <split [32/10]> Bootstrap002 <nls>  k        49.9       5.66    8.82 7.82e-10
+##  4 <split [32/10]> Bootstrap002 <nls>  b         3.73      1.92    1.94 6.13e- 2
+##  5 <split [32/13]> Bootstrap003 <nls>  k        37.8       2.68   14.1  9.01e-15
+##  6 <split [32/13]> Bootstrap003 <nls>  b         6.73      1.17    5.75 2.78e- 6
+##  7 <split [32/11]> Bootstrap004 <nls>  k        45.6       4.45   10.2  2.70e-11
+##  8 <split [32/11]> Bootstrap004 <nls>  b         4.75      1.62    2.93 6.38e- 3
+##  9 <split [32/9]>  Bootstrap005 <nls>  k        43.6       4.63    9.41 1.85e-10
+## 10 <split [32/9]>  Bootstrap005 <nls>  b         5.89      1.68    3.51 1.44e- 3
+## # ... with 190 more rows, and abbreviated variable name 1: statistic
+```
+
+We can then calculate confidence intervals (using what is called the percentile method):
+
+
+```r
+alpha <- .05
+boot_coefs %>% 
+    group_by(term) %>%
+    summarize(low = quantile(estimate, alpha / 2),
+              high = quantile(estimate, 1 - alpha / 2))
+```
+
+```
+## # A tibble: 2 x 3
+##   term     low  high
+##   <chr>  <dbl> <dbl>
+## 1 b      0.283  6.74
+## 2 k     38.5   57.6
+```
+
+Or we can use histograms to get a more detailed idea of the uncertainty in each estimate:
+
+
+```r
+ggplot(boot_coefs, aes(estimate)) + 
+    geom_histogram(binwidth = 2) + 
+    facet_wrap(~ term, scales = "free")
+```
+
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-22-1.pdf)<!-- --> 
+
+Or we can use `augment` to visualize the uncertainty in the curve:
+
+
+```r
+boot_aug <- boot_models %>% 
+    mutate(augmented = map(model, augment)) %>% 
+    unnest(augmented)
+boot_aug
+```
+
+```
+## # A tibble: 3,200 x 8
+##    splits          id           model  coef_info   mpg    wt .fitted .resid
+##    <list>          <chr>        <list> <list>    <dbl> <dbl>   <dbl>  <dbl>
+##  1 <split [32/13]> Bootstrap001 <nls>  <tibble>   18.7  3.44    17.6  1.08 
+##  2 <split [32/13]> Bootstrap001 <nls>  <tibble>   32.4  2.2     24.5  7.89 
+##  3 <split [32/13]> Bootstrap001 <nls>  <tibble>   15.5  3.52    17.3 -1.84 
+##  4 <split [32/13]> Bootstrap001 <nls>  <tibble>   22.8  3.15    18.7  4.05 
+##  5 <split [32/13]> Bootstrap001 <nls>  <tibble>   24.4  3.19    18.6  5.82 
+##  6 <split [32/13]> Bootstrap001 <nls>  <tibble>   30.4  1.62    31.4 -1.04 
+##  7 <split [32/13]> Bootstrap001 <nls>  <tibble>   10.4  5.42    13.1 -2.75 
+##  8 <split [32/13]> Bootstrap001 <nls>  <tibble>   21    2.62    21.4 -0.448
+##  9 <split [32/13]> Bootstrap001 <nls>  <tibble>   19.2  3.84    16.3  2.87 
+## 10 <split [32/13]> Bootstrap001 <nls>  <tibble>   21    2.62    21.4 -0.448
+## # ... with 3,190 more rows
+```
+
+
+```r
+ggplot(boot_aug, aes(wt, mpg)) +
+    geom_point() +
+    geom_line(aes(y = .fitted, group = id), alpha=.2)
+```
+
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-24-1.pdf)<!-- --> 
+
+With only a few small changes, we could easily perform bootstrapping with other kinds of predictive or hypothesis testing models, since the `tidy` and `augment` functions works for many statistical outputs. As another example, we could use `smooth.spline`, which fits a cubic smoothing spline to data:
+
+
+```r
+fit_spline_on_bootstrap <- function(split) {
+    data <- analysis(split)
+    smooth.spline(data$wt, data$mpg, df = 4)
+}
+boot_splines <- boots %>% 
+    mutate(spline = map(splits, fit_spline_on_bootstrap),
+           aug_train = map(spline, augment))
+splines_aug <- boot_splines %>% 
+    unnest(aug_train)
+ggplot(splines_aug, aes(x, y)) +
+    geom_point() +
+    geom_line(aes(y = .fitted, group = id), alpha = 0.2)
+```
+
+![](05_broom_and_dplyr_files/figure-latex/unnamed-chunk-25-1.pdf)<!-- --> 
+
 ## links
 
 https://www.youtube.com/watch?v=1bnhT8tlCJQ&list=PLBnFxG6owe1F-3y0_aphRZ5YHH06Qr1Kj
