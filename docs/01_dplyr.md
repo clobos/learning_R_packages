@@ -61,17 +61,17 @@ glimpse(dados)
 ```
 ## Rows: 234
 ## Columns: 11
-## $ manufacturer <chr> "audi", "audi", "audi", "audi", "audi", "audi", "audi", "…
-## $ model        <chr> "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "…
-## $ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…
-## $ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…
-## $ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …
-## $ trans        <chr> "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto…
-## $ drv          <chr> "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4…
-## $ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…
-## $ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…
-## $ fl           <chr> "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p…
-## $ class        <chr> "compact", "compact", "compact", "compact", "compact", "c…
+## $ manufacturer <chr> "audi", "audi", "audi", "audi", "audi", "audi", "audi", "~
+## $ model        <chr> "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "~
+## $ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.~
+## $ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200~
+## $ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, ~
+## $ trans        <chr> "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto~
+## $ drv          <chr> "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4~
+## $ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1~
+## $ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2~
+## $ fl           <chr> "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p~
+## $ class        <chr> "compact", "compact", "compact", "compact", "compact", "c~
 ```
 
 ```r
@@ -85,17 +85,17 @@ glimpse(dados)
 ```
 ## Rows: 234
 ## Columns: 11
-## $ manufacturer <fct> audi, audi, audi, audi, audi, audi, audi, audi, audi, aud…
-## $ model        <fct> a4, a4, a4, a4, a4, a4, a4, a4 quattro, a4 quattro, a4 qu…
-## $ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…
-## $ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…
-## $ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …
-## $ trans        <fct> auto(l5), manual(m5), manual(m6), auto(av), auto(l5), man…
-## $ drv          <fct> f, f, f, f, f, f, f, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, r, …
-## $ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…
-## $ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…
-## $ fl           <fct> p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, r, …
-## $ class        <fct> compact, compact, compact, compact, compact, compact, com…
+## $ manufacturer <fct> audi, audi, audi, audi, audi, audi, audi, audi, audi, aud~
+## $ model        <fct> a4, a4, a4, a4, a4, a4, a4, a4 quattro, a4 quattro, a4 qu~
+## $ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.~
+## $ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200~
+## $ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, ~
+## $ trans        <fct> auto(l5), manual(m5), manual(m6), auto(av), auto(l5), man~
+## $ drv          <fct> f, f, f, f, f, f, f, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, r, ~
+## $ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1~
+## $ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2~
+## $ fl           <fct> p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, r, ~
+## $ class        <fct> compact, compact, compact, compact, compact, compact, com~
 ```
 
 
@@ -117,94 +117,95 @@ ls("package:dplyr")
 ##  [22] "as_label"              "as_tibble"             "auto_copy"            
 ##  [25] "band_instruments"      "band_instruments2"     "band_members"         
 ##  [28] "bench_tbls"            "between"               "bind_cols"            
-##  [31] "bind_rows"             "c_across"              "case_when"            
-##  [34] "changes"               "check_dbplyr"          "coalesce"             
-##  [37] "collapse"              "collect"               "combine"              
-##  [40] "common_by"             "compare_tbls"          "compare_tbls2"        
-##  [43] "compute"               "contains"              "copy_to"              
-##  [46] "count"                 "count_"                "cumall"               
-##  [49] "cumany"                "cume_dist"             "cummean"              
-##  [52] "cur_column"            "cur_data"              "cur_data_all"         
-##  [55] "cur_group"             "cur_group_id"          "cur_group_rows"       
-##  [58] "current_vars"          "data_frame"            "data_frame_"          
-##  [61] "db_analyze"            "db_begin"              "db_commit"            
-##  [64] "db_create_index"       "db_create_indexes"     "db_create_table"      
-##  [67] "db_data_type"          "db_desc"               "db_drop_table"        
-##  [70] "db_explain"            "db_has_table"          "db_insert_into"       
-##  [73] "db_list_tables"        "db_query_fields"       "db_query_rows"        
-##  [76] "db_rollback"           "db_save_query"         "db_write_table"       
-##  [79] "dense_rank"            "desc"                  "dim_desc"             
-##  [82] "distinct"              "distinct_"             "distinct_all"         
-##  [85] "distinct_at"           "distinct_if"           "distinct_prepare"     
-##  [88] "do"                    "do_"                   "dplyr_col_modify"     
-##  [91] "dplyr_reconstruct"     "dplyr_row_slice"       "ends_with"            
-##  [94] "enexpr"                "enexprs"               "enquo"                
-##  [97] "enquos"                "ensym"                 "ensyms"               
-## [100] "eval_tbls"             "eval_tbls2"            "everything"           
-## [103] "explain"               "expr"                  "failwith"             
-## [106] "filter"                "filter_"               "filter_all"           
-## [109] "filter_at"             "filter_if"             "first"                
-## [112] "frame_data"            "full_join"             "funs"                 
-## [115] "funs_"                 "glimpse"               "group_by"             
-## [118] "group_by_"             "group_by_all"          "group_by_at"          
-## [121] "group_by_drop_default" "group_by_if"           "group_by_prepare"     
-## [124] "group_cols"            "group_data"            "group_indices"        
-## [127] "group_indices_"        "group_keys"            "group_map"            
-## [130] "group_modify"          "group_nest"            "group_rows"           
-## [133] "group_size"            "group_split"           "group_trim"           
-## [136] "group_vars"            "group_walk"            "grouped_df"           
-## [139] "groups"                "id"                    "ident"                
-## [142] "if_all"                "if_any"                "if_else"              
-## [145] "inner_join"            "intersect"             "is.grouped_df"        
-## [148] "is.src"                "is.tbl"                "is_grouped_df"        
-## [151] "lag"                   "last"                  "last_col"             
-## [154] "lead"                  "left_join"             "location"             
-## [157] "lst"                   "lst_"                  "make_tbl"             
-## [160] "matches"               "min_rank"              "mutate"               
-## [163] "mutate_"               "mutate_all"            "mutate_at"            
-## [166] "mutate_each"           "mutate_each_"          "mutate_if"            
-## [169] "n"                     "n_distinct"            "n_groups"             
-## [172] "na_if"                 "near"                  "nest_by"              
-## [175] "nest_join"             "new_grouped_df"        "new_rowwise_df"       
-## [178] "nth"                   "ntile"                 "num_range"            
-## [181] "one_of"                "order_by"              "percent_rank"         
-## [184] "progress_estimated"    "pull"                  "quo"                  
-## [187] "quo_name"              "quos"                  "recode"               
-## [190] "recode_factor"         "relocate"              "rename"               
-## [193] "rename_"               "rename_all"            "rename_at"            
-## [196] "rename_if"             "rename_vars"           "rename_vars_"         
-## [199] "rename_with"           "right_join"            "row_number"           
-## [202] "rows_append"           "rows_delete"           "rows_insert"          
-## [205] "rows_patch"            "rows_update"           "rows_upsert"          
-## [208] "rowwise"               "same_src"              "sample_frac"          
-## [211] "sample_n"              "select"                "select_"              
-## [214] "select_all"            "select_at"             "select_if"            
-## [217] "select_var"            "select_vars"           "select_vars_"         
-## [220] "semi_join"             "setdiff"               "setequal"             
-## [223] "show_query"            "slice"                 "slice_"               
-## [226] "slice_head"            "slice_max"             "slice_min"            
-## [229] "slice_sample"          "slice_tail"            "sql"                  
-## [232] "sql_escape_ident"      "sql_escape_string"     "sql_join"             
-## [235] "sql_select"            "sql_semi_join"         "sql_set_op"           
-## [238] "sql_subquery"          "sql_translate_env"     "src"                  
-## [241] "src_df"                "src_local"             "src_mysql"            
-## [244] "src_postgres"          "src_sqlite"            "src_tbls"             
-## [247] "starts_with"           "starwars"              "storms"               
-## [250] "summarise"             "summarise_"            "summarise_all"        
-## [253] "summarise_at"          "summarise_each"        "summarise_each_"      
-## [256] "summarise_if"          "summarize"             "summarize_"           
-## [259] "summarize_all"         "summarize_at"          "summarize_each"       
-## [262] "summarize_each_"       "summarize_if"          "sym"                  
-## [265] "syms"                  "tally"                 "tally_"               
-## [268] "tbl"                   "tbl_df"                "tbl_nongroup_vars"    
-## [271] "tbl_ptype"             "tbl_sum"               "tbl_vars"             
-## [274] "tibble"                "top_frac"              "top_n"                
-## [277] "transmute"             "transmute_"            "transmute_all"        
-## [280] "transmute_at"          "transmute_if"          "tribble"              
-## [283] "type_sum"              "ungroup"               "union"                
-## [286] "union_all"             "validate_grouped_df"   "validate_rowwise_df"  
-## [289] "vars"                  "with_groups"           "with_order"           
-## [292] "wrap_dbplyr_obj"
+##  [31] "bind_rows"             "c_across"              "case_match"           
+##  [34] "case_when"             "changes"               "check_dbplyr"         
+##  [37] "coalesce"              "collapse"              "collect"              
+##  [40] "combine"               "common_by"             "compare_tbls"         
+##  [43] "compare_tbls2"         "compute"               "consecutive_id"       
+##  [46] "contains"              "copy_to"               "count"                
+##  [49] "count_"                "cross_join"            "cumall"               
+##  [52] "cumany"                "cume_dist"             "cummean"              
+##  [55] "cur_column"            "cur_data"              "cur_data_all"         
+##  [58] "cur_group"             "cur_group_id"          "cur_group_rows"       
+##  [61] "current_vars"          "data_frame"            "db_analyze"           
+##  [64] "db_begin"              "db_commit"             "db_create_index"      
+##  [67] "db_create_indexes"     "db_create_table"       "db_data_type"         
+##  [70] "db_desc"               "db_drop_table"         "db_explain"           
+##  [73] "db_has_table"          "db_insert_into"        "db_list_tables"       
+##  [76] "db_query_fields"       "db_query_rows"         "db_rollback"          
+##  [79] "db_save_query"         "db_write_table"        "dense_rank"           
+##  [82] "desc"                  "dim_desc"              "distinct"             
+##  [85] "distinct_"             "distinct_all"          "distinct_at"          
+##  [88] "distinct_if"           "distinct_prepare"      "do"                   
+##  [91] "do_"                   "dplyr_col_modify"      "dplyr_reconstruct"    
+##  [94] "dplyr_row_slice"       "ends_with"             "enexpr"               
+##  [97] "enexprs"               "enquo"                 "enquos"               
+## [100] "ensym"                 "ensyms"                "eval_tbls"            
+## [103] "eval_tbls2"            "everything"            "explain"              
+## [106] "expr"                  "failwith"              "filter"               
+## [109] "filter_"               "filter_all"            "filter_at"            
+## [112] "filter_if"             "first"                 "full_join"            
+## [115] "funs"                  "funs_"                 "glimpse"              
+## [118] "group_by"              "group_by_"             "group_by_all"         
+## [121] "group_by_at"           "group_by_drop_default" "group_by_if"          
+## [124] "group_by_prepare"      "group_cols"            "group_data"           
+## [127] "group_indices"         "group_indices_"        "group_keys"           
+## [130] "group_map"             "group_modify"          "group_nest"           
+## [133] "group_rows"            "group_size"            "group_split"          
+## [136] "group_trim"            "group_vars"            "group_walk"           
+## [139] "grouped_df"            "groups"                "id"                   
+## [142] "ident"                 "if_all"                "if_any"               
+## [145] "if_else"               "inner_join"            "intersect"            
+## [148] "is.grouped_df"         "is.src"                "is.tbl"               
+## [151] "is_grouped_df"         "join_by"               "lag"                  
+## [154] "last"                  "last_col"              "last_dplyr_warnings"  
+## [157] "lead"                  "left_join"             "location"             
+## [160] "lst"                   "make_tbl"              "matches"              
+## [163] "min_rank"              "mutate"                "mutate_"              
+## [166] "mutate_all"            "mutate_at"             "mutate_each"          
+## [169] "mutate_each_"          "mutate_if"             "n"                    
+## [172] "n_distinct"            "n_groups"              "na_if"                
+## [175] "near"                  "nest_by"               "nest_join"            
+## [178] "new_grouped_df"        "new_rowwise_df"        "nth"                  
+## [181] "ntile"                 "num_range"             "one_of"               
+## [184] "order_by"              "percent_rank"          "pick"                 
+## [187] "progress_estimated"    "pull"                  "quo"                  
+## [190] "quo_name"              "quos"                  "recode"               
+## [193] "recode_factor"         "reframe"               "relocate"             
+## [196] "rename"                "rename_"               "rename_all"           
+## [199] "rename_at"             "rename_if"             "rename_vars"          
+## [202] "rename_vars_"          "rename_with"           "right_join"           
+## [205] "row_number"            "rows_append"           "rows_delete"          
+## [208] "rows_insert"           "rows_patch"            "rows_update"          
+## [211] "rows_upsert"           "rowwise"               "same_src"             
+## [214] "sample_frac"           "sample_n"              "select"               
+## [217] "select_"               "select_all"            "select_at"            
+## [220] "select_if"             "select_var"            "select_vars"          
+## [223] "select_vars_"          "semi_join"             "setdiff"              
+## [226] "setequal"              "show_query"            "slice"                
+## [229] "slice_"                "slice_head"            "slice_max"            
+## [232] "slice_min"             "slice_sample"          "slice_tail"           
+## [235] "sql"                   "sql_escape_ident"      "sql_escape_string"    
+## [238] "sql_join"              "sql_select"            "sql_semi_join"        
+## [241] "sql_set_op"            "sql_subquery"          "sql_translate_env"    
+## [244] "src"                   "src_df"                "src_local"            
+## [247] "src_mysql"             "src_postgres"          "src_sqlite"           
+## [250] "src_tbls"              "starts_with"           "starwars"             
+## [253] "storms"                "summarise"             "summarise_"           
+## [256] "summarise_all"         "summarise_at"          "summarise_each"       
+## [259] "summarise_each_"       "summarise_if"          "summarize"            
+## [262] "summarize_"            "summarize_all"         "summarize_at"         
+## [265] "summarize_each"        "summarize_each_"       "summarize_if"         
+## [268] "sym"                   "symdiff"               "syms"                 
+## [271] "tally"                 "tally_"                "tbl"                  
+## [274] "tbl_df"                "tbl_nongroup_vars"     "tbl_ptype"            
+## [277] "tbl_vars"              "tibble"                "top_frac"             
+## [280] "top_n"                 "transmute"             "transmute_"           
+## [283] "transmute_all"         "transmute_at"          "transmute_if"         
+## [286] "tribble"               "type_sum"              "ungroup"              
+## [289] "union"                 "union_all"             "validate_grouped_df"  
+## [292] "validate_rowwise_df"   "vars"                  "where"                
+## [295] "with_groups"           "with_order"            "wrap_dbplyr_obj"
 ```
 
 
@@ -235,7 +236,7 @@ select(dados, manufacturer, model, year)
 ```
 
 ```
-## # A tibble: 234 × 3
+## # A tibble: 234 x 3
 ##    manufacturer model       year
 ##    <fct>        <fct>      <int>
 ##  1 audi         a4          1999
@@ -248,7 +249,7 @@ select(dados, manufacturer, model, year)
 ##  8 audi         a4 quattro  1999
 ##  9 audi         a4 quattro  1999
 ## 10 audi         a4 quattro  2008
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -256,7 +257,7 @@ select(dados, starts_with("m"))
 ```
 
 ```
-## # A tibble: 234 × 2
+## # A tibble: 234 x 2
 ##    manufacturer model     
 ##    <fct>        <fct>     
 ##  1 audi         a4        
@@ -269,7 +270,7 @@ select(dados, starts_with("m"))
 ##  8 audi         a4 quattro
 ##  9 audi         a4 quattro
 ## 10 audi         a4 quattro
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -277,7 +278,7 @@ select(dados, contains("r"))
 ```
 
 ```
-## # A tibble: 234 × 4
+## # A tibble: 234 x 4
 ##    manufacturer  year trans      drv  
 ##    <fct>        <int> <fct>      <fct>
 ##  1 audi          1999 auto(l5)   f    
@@ -290,7 +291,7 @@ select(dados, contains("r"))
 ##  8 audi          1999 manual(m5) 4    
 ##  9 audi          1999 auto(l5)   4    
 ## 10 audi          2008 manual(m6) 4    
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -298,7 +299,7 @@ select(dados, ends_with("y"))
 ```
 
 ```
-## # A tibble: 234 × 2
+## # A tibble: 234 x 2
 ##      cty   hwy
 ##    <int> <int>
 ##  1    18    29
@@ -311,7 +312,7 @@ select(dados, ends_with("y"))
 ##  8    18    26
 ##  9    16    25
 ## 10    20    28
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -319,7 +320,7 @@ select(dados, matches("[abc]"))
 ```
 
 ```
-## # A tibble: 234 × 6
+## # A tibble: 234 x 6
 ##    manufacturer  year   cyl trans        cty class  
 ##    <fct>        <int> <int> <fct>      <int> <fct>  
 ##  1 audi          1999     4 auto(l5)      18 compact
@@ -332,7 +333,7 @@ select(dados, matches("[abc]"))
 ##  8 audi          1999     4 manual(m5)    18 compact
 ##  9 audi          1999     4 auto(l5)      16 compact
 ## 10 audi          2008     4 manual(m6)    20 compact
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -340,7 +341,7 @@ select(dados, starts_with("m"), starts_with("c"))
 ```
 
 ```
-## # A tibble: 234 × 5
+## # A tibble: 234 x 5
 ##    manufacturer model        cyl   cty class  
 ##    <fct>        <fct>      <int> <int> <fct>  
 ##  1 audi         a4             4    18 compact
@@ -353,7 +354,7 @@ select(dados, starts_with("m"), starts_with("c"))
 ##  8 audi         a4 quattro     4    18 compact
 ##  9 audi         a4 quattro     4    16 compact
 ## 10 audi         a4 quattro     4    20 compact
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -361,7 +362,7 @@ select(dados, ends_with("l"), ends_with("s"))
 ```
 
 ```
-## # A tibble: 234 × 6
+## # A tibble: 234 x 6
 ##    model      displ   cyl fl    trans      class  
 ##    <fct>      <dbl> <int> <fct> <fct>      <fct>  
 ##  1 a4           1.8     4 p     auto(l5)   compact
@@ -374,7 +375,7 @@ select(dados, ends_with("l"), ends_with("s"))
 ##  8 a4 quattro   1.8     4 p     manual(m5) compact
 ##  9 a4 quattro   1.8     4 p     auto(l5)   compact
 ## 10 a4 quattro   2       4 p     manual(m6) compact
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -382,7 +383,7 @@ select(dados, 1:3)
 ```
 
 ```
-## # A tibble: 234 × 3
+## # A tibble: 234 x 3
 ##    manufacturer model      displ
 ##    <fct>        <fct>      <dbl>
 ##  1 audi         a4           1.8
@@ -395,7 +396,7 @@ select(dados, 1:3)
 ##  8 audi         a4 quattro   1.8
 ##  9 audi         a4 quattro   1.8
 ## 10 audi         a4 quattro   2  
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -403,7 +404,7 @@ select(dados, c(2,5,7))
 ```
 
 ```
-## # A tibble: 234 × 3
+## # A tibble: 234 x 3
 ##    model        cyl drv  
 ##    <fct>      <int> <fct>
 ##  1 a4             4 f    
@@ -416,7 +417,7 @@ select(dados, c(2,5,7))
 ##  8 a4 quattro     4 4    
 ##  9 a4 quattro     4 4    
 ## 10 a4 quattro     4 4    
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -424,7 +425,7 @@ select(dados, manufacturer:cyl)
 ```
 
 ```
-## # A tibble: 234 × 5
+## # A tibble: 234 x 5
 ##    manufacturer model      displ  year   cyl
 ##    <fct>        <fct>      <dbl> <int> <int>
 ##  1 audi         a4           1.8  1999     4
@@ -437,7 +438,7 @@ select(dados, manufacturer:cyl)
 ##  8 audi         a4 quattro   1.8  1999     4
 ##  9 audi         a4 quattro   1.8  1999     4
 ## 10 audi         a4 quattro   2    2008     4
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -445,7 +446,7 @@ select(dados,-(manufacturer:cyl))
 ```
 
 ```
-## # A tibble: 234 × 6
+## # A tibble: 234 x 6
 ##    trans      drv     cty   hwy fl    class  
 ##    <fct>      <fct> <int> <int> <fct> <fct>  
 ##  1 auto(l5)   f        18    29 p     compact
@@ -458,7 +459,7 @@ select(dados,-(manufacturer:cyl))
 ##  8 manual(m5) 4        18    26 p     compact
 ##  9 auto(l5)   4        16    25 p     compact
 ## 10 manual(m6) 4        20    28 p     compact
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 
@@ -473,7 +474,7 @@ dados1
 ```
 
 ```
-## # A tibble: 234 × 11
+## # A tibble: 234 x 11
 ##    mnfc  mod        displ  year   cyl trans      drv     cty   hwy fl    class  
 ##    <fct> <fct>      <dbl> <int> <int> <fct>      <fct> <int> <int> <fct> <fct>  
 ##  1 audi  a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
@@ -486,7 +487,7 @@ dados1
 ##  8 audi  a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
 ##  9 audi  a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
 ## 10 audi  a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -496,7 +497,7 @@ select(dados,
 ```
 
 ```
-## # A tibble: 234 × 2
+## # A tibble: 234 x 2
 ##    mnfc  mod       
 ##    <fct> <fct>     
 ##  1 audi  a4        
@@ -509,7 +510,7 @@ select(dados,
 ##  8 audi  a4 quattro
 ##  9 audi  a4 quattro
 ## 10 audi  a4 quattro
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -520,7 +521,7 @@ select(dados,
 ```
 
 ```
-## # A tibble: 234 × 11
+## # A tibble: 234 x 11
 ##    mnfc  mod        displ  year   cyl trans      drv     cty   hwy fl    class  
 ##    <fct> <fct>      <dbl> <int> <int> <fct>      <fct> <int> <int> <fct> <fct>  
 ##  1 audi  a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
@@ -533,7 +534,7 @@ select(dados,
 ##  8 audi  a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
 ##  9 audi  a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
 ## 10 audi  a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ## mutate() para colunas
@@ -544,20 +545,21 @@ mutate(dados, sqrt_cty = sqrt(cty))
 ```
 
 ```
-## # A tibble: 234 × 12
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 234 x 12
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
-## # … with 224 more rows, and abbreviated variable names ¹​manufacturer, ²​sqrt_cty
+##  1 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  2 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  3 audi      a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+##  4 audi      a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+##  5 audi      a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+##  6 audi      a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+##  7 audi      a4      3.1  2008     6 auto~ f        18    27 p     comp~    4.24
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 audi      a4 q~   2    2008     4 manu~ 4        20    28 p     comp~    4.47
+## # ... with 224 more rows, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ```r
@@ -603,22 +605,22 @@ dados
 ```
 
 ```
-## # A tibble: 234 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 234 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
-## # … with 224 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  2 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  3 audi      a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+##  4 audi      a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+##  5 audi      a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+##  6 audi      a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+##  7 audi      a4      3.1  2008     6 auto~ f        18    27 p     comp~    4.24
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 audi      a4 q~   2    2008     4 manu~ 4        20    28 p     comp~    4.47
+## # ... with 224 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ## transmute() 
@@ -630,7 +632,7 @@ transmute(dados,
 ```
 
 ```
-## # A tibble: 234 × 1
+## # A tibble: 234 x 1
 ##    `avg miles per gallon`
 ##                     <dbl>
 ##  1                   23.5
@@ -643,7 +645,7 @@ transmute(dados,
 ##  8                   22  
 ##  9                   20.5
 ## 10                   24  
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -653,7 +655,7 @@ transmute(dados,
 ```
 
 ```
-## # A tibble: 234 × 2
+## # A tibble: 234 x 2
 ##    car             `cyl / trans`                        
 ##    <chr>           <chr>                                
 ##  1 audi a4         4 cylinders / auto(l5) transmission  
@@ -666,7 +668,7 @@ transmute(dados,
 ##  8 audi a4 quattro 4 cylinders / manual(m5) transmission
 ##  9 audi a4 quattro 4 cylinders / auto(l5) transmission  
 ## 10 audi a4 quattro 4 cylinders / manual(m6) transmission
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 
@@ -678,30 +680,30 @@ filter(dados, manufacturer == "audi")
 ```
 
 ```
-## # A tibble: 18 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 18 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
-## 11 audi      a4 q…   2    2008     4 auto… 4        19    27 p     comp…    4.36
-## 12 audi      a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
-## 13 audi      a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
-## 14 audi      a4 q…   3.1  2008     6 auto… 4        17    25 p     comp…    4.12
-## 15 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
-## 16 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
-## 17 audi      a6 q…   3.1  2008     6 auto… 4        17    25 p     mids…    4.12
-## 18 audi      a6 q…   4.2  2008     8 auto… 4        16    23 p     mids…    4   
-## # … with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  2 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  3 audi      a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+##  4 audi      a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+##  5 audi      a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+##  6 audi      a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+##  7 audi      a4      3.1  2008     6 auto~ f        18    27 p     comp~    4.24
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 audi      a4 q~   2    2008     4 manu~ 4        20    28 p     comp~    4.47
+## 11 audi      a4 q~   2    2008     4 auto~ 4        19    27 p     comp~    4.36
+## 12 audi      a4 q~   2.8  1999     6 auto~ 4        15    25 p     comp~    3.87
+## 13 audi      a4 q~   2.8  1999     6 manu~ 4        17    25 p     comp~    4.12
+## 14 audi      a4 q~   3.1  2008     6 auto~ 4        17    25 p     comp~    4.12
+## 15 audi      a4 q~   3.1  2008     6 manu~ 4        15    25 p     comp~    3.87
+## 16 audi      a6 q~   2.8  1999     6 auto~ 4        15    24 p     mids~    3.87
+## 17 audi      a6 q~   3.1  2008     6 auto~ 4        17    25 p     mids~    4.12
+## 18 audi      a6 q~   4.2  2008     8 auto~ 4        16    23 p     mids~    4   
+## # ... with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ```r
@@ -709,21 +711,21 @@ filter(dados, manufacturer == "audi" & year == "1999")
 ```
 
 ```
-## # A tibble: 9 × 15
-##   manufact…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 9 x 15
+##   manufact~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##   <fct>      <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-## 1 audi       a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-## 2 audi       a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-## 3 audi       a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-## 4 audi       a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-## 5 audi       a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-## 6 audi       a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 7 audi       a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
-## 8 audi       a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
-## 9 audi       a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
-## # … with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+## 1 audi       a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+## 2 audi       a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+## 3 audi       a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+## 4 audi       a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+## 5 audi       a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+## 6 audi       a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 7 audi       a4 q~   2.8  1999     6 auto~ 4        15    25 p     comp~    3.87
+## 8 audi       a4 q~   2.8  1999     6 manu~ 4        17    25 p     comp~    4.12
+## 9 audi       a6 q~   2.8  1999     6 auto~ 4        15    24 p     mids~    3.87
+## # ... with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ```r
@@ -731,21 +733,21 @@ filter(dados, manufacturer == "audi", year == 1999)
 ```
 
 ```
-## # A tibble: 9 × 15
-##   manufact…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 9 x 15
+##   manufact~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##   <fct>      <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-## 1 audi       a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-## 2 audi       a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-## 3 audi       a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-## 4 audi       a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-## 5 audi       a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-## 6 audi       a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 7 audi       a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
-## 8 audi       a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
-## 9 audi       a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
-## # … with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+## 1 audi       a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+## 2 audi       a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+## 3 audi       a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+## 4 audi       a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+## 5 audi       a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+## 6 audi       a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 7 audi       a4 q~   2.8  1999     6 auto~ 4        15    25 p     comp~    3.87
+## 8 audi       a4 q~   2.8  1999     6 manu~ 4        17    25 p     comp~    4.12
+## 9 audi       a6 q~   2.8  1999     6 auto~ 4        15    24 p     mids~    3.87
+## # ... with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ```r
@@ -754,32 +756,32 @@ filter(dados, manufacturer == "audi" | manufacturer == "dodge") %>%
 ```
 
 ```
-## # A tibble: 55 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 55 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
-## 11 audi      a4 q…   2    2008     4 auto… 4        19    27 p     comp…    4.36
-## 12 audi      a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
-## 13 audi      a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
-## 14 audi      a4 q…   3.1  2008     6 auto… 4        17    25 p     comp…    4.12
-## 15 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
-## 16 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
-## 17 audi      a6 q…   3.1  2008     6 auto… 4        17    25 p     mids…    4.12
-## 18 audi      a6 q…   4.2  2008     8 auto… 4        16    23 p     mids…    4   
-## 19 dodge     cara…   2.4  1999     4 auto… f        18    24 r     mini…    4.24
-## 20 dodge     cara…   3    1999     6 auto… f        17    24 r     mini…    4.12
-## # … with 35 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  2 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  3 audi      a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+##  4 audi      a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+##  5 audi      a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+##  6 audi      a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+##  7 audi      a4      3.1  2008     6 auto~ f        18    27 p     comp~    4.24
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 audi      a4 q~   2    2008     4 manu~ 4        20    28 p     comp~    4.47
+## 11 audi      a4 q~   2    2008     4 auto~ 4        19    27 p     comp~    4.36
+## 12 audi      a4 q~   2.8  1999     6 auto~ 4        15    25 p     comp~    3.87
+## 13 audi      a4 q~   2.8  1999     6 manu~ 4        17    25 p     comp~    4.12
+## 14 audi      a4 q~   3.1  2008     6 auto~ 4        17    25 p     comp~    4.12
+## 15 audi      a4 q~   3.1  2008     6 manu~ 4        15    25 p     comp~    3.87
+## 16 audi      a6 q~   2.8  1999     6 auto~ 4        15    24 p     mids~    3.87
+## 17 audi      a6 q~   3.1  2008     6 auto~ 4        17    25 p     mids~    4.12
+## 18 audi      a6 q~   4.2  2008     8 auto~ 4        16    23 p     mids~    4   
+## 19 dodge     cara~   2.4  1999     4 auto~ f        18    24 r     mini~    4.24
+## 20 dodge     cara~   3    1999     6 auto~ f        17    24 r     mini~    4.12
+## # ... with 35 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ```r
@@ -788,32 +790,32 @@ filter(dados, manufacturer %in% c("audi", "dodge")) %>%
 ```
 
 ```
-## # A tibble: 55 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 55 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
-## 11 audi      a4 q…   2    2008     4 auto… 4        19    27 p     comp…    4.36
-## 12 audi      a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
-## 13 audi      a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
-## 14 audi      a4 q…   3.1  2008     6 auto… 4        17    25 p     comp…    4.12
-## 15 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
-## 16 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
-## 17 audi      a6 q…   3.1  2008     6 auto… 4        17    25 p     mids…    4.12
-## 18 audi      a6 q…   4.2  2008     8 auto… 4        16    23 p     mids…    4   
-## 19 dodge     cara…   2.4  1999     4 auto… f        18    24 r     mini…    4.24
-## 20 dodge     cara…   3    1999     6 auto… f        17    24 r     mini…    4.12
-## # … with 35 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  2 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  3 audi      a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+##  4 audi      a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+##  5 audi      a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+##  6 audi      a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+##  7 audi      a4      3.1  2008     6 auto~ f        18    27 p     comp~    4.24
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 audi      a4 q~   2    2008     4 manu~ 4        20    28 p     comp~    4.47
+## 11 audi      a4 q~   2    2008     4 auto~ 4        19    27 p     comp~    4.36
+## 12 audi      a4 q~   2.8  1999     6 auto~ 4        15    25 p     comp~    3.87
+## 13 audi      a4 q~   2.8  1999     6 manu~ 4        17    25 p     comp~    4.12
+## 14 audi      a4 q~   3.1  2008     6 auto~ 4        17    25 p     comp~    4.12
+## 15 audi      a4 q~   3.1  2008     6 manu~ 4        15    25 p     comp~    3.87
+## 16 audi      a6 q~   2.8  1999     6 auto~ 4        15    24 p     mids~    3.87
+## 17 audi      a6 q~   3.1  2008     6 auto~ 4        17    25 p     mids~    4.12
+## 18 audi      a6 q~   4.2  2008     8 auto~ 4        16    23 p     mids~    4   
+## 19 dodge     cara~   2.4  1999     4 auto~ f        18    24 r     mini~    4.24
+## 20 dodge     cara~   3    1999     6 auto~ f        17    24 r     mini~    4.12
+## # ... with 35 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ```r
@@ -823,7 +825,7 @@ filter(dados, hwy >= 30) %>%
 ```
 
 ```
-## # A tibble: 26 × 1
+## # A tibble: 26 x 1
 ##      hwy
 ##    <int>
 ##  1    31
@@ -861,7 +863,7 @@ filter(dados, year != 1999) %>%
 ```
 
 ```
-## # A tibble: 117 × 1
+## # A tibble: 117 x 1
 ##     year
 ##    <int>
 ##  1  2008
@@ -894,7 +896,7 @@ filter(dados, year != 1999) %>%
 ## 28  2008
 ## 29  2008
 ## 30  2008
-## # … with 87 more rows
+## # ... with 87 more rows
 ```
 
 ```r
@@ -902,22 +904,22 @@ filter(dados, between(cty,15, 22))
 ```
 
 ```
-## # A tibble: 143 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 143 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
-## # … with 133 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  2 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  3 audi      a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+##  4 audi      a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+##  5 audi      a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+##  6 audi      a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+##  7 audi      a4      3.1  2008     6 auto~ f        18    27 p     comp~    4.24
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 audi      a4 q~   2    2008     4 manu~ 4        20    28 p     comp~    4.47
+## # ... with 133 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 
@@ -929,17 +931,17 @@ slice(dados, 1:5)
 ```
 
 ```
-## # A tibble: 5 × 15
-##   manufact…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 5 x 15
+##   manufact~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##   <fct>      <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-## 1 audi       a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-## 2 audi       a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-## 3 audi       a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-## 4 audi       a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-## 5 audi       a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-## # … with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+## 1 audi       a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+## 2 audi       a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+## 3 audi       a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+## 4 audi       a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+## 5 audi       a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+## # ... with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ```r
@@ -949,23 +951,23 @@ slice(dados, 20:30)
 ```
 
 ```
-## # A tibble: 11 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 11 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 chevrolet c150…   5.3  2008     8 auto… r        11    15 e     suv      3.32
-##  2 chevrolet c150…   5.3  2008     8 auto… r        14    20 r     suv      3.74
-##  3 chevrolet c150…   5.7  1999     8 auto… r        13    17 r     suv      3.61
-##  4 chevrolet c150…   6    2008     8 auto… r        12    17 r     suv      3.46
-##  5 chevrolet corv…   5.7  1999     8 manu… r        16    26 p     2sea…    4   
-##  6 chevrolet corv…   5.7  1999     8 auto… r        15    23 p     2sea…    3.87
-##  7 chevrolet corv…   6.2  2008     8 manu… r        16    26 p     2sea…    4   
-##  8 chevrolet corv…   6.2  2008     8 auto… r        15    25 p     2sea…    3.87
-##  9 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
-## 10 chevrolet k150…   5.3  2008     8 auto… 4        14    19 r     suv      3.74
-## 11 chevrolet k150…   5.3  2008     8 auto… 4        11    14 e     suv      3.32
-## # … with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 chevrolet c150~   5.3  2008     8 auto~ r        11    15 e     suv      3.32
+##  2 chevrolet c150~   5.3  2008     8 auto~ r        14    20 r     suv      3.74
+##  3 chevrolet c150~   5.7  1999     8 auto~ r        13    17 r     suv      3.61
+##  4 chevrolet c150~   6    2008     8 auto~ r        12    17 r     suv      3.46
+##  5 chevrolet corv~   5.7  1999     8 manu~ r        16    26 p     2sea~    4   
+##  6 chevrolet corv~   5.7  1999     8 auto~ r        15    23 p     2sea~    3.87
+##  7 chevrolet corv~   6.2  2008     8 manu~ r        16    26 p     2sea~    4   
+##  8 chevrolet corv~   6.2  2008     8 auto~ r        15    25 p     2sea~    3.87
+##  9 chevrolet corv~   7    2008     8 manu~ r        15    24 p     2sea~    3.87
+## 10 chevrolet k150~   5.3  2008     8 auto~ 4        14    19 r     suv      3.74
+## 11 chevrolet k150~   5.3  2008     8 auto~ 4        11    14 e     suv      3.32
+## # ... with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ```r
@@ -982,22 +984,22 @@ arrange(dados, displ)
 ```
 
 ```
-## # A tibble: 234 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 234 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 honda     civic   1.6  1999     4 manu… f        28    33 r     subc…    5.29
-##  2 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
-##  3 honda     civic   1.6  1999     4 manu… f        25    32 r     subc…    5   
-##  4 honda     civic   1.6  1999     4 manu… f        23    29 p     subc…    4.80
-##  5 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
-##  6 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  7 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 honda     civic   1.8  2008     4 manu… f        26    34 r     subc…    5.10
-## # … with 224 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 honda     civic   1.6  1999     4 manu~ f        28    33 r     subc~    5.29
+##  2 honda     civic   1.6  1999     4 auto~ f        24    32 r     subc~    4.90
+##  3 honda     civic   1.6  1999     4 manu~ f        25    32 r     subc~    5   
+##  4 honda     civic   1.6  1999     4 manu~ f        23    29 p     subc~    4.80
+##  5 honda     civic   1.6  1999     4 auto~ f        24    32 r     subc~    4.90
+##  6 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  7 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 honda     civic   1.8  2008     4 manu~ f        26    34 r     subc~    5.10
+## # ... with 224 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ```r
@@ -1006,32 +1008,32 @@ arrange(dados, displ) %>%
 ```
 
 ```
-## # A tibble: 234 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 234 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 honda     civic   1.6  1999     4 manu… f        28    33 r     subc…    5.29
-##  2 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
-##  3 honda     civic   1.6  1999     4 manu… f        25    32 r     subc…    5   
-##  4 honda     civic   1.6  1999     4 manu… f        23    29 p     subc…    4.80
-##  5 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
-##  6 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  7 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 honda     civic   1.8  2008     4 manu… f        26    34 r     subc…    5.10
-## 11 honda     civic   1.8  2008     4 auto… f        25    36 r     subc…    5   
-## 12 honda     civic   1.8  2008     4 auto… f        24    36 c     subc…    4.90
-## 13 toyota    coro…   1.8  1999     4 auto… f        24    30 r     comp…    4.90
-## 14 toyota    coro…   1.8  1999     4 auto… f        24    33 r     comp…    4.90
-## 15 toyota    coro…   1.8  1999     4 manu… f        26    35 r     comp…    5.10
-## 16 toyota    coro…   1.8  2008     4 manu… f        28    37 r     comp…    5.29
-## 17 toyota    coro…   1.8  2008     4 auto… f        26    35 r     comp…    5.10
-## 18 volkswag… pass…   1.8  1999     4 manu… f        21    29 p     mids…    4.58
-## 19 volkswag… pass…   1.8  1999     4 auto… f        18    29 p     mids…    4.24
-## 20 volkswag… jetta   1.9  1999     4 manu… f        33    44 d     comp…    5.74
-## # … with 214 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 honda     civic   1.6  1999     4 manu~ f        28    33 r     subc~    5.29
+##  2 honda     civic   1.6  1999     4 auto~ f        24    32 r     subc~    4.90
+##  3 honda     civic   1.6  1999     4 manu~ f        25    32 r     subc~    5   
+##  4 honda     civic   1.6  1999     4 manu~ f        23    29 p     subc~    4.80
+##  5 honda     civic   1.6  1999     4 auto~ f        24    32 r     subc~    4.90
+##  6 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  7 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 honda     civic   1.8  2008     4 manu~ f        26    34 r     subc~    5.10
+## 11 honda     civic   1.8  2008     4 auto~ f        25    36 r     subc~    5   
+## 12 honda     civic   1.8  2008     4 auto~ f        24    36 c     subc~    4.90
+## 13 toyota    coro~   1.8  1999     4 auto~ f        24    30 r     comp~    4.90
+## 14 toyota    coro~   1.8  1999     4 auto~ f        24    33 r     comp~    4.90
+## 15 toyota    coro~   1.8  1999     4 manu~ f        26    35 r     comp~    5.10
+## 16 toyota    coro~   1.8  2008     4 manu~ f        28    37 r     comp~    5.29
+## 17 toyota    coro~   1.8  2008     4 auto~ f        26    35 r     comp~    5.10
+## 18 volkswag~ pass~   1.8  1999     4 manu~ f        21    29 p     mids~    4.58
+## 19 volkswag~ pass~   1.8  1999     4 auto~ f        18    29 p     mids~    4.24
+## 20 volkswag~ jetta   1.9  1999     4 manu~ f        33    44 d     comp~    5.74
+## # ... with 214 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ```r
@@ -1040,22 +1042,22 @@ arrange(dados, desc(displ))
 ```
 
 ```
-## # A tibble: 234 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 234 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
-##  2 chevrolet k150…   6.5  1999     8 auto… 4        14    17 d     suv      3.74
-##  3 chevrolet corv…   6.2  2008     8 manu… r        16    26 p     2sea…    4   
-##  4 chevrolet corv…   6.2  2008     8 auto… r        15    25 p     2sea…    3.87
-##  5 jeep      gran…   6.1  2008     8 auto… 4        11    14 p     suv      3.32
-##  6 chevrolet c150…   6    2008     8 auto… r        12    17 r     suv      3.46
-##  7 dodge     dura…   5.9  1999     8 auto… 4        11    15 r     suv      3.32
-##  8 dodge     ram …   5.9  1999     8 auto… 4        11    15 r     pick…    3.32
-##  9 chevrolet c150…   5.7  1999     8 auto… r        13    17 r     suv      3.61
-## 10 chevrolet corv…   5.7  1999     8 manu… r        16    26 p     2sea…    4   
-## # … with 224 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 chevrolet corv~   7    2008     8 manu~ r        15    24 p     2sea~    3.87
+##  2 chevrolet k150~   6.5  1999     8 auto~ 4        14    17 d     suv      3.74
+##  3 chevrolet corv~   6.2  2008     8 manu~ r        16    26 p     2sea~    4   
+##  4 chevrolet corv~   6.2  2008     8 auto~ r        15    25 p     2sea~    3.87
+##  5 jeep      gran~   6.1  2008     8 auto~ 4        11    14 p     suv      3.32
+##  6 chevrolet c150~   6    2008     8 auto~ r        12    17 r     suv      3.46
+##  7 dodge     dura~   5.9  1999     8 auto~ 4        11    15 r     suv      3.32
+##  8 dodge     ram ~   5.9  1999     8 auto~ 4        11    15 r     pick~    3.32
+##  9 chevrolet c150~   5.7  1999     8 auto~ r        13    17 r     suv      3.61
+## 10 chevrolet corv~   5.7  1999     8 manu~ r        16    26 p     2sea~    4   
+## # ... with 224 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ```r
@@ -1064,32 +1066,32 @@ arrange(dados, desc(displ)) %>%
 ```
 
 ```
-## # A tibble: 234 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 234 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
-##  2 chevrolet k150…   6.5  1999     8 auto… 4        14    17 d     suv      3.74
-##  3 chevrolet corv…   6.2  2008     8 manu… r        16    26 p     2sea…    4   
-##  4 chevrolet corv…   6.2  2008     8 auto… r        15    25 p     2sea…    3.87
-##  5 jeep      gran…   6.1  2008     8 auto… 4        11    14 p     suv      3.32
-##  6 chevrolet c150…   6    2008     8 auto… r        12    17 r     suv      3.46
-##  7 dodge     dura…   5.9  1999     8 auto… 4        11    15 r     suv      3.32
-##  8 dodge     ram …   5.9  1999     8 auto… 4        11    15 r     pick…    3.32
-##  9 chevrolet c150…   5.7  1999     8 auto… r        13    17 r     suv      3.61
-## 10 chevrolet corv…   5.7  1999     8 manu… r        16    26 p     2sea…    4   
-## 11 chevrolet corv…   5.7  1999     8 auto… r        15    23 p     2sea…    3.87
-## 12 chevrolet k150…   5.7  1999     8 auto… 4        11    15 r     suv      3.32
-## 13 dodge     dura…   5.7  2008     8 auto… 4        13    18 r     suv      3.61
-## 14 dodge     ram …   5.7  2008     8 auto… 4        13    17 r     pick…    3.61
-## 15 jeep      gran…   5.7  2008     8 auto… 4        13    18 r     suv      3.61
-## 16 toyota    land…   5.7  2008     8 auto… 4        13    18 r     suv      3.61
-## 17 nissan    path…   5.6  2008     8 auto… 4        12    18 p     suv      3.46
-## 18 ford      expe…   5.4  1999     8 auto… r        11    17 r     suv      3.32
-## 19 ford      expe…   5.4  2008     8 auto… r        12    18 r     suv      3.46
-## 20 ford      f150…   5.4  1999     8 auto… 4        11    15 r     pick…    3.32
-## # … with 214 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 chevrolet corv~   7    2008     8 manu~ r        15    24 p     2sea~    3.87
+##  2 chevrolet k150~   6.5  1999     8 auto~ 4        14    17 d     suv      3.74
+##  3 chevrolet corv~   6.2  2008     8 manu~ r        16    26 p     2sea~    4   
+##  4 chevrolet corv~   6.2  2008     8 auto~ r        15    25 p     2sea~    3.87
+##  5 jeep      gran~   6.1  2008     8 auto~ 4        11    14 p     suv      3.32
+##  6 chevrolet c150~   6    2008     8 auto~ r        12    17 r     suv      3.46
+##  7 dodge     dura~   5.9  1999     8 auto~ 4        11    15 r     suv      3.32
+##  8 dodge     ram ~   5.9  1999     8 auto~ 4        11    15 r     pick~    3.32
+##  9 chevrolet c150~   5.7  1999     8 auto~ r        13    17 r     suv      3.61
+## 10 chevrolet corv~   5.7  1999     8 manu~ r        16    26 p     2sea~    4   
+## 11 chevrolet corv~   5.7  1999     8 auto~ r        15    23 p     2sea~    3.87
+## 12 chevrolet k150~   5.7  1999     8 auto~ 4        11    15 r     suv      3.32
+## 13 dodge     dura~   5.7  2008     8 auto~ 4        13    18 r     suv      3.61
+## 14 dodge     ram ~   5.7  2008     8 auto~ 4        13    17 r     pick~    3.61
+## 15 jeep      gran~   5.7  2008     8 auto~ 4        13    18 r     suv      3.61
+## 16 toyota    land~   5.7  2008     8 auto~ 4        13    18 r     suv      3.61
+## 17 nissan    path~   5.6  2008     8 auto~ 4        12    18 p     suv      3.46
+## 18 ford      expe~   5.4  1999     8 auto~ r        11    17 r     suv      3.32
+## 19 ford      expe~   5.4  2008     8 auto~ r        12    18 r     suv      3.46
+## 20 ford      f150~   5.4  1999     8 auto~ 4        11    15 r     pick~    3.32
+## # ... with 214 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ```r
@@ -1099,7 +1101,7 @@ select(dados, displ, cty) %>%
 ```
 
 ```
-## # A tibble: 234 × 2
+## # A tibble: 234 x 2
 ##    displ   cty
 ##    <dbl> <int>
 ##  1   1.6    23
@@ -1122,7 +1124,7 @@ select(dados, displ, cty) %>%
 ## 18   1.8    26
 ## 19   1.8    28
 ## 20   1.9    29
-## # … with 214 more rows
+## # ... with 214 more rows
 ```
 
 ```r
@@ -1132,7 +1134,7 @@ select(dados, displ, cty) %>%
 ```
 
 ```
-## # A tibble: 234 × 2
+## # A tibble: 234 x 2
 ##    displ   cty
 ##    <dbl> <int>
 ##  1   1.6    28
@@ -1155,7 +1157,7 @@ select(dados, displ, cty) %>%
 ## 18   1.8    18
 ## 19   1.8    16
 ## 20   1.9    35
-## # … with 214 more rows
+## # ... with 214 more rows
 ```
 
 
@@ -1230,7 +1232,7 @@ dados_duplicados
 ```
 
 ```
-## # A tibble: 234 × 2
+## # A tibble: 234 x 2
 ##    manufacturer model     
 ##    <fct>        <fct>     
 ##  1 audi         a4        
@@ -1243,7 +1245,7 @@ dados_duplicados
 ##  8 audi         a4 quattro
 ##  9 audi         a4 quattro
 ## 10 audi         a4 quattro
-## # … with 224 more rows
+## # ... with 224 more rows
 ```
 
 ```r
@@ -1252,7 +1254,7 @@ dados_nao_duplicados
 ```
 
 ```
-## # A tibble: 38 × 2
+## # A tibble: 38 x 2
 ##    manufacturer model             
 ##    <fct>        <fct>             
 ##  1 audi         a4                
@@ -1265,7 +1267,7 @@ dados_nao_duplicados
 ##  8 dodge        caravan 2wd       
 ##  9 dodge        dakota pickup 4wd 
 ## 10 dodge        durango 4wd       
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 ## summarise()
@@ -1276,7 +1278,7 @@ summarise(dados, `média hwy` = mean(hwy))
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##   `média hwy`
 ##         <dbl>
 ## 1        23.4
@@ -1289,7 +1291,7 @@ summarise(dados,
 ```
 
 ```
-## # A tibble: 1 × 2
+## # A tibble: 1 x 2
 ##   `num. de dados` `num. modelos`
 ##             <int>          <int>
 ## 1             234             38
@@ -1305,7 +1307,7 @@ summarise(dados,
 ```
 
 ```
-## # A tibble: 1 × 4
+## # A tibble: 1 x 4
 ##   `mín. hwy` `mín. cty` `máx. hwy` `máx. cty`
 ##        <int>      <int>      <int>      <int>
 ## 1         12          9         44         35
@@ -1317,7 +1319,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 1 × 4
+## # A tibble: 1 x 4
 ##   hwy_fn1 cty_fn1 hwy_fn2 cty_fn2
 ##     <int>   <int>   <int>   <int>
 ## 1      12       9      44      35
@@ -1329,13 +1331,14 @@ dados %>%
 ```
 
 ```
-## # A tibble: 1 × 14
-##   displ_fn1 year_fn1 cyl_fn1 cty_fn1 hwy_fn1 sqrt_cty_…¹ soma …² displ…³ year_…⁴
+## # A tibble: 1 x 14
+##   displ_fn1 year_fn1 cyl_fn1 cty_fn1 hwy_fn1 sqrt_cty_~1 soma ~2 displ~3 year_~4
 ##       <dbl>    <int>   <int>   <int>   <int>       <dbl>   <dbl>   <dbl>   <int>
 ## 1       1.6     1999       4       9      12           3    10.5       7    2008
-## # … with 5 more variables: cyl_fn2 <int>, cty_fn2 <int>, hwy_fn2 <int>,
+## # ... with 5 more variables: cyl_fn2 <int>, cty_fn2 <int>, hwy_fn2 <int>,
 ## #   sqrt_cty_fn2 <dbl>, `soma de variáveis_fn2` <dbl>, and abbreviated variable
-## #   names ¹​sqrt_cty_fn1, ²​`soma de variáveis_fn1`, ³​displ_fn2, ⁴​year_fn2
+## #   names 1: sqrt_cty_fn1, 2: `soma de variáveis_fn1`, 3: displ_fn2,
+## #   4: year_fn2
 ```
 
 ```r
@@ -1344,7 +1347,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 1 × 7
+## # A tibble: 1 x 7
 ##   displ  year   cyl   cty   hwy sqrt_cty `soma de variáveis`
 ##   <dbl> <int> <int> <int> <int>    <dbl>               <dbl>
 ## 1   1.6  1999     4     9    12        3                10.5
@@ -1356,7 +1359,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 1 × 7
+## # A tibble: 1 x 7
 ##   displ  year   cyl   cty   hwy sqrt_cty `soma de variáveis`
 ##   <dbl> <int> <int> <int> <int>    <dbl>               <dbl>
 ## 1     7  2008     8    35    44     5.92                39.5
@@ -1372,7 +1375,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 1 × 7
+## # A tibble: 1 x 7
 ##   displ    year   cyl   cty   hwy sqrt_cty `soma de variáveis`
 ##   <dbl>   <dbl> <dbl> <dbl> <dbl>    <dbl>               <dbl>
 ## 1 0.372 0.00225 0.274 0.252 0.254    0.125               0.251
@@ -1386,23 +1389,23 @@ group_by(dados, manufacturer)
 ```
 
 ```
-## # A tibble: 234 × 15
+## # A tibble: 234 x 15
 ## # Groups:   manufacturer [15]
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
-##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
-##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
-##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
-##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
-##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
-##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
-##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
-##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
-## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
-## # … with 224 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 audi      a4      1.8  1999     4 auto~ f        18    29 p     comp~    4.24
+##  2 audi      a4      1.8  1999     4 manu~ f        21    29 p     comp~    4.58
+##  3 audi      a4      2    2008     4 manu~ f        20    31 p     comp~    4.47
+##  4 audi      a4      2    2008     4 auto~ f        21    30 p     comp~    4.58
+##  5 audi      a4      2.8  1999     6 auto~ f        16    26 p     comp~    4   
+##  6 audi      a4      2.8  1999     6 manu~ f        18    26 p     comp~    4.24
+##  7 audi      a4      3.1  2008     6 auto~ f        18    27 p     comp~    4.24
+##  8 audi      a4 q~   1.8  1999     4 manu~ 4        18    26 p     comp~    4.24
+##  9 audi      a4 q~   1.8  1999     4 auto~ 4        16    25 p     comp~    4   
+## 10 audi      a4 q~   2    2008     4 manu~ 4        20    28 p     comp~    4.47
+## # ... with 224 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```
 
 ```r
@@ -1412,7 +1415,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 15 × 2
+## # A tibble: 15 x 2
 ##    manufacturer `num. carros`
 ##    <fct>                <int>
 ##  1 audi                    18
@@ -1441,7 +1444,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 38 × 4
+## # A tibble: 38 x 4
 ##    model              `média hwy` `min. hwy` `max. hwy`
 ##    <fct>                    <dbl>      <int>      <int>
 ##  1 4runner 4wd               18.8         17         20
@@ -1454,7 +1457,7 @@ dados %>%
 ##  8 camry solara              28.1         26         31
 ##  9 caravan 2wd               22.4         17         24
 ## 10 civic                     32.6         29         36
-## # … with 28 more rows
+## # ... with 28 more rows
 ```
 
 ## count()
@@ -1465,7 +1468,7 @@ count(dados)
 ```
 
 ```
-## # A tibble: 1 × 1
+## # A tibble: 1 x 1
 ##       n
 ##   <int>
 ## 1   234
@@ -1478,7 +1481,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 15 × 2
+## # A tibble: 15 x 2
 ## # Groups:   manufacturer [15]
 ##    manufacturer     n
 ##    <fct>        <int>
@@ -1507,7 +1510,7 @@ dados %>%
 ```
 
 ```
-## # A tibble: 15 × 2
+## # A tibble: 15 x 2
 ##    manufacturer  cars
 ##    <fct>        <int>
 ##  1 audi            18
@@ -1536,22 +1539,22 @@ sample_n(dados, size = 10, replace = F)
 ```
 
 ```
-## # A tibble: 10 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 10 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 mercury   moun…   5    1999     8 auto… 4        13    17 r     suv      3.61
-##  2 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
-##  3 dodge     ram …   4.7  2008     8 manu… 4        12    16 r     pick…    3.46
-##  4 toyota    land…   4.7  1999     8 auto… 4        11    15 r     suv      3.32
-##  5 volkswag… jetta   2    1999     4 auto… f        19    26 r     comp…    4.36
-##  6 dodge     cara…   3.8  1999     6 auto… f        15    21 r     mini…    3.87
-##  7 honda     civic   1.8  2008     4 auto… f        25    36 r     subc…    5   
-##  8 ford      must…   4.6  1999     8 auto… r        15    21 r     subc…    3.87
-##  9 chevrolet c150…   5.3  2008     8 auto… r        14    20 r     suv      3.74
-## 10 ford      expe…   5.4  1999     8 auto… r        11    17 r     suv      3.32
-## # … with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 mercury   moun~   5    1999     8 auto~ 4        13    17 r     suv      3.61
+##  2 chevrolet corv~   7    2008     8 manu~ r        15    24 p     2sea~    3.87
+##  3 dodge     ram ~   4.7  2008     8 manu~ 4        12    16 r     pick~    3.46
+##  4 toyota    land~   4.7  1999     8 auto~ 4        11    15 r     suv      3.32
+##  5 volkswag~ jetta   2    1999     4 auto~ f        19    26 r     comp~    4.36
+##  6 dodge     cara~   3.8  1999     6 auto~ f        15    21 r     mini~    3.87
+##  7 honda     civic   1.8  2008     4 auto~ f        25    36 r     subc~    5   
+##  8 ford      must~   4.6  1999     8 auto~ r        15    21 r     subc~    3.87
+##  9 chevrolet c150~   5.3  2008     8 auto~ r        14    20 r     suv      3.74
+## 10 ford      expe~   5.4  1999     8 auto~ r        11    17 r     suv      3.32
+## # ... with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ```r
@@ -1559,22 +1562,22 @@ sample_n(dados, size = 10, replace = T)
 ```
 
 ```
-## # A tibble: 10 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 10 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 chevrolet c150…   5.3  2008     8 auto… r        11    15 e     suv      3.32
-##  2 volkswag… gti     2    2008     4 auto… f        22    29 p     comp…    4.69
-##  3 dodge     dako…   4.7  2008     8 auto… 4        14    19 r     pick…    3.74
-##  4 ford      expl…   4.6  2008     8 auto… 4        13    19 r     suv      3.61
-##  5 dodge     cara…   3.8  2008     6 auto… f        16    23 r     mini…    4   
-##  6 chevrolet k150…   5.3  2008     8 auto… 4        14    19 r     suv      3.74
-##  7 dodge     dura…   5.2  1999     8 auto… 4        11    16 r     suv      3.32
-##  8 toyota    camry   2.4  2008     4 manu… f        21    31 r     mids…    4.58
-##  9 toyota    camry   3    1999     6 manu… f        18    26 r     mids…    4.24
-## 10 subaru    impr…   2.2  1999     4 auto… 4        21    26 r     subc…    4.58
-## # … with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 chevrolet c150~   5.3  2008     8 auto~ r        11    15 e     suv      3.32
+##  2 volkswag~ gti     2    2008     4 auto~ f        22    29 p     comp~    4.69
+##  3 dodge     dako~   4.7  2008     8 auto~ 4        14    19 r     pick~    3.74
+##  4 ford      expl~   4.6  2008     8 auto~ 4        13    19 r     suv      3.61
+##  5 dodge     cara~   3.8  2008     6 auto~ f        16    23 r     mini~    4   
+##  6 chevrolet k150~   5.3  2008     8 auto~ 4        14    19 r     suv      3.74
+##  7 dodge     dura~   5.2  1999     8 auto~ 4        11    16 r     suv      3.32
+##  8 toyota    camry   2.4  2008     4 manu~ f        21    31 r     mids~    4.58
+##  9 toyota    camry   3    1999     6 manu~ f        18    26 r     mids~    4.24
+## 10 subaru    impr~   2.2  1999     4 auto~ 4        21    26 r     subc~    4.58
+## # ... with 3 more variables: `soma de variáveis` <dbl>, car <chr>,
+## #   `cyl / trans` <chr>, and abbreviated variable names 1: manufacturer,
+## #   2: sqrt_cty
 ```
 
 ## sample_frac() 
@@ -1585,20 +1588,20 @@ sample_frac(dados, size = 0.1, replace = F)
 ```
 
 ```
-## # A tibble: 23 × 15
-##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+## # A tibble: 23 x 15
+##    manufac~1 model displ  year   cyl trans drv     cty   hwy fl    class sqrt_~2
 ##    <fct>     <fct> <dbl> <int> <int> <fct> <fct> <int> <int> <fct> <fct>   <dbl>
-##  1 toyota    coro…   1.8  2008     4 manu… f        28    37 r     comp…    5.29
-##  2 lincoln   navi…   5.4  1999     8 auto… r        11    17 r     suv      3.32
-##  3 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
-##  4 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
-##  5 nissan    path…   4    2008     6 auto… 4        14    20 p     suv      3.74
-##  6 toyota    camry   3.5  2008     6 auto… f        19    28 r     mids…    4.36
-##  7 subaru    impr…   2.5  2008     4 auto… 4        20    25 p     comp…    4.47
-##  8 toyota    toyo…   3.4  1999     6 auto… 4        15    19 r     pick…    3.87
-##  9 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
-## 10 toyota    coro…   1.8  1999     4 manu… f        26    35 r     comp…    5.10
-## # … with 13 more rows, 3 more variables: `soma de variáveis` <dbl>, car <chr>,
-## #   `cyl / trans` <chr>, and abbreviated variable names ¹​manufacturer,
-## #   ²​sqrt_cty
+##  1 toyota    coro~   1.8  2008     4 manu~ f        28    37 r     comp~    5.29
+##  2 lincoln   navi~   5.4  1999     8 auto~ r        11    17 r     suv      3.32
+##  3 honda     civic   1.6  1999     4 auto~ f        24    32 r     subc~    4.90
+##  4 audi      a6 q~   2.8  1999     6 auto~ 4        15    24 p     mids~    3.87
+##  5 nissan    path~   4    2008     6 auto~ 4        14    20 p     suv      3.74
+##  6 toyota    camry   3.5  2008     6 auto~ f        19    28 r     mids~    4.36
+##  7 subaru    impr~   2.5  2008     4 auto~ 4        20    25 p     comp~    4.47
+##  8 toyota    toyo~   3.4  1999     6 auto~ 4        15    19 r     pick~    3.87
+##  9 audi      a4 q~   3.1  2008     6 manu~ 4        15    25 p     comp~    3.87
+## 10 toyota    coro~   1.8  1999     4 manu~ f        26    35 r     comp~    5.10
+## # ... with 13 more rows, 3 more variables: `soma de variáveis` <dbl>,
+## #   car <chr>, `cyl / trans` <chr>, and abbreviated variable names
+## #   1: manufacturer, 2: sqrt_cty
 ```

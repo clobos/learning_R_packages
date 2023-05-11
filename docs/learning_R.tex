@@ -117,7 +117,7 @@
 
 \title{Learning R packages}
 \author{Cristian Villegas}
-\date{2023-05-09}
+\date{2023-05-11}
 
 \begin{document}
 \maketitle
@@ -170,86 +170,6 @@ Operador Pipe (\%\textgreater\%): Ctrl + Shift + M (Windows) ou Cmd + Shift + M 
 Criar novos chunks: Ctrl + Alt + I (Windows) ou Cmd + Option + I (Mac).
 \end{quote}
 
-\hypertarget{descriuxe7uxe3o-dos-dados-mpg}{%
-\section{\texorpdfstring{Descrição dos dados \texttt{mpg}}{Descrição dos dados mpg}}\label{descriuxe7uxe3o-dos-dados-mpg}}
-
-Dados de economia de combustível de 1999 a 2008 para \emph{38 modelos populares de carros}. Este conjunto de dados contém um subconjunto dos dados de economia de combustível que a EPA disponibiliza em \emph{\url{https://fueleconomy.gov/}}. Ele contém apenas modelos que tiveram um novo lançamento a cada ano entre 1999 e 2008 - isso foi usado como um substituto para a popularidade do carro. Um \emph{data frame} com 234 linhas e 11 variáveis:
-
-\begin{itemize}
-\item
-  \emph{manufacturer} nome do fabricante
-\item
-  \emph{model} nome do modelo
-\item
-  \emph{displ} cilindrada do motor, em litros
-\item
-  \emph{year} ano de fabricação
-\item
-  \emph{cyl} número de cilindros
-\item
-  \emph{trans} tipo de transmissão
-\item
-  \emph{drv} o tipo de trem de força, onde \textbf{f = tração dianteira}, \textbf{r = tração traseira} e \textbf{4 = 4wd}
-\item
-  \emph{cty} milhas urbanas por galão
-\item
-  \emph{hwy} milhas rodoviárias por galão
-\item
-  \emph{fl} tipo de combustível
-\item
-  \emph{class} ``tipo'' de carro
-\end{itemize}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#help("mpg")}
-\NormalTok{dados }\OtherTok{\textless{}{-}}\NormalTok{ mpg}
-\FunctionTok{glimpse}\NormalTok{(dados)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Rows: 234
-## Columns: 11
-## $ manufacturer <chr> "audi", "audi", "audi", "audi", "audi", "audi", "audi", "~
-## $ model        <chr> "a4", "a4", "a4", "a4", "a4", "a4", "a4", "a4 quattro", "~
-## $ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.~
-## $ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200~
-## $ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, ~
-## $ trans        <chr> "auto(l5)", "manual(m5)", "manual(m6)", "auto(av)", "auto~
-## $ drv          <chr> "f", "f", "f", "f", "f", "f", "f", "4", "4", "4", "4", "4~
-## $ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1~
-## $ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2~
-## $ fl           <chr> "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p", "p~
-## $ class        <chr> "compact", "compact", "compact", "compact", "compact", "c~
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{mutate}\NormalTok{(}\AttributeTok{.data =}\NormalTok{ dados, }
-                \FunctionTok{across}\NormalTok{(}\FunctionTok{where}\NormalTok{(is.character), }
-\NormalTok{                as.factor))}
-\CommentTok{\#View(df) }
-\FunctionTok{glimpse}\NormalTok{(dados)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Rows: 234
-## Columns: 11
-## $ manufacturer <fct> audi, audi, audi, audi, audi, audi, audi, audi, audi, aud~
-## $ model        <fct> a4, a4, a4, a4, a4, a4, a4, a4 quattro, a4 quattro, a4 qu~
-## $ displ        <dbl> 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.~
-## $ year         <int> 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200~
-## $ cyl          <int> 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, ~
-## $ trans        <fct> auto(l5), manual(m5), manual(m6), auto(av), auto(l5), man~
-## $ drv          <fct> f, f, f, f, f, f, f, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, r, ~
-## $ cty          <int> 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1~
-## $ hwy          <int> 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2~
-## $ fl           <fct> p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, r, ~
-## $ class        <fct> compact, compact, compact, compact, compact, compact, com~
-\end{verbatim}
-
 \hypertarget{dplyr-60-minutos}{%
 \chapter{dplyr (60 minutos)}\label{dplyr-60-minutos}}
 
@@ -279,8 +199,8 @@ Dados de economia de combustível de 1999 a 2008 para \emph{38 modelos populares
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{descriuxe7uxe3o-dos-dados-mpg-1}{%
-\section{\texorpdfstring{Descrição dos dados \texttt{mpg}}{Descrição dos dados mpg}}\label{descriuxe7uxe3o-dos-dados-mpg-1}}
+\hypertarget{descriuxe7uxe3o-dos-dados-mpg}{%
+\section{\texorpdfstring{Descrição dos dados \texttt{mpg}}{Descrição dos dados mpg}}\label{descriuxe7uxe3o-dos-dados-mpg}}
 
 Dados de economia de combustível de 1999 a 2008 para \emph{38 modelos populares de carros}. Este conjunto de dados contém um subconjunto dos dados de economia de combustível que a EPA disponibiliza em \emph{\url{https://fueleconomy.gov/}}. Ele contém apenas modelos que tiveram um novo lançamento a cada ano entre 1999 e 2008 - isso foi usado como um substituto para a popularidade do carro. Um \emph{data frame} com 234 linhas e 11 variáveis:
 
@@ -2994,1397 +2914,741 @@ Alguns links de interesse
 ## [187] "walk2"               "when"                "zap"
 \end{verbatim}
 
+\hypertarget{apply-a-function-to-each-element-of-a-list-or-atomic-vector}{%
+\section{Apply a function to each element of a list or atomic vector}\label{apply-a-function-to-each-element-of-a-list-or-atomic-vector}}
+
+\begin{quote}
+The map functions transform their input by applying a function to each element of a list or atomic vector and returning an object of the same length as the input.
+\end{quote}
+
+\begin{itemize}
+\item
+  map() always returns a list. See the modify() family for versions that return an object of the same type as the input.
+\item
+  map\_lgl(), map\_int(), map\_dbl() and map\_chr() return an atomic vector of the indicated type (or die trying).
+\item
+  map\_dfr() and map\_dfc() return a data frame created by row-binding and column-binding respectively. They require dplyr to be installed.
+\item
+  The returned values of .f must be of length one for each element of .x. If .f uses an extractor function shortcut, .default can be specified to handle values that are absent or empty. See as\_mapper() for more on .default.
+\item
+  walk() calls .f for its side-effect and returns the input .x.
+\end{itemize}
+
+\hypertarget{usage}{%
+\subsection{Usage}\label{usage}}
+
+\begin{itemize}
+\item
+  map(.x, .f, \ldots)
+\item
+  map\_lgl(.x, .f, \ldots)
+\item
+  map\_chr(.x, .f, \ldots)
+\item
+  map\_int(.x, .f, \ldots)
+\item
+  map\_dbl(.x, .f, \ldots)
+\item
+  map\_raw(.x, .f, \ldots)
+\item
+  map\_dfr(.x, .f, \ldots, .id = NULL)
+\item
+  map\_dfc(.x, .f, \ldots)
+\item
+  walk(.x, .f, \ldots)
+\end{itemize}
+
+\hypertarget{arguments}{%
+\subsection{Arguments}\label{arguments}}
+
+\begin{itemize}
+\item
+  .x A list or atomic vector.
+\item
+  .f A function, formula, or vector (not necessarily atomic).
+\end{itemize}
+
+If a function, it is used as is.
+
+If a formula, e.g.~\textasciitilde{} .x + 2, it is converted to a function. There are three ways to refer to the arguments:
+
+\begin{itemize}
+\item
+  For a single argument function, use .
+\item
+  For a two argument function, use .x and .y
+\item
+  For more arguments, use ..1, ..2, ..3 etc
+\end{itemize}
+
+This syntax allows you to create very compact anonymous functions.
+
+If character vector, numeric vector, or list, it is converted to an extractor function. Character vectors index by name and numeric vectors index by position; use a list to index by position and name at different levels. If a component is not present, the value of .default will be returned.
+
+\begin{itemize}
+\item
+  \ldots{} Additional arguments passed on to the mapped function.
+\item
+  .id Either a string or NULL. If a string, the output will contain a variable with that name, storing either the name (if .x is named) or the index (if .x is unnamed) of the input. If NULL, the default, no variable will be created.
+\end{itemize}
+
+Only applies to ⁠\_dfr⁠ variant.
+
+\hypertarget{value}{%
+\subsection{Value}\label{value}}
+
+\begin{itemize}
+\item
+  map() Returns a list the same length as .x.
+\item
+  map\_lgl() returns a logical vector, map\_int() an integer vector, map\_dbl() a double vector, and map\_chr() a character vector.
+\item
+  map\_df(), map\_dfc(), map\_dfr() all return a data frame.
+\item
+  If .x has names(), the return value preserves those names.
+\item
+  The output of .f will be automatically typed upwards, e.g.~logical -\textgreater{} integer -\textgreater{} double -\textgreater{} character.
+\item
+  walk() returns the input .x (invisibly). This makes it easy to use in pipe.
+\end{itemize}
+
+\hypertarget{see-also}{%
+\subsection{See Also}\label{see-also}}
+
+map\_if() for applying a function to only those elements of .x that meet a specified condition.
+
+Other map variants: imap(), invoke(), lmap(), map2(), map\_if(), modify()
+
+\hypertarget{examples}{%
+\section{Examples}\label{examples}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compute normal distributions from an atomic vector}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(rnorm, }\AttributeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##  [1]  0.6339724  2.7880373 -0.1984222  1.1442054  0.7124724  1.2276084
+##  [7]  1.6474717  1.0929991 -0.6985577  1.4222392
+## 
+## [[2]]
+##  [1] 2.133486 2.629332 1.065583 1.809737 2.560628 2.689161 1.176797 1.436152
+##  [9] 1.966085 2.364917
+## 
+## [[3]]
+##  [1] 1.100445 2.781537 2.299967 2.580975 2.761169 2.844217 2.702150 3.707112
+##  [9] 2.153652 3.114340
+## 
+## [[4]]
+##  [1] 3.198181 5.492960 3.899454 5.824106 4.974750 4.306030 4.521728 4.913784
+##  [9] 6.094295 2.242841
+## 
+## [[5]]
+##  [1] 5.930144 5.108468 6.096394 5.757209 4.764078 3.975482 7.795530 4.206314
+##  [9] 4.938812 4.420335
+## 
+## [[6]]
+##  [1] 6.463582 6.880319 6.300040 6.451217 8.143553 5.230962 5.460726 6.625071
+##  [9] 7.612566 6.368246
+## 
+## [[7]]
+##  [1] 8.293561 5.829829 6.865768 5.770135 7.291877 6.921683 5.799535 6.156567
+##  [9] 6.752780 8.158770
+## 
+## [[8]]
+##  [1] 7.038720 8.869194 8.518592 7.817315 6.673090 7.987795 8.056667 6.852389
+##  [9] 9.615797 6.401303
+## 
+## [[9]]
+##  [1] 9.620093 7.623280 9.325927 9.210802 9.204712 8.556545 8.931994 9.970865
+##  [9] 7.602060 7.525370
+## 
+## [[10]]
+##  [1] 10.142422  9.976939  9.624969  9.196717 11.881371  9.223565  7.831989
+##  [8] 10.022924 10.202374  9.375127
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# You can also use an anonymous function}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x) }\FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{, x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##  [1] 1.4242364 1.5871954 1.9318785 2.8434393 1.3602100 0.2791915 0.7598485
+##  [8] 2.3902681 1.1827565 1.0402025
+## 
+## [[2]]
+##  [1]  1.9331236  0.9889410  1.3633294  2.7567648  2.1605803 -0.1928810
+##  [7]  1.5173740  4.1824461  0.3918547  2.6427651
+## 
+## [[3]]
+##  [1] 1.833696 3.731865 2.035081 2.670794 2.587494 3.623561 3.397302 1.174053
+##  [9] 2.521653 3.231178
+## 
+## [[4]]
+##  [1] 3.322055 3.300941 2.778499 2.397965 3.612766 3.487014 4.929250 5.088878
+##  [9] 3.720418 4.326392
+## 
+## [[5]]
+##  [1] 6.992499 4.047125 4.791362 4.609602 6.009338 5.774938 5.733584 4.357322
+##  [9] 4.755341 5.405129
+## 
+## [[6]]
+##  [1] 4.442480 6.916796 6.436412 7.281615 6.459011 5.833078 5.170422 5.808270
+##  [9] 6.636652 6.574892
+## 
+## [[7]]
+##  [1] 4.631180 6.212651 5.914558 7.782220 6.864881 8.121306 7.271194 5.879798
+##  [9] 6.159553 7.419076
+## 
+## [[8]]
+##  [1] 6.124578 8.142177 7.150341 7.655491 7.855576 8.156402 6.106497 7.450578
+##  [9] 6.997167 7.921414
+## 
+## [[9]]
+##  [1]  8.456928  8.259565  8.654143 11.275767  8.942627 11.686104 10.876411
+##  [8]  8.816997  7.241138  7.681535
+## 
+## [[10]]
+##  [1] 10.420855  9.895795 10.549959 11.329046 10.400282 10.658443 12.107371
+##  [8] 10.350309 11.412465 10.551717
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Or a formula}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{, .x))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##  [1] 0.4318584 2.2339985 2.0797803 2.1416742 0.8599021 1.4803502 1.1686782
+##  [8] 0.5791437 0.9945326 2.4618327
+## 
+## [[2]]
+##  [1] 1.9993582 1.8140886 1.8983625 2.6912501 2.1727339 1.1397381 2.6211254
+##  [8] 1.7293576 1.7228316 0.8387017
+## 
+## [[3]]
+##  [1] 2.844852 4.423551 3.035988 2.884852 3.534187 3.276245 1.676339 4.923968
+##  [9] 2.110770 2.774593
+## 
+## [[4]]
+##  [1] 2.688604 3.988290 4.259162 3.272460 1.780160 2.152761 4.989109 3.847146
+##  [9] 3.600067 4.622678
+## 
+## [[5]]
+##  [1] 5.811755 4.345995 4.607296 3.982432 3.988317 4.977129 6.448051 5.059798
+##  [9] 6.990571 5.790329
+## 
+## [[6]]
+##  [1] 8.205088 4.223011 5.445546 5.696194 6.525025 3.447123 5.533415 5.879608
+##  [9] 6.289842 5.726105
+## 
+## [[7]]
+##  [1] 6.179094 8.639896 5.773333 6.809194 6.992966 6.422275 7.185122 4.389173
+##  [9] 5.105871 6.047818
+## 
+## [[8]]
+##  [1] 7.901826 7.428609 8.357170 8.413080 8.874393 6.759053 9.345543 8.335065
+##  [9] 7.779112 7.638771
+## 
+## [[9]]
+##  [1] 9.843409 7.628733 9.984434 9.465567 9.496891 9.675503 9.910865 8.918554
+##  [9] 7.914487 8.901029
+## 
+## [[10]]
+##  [1]  8.417983  9.905794 10.553245 10.411573  8.897385  8.332058 11.554748
+##  [8] 11.098174 10.898944  8.815265
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Simplify output to a vector instead of a list by computing the mean of the distributions}
+\DecValTok{1}\SpecialCharTok{:}\DecValTok{10} \SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(rnorm, }\AttributeTok{n =} \DecValTok{10}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}  \CommentTok{\# output a list}
+  \FunctionTok{map\_dbl}\NormalTok{(mean)           }\CommentTok{\# output an atomic vector}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 0.7318374 2.4697774 3.0166276 4.0095843 5.3207942 5.5948163 6.8471041
+##  [8] 7.5384458 9.0545152 9.8331927
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Using set\_names() with character vectors is handy to keep track}
+\CommentTok{\# of the original inputs:}
+\FunctionTok{set\_names}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"foo"}\NormalTok{, }\StringTok{"bar"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map\_chr}\NormalTok{(paste0, }\StringTok{":suffix"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          foo          bar 
+## "foo:suffix" "bar:suffix"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Working with lists}
+\NormalTok{favorite\_desserts }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{Sophia =} \StringTok{"banana bread"}\NormalTok{, }\AttributeTok{Eliott =} \StringTok{"pancakes"}\NormalTok{, }\AttributeTok{Karina =} \StringTok{"chocolate cake"}\NormalTok{)}
+\NormalTok{favorite\_desserts}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $Sophia
+## [1] "banana bread"
+## 
+## $Eliott
+## [1] "pancakes"
+## 
+## $Karina
+## [1] "chocolate cake"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{favorite\_desserts }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map\_chr}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \FunctionTok{paste}\NormalTok{(.x, }\StringTok{"rocks!"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                  Sophia                  Eliott                  Karina 
+##   "banana bread rocks!"       "pancakes rocks!" "chocolate cake rocks!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Extract by name or position}
+\CommentTok{\# .default specifies value for elements that are missing or NULL}
+\NormalTok{l1 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{a =}\NormalTok{ 1L), }
+           \FunctionTok{list}\NormalTok{(}\AttributeTok{a =} \ConstantTok{NULL}\NormalTok{, }\AttributeTok{b =}\NormalTok{ 2L), }
+           \FunctionTok{list}\NormalTok{(}\AttributeTok{b =}\NormalTok{ 3L))}
+\NormalTok{l1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [[1]]$a
+## [1] 1
+## 
+## 
+## [[2]]
+## [[2]]$a
+## NULL
+## 
+## [[2]]$b
+## [1] 2
+## 
+## 
+## [[3]]
+## [[3]]$b
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l1 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\AttributeTok{.default =} \StringTok{"???"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] "???"
+## 
+## [[3]]
+## [1] "???"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l1 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map\_int}\NormalTok{(}\StringTok{"b"}\NormalTok{, }\AttributeTok{.default =} \ConstantTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA  2  3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l1 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map\_int}\NormalTok{(}\DecValTok{2}\NormalTok{, }\AttributeTok{.default =} \ConstantTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] NA  2 NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Supply multiple values to index deeply into a list}
+\NormalTok{l2 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
+  \FunctionTok{list}\NormalTok{(}\AttributeTok{num =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,     letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]),}
+  \FunctionTok{list}\NormalTok{(}\AttributeTok{num =} \DecValTok{101}\SpecialCharTok{:}\DecValTok{103}\NormalTok{, letters[}\DecValTok{4}\SpecialCharTok{:}\DecValTok{6}\NormalTok{]),}
+  \FunctionTok{list}\NormalTok{())}
+\NormalTok{l2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [[1]]$num
+## [1] 1 2 3
+## 
+## [[1]][[2]]
+## [1] "a" "b" "c"
+## 
+## 
+## [[2]]
+## [[2]]$num
+## [1] 101 102 103
+## 
+## [[2]][[2]]
+## [1] "d" "e" "f"
+## 
+## 
+## [[3]]
+## list()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l2 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "b"
+## 
+## [[2]]
+## [1] "e"
+## 
+## [[3]]
+## NULL
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Use a list to build an extractor that mixes numeric indices and names,}
+\CommentTok{\# and .default to provide a default value if the element does not exist}
+\NormalTok{l2 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"num"}\NormalTok{, }\DecValTok{3}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] 3
+## 
+## [[2]]
+## [1] 103
+## 
+## [[3]]
+## NULL
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{l2 }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map\_int}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\StringTok{"num"}\NormalTok{, }\DecValTok{3}\NormalTok{), }\AttributeTok{.default =} \ConstantTok{NA}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]   3 103  NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Working with data frames}
+\CommentTok{\# Use map\_lgl(), map\_dbl(), etc to return a vector instead of a list:}
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{map\_dbl}\NormalTok{(sum)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
+##       am     gear     carb 
+##   13.000  118.000   90.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# A more realistic example: split a data frame into pieces, fit a}
+\CommentTok{\# model to each piece, summarise and extract R\^{}2}
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{split}\NormalTok{(.}\SpecialCharTok{$}\NormalTok{cyl) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`4`
+##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Merc 240D      24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230       22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona  21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+## 
+## $`6`
+##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Hornet 4 Drive 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Valiant        18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Merc 280       19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C      17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Ferrari Dino   19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## 
+## $`8`
+##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{split}\NormalTok{(.}\SpecialCharTok{$}\NormalTok{cyl) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ wt, }\AttributeTok{data =}\NormalTok{ .x)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`4`
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .x)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      39.571       -5.647  
+## 
+## 
+## $`6`
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .x)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##       28.41        -2.78  
+## 
+## 
+## $`8`
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .x)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      23.868       -2.192
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{split}\NormalTok{(.}\SpecialCharTok{$}\NormalTok{cyl) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ wt, }\AttributeTok{data =}\NormalTok{ .x)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(summary) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`4`
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1513 -1.9795 -0.6272  1.9299  5.2523 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)   39.571      4.347   9.104 7.77e-06 ***
+## wt            -5.647      1.850  -3.052   0.0137 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.332 on 9 degrees of freedom
+## Multiple R-squared:  0.5086, Adjusted R-squared:  0.454 
+## F-statistic: 9.316 on 1 and 9 DF,  p-value: 0.01374
+## 
+## 
+## $`6`
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .x)
+## 
+## Residuals:
+##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
+##        -0.1250         0.5840         1.9292        -0.6897         0.3547 
+##      Merc 280C   Ferrari Dino 
+##        -1.0453        -1.0080 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)   
+## (Intercept)   28.409      4.184   6.789  0.00105 **
+## wt            -2.780      1.335  -2.083  0.09176 . 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.165 on 5 degrees of freedom
+## Multiple R-squared:  0.4645, Adjusted R-squared:  0.3574 
+## F-statistic: 4.337 on 1 and 5 DF,  p-value: 0.09176
+## 
+## 
+## $`8`
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.1491 -1.4664 -0.8458  1.5711  3.7619 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  23.8680     3.0055   7.942 4.05e-06 ***
+## wt           -2.1924     0.7392  -2.966   0.0118 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 2.024 on 12 degrees of freedom
+## Multiple R-squared:  0.423,  Adjusted R-squared:  0.3749 
+## F-statistic: 8.796 on 1 and 12 DF,  p-value: 0.01179
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# original  }
+\NormalTok{  mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{split}\NormalTok{(.}\SpecialCharTok{$}\NormalTok{cyl) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ wt, }\AttributeTok{data =}\NormalTok{ .x)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(summary) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map\_dbl}\NormalTok{(}\StringTok{"r.squared"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         4         6         8 
+## 0.5086326 0.4645102 0.4229655
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# If each element of the output is a data frame, use}
+\CommentTok{\# map\_dfr to row{-}bind them together:}
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{split}\NormalTok{(.}\SpecialCharTok{$}\NormalTok{cyl) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ wt, }\AttributeTok{data =}\NormalTok{ .x)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{map\_dfr}\NormalTok{(}\SpecialCharTok{\textasciitilde{}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{coef}\NormalTok{(.)))))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   (Intercept)        wt
+## 1    39.57120 -5.647025
+## 2    28.40884 -2.780106
+## 3    23.86803 -2.192438
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# (if you also want to preserve the variable names see}
+\CommentTok{\# the broom package)}
+
+
+\CommentTok{\#nest, unest() estudar!}
+
+
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(cyl) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+## # Groups:   cyl [3]
+##     cyl data              
+##   <dbl> <list>            
+## 1     6 <tibble [7 x 10]> 
+## 2     4 <tibble [11 x 10]>
+## 3     8 <tibble [14 x 10]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#mtcars \%\textgreater{}\% }
+\CommentTok{\#  group\_by(cyl) \%\textgreater{}\% }
+\CommentTok{\#  nest() \%\textgreater{}\%}
+\CommentTok{\#  map(\textasciitilde{} lm(mpg \textasciitilde{} wt, data = .x)) }
+\end{Highlighting}
+\end{Shaded}
+
 \hypertarget{map-functions}{%
 \section{map functions}\label{map-functions}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## map> # Compute normal distributions from an atomic vector
-## map> 1:10 |>
-## map+   map(rnorm, n = 10)
-## [[1]]
-##  [1] -0.21922348  0.61996465  1.29024877  0.11019642  0.59216413  0.87487471
-##  [7]  0.39567527 -1.02818925 -0.81626024 -0.02669643
-## 
-## [[2]]
-##  [1] 5.7748559 1.4410355 2.8421403 0.6115358 1.2729774 1.6114799 0.7816303
-##  [8] 2.7443002 0.5157748 1.7379449
-## 
-## [[3]]
-##  [1] 1.7785115 2.5023306 3.2356692 5.5216912 2.5630065 2.4648148 3.4178825
-##  [8] 3.1202642 3.9779527 0.9282494
-## 
-## [[4]]
-##  [1] 4.857196 3.571092 2.367683 3.389621 4.905757 4.102200 4.032000 3.443664
-##  [9] 5.395998 4.641652
-## 
-## [[5]]
-##  [1] 4.398464 6.080639 4.873609 4.843892 4.047706 4.245536 4.657401 3.671805
-##  [9] 6.436675 3.743995
-## 
-## [[6]]
-##  [1] 5.642601 5.902677 3.763949 6.788100 5.421124 8.629236 5.842409 5.309218
-##  [9] 5.328469 5.649454
-## 
-## [[7]]
-##  [1] 7.036166 6.369926 7.137499 6.989909 6.494763 8.151830 7.674627 7.274734
-##  [9] 6.740540 6.973178
-## 
-## [[8]]
-##  [1]  8.566392 10.646892  6.802248  8.860256  8.211045  6.536649  8.282630
-##  [8]  8.011455  8.468509  7.119174
-## 
-## [[9]]
-##  [1]  9.513433  9.958892 10.836989  9.675665  6.940989  9.308194 10.965672
-##  [8]  9.068537  9.914014  8.871290
-## 
-## [[10]]
-##  [1]  9.651390 10.108473  9.055043 10.582112  9.444427  9.998619  9.896081
-##  [8] 10.241184  8.666145  9.672320
-## 
-## 
-## map> # You can also use an anonymous function
-## map> 1:10 |>
-## map+   map(\(x) rnorm(10, x))
-## [[1]]
-##  [1]  0.8673994  1.7287065 -0.2481662 -1.1399910  1.6306988 -1.6557005
-##  [7]  1.6206918  0.2477373  1.8680921  0.2386029
-## 
-## [[2]]
-##  [1] 1.7421001 2.3557942 1.1523195 0.2790364 2.7476298 0.8111794 0.1694989
-##  [8] 2.5691697 0.7063602 3.2158305
-## 
-## [[3]]
-##  [1] 2.8730810 4.6178702 2.7328835 2.1959393 3.2452071 1.7167346 2.5633084
-##  [8] 1.7339964 0.6740952 2.2906973
-## 
-## [[4]]
-##  [1] 3.671998 3.479038 3.893398 4.631399 4.361525 2.408883 1.889459 3.219626
-##  [9] 4.511175 2.397565
-## 
-## [[5]]
-##  [1] 3.625986 4.499937 3.858146 4.846787 5.267548 4.840228 5.786236 5.374074
-##  [9] 6.073319 4.707545
-## 
-## [[6]]
-##  [1] 6.533980 5.869597 5.690176 7.462380 6.440103 5.476440 5.807940 6.114901
-##  [9] 6.097795 3.320757
-## 
-## [[7]]
-##  [1] 7.144552 7.067992 6.622119 6.781972 7.280636 6.584233 8.116805 6.181617
-##  [9] 5.285551 7.641457
-## 
-## [[8]]
-##  [1] 6.399352 8.797040 8.801813 8.100830 7.385564 9.125073 6.817197 6.861263
-##  [9] 9.193877 8.321368
-## 
-## [[9]]
-##  [1]  7.737925  9.973844  9.658762 10.958670  8.529904  8.341193  8.958649
-##  [8] 10.289513  8.606465  9.539204
-## 
-## [[10]]
-##  [1]  9.303470 10.861467 11.197694 10.075318 10.963940  9.069624 10.693454
-##  [8]  9.944944 12.486999  9.065917
-## 
-## 
-## map> # Simplify output to a vector instead of a list by computing the mean of the distributions
-## map> 1:10 |>
-## map+   map(rnorm, n = 10) |>  # output a list
-## map+   map_dbl(mean)           # output an atomic vector
-##  [1]  0.9192822  2.3160661  2.5959577  3.6388191  4.7337620  6.2108932
-##  [7]  6.9112006  7.6226543  8.9107109 10.1328084
-## 
-## map> # Using set_names() with character vectors is handy to keep track
-## map> # of the original inputs:
-## map> set_names(c("foo", "bar")) |> map_chr(paste0, ":suffix")
-##          foo          bar 
-## "foo:suffix" "bar:suffix" 
-## 
-## map> # Working with lists
-## map> favorite_desserts <- list(Sophia = "banana bread", Eliott = "pancakes", Karina = "chocolate cake")
-## 
-## map> favorite_desserts |> map_chr(\(food) paste(food, "rocks!"))
-##                  Sophia                  Eliott                  Karina 
-##   "banana bread rocks!"       "pancakes rocks!" "chocolate cake rocks!" 
-## 
-## map> # Extract by name or position
-## map> # .default specifies value for elements that are missing or NULL
-## map> l1 <- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
-## 
-## map> l1 |> map("a", .default = "???")
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] "???"
-## 
-## [[3]]
-## [1] "???"
-## 
-## 
-## map> l1 |> map_int("b", .default = NA)
-## [1] NA  2  3
-## 
-## map> l1 |> map_int(2, .default = NA)
-## [1] NA  2 NA
-## 
-## map> # Supply multiple values to index deeply into a list
-## map> l2 <- list(
-## map+   list(num = 1:3,     letters[1:3]),
-## map+   list(num = 101:103, letters[4:6]),
-## map+   list()
-## map+ )
-## 
-## map> l2 |> map(c(2, 2))
-## [[1]]
-## [1] "b"
-## 
-## [[2]]
-## [1] "e"
-## 
-## [[3]]
-## NULL
-## 
-## 
-## map> # Use a list to build an extractor that mixes numeric indices and names,
-## map> # and .default to provide a default value if the element does not exist
-## map> l2 |> map(list("num", 3))
-## [[1]]
-## [1] 3
-## 
-## [[2]]
-## [1] 103
-## 
-## [[3]]
-## NULL
-## 
-## 
-## map> l2 |> map_int(list("num", 3), .default = NA)
-## [1]   3 103  NA
-## 
-## map> # Working with data frames
-## map> # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
-## map> mtcars |> map_dbl(sum)
-##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
-##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
-##       am     gear     carb 
-##   13.000  118.000   90.000 
-## 
-## map> # A more realistic example: split a data frame into pieces, fit a
-## map> # model to each piece, summarise and extract R^2
-## map> mtcars |>
-## map+   split(mtcars$cyl) |>
-## map+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## map+   map(summary) |>
-## map+   map_dbl("r.squared")
-##         4         6         8 
-## 0.5086326 0.4645102 0.4229655
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_at"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## map_at> # Use a predicate function to decide whether to map a function:
-## map_at> iris |> map_if(is.factor, as.character) |> str()
-## List of 5
-##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-##  $ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##  $ Species     : chr [1:150] "setosa" "setosa" "setosa" "setosa" ...
-## 
-## map_at> # Specify an alternative with the `.else` argument:
-## map_at> iris |> map_if(is.factor, as.character, .else = as.integer) |> str()
-## List of 5
-##  $ Sepal.Length: int [1:150] 5 4 4 4 5 5 4 5 4 4 ...
-##  $ Sepal.Width : int [1:150] 3 3 3 3 3 3 3 3 2 3 ...
-##  $ Petal.Length: int [1:150] 1 1 1 1 1 1 1 1 1 1 ...
-##  $ Petal.Width : int [1:150] 0 0 0 0 0 0 0 0 0 0 ...
-##  $ Species     : chr [1:150] "setosa" "setosa" "setosa" "setosa" ...
-## 
-## map_at> # Use numeric vector of positions select elements to change:
-## map_at> iris |> map_at(c(4, 5), is.numeric) |> str()
-## List of 5
-##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-##  $ Petal.Width : logi TRUE
-##  $ Species     : logi FALSE
-## 
-## map_at> # Use vector of names to specify which elements to change:
-## map_at> iris |> map_at("Species", toupper) |> str()
-## List of 5
-##  $ Sepal.Length: num [1:150] 5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
-##  $ Sepal.Width : num [1:150] 3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
-##  $ Petal.Length: num [1:150] 1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
-##  $ Petal.Width : num [1:150] 0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
-##  $ Species     : chr [1:150] "SETOSA" "SETOSA" "SETOSA" "SETOSA" ...
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_chr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp_chr> # Compute normal distributions from an atomic vector
-## mp_chr> 1:10 |>
-## mp_chr+   map(rnorm, n = 10)
-## [[1]]
-##  [1] -0.85168108  0.76824209 -0.56511354 -0.06777455  0.57043127  1.30155578
-##  [7]  1.16753920  1.52753789  1.12292030  0.01333625
-## 
-## [[2]]
-##  [1] 1.91871196 1.00887403 2.29752782 1.90109619 1.78721545 0.22585994
-##  [7] 0.03538443 2.40662183 0.38638058 1.11132602
-## 
-## [[3]]
-##  [1] 2.651643 2.071479 2.853637 3.195515 1.299768 2.829301 1.917916 3.690585
-##  [9] 3.149101 3.508463
-## 
-## [[4]]
-##  [1] 3.100968 3.704232 4.181968 4.487123 3.756079 2.614169 4.169220 5.556129
-##  [9] 1.040538 3.834227
-## 
-## [[5]]
-##  [1] 4.455109 5.843573 5.836780 5.789861 3.819823 4.864703 5.272119 3.971494
-##  [9] 3.877954 3.920218
-## 
-## [[6]]
-##  [1] 6.128488 5.269266 4.746380 5.998051 5.211171 5.692527 5.115889 5.407193
-##  [9] 5.354067 4.977758
-## 
-## [[7]]
-##  [1] 7.778251 6.425110 6.480761 7.882017 7.638080 8.376106 6.137801 9.204223
-##  [9] 7.159064 5.365655
-## 
-## [[8]]
-##  [1] 9.367648 7.962897 8.384708 7.099967 7.473288 7.960293 8.781524 7.414348
-##  [9] 8.373046 7.320071
-## 
-## [[9]]
-##  [1]  8.799551 10.157066  9.938182  9.109629  9.443643  8.339518  7.433778
-##  [8]  8.538323  8.887992  9.175111
-## 
-## [[10]]
-##  [1] 10.560306 10.001851  9.918324 10.092168 10.499342  9.861110  8.877598
-##  [8] 11.320864 10.037930 11.582468
-## 
-## 
-## mp_chr> # You can also use an anonymous function
-## mp_chr> 1:10 |>
-## mp_chr+   map(\(x) rnorm(10, x))
-## [[1]]
-##  [1] -0.256235468  0.403628264  0.814251705  1.693920654  0.004675947
-##  [6]  0.514057678  1.594697099  0.294070964  1.233135815  1.667718565
-## 
-## [[2]]
-##  [1] 2.769956 1.604054 3.225234 2.074651 1.663276 3.769481 2.058021 2.335913
-##  [9] 2.098923 1.458392
-## 
-## [[3]]
-##  [1] 5.243628 3.743062 1.683377 2.979773 2.411894 3.419146 3.063397 3.396117
-##  [9] 1.507323 4.208722
-## 
-## [[4]]
-##  [1] 4.178070 4.783422 5.051980 6.232170 5.427191 5.553087 4.284079 3.521486
-##  [9] 4.857818 4.967079
-## 
-## [[5]]
-##  [1] 3.651478 5.139131 3.429966 3.533333 4.843882 4.412174 4.876708 4.076763
-##  [9] 3.805323 4.639675
-## 
-## [[6]]
-##  [1] 5.436713 4.585468 7.685593 6.017759 5.886818 5.314155 5.180880 4.251106
-##  [9] 4.471331 5.299659
-## 
-## [[7]]
-##  [1] 6.870764 8.394335 9.143564 7.090066 6.812236 5.003781 5.490337 6.238033
-##  [9] 7.421588 8.322179
-## 
-## [[8]]
-##  [1] 8.043987 8.465914 7.839869 7.659624 8.423641 8.662921 9.002733 7.984377
-##  [9] 5.762954 7.484663
-## 
-## [[9]]
-##  [1]  8.951246 10.445702 11.314291  9.482388  7.449872  9.187757 10.039788
-##  [8] 10.037846 10.021328  9.896112
-## 
-## [[10]]
-##  [1]  9.455509 10.951248 10.297551 10.295419 11.252473 10.906418  9.040358
-##  [8]  9.274158  9.443515 10.693993
-## 
-## 
-## mp_chr> # Simplify output to a vector instead of a list by computing the mean of the distributions
-## mp_chr> 1:10 |>
-## mp_chr+   map(rnorm, n = 10) |>  # output a list
-## mp_chr+   map_dbl(mean)           # output an atomic vector
-##  [1] 1.042545 2.138783 3.272661 4.154313 5.400198 6.471239 7.267552 8.366422
-##  [9] 8.559555 9.877008
-## 
-## mp_chr> # Using set_names() with character vectors is handy to keep track
-## mp_chr> # of the original inputs:
-## mp_chr> set_names(c("foo", "bar")) |> map_chr(paste0, ":suffix")
-##          foo          bar 
-## "foo:suffix" "bar:suffix" 
-## 
-## mp_chr> # Working with lists
-## mp_chr> favorite_desserts <- list(Sophia = "banana bread", Eliott = "pancakes", Karina = "chocolate cake")
-## 
-## mp_chr> favorite_desserts |> map_chr(\(food) paste(food, "rocks!"))
-##                  Sophia                  Eliott                  Karina 
-##   "banana bread rocks!"       "pancakes rocks!" "chocolate cake rocks!" 
-## 
-## mp_chr> # Extract by name or position
-## mp_chr> # .default specifies value for elements that are missing or NULL
-## mp_chr> l1 <- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
-## 
-## mp_chr> l1 |> map("a", .default = "???")
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] "???"
-## 
-## [[3]]
-## [1] "???"
-## 
-## 
-## mp_chr> l1 |> map_int("b", .default = NA)
-## [1] NA  2  3
-## 
-## mp_chr> l1 |> map_int(2, .default = NA)
-## [1] NA  2 NA
-## 
-## mp_chr> # Supply multiple values to index deeply into a list
-## mp_chr> l2 <- list(
-## mp_chr+   list(num = 1:3,     letters[1:3]),
-## mp_chr+   list(num = 101:103, letters[4:6]),
-## mp_chr+   list()
-## mp_chr+ )
-## 
-## mp_chr> l2 |> map(c(2, 2))
-## [[1]]
-## [1] "b"
-## 
-## [[2]]
-## [1] "e"
-## 
-## [[3]]
-## NULL
-## 
-## 
-## mp_chr> # Use a list to build an extractor that mixes numeric indices and names,
-## mp_chr> # and .default to provide a default value if the element does not exist
-## mp_chr> l2 |> map(list("num", 3))
-## [[1]]
-## [1] 3
-## 
-## [[2]]
-## [1] 103
-## 
-## [[3]]
-## NULL
-## 
-## 
-## mp_chr> l2 |> map_int(list("num", 3), .default = NA)
-## [1]   3 103  NA
-## 
-## mp_chr> # Working with data frames
-## mp_chr> # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
-## mp_chr> mtcars |> map_dbl(sum)
-##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
-##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
-##       am     gear     carb 
-##   13.000  118.000   90.000 
-## 
-## mp_chr> # A more realistic example: split a data frame into pieces, fit a
-## mp_chr> # model to each piece, summarise and extract R^2
-## mp_chr> mtcars |>
-## mp_chr+   split(mtcars$cyl) |>
-## mp_chr+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp_chr+   map(summary) |>
-## mp_chr+   map_dbl("r.squared")
-##         4         6         8 
-## 0.5086326 0.4645102 0.4229655
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_dbl"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp_dbl> # Compute normal distributions from an atomic vector
-## mp_dbl> 1:10 |>
-## mp_dbl+   map(rnorm, n = 10)
-## [[1]]
-##  [1]  0.3476306  1.7316611 -0.1753930  2.8673698  1.4791364  1.2004899
-##  [7]  1.9613883  2.3933887  1.7338007  0.7538462
-## 
-## [[2]]
-##  [1] 2.6156601 2.6617185 1.4562090 3.3027790 2.6707032 3.7408707 2.2518540
-##  [8] 0.4147404 3.3655861 3.1782048
-## 
-## [[3]]
-##  [1] 2.545065 3.464680 4.209379 2.475425 3.866565 2.950048 4.177523 4.123372
-##  [9] 2.443118 3.716092
-## 
-## [[4]]
-##  [1] 2.746408 3.678958 1.901714 2.697845 4.229762 6.287872 4.721969 2.716255
-##  [9] 2.655370 3.913068
-## 
-## [[5]]
-##  [1] 4.848411 6.217218 5.860600 4.290726 5.359172 4.338016 5.378972 4.621194
-##  [9] 4.661215 5.448782
-## 
-## [[6]]
-##  [1] 4.964610 4.330497 5.755487 4.783411 6.102427 5.936313 5.051508 5.456728
-##  [9] 6.182962 7.573270
-## 
-## [[7]]
-##  [1] 7.568044 6.827848 6.154640 8.104314 8.326734 7.594313 9.521609 7.760222
-##  [9] 5.737743 4.945799
-## 
-## [[8]]
-##  [1] 7.855690 8.753814 7.865452 8.089714 6.296199 8.685428 8.982580 7.493034
-##  [9] 8.196391 8.443106
-## 
-## [[9]]
-##  [1]  9.649724  9.946690  8.723827  8.065357 10.732050  9.164829  7.871796
-##  [8] 10.997025  8.535412  9.398967
-## 
-## [[10]]
-##  [1] 10.836244  9.265765  9.607562 10.695390 10.287032 11.368406  8.617340
-##  [8]  9.177379 10.943942 10.289098
-## 
-## 
-## mp_dbl> # You can also use an anonymous function
-## mp_dbl> 1:10 |>
-## mp_dbl+   map(\(x) rnorm(10, x))
-## [[1]]
-##  [1]  3.9760990  1.2546184  3.6945091  3.0545441  1.8364784 -0.8665479
-##  [7]  0.9590658  1.2907192  0.7090193  0.7583964
-## 
-## [[2]]
-##  [1] 0.5883726 2.1143714 2.1673827 1.9771929 1.5946221 2.7158357 2.9110070
-##  [8] 1.2992958 1.7654225 3.0695912
-## 
-## [[3]]
-##  [1] 3.319163 1.908390 2.654627 3.530621 3.023206 3.674209 2.770407 2.354166
-##  [9] 1.716390 2.015556
-## 
-## [[4]]
-##  [1] 5.502928 2.768500 3.336934 4.262855 2.857247 5.323900 4.701552 5.892758
-##  [9] 3.427574 4.249538
-## 
-## [[5]]
-##  [1] 3.791824 4.935267 5.484745 5.191809 4.772089 5.018183 6.415839 4.950196
-##  [9] 3.985086 6.258460
-## 
-## [[6]]
-##  [1] 6.571083 7.383522 5.616048 5.072386 6.692594 6.469453 8.101564 7.398066
-##  [9] 7.562004 8.310780
-## 
-## [[7]]
-##  [1] 7.918544 8.213427 7.906841 6.727089 7.150600 4.864023 7.258692 6.127592
-##  [9] 5.140484 5.229383
-## 
-## [[8]]
-##  [1]  8.275425  8.039419  7.339205  7.921887  9.382642  7.534802 10.096296
-##  [8]  7.877838  7.267259  6.409670
-## 
-## [[9]]
-##  [1]  9.597695  9.426004  7.143627  8.904132 11.399949  9.733212  7.424642
-##  [8]  9.835707  9.934420 10.512917
-## 
-## [[10]]
-##  [1] 10.830231 10.386768 10.281093 10.262580  9.346308 10.208831 10.716805
-##  [8]  9.567074  9.253650  9.732950
-## 
-## 
-## mp_dbl> # Simplify output to a vector instead of a list by computing the mean of the distributions
-## mp_dbl> 1:10 |>
-## mp_dbl+   map(rnorm, n = 10) |>  # output a list
-## mp_dbl+   map_dbl(mean)           # output an atomic vector
-##  [1] 0.7081292 1.7889272 2.6529856 4.3318019 4.8410694 5.6520300 7.0866786
-##  [8] 7.8052077 9.1405763 9.7279751
-## 
-## mp_dbl> # Using set_names() with character vectors is handy to keep track
-## mp_dbl> # of the original inputs:
-## mp_dbl> set_names(c("foo", "bar")) |> map_chr(paste0, ":suffix")
-##          foo          bar 
-## "foo:suffix" "bar:suffix" 
-## 
-## mp_dbl> # Working with lists
-## mp_dbl> favorite_desserts <- list(Sophia = "banana bread", Eliott = "pancakes", Karina = "chocolate cake")
-## 
-## mp_dbl> favorite_desserts |> map_chr(\(food) paste(food, "rocks!"))
-##                  Sophia                  Eliott                  Karina 
-##   "banana bread rocks!"       "pancakes rocks!" "chocolate cake rocks!" 
-## 
-## mp_dbl> # Extract by name or position
-## mp_dbl> # .default specifies value for elements that are missing or NULL
-## mp_dbl> l1 <- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
-## 
-## mp_dbl> l1 |> map("a", .default = "???")
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] "???"
-## 
-## [[3]]
-## [1] "???"
-## 
-## 
-## mp_dbl> l1 |> map_int("b", .default = NA)
-## [1] NA  2  3
-## 
-## mp_dbl> l1 |> map_int(2, .default = NA)
-## [1] NA  2 NA
-## 
-## mp_dbl> # Supply multiple values to index deeply into a list
-## mp_dbl> l2 <- list(
-## mp_dbl+   list(num = 1:3,     letters[1:3]),
-## mp_dbl+   list(num = 101:103, letters[4:6]),
-## mp_dbl+   list()
-## mp_dbl+ )
-## 
-## mp_dbl> l2 |> map(c(2, 2))
-## [[1]]
-## [1] "b"
-## 
-## [[2]]
-## [1] "e"
-## 
-## [[3]]
-## NULL
-## 
-## 
-## mp_dbl> # Use a list to build an extractor that mixes numeric indices and names,
-## mp_dbl> # and .default to provide a default value if the element does not exist
-## mp_dbl> l2 |> map(list("num", 3))
-## [[1]]
-## [1] 3
-## 
-## [[2]]
-## [1] 103
-## 
-## [[3]]
-## NULL
-## 
-## 
-## mp_dbl> l2 |> map_int(list("num", 3), .default = NA)
-## [1]   3 103  NA
-## 
-## mp_dbl> # Working with data frames
-## mp_dbl> # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
-## mp_dbl> mtcars |> map_dbl(sum)
-##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
-##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
-##       am     gear     carb 
-##   13.000  118.000   90.000 
-## 
-## mp_dbl> # A more realistic example: split a data frame into pieces, fit a
-## mp_dbl> # model to each piece, summarise and extract R^2
-## mp_dbl> mtcars |>
-## mp_dbl+   split(mtcars$cyl) |>
-## mp_dbl+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp_dbl+   map(summary) |>
-## mp_dbl+   map_dbl("r.squared")
-##         4         6         8 
-## 0.5086326 0.4645102 0.4229655
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_df"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## map_df> # map ---------------------------------------------
-## map_df> # Was:
-## map_df> mtcars |>
-## map_df+   split(mtcars$cyl) |>
-## map_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## map_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## map_df> # Now:
-## map_df> mtcars |>
-## map_df+   split(mtcars$cyl) |>
-## map_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## map_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |>
-## map_df+   list_rbind()
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## map_df> # map2 ---------------------------------------------
-## map_df> 
-## map_df> ex_fun <- function(arg1, arg2){
-## map_df+   col <- arg1 + arg2
-## map_df+   x <- as.data.frame(col)
-## map_df+ }
-## 
-## map_df> arg1 <- 1:4
-## 
-## map_df> arg2 <- 10:13
-## 
-## map_df> # was
-## map_df> map2_dfr(arg1, arg2, ex_fun)
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## map_df> # now
-## map_df> map2(arg1, arg2, ex_fun) |> list_rbind()
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## map_df> # was
-## map_df> map2_dfc(arg1, arg2, ex_fun)
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-## 
-## map_df> # now
-## map_df> map2(arg1, arg2, ex_fun) |> list_cbind()
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_dfc"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp_dfc> # map ---------------------------------------------
-## mp_dfc> # Was:
-## mp_dfc> mtcars |>
-## mp_dfc+   split(mtcars$cyl) |>
-## mp_dfc+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp_dfc+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp_dfc> # Now:
-## mp_dfc> mtcars |>
-## mp_dfc+   split(mtcars$cyl) |>
-## mp_dfc+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp_dfc+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |>
-## mp_dfc+   list_rbind()
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp_dfc> # map2 ---------------------------------------------
-## mp_dfc> 
-## mp_dfc> ex_fun <- function(arg1, arg2){
-## mp_dfc+   col <- arg1 + arg2
-## mp_dfc+   x <- as.data.frame(col)
-## mp_dfc+ }
-## 
-## mp_dfc> arg1 <- 1:4
-## 
-## mp_dfc> arg2 <- 10:13
-## 
-## mp_dfc> # was
-## mp_dfc> map2_dfr(arg1, arg2, ex_fun)
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp_dfc> # now
-## mp_dfc> map2(arg1, arg2, ex_fun) |> list_rbind()
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp_dfc> # was
-## mp_dfc> map2_dfc(arg1, arg2, ex_fun)
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-## 
-## mp_dfc> # now
-## mp_dfc> map2(arg1, arg2, ex_fun) |> list_cbind()
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_dfr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp_dfr> # map ---------------------------------------------
-## mp_dfr> # Was:
-## mp_dfr> mtcars |>
-## mp_dfr+   split(mtcars$cyl) |>
-## mp_dfr+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp_dfr+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp_dfr> # Now:
-## mp_dfr> mtcars |>
-## mp_dfr+   split(mtcars$cyl) |>
-## mp_dfr+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp_dfr+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |>
-## mp_dfr+   list_rbind()
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp_dfr> # map2 ---------------------------------------------
-## mp_dfr> 
-## mp_dfr> ex_fun <- function(arg1, arg2){
-## mp_dfr+   col <- arg1 + arg2
-## mp_dfr+   x <- as.data.frame(col)
-## mp_dfr+ }
-## 
-## mp_dfr> arg1 <- 1:4
-## 
-## mp_dfr> arg2 <- 10:13
-## 
-## mp_dfr> # was
-## mp_dfr> map2_dfr(arg1, arg2, ex_fun)
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp_dfr> # now
-## mp_dfr> map2(arg1, arg2, ex_fun) |> list_rbind()
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp_dfr> # was
-## mp_dfr> map2_dfc(arg1, arg2, ex_fun)
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-## 
-## mp_dfr> # now
-## mp_dfr> map2(arg1, arg2, ex_fun) |> list_cbind()
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_int"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## map_nt> # Compute normal distributions from an atomic vector
-## map_nt> 1:10 |>
-## map_nt+   map(rnorm, n = 10)
-## [[1]]
-##  [1] 2.5422111 0.4021407 1.7141481 2.7224324 0.9183636 1.9756588 1.2910241
-##  [8] 1.9339577 3.6850796 2.1987220
-## 
-## [[2]]
-##  [1] 1.2452496 2.7253760 2.5737687 0.2338606 2.6551470 1.5293998 1.1392398
-##  [8] 1.3034853 0.3254777 2.6342778
-## 
-## [[3]]
-##  [1] 2.929580 2.988331 5.080413 3.129451 1.342445 2.784670 3.289659 4.321456
-##  [9] 3.861922 3.085172
-## 
-## [[4]]
-##  [1] 3.897529 1.773898 4.087206 3.201323 1.669706 5.621821 4.660167 5.633675
-##  [9] 4.232073 5.473411
-## 
-## [[5]]
-##  [1] 5.411422 4.588226 3.967858 5.918767 6.343955 4.872591 6.178822 4.562077
-##  [9] 4.994500 4.134530
-## 
-## [[6]]
-##  [1] 5.234314 5.141253 5.951185 5.992574 8.411677 6.967372 7.840896 4.571293
-##  [9] 7.141144 4.905555
-## 
-## [[7]]
-##  [1] 7.347490 7.048284 7.804674 7.947599 7.799814 6.991067 6.519861 6.168931
-##  [9] 7.677628 7.387143
-## 
-## [[8]]
-##  [1] 8.526634 6.163702 7.717388 8.740053 9.122004 6.299988 8.331645 9.552575
-##  [9] 8.039764 7.578471
-## 
-## [[9]]
-##  [1] 9.724332 7.950483 9.336435 6.722180 7.611632 8.502948 9.624389 8.525958
-##  [9] 8.559207 7.183400
-## 
-## [[10]]
-##  [1]  7.766780 10.015169  9.044650 10.255979  8.167602  9.910853  8.236558
-##  [8]  8.392112  9.498035  9.901574
-## 
-## 
-## map_nt> # You can also use an anonymous function
-## map_nt> 1:10 |>
-## map_nt+   map(\(x) rnorm(10, x))
-## [[1]]
-##  [1] 0.9014311 1.6870138 2.9377070 0.5282615 0.8509901 0.7816072 1.2315584
-##  [8] 1.4241753 2.1827224 1.3141799
-## 
-## [[2]]
-##  [1]  1.00221094  2.88656973  1.88722030  1.91012022 -0.44551995 -0.07006742
-##  [7]  1.71234760  1.17464140  0.47764710  2.30489031
-## 
-## [[3]]
-##  [1] 2.209367 4.025049 3.952060 4.189782 3.674476 2.610965 4.502394 3.854455
-##  [9] 2.461879 3.958585
-## 
-## [[4]]
-##  [1] 2.939385 3.620529 3.460630 4.186249 2.648621 4.732140 3.148058 4.360798
-##  [9] 3.279369 2.229546
-## 
-## [[5]]
-##  [1] 3.903176 7.040207 4.125612 6.585749 6.627877 6.136277 4.101456 5.274264
-##  [9] 4.627127 5.038865
-## 
-## [[6]]
-##  [1] 4.693792 6.869907 5.560754 5.011828 6.953520 7.671481 4.278122 5.737529
-##  [9] 5.268749 7.553824
-## 
-## [[7]]
-##  [1] 7.107738 6.395664 6.598625 6.790873 6.522937 7.842332 6.706031 6.625714
-##  [9] 8.062757 7.082121
-## 
-## [[8]]
-##  [1] 7.741817 7.943173 8.699790 6.820926 9.047361 7.669509 7.913519 8.590472
-##  [9] 7.663706 8.928659
-## 
-## [[9]]
-##  [1]  9.821693  9.361577  8.585243  8.353028  7.961186  9.789546 10.141514
-##  [8]  8.136637  9.678746  9.075393
-## 
-## [[10]]
-##  [1]  7.806962  8.695467 10.255478  9.624756  8.629521 10.118393  9.172750
-##  [8] 10.593297  9.355767  8.721120
-## 
-## 
-## map_nt> # Simplify output to a vector instead of a list by computing the mean of the distributions
-## map_nt> 1:10 |>
-## map_nt+   map(rnorm, n = 10) |>  # output a list
-## map_nt+   map_dbl(mean)           # output an atomic vector
-##  [1] 0.5751133 1.9352741 2.5438236 4.1117336 5.3934533 6.0711326 7.0581415
-##  [8] 8.1600126 9.0996499 9.8527587
-## 
-## map_nt> # Using set_names() with character vectors is handy to keep track
-## map_nt> # of the original inputs:
-## map_nt> set_names(c("foo", "bar")) |> map_chr(paste0, ":suffix")
-##          foo          bar 
-## "foo:suffix" "bar:suffix" 
-## 
-## map_nt> # Working with lists
-## map_nt> favorite_desserts <- list(Sophia = "banana bread", Eliott = "pancakes", Karina = "chocolate cake")
-## 
-## map_nt> favorite_desserts |> map_chr(\(food) paste(food, "rocks!"))
-##                  Sophia                  Eliott                  Karina 
-##   "banana bread rocks!"       "pancakes rocks!" "chocolate cake rocks!" 
-## 
-## map_nt> # Extract by name or position
-## map_nt> # .default specifies value for elements that are missing or NULL
-## map_nt> l1 <- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
-## 
-## map_nt> l1 |> map("a", .default = "???")
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] "???"
-## 
-## [[3]]
-## [1] "???"
-## 
-## 
-## map_nt> l1 |> map_int("b", .default = NA)
-## [1] NA  2  3
-## 
-## map_nt> l1 |> map_int(2, .default = NA)
-## [1] NA  2 NA
-## 
-## map_nt> # Supply multiple values to index deeply into a list
-## map_nt> l2 <- list(
-## map_nt+   list(num = 1:3,     letters[1:3]),
-## map_nt+   list(num = 101:103, letters[4:6]),
-## map_nt+   list()
-## map_nt+ )
-## 
-## map_nt> l2 |> map(c(2, 2))
-## [[1]]
-## [1] "b"
-## 
-## [[2]]
-## [1] "e"
-## 
-## [[3]]
-## NULL
-## 
-## 
-## map_nt> # Use a list to build an extractor that mixes numeric indices and names,
-## map_nt> # and .default to provide a default value if the element does not exist
-## map_nt> l2 |> map(list("num", 3))
-## [[1]]
-## [1] 3
-## 
-## [[2]]
-## [1] 103
-## 
-## [[3]]
-## NULL
-## 
-## 
-## map_nt> l2 |> map_int(list("num", 3), .default = NA)
-## [1]   3 103  NA
-## 
-## map_nt> # Working with data frames
-## map_nt> # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
-## map_nt> mtcars |> map_dbl(sum)
-##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
-##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
-##       am     gear     carb 
-##   13.000  118.000   90.000 
-## 
-## map_nt> # A more realistic example: split a data frame into pieces, fit a
-## map_nt> # model to each piece, summarise and extract R^2
-## map_nt> mtcars |>
-## map_nt+   split(mtcars$cyl) |>
-## map_nt+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## map_nt+   map(summary) |>
-## map_nt+   map_dbl("r.squared")
-##         4         6         8 
-## 0.5086326 0.4645102 0.4229655
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_lgl"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp_lgl> # Compute normal distributions from an atomic vector
-## mp_lgl> 1:10 |>
-## mp_lgl+   map(rnorm, n = 10)
-## [[1]]
-##  [1]  3.2596259  1.1308918  2.8777759 -0.8100157  0.9469446 -0.5830875
-##  [7]  1.8059201 -0.5292960  0.6767301  2.1339415
-## 
-## [[2]]
-##  [1] 2.518656 3.579340 1.253173 2.877509 1.817905 4.174185 2.387985 2.516081
-##  [9] 2.508694 3.029748
-## 
-## [[3]]
-##  [1] 2.613659 2.115088 2.155567 2.430888 2.831859 2.391442 2.735278 3.700055
-##  [9] 3.254243 1.190567
-## 
-## [[4]]
-##  [1] 5.738088 5.258269 2.682881 3.342720 2.812177 4.755213 3.705133 3.944537
-##  [9] 4.359484 4.144489
-## 
-## [[5]]
-##  [1] 5.550374 3.740629 4.638784 6.304297 5.602153 2.749538 5.810548 5.460709
-##  [9] 5.289067 2.589647
-## 
-## [[6]]
-##  [1] 5.279711 4.805143 4.111902 6.909805 5.666989 5.606887 7.142211 7.947518
-##  [9] 5.833854 7.043028
-## 
-## [[7]]
-##  [1] 6.828755 6.862319 6.251082 6.582391 6.593893 7.680063 7.239242 5.638960
-##  [9] 8.374596 6.688960
-## 
-## [[8]]
-##  [1] 10.394254  9.109028  6.748479  6.387435  9.299408  8.197549  7.307681
-##  [8]  9.495579  7.877587  8.015704
-## 
-## [[9]]
-##  [1]  6.988197  8.859449  9.635704 11.090629  9.339850  9.387460  8.709038
-##  [8]  9.074269  8.911087  8.417523
-## 
-## [[10]]
-##  [1] 11.245625  9.790738  9.772852  8.828806  9.768221  9.556613  9.516199
-##  [8] 11.197519  8.892167 11.115274
-## 
-## 
-## mp_lgl> # You can also use an anonymous function
-## mp_lgl> 1:10 |>
-## mp_lgl+   map(\(x) rnorm(10, x))
-## [[1]]
-##  [1] -0.3400305  1.8758790  0.7571540  1.5774422  0.3581211  0.2266559
-##  [7]  0.4826123  0.9561373  0.8676008  1.2213767
-## 
-## [[2]]
-##  [1] -0.4531517  1.7916098  1.8831952  3.9097523  2.1478987  2.1906216
-##  [7]  1.0598576  3.4049266  3.8275817  0.8980735
-## 
-## [[3]]
-##  [1] 3.413596 1.350841 3.854446 2.971624 3.877913 4.372073 2.909050 2.295326
-##  [9] 3.030605 1.815552
-## 
-## [[4]]
-##  [1] 4.968972 3.063306 3.321670 5.021347 3.055649 2.082722 4.857545 3.422961
-##  [9] 3.865416 4.065119
-## 
-## [[5]]
-##  [1] 4.222720 3.830492 4.287737 5.583767 4.764375 4.988556 5.041906 5.655340
-##  [9] 5.685690 6.013751
-## 
-## [[6]]
-##  [1] 6.551380 6.111882 5.015243 7.476668 7.344987 6.801517 6.444911 4.801799
-##  [9] 6.813110 5.986108
-## 
-## [[7]]
-##  [1] 5.158183 6.103998 5.527856 9.363381 7.585124 5.331641 6.549442 5.274425
-##  [9] 5.689743 7.436685
-## 
-## [[8]]
-##  [1] 5.361061 8.717293 8.796389 8.559136 7.198982 7.234764 7.789078 6.785173
-##  [9] 8.882919 7.572246
-## 
-## [[9]]
-##  [1] 6.660130 8.160774 9.000252 7.813552 7.660528 6.748073 8.655040 9.712961
-##  [9] 8.119107 9.390383
-## 
-## [[10]]
-##  [1] 10.05775 10.63391 12.67074 10.27345 10.49757 10.01225  7.95253 11.13273
-##  [9] 10.64671 11.34946
-## 
-## 
-## mp_lgl> # Simplify output to a vector instead of a list by computing the mean of the distributions
-## mp_lgl> 1:10 |>
-## mp_lgl+   map(rnorm, n = 10) |>  # output a list
-## mp_lgl+   map_dbl(mean)           # output an atomic vector
-##  [1] 1.087478 1.726914 2.585272 4.393208 4.819396 6.258533 6.984639 8.327838
-##  [9] 8.658229 9.873142
-## 
-## mp_lgl> # Using set_names() with character vectors is handy to keep track
-## mp_lgl> # of the original inputs:
-## mp_lgl> set_names(c("foo", "bar")) |> map_chr(paste0, ":suffix")
-##          foo          bar 
-## "foo:suffix" "bar:suffix" 
-## 
-## mp_lgl> # Working with lists
-## mp_lgl> favorite_desserts <- list(Sophia = "banana bread", Eliott = "pancakes", Karina = "chocolate cake")
-## 
-## mp_lgl> favorite_desserts |> map_chr(\(food) paste(food, "rocks!"))
-##                  Sophia                  Eliott                  Karina 
-##   "banana bread rocks!"       "pancakes rocks!" "chocolate cake rocks!" 
-## 
-## mp_lgl> # Extract by name or position
-## mp_lgl> # .default specifies value for elements that are missing or NULL
-## mp_lgl> l1 <- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
-## 
-## mp_lgl> l1 |> map("a", .default = "???")
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] "???"
-## 
-## [[3]]
-## [1] "???"
-## 
-## 
-## mp_lgl> l1 |> map_int("b", .default = NA)
-## [1] NA  2  3
-## 
-## mp_lgl> l1 |> map_int(2, .default = NA)
-## [1] NA  2 NA
-## 
-## mp_lgl> # Supply multiple values to index deeply into a list
-## mp_lgl> l2 <- list(
-## mp_lgl+   list(num = 1:3,     letters[1:3]),
-## mp_lgl+   list(num = 101:103, letters[4:6]),
-## mp_lgl+   list()
-## mp_lgl+ )
-## 
-## mp_lgl> l2 |> map(c(2, 2))
-## [[1]]
-## [1] "b"
-## 
-## [[2]]
-## [1] "e"
-## 
-## [[3]]
-## NULL
-## 
-## 
-## mp_lgl> # Use a list to build an extractor that mixes numeric indices and names,
-## mp_lgl> # and .default to provide a default value if the element does not exist
-## mp_lgl> l2 |> map(list("num", 3))
-## [[1]]
-## [1] 3
-## 
-## [[2]]
-## [1] 103
-## 
-## [[3]]
-## NULL
-## 
-## 
-## mp_lgl> l2 |> map_int(list("num", 3), .default = NA)
-## [1]   3 103  NA
-## 
-## mp_lgl> # Working with data frames
-## mp_lgl> # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
-## mp_lgl> mtcars |> map_dbl(sum)
-##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
-##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
-##       am     gear     carb 
-##   13.000  118.000   90.000 
-## 
-## mp_lgl> # A more realistic example: split a data frame into pieces, fit a
-## mp_lgl> # model to each piece, summarise and extract R^2
-## mp_lgl> mtcars |>
-## mp_lgl+   split(mtcars$cyl) |>
-## mp_lgl+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp_lgl+   map(summary) |>
-## mp_lgl+   map_dbl("r.squared")
-##         4         6         8 
-## 0.5086326 0.4645102 0.4229655
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map\_vec"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## 
-## map_vc> # Compute normal distributions from an atomic vector
-## map_vc> 1:10 |>
-## map_vc+   map(rnorm, n = 10)
-## [[1]]
-##  [1]  2.17626138  1.67804928  0.92008228  0.78759298  1.61457855  0.16079783
-##  [7] -0.06332941  1.92674341  3.01708606 -2.48891510
-## 
-## [[2]]
-##  [1]  3.673801542  3.744711466  2.375820275  2.245955988  0.203559117
-##  [6]  2.254103836  2.949852028 -0.002146877  2.801867340  0.609013011
-## 
-## [[3]]
-##  [1] 3.977877 3.351175 1.743524 2.103031 3.412541 3.081624 2.528418 4.326099
-##  [9] 4.787997 1.786226
-## 
-## [[4]]
-##  [1] 3.475558 5.900686 4.531925 4.764991 5.097481 5.020726 4.584727 4.055680
-##  [9] 3.519812 3.236487
-## 
-## [[5]]
-##  [1] 3.398525 5.040242 4.005221 5.143551 4.812688 5.004925 5.944297 3.097594
-##  [9] 5.860018 6.119821
-## 
-## [[6]]
-##  [1] 4.816311 5.571360 4.844557 6.450414 4.792054 6.874158 5.374873 4.483418
-##  [9] 6.532257 5.905215
-## 
-## [[7]]
-##  [1] 7.169294 7.882082 6.154702 7.393026 9.598388 6.861219 5.807888 7.132601
-##  [9] 6.284560 6.850790
-## 
-## [[8]]
-##  [1] 8.959371 9.911555 8.767932 7.779349 6.089274 7.179417 8.224626 6.441294
-##  [9] 7.754638 8.274268
-## 
-## [[9]]
-##  [1]  8.045379  8.879460  7.726395  8.373508  8.172428  8.413684 10.585410
-##  [8]  8.529829  8.192435  7.995716
-## 
-## [[10]]
-##  [1] 10.606845 10.289215  8.758001 11.642749  8.847500 11.376809  8.474199
-##  [8]  9.359728 10.864990 10.765945
-## 
-## 
-## map_vc> # You can also use an anonymous function
-## map_vc> 1:10 |>
-## map_vc+   map(\(x) rnorm(10, x))
-## [[1]]
-##  [1]  3.4662913  1.1723220  1.4859593  0.6499027  0.2562959 -0.3725985
-##  [7]  0.6677580  0.7043232  0.5045961  1.1031765
-## 
-## [[2]]
-##  [1] 1.502955 2.934855 3.679970 3.469558 2.303236 3.924677 1.257266 2.533597
-##  [9] 3.576809 1.962461
-## 
-## [[3]]
-##  [1] 2.483381 1.630704 2.499152 5.332570 2.364430 2.609793 3.443532 2.112707
-##  [9] 2.492230 2.940492
-## 
-## [[4]]
-##  [1] 5.033334 4.493912 3.377618 2.887420 4.553999 2.790638 4.724331 5.938032
-##  [9] 4.782328 4.809190
-## 
-## [[5]]
-##  [1] 3.566891 7.110768 1.669611 5.150061 6.508896 4.173412 3.537395 6.773813
-##  [9] 5.472850 5.920432
-## 
-## [[6]]
-##  [1] 5.692475 6.099684 5.818728 6.125640 7.045099 6.359195 6.078522 5.901653
-##  [9] 5.486840 6.620587
-## 
-## [[7]]
-##  [1] 8.300186 7.377238 7.303532 7.444543 6.810121 6.459232 5.197436 7.171643
-##  [9] 5.948223 7.668153
-## 
-## [[8]]
-##  [1] 9.129422 7.096704 7.209470 5.945316 6.977012 7.734776 7.334505 8.089630
-##  [9] 9.083683 6.311505
-## 
-## [[9]]
-##  [1] 10.789999  8.729235  8.947319  7.514307  8.758411  6.698666  7.415218
-##  [8]  8.819029  8.620932  8.958309
-## 
-## [[10]]
-##  [1] 11.751580 12.782818  9.512278 10.527264  6.844998  9.808908  9.774774
-##  [8]  9.776148  8.531300 10.411145
-## 
-## 
-## map_vc> # Simplify output to a vector instead of a list by computing the mean of the distributions
-## map_vc> 1:10 |>
-## map_vc+   map(rnorm, n = 10) |>  # output a list
-## map_vc+   map_dbl(mean)           # output an atomic vector
-##  [1]  0.6617901  2.1134256  2.9571496  3.9290110  4.8397800  6.2243426
-##  [7]  6.5905257  7.9533669  8.9295762 10.3075540
-## 
-## map_vc> # Using set_names() with character vectors is handy to keep track
-## map_vc> # of the original inputs:
-## map_vc> set_names(c("foo", "bar")) |> map_chr(paste0, ":suffix")
-##          foo          bar 
-## "foo:suffix" "bar:suffix" 
-## 
-## map_vc> # Working with lists
-## map_vc> favorite_desserts <- list(Sophia = "banana bread", Eliott = "pancakes", Karina = "chocolate cake")
-## 
-## map_vc> favorite_desserts |> map_chr(\(food) paste(food, "rocks!"))
-##                  Sophia                  Eliott                  Karina 
-##   "banana bread rocks!"       "pancakes rocks!" "chocolate cake rocks!" 
-## 
-## map_vc> # Extract by name or position
-## map_vc> # .default specifies value for elements that are missing or NULL
-## map_vc> l1 <- list(list(a = 1L), list(a = NULL, b = 2L), list(b = 3L))
-## 
-## map_vc> l1 |> map("a", .default = "???")
-## [[1]]
-## [1] 1
-## 
-## [[2]]
-## [1] "???"
-## 
-## [[3]]
-## [1] "???"
-## 
-## 
-## map_vc> l1 |> map_int("b", .default = NA)
-## [1] NA  2  3
-## 
-## map_vc> l1 |> map_int(2, .default = NA)
-## [1] NA  2 NA
-## 
-## map_vc> # Supply multiple values to index deeply into a list
-## map_vc> l2 <- list(
-## map_vc+   list(num = 1:3,     letters[1:3]),
-## map_vc+   list(num = 101:103, letters[4:6]),
-## map_vc+   list()
-## map_vc+ )
-## 
-## map_vc> l2 |> map(c(2, 2))
-## [[1]]
-## [1] "b"
-## 
-## [[2]]
-## [1] "e"
-## 
-## [[3]]
-## NULL
-## 
-## 
-## map_vc> # Use a list to build an extractor that mixes numeric indices and names,
-## map_vc> # and .default to provide a default value if the element does not exist
-## map_vc> l2 |> map(list("num", 3))
-## [[1]]
-## [1] 3
-## 
-## [[2]]
-## [1] 103
-## 
-## [[3]]
-## NULL
-## 
-## 
-## map_vc> l2 |> map_int(list("num", 3), .default = NA)
-## [1]   3 103  NA
-## 
-## map_vc> # Working with data frames
-## map_vc> # Use map_lgl(), map_dbl(), etc to return a vector instead of a list:
-## map_vc> mtcars |> map_dbl(sum)
-##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
-##  642.900  198.000 7383.100 4694.000  115.090  102.952  571.160   14.000 
-##       am     gear     carb 
-##   13.000  118.000   90.000 
-## 
-## map_vc> # A more realistic example: split a data frame into pieces, fit a
-## map_vc> # model to each piece, summarise and extract R^2
-## map_vc> mtcars |>
-## map_vc+   split(mtcars$cyl) |>
-## map_vc+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## map_vc+   map(summary) |>
-## map_vc+   map_dbl("r.squared")
-##         4         6         8 
-## 0.5086326 0.4645102 0.4229655
-\end{verbatim}
 
 \hypertarget{map2-functions}{%
 \section{map2 functions}\label{map2-functions}}
@@ -4392,603 +3656,1122 @@ Alguns links de interesse
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## map2> x <- list(1, 1, 1)
-## 
-## map2> y <- list(10, 20, 30)
-## 
-## map2> map2(x, y, \(x, y) x + y)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## map2> # Or just
-## map2> map2(x, y, `+`)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## map2> # Split into pieces, fit model to each piece, then predict
-## map2> by_cyl <- mtcars |> split(mtcars$cyl)
-## 
-## map2> mods <- by_cyl |> map(\(df) lm(mpg ~ wt, data = df))
-## 
-## map2> map2(mods, by_cyl, predict)
-## $`4`
-##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
-##       26.47010       21.55719       21.78307       27.14774       30.45125 
-## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
-##       29.20890       25.65128       28.64420       27.48656       31.02725 
-##     Volvo 142E 
-##       23.87247 
-## 
-## $`6`
-##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
-##       21.12497       20.41604       19.47080       18.78968       18.84528 
-##      Merc 280C   Ferrari Dino 
-##       18.84528       20.70795 
-## 
-## $`8`
-##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
-##            16.32604            16.04103            14.94481            15.69024 
-##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
-##            15.58061            12.35773            11.97625            12.14945 
-##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
-##            16.15065            16.33700            15.44907            15.43811 
-##      Ford Pantera L       Maserati Bora 
-##            16.91800            16.04103
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_chr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp2_ch> x <- list(1, 1, 1)
-## 
-## mp2_ch> y <- list(10, 20, 30)
-## 
-## mp2_ch> map2(x, y, \(x, y) x + y)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_ch> # Or just
-## mp2_ch> map2(x, y, `+`)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_ch> # Split into pieces, fit model to each piece, then predict
-## mp2_ch> by_cyl <- mtcars |> split(mtcars$cyl)
-## 
-## mp2_ch> mods <- by_cyl |> map(\(df) lm(mpg ~ wt, data = df))
-## 
-## mp2_ch> map2(mods, by_cyl, predict)
-## $`4`
-##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
-##       26.47010       21.55719       21.78307       27.14774       30.45125 
-## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
-##       29.20890       25.65128       28.64420       27.48656       31.02725 
-##     Volvo 142E 
-##       23.87247 
-## 
-## $`6`
-##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
-##       21.12497       20.41604       19.47080       18.78968       18.84528 
-##      Merc 280C   Ferrari Dino 
-##       18.84528       20.70795 
-## 
-## $`8`
-##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
-##            16.32604            16.04103            14.94481            15.69024 
-##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
-##            15.58061            12.35773            11.97625            12.14945 
-##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
-##            16.15065            16.33700            15.44907            15.43811 
-##      Ford Pantera L       Maserati Bora 
-##            16.91800            16.04103
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_dbl"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp2_db> x <- list(1, 1, 1)
-## 
-## mp2_db> y <- list(10, 20, 30)
-## 
-## mp2_db> map2(x, y, \(x, y) x + y)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_db> # Or just
-## mp2_db> map2(x, y, `+`)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_db> # Split into pieces, fit model to each piece, then predict
-## mp2_db> by_cyl <- mtcars |> split(mtcars$cyl)
-## 
-## mp2_db> mods <- by_cyl |> map(\(df) lm(mpg ~ wt, data = df))
-## 
-## mp2_db> map2(mods, by_cyl, predict)
-## $`4`
-##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
-##       26.47010       21.55719       21.78307       27.14774       30.45125 
-## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
-##       29.20890       25.65128       28.64420       27.48656       31.02725 
-##     Volvo 142E 
-##       23.87247 
-## 
-## $`6`
-##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
-##       21.12497       20.41604       19.47080       18.78968       18.84528 
-##      Merc 280C   Ferrari Dino 
-##       18.84528       20.70795 
-## 
-## $`8`
-##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
-##            16.32604            16.04103            14.94481            15.69024 
-##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
-##            15.58061            12.35773            11.97625            12.14945 
-##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
-##            16.15065            16.33700            15.44907            15.43811 
-##      Ford Pantera L       Maserati Bora 
-##            16.91800            16.04103
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_df"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp2_df> # map ---------------------------------------------
-## mp2_df> # Was:
-## mp2_df> mtcars |>
-## mp2_df+   split(mtcars$cyl) |>
-## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp2_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp2_df> # Now:
-## mp2_df> mtcars |>
-## mp2_df+   split(mtcars$cyl) |>
-## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp2_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |>
-## mp2_df+   list_rbind()
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp2_df> # map2 ---------------------------------------------
-## mp2_df> 
-## mp2_df> ex_fun <- function(arg1, arg2){
-## mp2_df+   col <- arg1 + arg2
-## mp2_df+   x <- as.data.frame(col)
-## mp2_df+ }
-## 
-## mp2_df> arg1 <- 1:4
-## 
-## mp2_df> arg2 <- 10:13
-## 
-## mp2_df> # was
-## mp2_df> map2_dfr(arg1, arg2, ex_fun)
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp2_df> # now
-## mp2_df> map2(arg1, arg2, ex_fun) |> list_rbind()
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp2_df> # was
-## mp2_df> map2_dfc(arg1, arg2, ex_fun)
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-## 
-## mp2_df> # now
-## mp2_df> map2(arg1, arg2, ex_fun) |> list_cbind()
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_dfc"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp2_df> # map ---------------------------------------------
-## mp2_df> # Was:
-## mp2_df> mtcars |>
-## mp2_df+   split(mtcars$cyl) |>
-## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp2_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp2_df> # Now:
-## mp2_df> mtcars |>
-## mp2_df+   split(mtcars$cyl) |>
-## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp2_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |>
-## mp2_df+   list_rbind()
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp2_df> # map2 ---------------------------------------------
-## mp2_df> 
-## mp2_df> ex_fun <- function(arg1, arg2){
-## mp2_df+   col <- arg1 + arg2
-## mp2_df+   x <- as.data.frame(col)
-## mp2_df+ }
-## 
-## mp2_df> arg1 <- 1:4
-## 
-## mp2_df> arg2 <- 10:13
-## 
-## mp2_df> # was
-## mp2_df> map2_dfr(arg1, arg2, ex_fun)
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp2_df> # now
-## mp2_df> map2(arg1, arg2, ex_fun) |> list_rbind()
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp2_df> # was
-## mp2_df> map2_dfc(arg1, arg2, ex_fun)
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-## 
-## mp2_df> # now
-## mp2_df> map2(arg1, arg2, ex_fun) |> list_cbind()
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_dfr"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp2_df> # map ---------------------------------------------
-## mp2_df> # Was:
-## mp2_df> mtcars |>
-## mp2_df+   split(mtcars$cyl) |>
-## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp2_df+   map_dfr(\(mod) as.data.frame(t(as.matrix(coef(mod)))))
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp2_df> # Now:
-## mp2_df> mtcars |>
-## mp2_df+   split(mtcars$cyl) |>
-## mp2_df+   map(\(df) lm(mpg ~ wt, data = df)) |>
-## mp2_df+   map(\(mod) as.data.frame(t(as.matrix(coef(mod))))) |>
-## mp2_df+   list_rbind()
-##   (Intercept)        wt
-## 1    39.57120 -5.647025
-## 2    28.40884 -2.780106
-## 3    23.86803 -2.192438
-## 
-## mp2_df> # map2 ---------------------------------------------
-## mp2_df> 
-## mp2_df> ex_fun <- function(arg1, arg2){
-## mp2_df+   col <- arg1 + arg2
-## mp2_df+   x <- as.data.frame(col)
-## mp2_df+ }
-## 
-## mp2_df> arg1 <- 1:4
-## 
-## mp2_df> arg2 <- 10:13
-## 
-## mp2_df> # was
-## mp2_df> map2_dfr(arg1, arg2, ex_fun)
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp2_df> # now
-## mp2_df> map2(arg1, arg2, ex_fun) |> list_rbind()
-##   col
-## 1  11
-## 2  13
-## 3  15
-## 4  17
-## 
-## mp2_df> # was
-## mp2_df> map2_dfc(arg1, arg2, ex_fun)
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-## 
-## mp2_df> # now
-## mp2_df> map2(arg1, arg2, ex_fun) |> list_cbind()
-##   col...1 col...2 col...3 col...4
-## 1      11      13      15      17
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_int"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp2_nt> x <- list(1, 1, 1)
-## 
-## mp2_nt> y <- list(10, 20, 30)
-## 
-## mp2_nt> map2(x, y, \(x, y) x + y)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_nt> # Or just
-## mp2_nt> map2(x, y, `+`)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_nt> # Split into pieces, fit model to each piece, then predict
-## mp2_nt> by_cyl <- mtcars |> split(mtcars$cyl)
-## 
-## mp2_nt> mods <- by_cyl |> map(\(df) lm(mpg ~ wt, data = df))
-## 
-## mp2_nt> map2(mods, by_cyl, predict)
-## $`4`
-##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
-##       26.47010       21.55719       21.78307       27.14774       30.45125 
-## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
-##       29.20890       25.65128       28.64420       27.48656       31.02725 
-##     Volvo 142E 
-##       23.87247 
-## 
-## $`6`
-##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
-##       21.12497       20.41604       19.47080       18.78968       18.84528 
-##      Merc 280C   Ferrari Dino 
-##       18.84528       20.70795 
-## 
-## $`8`
-##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
-##            16.32604            16.04103            14.94481            15.69024 
-##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
-##            15.58061            12.35773            11.97625            12.14945 
-##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
-##            16.15065            16.33700            15.44907            15.43811 
-##      Ford Pantera L       Maserati Bora 
-##            16.91800            16.04103
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_lgl"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## 
-## mp2_lg> x <- list(1, 1, 1)
-## 
-## mp2_lg> y <- list(10, 20, 30)
-## 
-## mp2_lg> map2(x, y, \(x, y) x + y)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_lg> # Or just
-## mp2_lg> map2(x, y, `+`)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_lg> # Split into pieces, fit model to each piece, then predict
-## mp2_lg> by_cyl <- mtcars |> split(mtcars$cyl)
-## 
-## mp2_lg> mods <- by_cyl |> map(\(df) lm(mpg ~ wt, data = df))
-## 
-## mp2_lg> map2(mods, by_cyl, predict)
-## $`4`
-##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
-##       26.47010       21.55719       21.78307       27.14774       30.45125 
-## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
-##       29.20890       25.65128       28.64420       27.48656       31.02725 
-##     Volvo 142E 
-##       23.87247 
-## 
-## $`6`
-##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
-##       21.12497       20.41604       19.47080       18.78968       18.84528 
-##      Merc 280C   Ferrari Dino 
-##       18.84528       20.70795 
-## 
-## $`8`
-##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
-##            16.32604            16.04103            14.94481            15.69024 
-##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
-##            15.58061            12.35773            11.97625            12.14945 
-##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
-##            16.15065            16.33700            15.44907            15.43811 
-##      Ford Pantera L       Maserati Bora 
-##            16.91800            16.04103
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_raw"}\NormalTok{)}
 \FunctionTok{example}\NormalTok{(}\StringTok{"map2\_vec"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
+\hypertarget{tidyr}{%
+\chapter{tidyr}\label{tidyr}}
+
+More details in \url{https://tidyr.tidyverse.org/articles/nest.html}
+
+\hypertarget{nest}{%
+\section{nest()}\label{nest}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}
+
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(cyl) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+## # Groups:   cyl [3]
+##     cyl data              
+##   <dbl> <list>            
+## 1     6 <tibble [7 x 10]> 
+## 2     4 <tibble [11 x 10]>
+## 3     8 <tibble [14 x 10]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{um}\OtherTok{\textless{}{-}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(cyl) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{linMod =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}}\FunctionTok{lm}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ wt, }\AttributeTok{data =}\NormalTok{ .)),}
+    \AttributeTok{coeffs =} \FunctionTok{map}\NormalTok{(linMod, coefficients),}
+    \AttributeTok{slope =} \FunctionTok{map\_dbl}\NormalTok{(coeffs, }\DecValTok{2}\NormalTok{))}
+\NormalTok{um}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 5
+## # Groups:   cyl [3]
+##     cyl data               linMod coeffs    slope
+##   <dbl> <list>             <list> <list>    <dbl>
+## 1     6 <tibble [7 x 10]>  <lm>   <dbl [2]> -2.78
+## 2     4 <tibble [11 x 10]> <lm>   <dbl [2]> -5.65
+## 3     8 <tibble [14 x 10]> <lm>   <dbl [2]> -2.19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{um}\SpecialCharTok{$}\NormalTok{linMod}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##       28.41        -2.78  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      39.571       -5.647  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      23.868       -2.192
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{um}\SpecialCharTok{$}\NormalTok{coeffs}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## (Intercept)          wt 
+##   28.408845   -2.780106 
+## 
+## [[2]]
+## (Intercept)          wt 
+##   39.571196   -5.647025 
+## 
+## [[3]]
+## (Intercept)          wt 
+##   23.868029   -2.192438
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{um}\SpecialCharTok{$}\NormalTok{slope}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.780106 -5.647025 -2.192438
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{um}\SpecialCharTok{$}\NormalTok{linMod[[}\DecValTok{1}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
 \begin{verbatim}
 ## 
-## mp2_vc> x <- list(1, 1, 1)
+## Call:
+## lm(formula = mpg ~ wt, data = .)
 ## 
-## mp2_vc> y <- list(10, 20, 30)
-## 
-## mp2_vc> map2(x, y, \(x, y) x + y)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_vc> # Or just
-## mp2_vc> map2(x, y, `+`)
-## [[1]]
-## [1] 11
-## 
-## [[2]]
-## [1] 21
-## 
-## [[3]]
-## [1] 31
-## 
-## 
-## mp2_vc> # Split into pieces, fit model to each piece, then predict
-## mp2_vc> by_cyl <- mtcars |> split(mtcars$cyl)
-## 
-## mp2_vc> mods <- by_cyl |> map(\(df) lm(mpg ~ wt, data = df))
-## 
-## mp2_vc> map2(mods, by_cyl, predict)
-## $`4`
-##     Datsun 710      Merc 240D       Merc 230       Fiat 128    Honda Civic 
-##       26.47010       21.55719       21.78307       27.14774       30.45125 
-## Toyota Corolla  Toyota Corona      Fiat X1-9  Porsche 914-2   Lotus Europa 
-##       29.20890       25.65128       28.64420       27.48656       31.02725 
-##     Volvo 142E 
-##       23.87247 
-## 
-## $`6`
-##      Mazda RX4  Mazda RX4 Wag Hornet 4 Drive        Valiant       Merc 280 
-##       21.12497       20.41604       19.47080       18.78968       18.84528 
-##      Merc 280C   Ferrari Dino 
-##       18.84528       20.70795 
-## 
-## $`8`
-##   Hornet Sportabout          Duster 360          Merc 450SE          Merc 450SL 
-##            16.32604            16.04103            14.94481            15.69024 
-##         Merc 450SLC  Cadillac Fleetwood Lincoln Continental   Chrysler Imperial 
-##            15.58061            12.35773            11.97625            12.14945 
-##    Dodge Challenger         AMC Javelin          Camaro Z28    Pontiac Firebird 
-##            16.15065            16.33700            15.44907            15.43811 
-##      Ford Pantera L       Maserati Bora 
-##            16.91800            16.04103
+## Coefficients:
+## (Intercept)           wt  
+##       28.41        -2.78
 \end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dois}\OtherTok{\textless{}{-}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{group\_by}\NormalTok{(cyl) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \FunctionTok{map}\NormalTok{(data, }\ControlFlowTok{function}\NormalTok{(df) }\FunctionTok{lm}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ wt, }\AttributeTok{data =}\NormalTok{ df)))}
+\NormalTok{dois}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+## # Groups:   cyl [3]
+##     cyl data               model 
+##   <dbl> <list>             <list>
+## 1     6 <tibble [7 x 10]>  <lm>  
+## 2     4 <tibble [11 x 10]> <lm>  
+## 3     8 <tibble [14 x 10]> <lm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dois}\SpecialCharTok{$}\NormalTok{cyl}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6 4 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dois}\SpecialCharTok{$}\NormalTok{data}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## # A tibble: 7 x 10
+##     mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+## 1  21    160    110  3.9   2.62  16.5     0     1     4     4
+## 2  21    160    110  3.9   2.88  17.0     0     1     4     4
+## 3  21.4  258    110  3.08  3.22  19.4     1     0     3     1
+## 4  18.1  225    105  2.76  3.46  20.2     1     0     3     1
+## 5  19.2  168.   123  3.92  3.44  18.3     1     0     4     4
+## 6  17.8  168.   123  3.92  3.44  18.9     1     0     4     4
+## 7  19.7  145    175  3.62  2.77  15.5     0     1     5     6
+## 
+## [[2]]
+## # A tibble: 11 x 10
+##      mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1  22.8 108      93  3.85  2.32  18.6     1     1     4     1
+##  2  24.4 147.     62  3.69  3.19  20       1     0     4     2
+##  3  22.8 141.     95  3.92  3.15  22.9     1     0     4     2
+##  4  32.4  78.7    66  4.08  2.2   19.5     1     1     4     1
+##  5  30.4  75.7    52  4.93  1.62  18.5     1     1     4     2
+##  6  33.9  71.1    65  4.22  1.84  19.9     1     1     4     1
+##  7  21.5 120.     97  3.7   2.46  20.0     1     0     3     1
+##  8  27.3  79      66  4.08  1.94  18.9     1     1     4     1
+##  9  26   120.     91  4.43  2.14  16.7     0     1     5     2
+## 10  30.4  95.1   113  3.77  1.51  16.9     1     1     5     2
+## 11  21.4 121     109  4.11  2.78  18.6     1     1     4     2
+## 
+## [[3]]
+## # A tibble: 14 x 10
+##      mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1  18.7  360    175  3.15  3.44  17.0     0     0     3     2
+##  2  14.3  360    245  3.21  3.57  15.8     0     0     3     4
+##  3  16.4  276.   180  3.07  4.07  17.4     0     0     3     3
+##  4  17.3  276.   180  3.07  3.73  17.6     0     0     3     3
+##  5  15.2  276.   180  3.07  3.78  18       0     0     3     3
+##  6  10.4  472    205  2.93  5.25  18.0     0     0     3     4
+##  7  10.4  460    215  3     5.42  17.8     0     0     3     4
+##  8  14.7  440    230  3.23  5.34  17.4     0     0     3     4
+##  9  15.5  318    150  2.76  3.52  16.9     0     0     3     2
+## 10  15.2  304    150  3.15  3.44  17.3     0     0     3     2
+## 11  13.3  350    245  3.73  3.84  15.4     0     0     3     4
+## 12  19.2  400    175  3.08  3.84  17.0     0     0     3     2
+## 13  15.8  351    264  4.22  3.17  14.5     0     1     5     4
+## 14  15    301    335  3.54  3.57  14.6     0     1     5     8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dois}\SpecialCharTok{$}\NormalTok{model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##       28.41        -2.78  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      39.571       -5.647  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      23.868       -2.192
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dois}\SpecialCharTok{$}\NormalTok{model[[}\DecValTok{3}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      23.868       -2.192
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tres}\OtherTok{\textless{}{-}}\NormalTok{ dois }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{model =} \FunctionTok{map}\NormalTok{(model, predict))}
+
+\NormalTok{tres}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+## # Groups:   cyl [3]
+##     cyl data               model     
+##   <dbl> <list>             <list>    
+## 1     6 <tibble [7 x 10]>  <dbl [7]> 
+## 2     4 <tibble [11 x 10]> <dbl [11]>
+## 3     8 <tibble [14 x 10]> <dbl [14]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tres}\SpecialCharTok{$}\NormalTok{model}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##        1        2        3        4        5        6        7 
+## 21.12497 20.41604 19.47080 18.78968 18.84528 18.84528 20.70795 
+## 
+## [[2]]
+##        1        2        3        4        5        6        7        8 
+## 26.47010 21.55719 21.78307 27.14774 30.45125 29.20890 25.65128 28.64420 
+##        9       10       11 
+## 27.48656 31.02725 23.87247 
+## 
+## [[3]]
+##        1        2        3        4        5        6        7        8 
+## 16.32604 16.04103 14.94481 15.69024 15.58061 12.35773 11.97625 12.14945 
+##        9       10       11       12       13       14 
+## 16.15065 16.33700 15.44907 15.43811 16.91800 16.04103
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tres}\SpecialCharTok{$}\NormalTok{model[[}\DecValTok{3}\NormalTok{]]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1        2        3        4        5        6        7        8 
+## 16.32604 16.04103 14.94481 15.69024 15.58061 12.35773 11.97625 12.14945 
+##        9       10       11       12       13       14 
+## 16.15065 16.33700 15.44907 15.43811 16.91800 16.04103
+\end{verbatim}
+
+\hypertarget{unnest}{%
+\section{unnest()}\label{unnest}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{um }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{unnest}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 32 x 14
+## # Groups:   cyl [3]
+##      cyl   mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb linMod
+##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <list>
+##  1     6  21    160    110  3.9   2.62  16.5     0     1     4     4 <lm>  
+##  2     6  21    160    110  3.9   2.88  17.0     0     1     4     4 <lm>  
+##  3     6  21.4  258    110  3.08  3.22  19.4     1     0     3     1 <lm>  
+##  4     6  18.1  225    105  2.76  3.46  20.2     1     0     3     1 <lm>  
+##  5     6  19.2  168.   123  3.92  3.44  18.3     1     0     4     4 <lm>  
+##  6     6  17.8  168.   123  3.92  3.44  18.9     1     0     4     4 <lm>  
+##  7     6  19.7  145    175  3.62  2.77  15.5     0     1     5     6 <lm>  
+##  8     4  22.8  108     93  3.85  2.32  18.6     1     1     4     1 <lm>  
+##  9     4  24.4  147.    62  3.69  3.19  20       1     0     4     2 <lm>  
+## 10     4  22.8  141.    95  3.92  3.15  22.9     1     0     4     2 <lm>  
+## # ... with 22 more rows, and 2 more variables: coeffs <list>, slope <dbl>
+\end{verbatim}
+
+\hypertarget{exemplos-da-ajuda-do-r}{%
+\section{Exemplos da ajuda do R}\label{exemplos-da-ajuda-do-r}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}\AttributeTok{x =} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{), }
+             \AttributeTok{y =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{, }
+             \AttributeTok{z =} \DecValTok{6}\SpecialCharTok{:}\DecValTok{1}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##       x     y     z
+##   <dbl> <int> <int>
+## 1     1     1     6
+## 2     1     2     5
+## 3     1     3     4
+## 4     2     4     3
+## 5     2     5     2
+## 6     3     6     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Note that we get one row of output for each unique combination of}
+\CommentTok{\# non{-}nested variables}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \FunctionTok{c}\NormalTok{(y, z))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##       x data            
+##   <dbl> <list>          
+## 1     1 <tibble [3 x 2]>
+## 2     2 <tibble [2 x 2]>
+## 3     3 <tibble [1 x 2]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# chop does something similar, but retains individual columns}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{chop}\NormalTok{(}\FunctionTok{c}\NormalTok{(y, z))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##       x           y           z
+##   <dbl> <list<int>> <list<int>>
+## 1     1         [3]         [3]
+## 2     2         [2]         [2]
+## 3     3         [1]         [1]
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# use tidyselect syntax and helpers, just like in dplyr::select()}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \FunctionTok{any\_of}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\StringTok{"z"}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##       x data            
+##   <dbl> <list>          
+## 1     1 <tibble [3 x 2]>
+## 2     2 <tibble [2 x 2]>
+## 3     3 <tibble [1 x 2]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \SpecialCharTok{!}\NormalTok{Species)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   Species    data             
+##   <fct>      <list>           
+## 1 setosa     <tibble [50 x 4]>
+## 2 versicolor <tibble [50 x 4]>
+## 3 virginica  <tibble [50 x 4]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nest\_vars }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(iris)[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}
+\NormalTok{iris }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \FunctionTok{any\_of}\NormalTok{(nest\_vars))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 2
+##   Species    data             
+##   <fct>      <list>           
+## 1 setosa     <tibble [50 x 4]>
+## 2 versicolor <tibble [50 x 4]>
+## 3 virginica  <tibble [50 x 4]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{petal =} \FunctionTok{starts\_with}\NormalTok{(}\StringTok{"Petal"}\NormalTok{), }\AttributeTok{sepal =} \FunctionTok{starts\_with}\NormalTok{(}\StringTok{"Sepal"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   Species    petal             sepal            
+##   <fct>      <list>            <list>           
+## 1 setosa     <tibble [50 x 2]> <tibble [50 x 2]>
+## 2 versicolor <tibble [50 x 2]> <tibble [50 x 2]>
+## 3 virginica  <tibble [50 x 2]> <tibble [50 x 2]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{iris }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{width =} \FunctionTok{contains}\NormalTok{(}\StringTok{"Width"}\NormalTok{), }\AttributeTok{length =} \FunctionTok{contains}\NormalTok{(}\StringTok{"Length"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   Species    width             length           
+##   <fct>      <list>            <list>           
+## 1 setosa     <tibble [50 x 2]> <tibble [50 x 2]>
+## 2 versicolor <tibble [50 x 2]> <tibble [50 x 2]>
+## 3 virginica  <tibble [50 x 2]> <tibble [50 x 2]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Nesting a grouped data frame nests all variables apart from the group vars}
+\NormalTok{fish\_encounters }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(fish) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 19 x 2
+## # Groups:   fish [19]
+##    fish  data             
+##    <fct> <list>           
+##  1 4842  <tibble [11 x 2]>
+##  2 4843  <tibble [11 x 2]>
+##  3 4844  <tibble [11 x 2]>
+##  4 4845  <tibble [5 x 2]> 
+##  5 4847  <tibble [3 x 2]> 
+##  6 4848  <tibble [4 x 2]> 
+##  7 4849  <tibble [2 x 2]> 
+##  8 4850  <tibble [6 x 2]> 
+##  9 4851  <tibble [2 x 2]> 
+## 10 4854  <tibble [2 x 2]> 
+## 11 4855  <tibble [5 x 2]> 
+## 12 4857  <tibble [9 x 2]> 
+## 13 4858  <tibble [11 x 2]>
+## 14 4859  <tibble [5 x 2]> 
+## 15 4861  <tibble [11 x 2]>
+## 16 4862  <tibble [9 x 2]> 
+## 17 4863  <tibble [2 x 2]> 
+## 18 4864  <tibble [2 x 2]> 
+## 19 4865  <tibble [3 x 2]>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Nesting is often useful for creating per group models}
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(cyl) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{models =} \FunctionTok{lapply}\NormalTok{(data, }\ControlFlowTok{function}\NormalTok{(df) }\FunctionTok{lm}\NormalTok{(mpg }\SpecialCharTok{\textasciitilde{}}\NormalTok{ wt, }\AttributeTok{data =}\NormalTok{ df)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+## # Groups:   cyl [3]
+##     cyl data               models
+##   <dbl> <list>             <list>
+## 1     6 <tibble [7 x 10]>  <lm>  
+## 2     4 <tibble [11 x 10]> <lm>  
+## 3     8 <tibble [14 x 10]> <lm>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# unnest() is primarily designed to work with lists of data frames}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{x =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}
+  \AttributeTok{y =} \FunctionTok{list}\NormalTok{(}
+    \ConstantTok{NULL}\NormalTok{,}
+    \FunctionTok{tibble}\NormalTok{(}\AttributeTok{a =} \DecValTok{1}\NormalTok{, }\AttributeTok{b =} \DecValTok{2}\NormalTok{),}
+    \FunctionTok{tibble}\NormalTok{(}\AttributeTok{a =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{, }\AttributeTok{b =} \DecValTok{3}\SpecialCharTok{:}\DecValTok{1}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{unnest}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##       x     a     b
+##   <int> <dbl> <dbl>
+## 1     2     1     2
+## 2     3     1     3
+## 3     3     2     2
+## 4     3     3     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{unnest}\NormalTok{(y, }\AttributeTok{keep\_empty =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##       x     a     b
+##   <int> <dbl> <dbl>
+## 1     1    NA    NA
+## 2     2     1     2
+## 3     3     1     3
+## 4     3     2     2
+## 5     3     3     1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# If you have lists of lists, or lists of atomic vectors, instead}
+\CommentTok{\# see hoist(), unnest\_wider(), and unnest\_longer()}
+
+\CommentTok{\#\textquotesingle{} \# You can unnest multiple columns simultaneously}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+ \AttributeTok{a =} \FunctionTok{list}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"a"}\NormalTok{, }\StringTok{"b"}\NormalTok{), }\StringTok{"c"}\NormalTok{),}
+ \AttributeTok{b =} \FunctionTok{list}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+ \AttributeTok{c =} \FunctionTok{c}\NormalTok{(}\DecValTok{11}\NormalTok{, }\DecValTok{22}\NormalTok{)}
+\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 3
+##   a         b             c
+##   <list>    <list>    <dbl>
+## 1 <chr [2]> <int [2]>    11
+## 2 <chr [1]> <dbl [1]>    22
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{unnest}\NormalTok{(}\FunctionTok{c}\NormalTok{(a, b))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   a         b     c
+##   <chr> <dbl> <dbl>
+## 1 a         1    11
+## 2 b         2    11
+## 3 c         3    22
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compare with unnesting one column at a time, which generates}
+\CommentTok{\# the Cartesian product}
+\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{unnest}\NormalTok{(a) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{unnest}\NormalTok{(b)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   a         b     c
+##   <chr> <dbl> <dbl>
+## 1 a         1    11
+## 2 a         2    11
+## 3 b         1    11
+## 4 b         2    11
+## 5 c         3    22
+\end{verbatim}
+
+\hypertarget{mais-detalhes}{%
+\section{Mais detalhes}\label{mais-detalhes}}
+
+\url{https://github.com/tidymodels/broom/blob/main/vignettes/broom_and_dplyr.Rmd}
+
+\hypertarget{broom-and-dplyr}{%
+\chapter{broom and dplyr}\label{broom-and-dplyr}}
+
+While broom is useful for summarizing the result of a single analysis in a consistent format, it is really designed for high-throughput applications, where you must combine results from multiple analyses. These could be subgroups of data, analyses using different models, bootstrap replicates, permutations, and so on. In particular, it plays well with the \texttt{nest/unnest} functions in \texttt{tidyr} and the \texttt{map} function in \texttt{purrr}. First, loading necessary packages and setting some defaults:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(broom)}
+\FunctionTok{library}\NormalTok{(tibble)}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(tidyr)}
+\FunctionTok{library}\NormalTok{(purrr)}
+
+\FunctionTok{theme\_set}\NormalTok{(}\FunctionTok{theme\_minimal}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+Let's try this on a simple dataset, the built-in \texttt{Orange}. We start by coercing \texttt{Orange} to a \texttt{tibble}. This gives a nicer print method that will especially useful later on when we start working with list-columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(Orange)}
+
+\NormalTok{Orange }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(Orange)}
+\NormalTok{Orange}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 35 x 3
+##    Tree    age circumference
+##    <ord> <dbl>         <dbl>
+##  1 1       118            30
+##  2 1       484            58
+##  3 1       664            87
+##  4 1      1004           115
+##  5 1      1231           120
+##  6 1      1372           142
+##  7 1      1582           145
+##  8 2       118            33
+##  9 2       484            69
+## 10 2       664           111
+## # ... with 25 more rows
+\end{verbatim}
+
+This contains 35 observations of three variables: \texttt{Tree}, \texttt{age}, and \texttt{circumference}. \texttt{Tree} is a factor with five levels describing five trees. As might be expected, age and circumference are correlated:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(Orange}\SpecialCharTok{$}\NormalTok{age, Orange}\SpecialCharTok{$}\NormalTok{circumference)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9135189
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(Orange, }\FunctionTok{aes}\NormalTok{(age, circumference, }\AttributeTok{color =}\NormalTok{ Tree)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{05_broom_and_dplyr_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+Suppose you want to test for correlations individually \emph{within} each tree. You can do this with dplyr's \texttt{group\_by}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Orange }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{group\_by}\NormalTok{(Tree) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{summarize}\NormalTok{(}\AttributeTok{correlation =} \FunctionTok{cor}\NormalTok{(age, circumference))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   Tree  correlation
+##   <ord>       <dbl>
+## 1 3           0.988
+## 2 1           0.985
+## 3 5           0.988
+## 4 2           0.987
+## 5 4           0.984
+\end{verbatim}
+
+(Note that the correlations are much higher than the aggregated one, and furthermore we can now see it is similar across trees).
+
+Suppose that instead of simply estimating a correlation, we want to perform a hypothesis test with \texttt{cor.test}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ct }\OtherTok{\textless{}{-}} \FunctionTok{cor.test}\NormalTok{(Orange}\SpecialCharTok{$}\NormalTok{age, Orange}\SpecialCharTok{$}\NormalTok{circumference)}
+\NormalTok{ct}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  Orange$age and Orange$circumference
+## t = 12.9, df = 33, p-value = 1.931e-14
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.8342364 0.9557955
+## sample estimates:
+##       cor 
+## 0.9135189
+\end{verbatim}
+
+This contains multiple values we could want in our output. Some are vectors of length 1, such as the p-value and the estimate, and some are longer, such as the confidence interval. We can get this into a nicely organized tibble using the \texttt{tidy} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tidy}\NormalTok{(ct)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1 x 8
+##   estimate statistic  p.value parameter conf.low conf.high method        alter~1
+##      <dbl>     <dbl>    <dbl>     <int>    <dbl>     <dbl> <chr>         <chr>  
+## 1    0.914      12.9 1.93e-14        33    0.834     0.956 Pearson's pr~ two.si~
+## # ... with abbreviated variable name 1: alternative
+\end{verbatim}
+
+Often, we want to perform multiple tests or fit multiple models, each on a different part of the data. In this case, we recommend a \texttt{nest-map-unnest} workflow. For example, suppose we want to perform correlation tests for each different tree. We start by \texttt{nest}ing our data based on the group of interest:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nested }\OtherTok{\textless{}{-}}\NormalTok{ Orange }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \SpecialCharTok{{-}}\NormalTok{Tree)}
+\end{Highlighting}
+\end{Shaded}
+
+Then we run a correlation test for each nested tibble using \texttt{purrr::map}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nested }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{test =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{cor.test}\NormalTok{(.x}\SpecialCharTok{$}\NormalTok{age, .x}\SpecialCharTok{$}\NormalTok{circumference)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 3
+##   Tree  data             test   
+##   <ord> <list>           <list> 
+## 1 1     <tibble [7 x 2]> <htest>
+## 2 2     <tibble [7 x 2]> <htest>
+## 3 3     <tibble [7 x 2]> <htest>
+## 4 4     <tibble [7 x 2]> <htest>
+## 5 5     <tibble [7 x 2]> <htest>
+\end{verbatim}
+
+This results in a list-column of S3 objects. We want to tidy each of the objects, which we can also do with \texttt{map}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nested }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{test =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{cor.test}\NormalTok{(.x}\SpecialCharTok{$}\NormalTok{age, .x}\SpecialCharTok{$}\NormalTok{circumference)), }\CommentTok{\# S3 list{-}col}
+    \AttributeTok{tidied =} \FunctionTok{map}\NormalTok{(test, tidy)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 4
+##   Tree  data             test    tidied          
+##   <ord> <list>           <list>  <list>          
+## 1 1     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 2 2     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 3 3     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 4 4     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+## 5 5     <tibble [7 x 2]> <htest> <tibble [1 x 8]>
+\end{verbatim}
+
+Finally, we want to unnest the tidied data frames so we can see the results in a flat tibble. All together, this looks like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Orange }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \SpecialCharTok{{-}}\NormalTok{Tree) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{test =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{cor.test}\NormalTok{(.x}\SpecialCharTok{$}\NormalTok{age, .x}\SpecialCharTok{$}\NormalTok{circumference)), }\CommentTok{\# S3 list{-}col}
+    \AttributeTok{tidied =} \FunctionTok{map}\NormalTok{(test, tidy)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(tidied)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 5 x 11
+##   Tree  data     test    estimate stati~1 p.value param~2 conf.~3 conf.~4 method
+##   <ord> <list>   <list>     <dbl>   <dbl>   <dbl>   <int>   <dbl>   <dbl> <chr> 
+## 1 1     <tibble> <htest>    0.985    13.0 4.85e-5       5   0.901   0.998 Pears~
+## 2 2     <tibble> <htest>    0.987    13.9 3.43e-5       5   0.914   0.998 Pears~
+## 3 3     <tibble> <htest>    0.988    14.4 2.90e-5       5   0.919   0.998 Pears~
+## 4 4     <tibble> <htest>    0.984    12.5 5.73e-5       5   0.895   0.998 Pears~
+## 5 5     <tibble> <htest>    0.988    14.1 3.18e-5       5   0.916   0.998 Pears~
+## # ... with 1 more variable: alternative <chr>, and abbreviated variable names
+## #   1: statistic, 2: parameter, 3: conf.low, 4: conf.high
+\end{verbatim}
+
+This workflow becomes even more useful when applied to regressions. Untidy output for a regression looks like:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lm\_fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(age }\SpecialCharTok{\textasciitilde{}}\NormalTok{ circumference, }\AttributeTok{data =}\NormalTok{ Orange)}
+\FunctionTok{summary}\NormalTok{(lm\_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = age ~ circumference, data = Orange)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -317.88 -140.90  -17.20   96.54  471.16 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)    16.6036    78.1406   0.212    0.833    
+## circumference   7.8160     0.6059  12.900 1.93e-14 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 203.1 on 33 degrees of freedom
+## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
+## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14
+\end{verbatim}
+
+where we tidy these results, we get multiple rows of output for each model:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tidy}\NormalTok{(lm\_fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 5
+##   term          estimate std.error statistic  p.value
+##   <chr>            <dbl>     <dbl>     <dbl>    <dbl>
+## 1 (Intercept)      16.6     78.1       0.212 8.33e- 1
+## 2 circumference     7.82     0.606    12.9   1.93e-14
+\end{verbatim}
+
+Now we can handle multiple regressions at once using exactly the same workflow as before:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Orange }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \SpecialCharTok{{-}}\NormalTok{Tree) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{fit =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(age }\SpecialCharTok{\textasciitilde{}}\NormalTok{ circumference, }\AttributeTok{data =}\NormalTok{ .x)),}
+    \AttributeTok{tidied =} \FunctionTok{map}\NormalTok{(fit, tidy)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(tidied)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 8
+##    Tree  data             fit    term          estimate std.er~1 stati~2 p.value
+##    <ord> <list>           <list> <chr>            <dbl>    <dbl>   <dbl>   <dbl>
+##  1 1     <tibble [7 x 2]> <lm>   (Intercept)    -265.     98.6    -2.68  4.36e-2
+##  2 1     <tibble [7 x 2]> <lm>   circumference    11.9     0.919  13.0   4.85e-5
+##  3 2     <tibble [7 x 2]> <lm>   (Intercept)    -132.     83.1    -1.59  1.72e-1
+##  4 2     <tibble [7 x 2]> <lm>   circumference     7.80    0.560  13.9   3.43e-5
+##  5 3     <tibble [7 x 2]> <lm>   (Intercept)    -210.     85.3    -2.46  5.74e-2
+##  6 3     <tibble [7 x 2]> <lm>   circumference    12.0     0.835  14.4   2.90e-5
+##  7 4     <tibble [7 x 2]> <lm>   (Intercept)     -76.5    88.3    -0.867 4.26e-1
+##  8 4     <tibble [7 x 2]> <lm>   circumference     7.17    0.572  12.5   5.73e-5
+##  9 5     <tibble [7 x 2]> <lm>   (Intercept)     -54.5    76.9    -0.709 5.10e-1
+## 10 5     <tibble [7 x 2]> <lm>   circumference     8.79    0.621  14.1   3.18e-5
+## # ... with abbreviated variable names 1: std.error, 2: statistic
+\end{verbatim}
+
+You can just as easily use multiple predictors in the regressions, as shown here on the \texttt{mtcars} dataset. We nest the data into automatic and manual cars (the \texttt{am} column), then perform the regression within each nested tibble.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{data}\NormalTok{(mtcars)}
+\NormalTok{mtcars }\OtherTok{\textless{}{-}} \FunctionTok{as\_tibble}\NormalTok{(mtcars) }\CommentTok{\# to play nicely with list{-}cols}
+\NormalTok{mtcars}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 32 x 11
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ... with 22 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \SpecialCharTok{{-}}\NormalTok{am) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{fit =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(wt }\SpecialCharTok{\textasciitilde{}}\NormalTok{ mpg }\SpecialCharTok{+}\NormalTok{ qsec }\SpecialCharTok{+}\NormalTok{ gear, }\AttributeTok{data =}\NormalTok{ .x)), }\CommentTok{\# S3 list{-}col}
+    \AttributeTok{tidied =} \FunctionTok{map}\NormalTok{(fit, tidy)}
+\NormalTok{  ) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(tidied)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 8
+##      am data               fit    term        estimate std.error stati~1 p.value
+##   <dbl> <list>             <list> <chr>          <dbl>     <dbl>   <dbl>   <dbl>
+## 1     1 <tibble [13 x 10]> <lm>   (Intercept)   4.28      3.46    1.24   2.47e-1
+## 2     1 <tibble [13 x 10]> <lm>   mpg          -0.101     0.0294 -3.43   7.50e-3
+## 3     1 <tibble [13 x 10]> <lm>   qsec          0.0398    0.151   0.264  7.98e-1
+## 4     1 <tibble [13 x 10]> <lm>   gear         -0.0229    0.349  -0.0656 9.49e-1
+## 5     0 <tibble [19 x 10]> <lm>   (Intercept)   4.92      1.40    3.52   3.09e-3
+## 6     0 <tibble [19 x 10]> <lm>   mpg          -0.192     0.0443 -4.33   5.91e-4
+## 7     0 <tibble [19 x 10]> <lm>   qsec          0.0919    0.0983  0.935  3.65e-1
+## 8     0 <tibble [19 x 10]> <lm>   gear          0.147     0.368   0.398  6.96e-1
+## # ... with abbreviated variable name 1: statistic
+\end{verbatim}
+
+What if you want not just the \texttt{tidy} output, but the \texttt{augment} and \texttt{glance} outputs as well, while still performing each regression only once? Since we're using list-columns, we can just fit the model once and use multiple list-columns to store the tidied, glanced and augmented outputs.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regressions }\OtherTok{\textless{}{-}}\NormalTok{ mtcars }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{nest}\NormalTok{(}\AttributeTok{data =} \SpecialCharTok{{-}}\NormalTok{am) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{fit =} \FunctionTok{map}\NormalTok{(data, }\SpecialCharTok{\textasciitilde{}} \FunctionTok{lm}\NormalTok{(wt }\SpecialCharTok{\textasciitilde{}}\NormalTok{ mpg }\SpecialCharTok{+}\NormalTok{ qsec }\SpecialCharTok{+}\NormalTok{ gear, }\AttributeTok{data =}\NormalTok{ .x)),}
+    \AttributeTok{tidied =} \FunctionTok{map}\NormalTok{(fit, tidy),}
+    \AttributeTok{glanced =} \FunctionTok{map}\NormalTok{(fit, glance),}
+    \AttributeTok{augmented =} \FunctionTok{map}\NormalTok{(fit, augment)}
+\NormalTok{  )}
+
+\NormalTok{regressions }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(tidied)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8 x 10
+##      am data     fit    term   estim~1 std.e~2 stati~3 p.value glanced  augmen~4
+##   <dbl> <list>   <list> <chr>    <dbl>   <dbl>   <dbl>   <dbl> <list>   <list>  
+## 1     1 <tibble> <lm>   (Inte~  4.28    3.46    1.24   2.47e-1 <tibble> <tibble>
+## 2     1 <tibble> <lm>   mpg    -0.101   0.0294 -3.43   7.50e-3 <tibble> <tibble>
+## 3     1 <tibble> <lm>   qsec    0.0398  0.151   0.264  7.98e-1 <tibble> <tibble>
+## 4     1 <tibble> <lm>   gear   -0.0229  0.349  -0.0656 9.49e-1 <tibble> <tibble>
+## 5     0 <tibble> <lm>   (Inte~  4.92    1.40    3.52   3.09e-3 <tibble> <tibble>
+## 6     0 <tibble> <lm>   mpg    -0.192   0.0443 -4.33   5.91e-4 <tibble> <tibble>
+## 7     0 <tibble> <lm>   qsec    0.0919  0.0983  0.935  3.65e-1 <tibble> <tibble>
+## 8     0 <tibble> <lm>   gear    0.147   0.368   0.398  6.96e-1 <tibble> <tibble>
+## # ... with abbreviated variable names 1: estimate, 2: std.error, 3: statistic,
+## #   4: augmented
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regressions }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(glanced)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 17
+##      am data     fit    tidied   r.squared adj.r.s~1 sigma stati~2 p.value    df
+##   <dbl> <list>   <list> <list>       <dbl>     <dbl> <dbl>   <dbl>   <dbl> <dbl>
+## 1     1 <tibble> <lm>   <tibble>     0.833     0.778 0.291   15.0  7.59e-4     3
+## 2     0 <tibble> <lm>   <tibble>     0.625     0.550 0.522    8.32 1.70e-3     3
+## # ... with 7 more variables: logLik <dbl>, AIC <dbl>, BIC <dbl>,
+## #   deviance <dbl>, df.residual <int>, nobs <int>, augmented <list>, and
+## #   abbreviated variable names 1: adj.r.squared, 2: statistic
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{regressions }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{unnest}\NormalTok{(augmented)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 32 x 15
+##       am data     fit    tidied   glanced     wt   mpg  qsec  gear .fitted
+##    <dbl> <list>   <list> <list>   <list>   <dbl> <dbl> <dbl> <dbl>   <dbl>
+##  1     1 <tibble> <lm>   <tibble> <tibble>  2.62  21    16.5     4    2.73
+##  2     1 <tibble> <lm>   <tibble> <tibble>  2.88  21    17.0     4    2.75
+##  3     1 <tibble> <lm>   <tibble> <tibble>  2.32  22.8  18.6     4    2.63
+##  4     1 <tibble> <lm>   <tibble> <tibble>  2.2   32.4  19.5     4    1.70
+##  5     1 <tibble> <lm>   <tibble> <tibble>  1.62  30.4  18.5     4    1.86
+##  6     1 <tibble> <lm>   <tibble> <tibble>  1.84  33.9  19.9     4    1.56
+##  7     1 <tibble> <lm>   <tibble> <tibble>  1.94  27.3  18.9     4    2.19
+##  8     1 <tibble> <lm>   <tibble> <tibble>  2.14  26    16.7     5    2.21
+##  9     1 <tibble> <lm>   <tibble> <tibble>  1.51  30.4  16.9     5    1.77
+## 10     1 <tibble> <lm>   <tibble> <tibble>  3.17  15.8  14.5     5    3.15
+## # ... with 22 more rows, and 5 more variables: .resid <dbl>, .hat <dbl>,
+## #   .sigma <dbl>, .cooksd <dbl>, .std.resid <dbl>
+\end{verbatim}
+
+By combining the estimates and p-values across all groups into the same tidy data frame (instead of a list of output model objects), a new class of analyses and visualizations becomes straightforward. This includes
+
+\begin{itemize}
+\tightlist
+\item
+  Sorting by p-value or estimate to find the most significant terms across all tests
+\item
+  P-value histograms
+\item
+  Volcano plots comparing p-values to effect size estimates
+\end{itemize}
+
+In each of these cases, we can easily filter, facet, or distinguish based on the \texttt{term} column. In short, this makes the tools of tidy data analysis available for the \emph{results} of data analysis and models, not just the inputs.
+
+\hypertarget{links}{%
+\section{links}\label{links}}
+
+\url{https://www.youtube.com/watch?v=1bnhT8tlCJQ\&list=PLBnFxG6owe1F-3y0_aphRZ5YHH06Qr1Kj}
+
+\url{https://bookdown.org/bruno_lucian_costa/CursoIntermediarioR/tidyr.html}
+
+\url{https://bookdown.org/Maxine/r4ds/nesting.html}
+
+\url{https://livro.curso-r.com/7-3-tidyr.html}
+
+\url{http://leg.ufpr.br/~walmes/cursoR/data-vis/slides/04-tidyr.pdf}
 
   \bibliography{book.bib,packages.bib}
 
