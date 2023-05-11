@@ -257,19 +257,19 @@ div.csl-indent {
 <div id="broom-and-dplyr" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">6</span> broom and dplyr<a href="broom-and-dplyr.html#broom-and-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>While broom is useful for summarizing the result of a single analysis in a consistent format, it is really designed for high-throughput applications, where you must combine results from multiple analyses. These could be subgroups of data, analyses using different models, bootstrap replicates, permutations, and so on. In particular, it plays well with the <code>nest/unnest</code> functions in <code>tidyr</code> and the <code>map</code> function in <code>purrr</code>. First, loading necessary packages and setting some defaults:</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="broom-and-dplyr.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb328-2"><a href="broom-and-dplyr.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb328-3"><a href="broom-and-dplyr.html#cb328-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb328-4"><a href="broom-and-dplyr.html#cb328-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb328-5"><a href="broom-and-dplyr.html#cb328-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb328-6"><a href="broom-and-dplyr.html#cb328-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
-<span id="cb328-7"><a href="broom-and-dplyr.html#cb328-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb328-8"><a href="broom-and-dplyr.html#cb328-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="broom-and-dplyr.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb326-2"><a href="broom-and-dplyr.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb326-3"><a href="broom-and-dplyr.html#cb326-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb326-4"><a href="broom-and-dplyr.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb326-5"><a href="broom-and-dplyr.html#cb326-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb326-6"><a href="broom-and-dplyr.html#cb326-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
+<span id="cb326-7"><a href="broom-and-dplyr.html#cb326-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb326-8"><a href="broom-and-dplyr.html#cb326-8" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code></pre></div>
 <p>Let’s try this on a simple dataset, the built-in <code>Orange</code>. We start by coercing <code>Orange</code> to a <code>tibble</code>. This gives a nicer print method that will especially useful later on when we start working with list-columns.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="broom-and-dplyr.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Orange)</span>
-<span id="cb329-2"><a href="broom-and-dplyr.html#cb329-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb329-3"><a href="broom-and-dplyr.html#cb329-3" aria-hidden="true" tabindex="-1"></a>Orange <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Orange)</span>
-<span id="cb329-4"><a href="broom-and-dplyr.html#cb329-4" aria-hidden="true" tabindex="-1"></a>Orange</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="broom-and-dplyr.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Orange)</span>
+<span id="cb327-2"><a href="broom-and-dplyr.html#cb327-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb327-3"><a href="broom-and-dplyr.html#cb327-3" aria-hidden="true" tabindex="-1"></a>Orange <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(Orange)</span>
+<span id="cb327-4"><a href="broom-and-dplyr.html#cb327-4" aria-hidden="true" tabindex="-1"></a>Orange</span></code></pre></div>
 <pre><code>## # A tibble: 35 × 3
 ##    Tree    age circumference
 ##    &lt;ord&gt; &lt;dbl&gt;         &lt;dbl&gt;
@@ -285,15 +285,15 @@ div.csl-indent {
 ## 10 2       664           111
 ## # … with 25 more rows</code></pre>
 <p>This contains 35 observations of three variables: <code>Tree</code>, <code>age</code>, and <code>circumference</code>. <code>Tree</code> is a factor with five levels describing five trees. As might be expected, age and circumference are correlated:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="broom-and-dplyr.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Orange<span class="sc">$</span>age, Orange<span class="sc">$</span>circumference)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="broom-and-dplyr.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(Orange<span class="sc">$</span>age, Orange<span class="sc">$</span>circumference)</span></code></pre></div>
 <pre><code>## [1] 0.9135189</code></pre>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="broom-and-dplyr.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Orange, <span class="fu">aes</span>(age, circumference, <span class="at">color =</span> Tree)) <span class="sc">+</span></span>
-<span id="cb333-2"><a href="broom-and-dplyr.html#cb333-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="broom-and-dplyr.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Orange, <span class="fu">aes</span>(age, circumference, <span class="at">color =</span> Tree)) <span class="sc">+</span></span>
+<span id="cb331-2"><a href="broom-and-dplyr.html#cb331-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Suppose you want to test for correlations individually <em>within</em> each tree. You can do this with dplyr’s <code>group_by</code>:</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="broom-and-dplyr.html#cb334-1" aria-hidden="true" tabindex="-1"></a>Orange <span class="sc">%&gt;%</span></span>
-<span id="cb334-2"><a href="broom-and-dplyr.html#cb334-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Tree) <span class="sc">%&gt;%</span></span>
-<span id="cb334-3"><a href="broom-and-dplyr.html#cb334-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(age, circumference))</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="broom-and-dplyr.html#cb332-1" aria-hidden="true" tabindex="-1"></a>Orange <span class="sc">%&gt;%</span></span>
+<span id="cb332-2"><a href="broom-and-dplyr.html#cb332-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Tree) <span class="sc">%&gt;%</span></span>
+<span id="cb332-3"><a href="broom-and-dplyr.html#cb332-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">correlation =</span> <span class="fu">cor</span>(age, circumference))</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 2
 ##   Tree  correlation
 ##   &lt;ord&gt;       &lt;dbl&gt;
@@ -304,8 +304,8 @@ div.csl-indent {
 ## 5 4           0.984</code></pre>
 <p>(Note that the correlations are much higher than the aggregated one, and furthermore we can now see it is similar across trees).</p>
 <p>Suppose that instead of simply estimating a correlation, we want to perform a hypothesis test with <code>cor.test</code>:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="broom-and-dplyr.html#cb336-1" aria-hidden="true" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(Orange<span class="sc">$</span>age, Orange<span class="sc">$</span>circumference)</span>
-<span id="cb336-2"><a href="broom-and-dplyr.html#cb336-2" aria-hidden="true" tabindex="-1"></a>ct</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="broom-and-dplyr.html#cb334-1" aria-hidden="true" tabindex="-1"></a>ct <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(Orange<span class="sc">$</span>age, Orange<span class="sc">$</span>circumference)</span>
+<span id="cb334-2"><a href="broom-and-dplyr.html#cb334-2" aria-hidden="true" tabindex="-1"></a>ct</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
@@ -318,18 +318,18 @@ div.csl-indent {
 ##       cor 
 ## 0.9135189</code></pre>
 <p>This contains multiple values we could want in our output. Some are vectors of length 1, such as the p-value and the estimate, and some are longer, such as the confidence interval. We can get this into a nicely organized tibble using the <code>tidy</code> function:</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="broom-and-dplyr.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(ct)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="broom-and-dplyr.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(ct)</span></code></pre></div>
 <pre><code>## # A tibble: 1 × 8
 ##   estimate statistic  p.value parameter conf.low conf.high method        alter…¹
 ##      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  
 ## 1    0.914      12.9 1.93e-14        33    0.834     0.956 Pearson&#39;s pr… two.si…
 ## # … with abbreviated variable name ¹​alternative</code></pre>
 <p>Often, we want to perform multiple tests or fit multiple models, each on a different part of the data. In this case, we recommend a <code>nest-map-unnest</code> workflow. For example, suppose we want to perform correlation tests for each different tree. We start by <code>nest</code>ing our data based on the group of interest:</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="broom-and-dplyr.html#cb340-1" aria-hidden="true" tabindex="-1"></a>nested <span class="ot">&lt;-</span> Orange <span class="sc">%&gt;%</span></span>
-<span id="cb340-2"><a href="broom-and-dplyr.html#cb340-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>Tree)</span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="broom-and-dplyr.html#cb338-1" aria-hidden="true" tabindex="-1"></a>nested <span class="ot">&lt;-</span> Orange <span class="sc">%&gt;%</span></span>
+<span id="cb338-2"><a href="broom-and-dplyr.html#cb338-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>Tree)</span></code></pre></div>
 <p>Then we run a correlation test for each nested tibble using <code>purrr::map</code>:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="broom-and-dplyr.html#cb341-1" aria-hidden="true" tabindex="-1"></a>nested <span class="sc">%&gt;%</span></span>
-<span id="cb341-2"><a href="broom-and-dplyr.html#cb341-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">test =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">cor.test</span>(.x<span class="sc">$</span>age, .x<span class="sc">$</span>circumference)))</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="broom-and-dplyr.html#cb339-1" aria-hidden="true" tabindex="-1"></a>nested <span class="sc">%&gt;%</span></span>
+<span id="cb339-2"><a href="broom-and-dplyr.html#cb339-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">test =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">cor.test</span>(.x<span class="sc">$</span>age, .x<span class="sc">$</span>circumference)))</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 3
 ##   Tree  data             test   
 ##   &lt;ord&gt; &lt;list&gt;           &lt;list&gt; 
@@ -339,11 +339,11 @@ div.csl-indent {
 ## 4 4     &lt;tibble [7 × 2]&gt; &lt;htest&gt;
 ## 5 5     &lt;tibble [7 × 2]&gt; &lt;htest&gt;</code></pre>
 <p>This results in a list-column of S3 objects. We want to tidy each of the objects, which we can also do with <code>map</code>.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="broom-and-dplyr.html#cb343-1" aria-hidden="true" tabindex="-1"></a>nested <span class="sc">%&gt;%</span></span>
-<span id="cb343-2"><a href="broom-and-dplyr.html#cb343-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb343-3"><a href="broom-and-dplyr.html#cb343-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">cor.test</span>(.x<span class="sc">$</span>age, .x<span class="sc">$</span>circumference)), <span class="co"># S3 list-col</span></span>
-<span id="cb343-4"><a href="broom-and-dplyr.html#cb343-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(test, tidy)</span>
-<span id="cb343-5"><a href="broom-and-dplyr.html#cb343-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="broom-and-dplyr.html#cb341-1" aria-hidden="true" tabindex="-1"></a>nested <span class="sc">%&gt;%</span></span>
+<span id="cb341-2"><a href="broom-and-dplyr.html#cb341-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb341-3"><a href="broom-and-dplyr.html#cb341-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">cor.test</span>(.x<span class="sc">$</span>age, .x<span class="sc">$</span>circumference)), <span class="co"># S3 list-col</span></span>
+<span id="cb341-4"><a href="broom-and-dplyr.html#cb341-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(test, tidy)</span>
+<span id="cb341-5"><a href="broom-and-dplyr.html#cb341-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 4
 ##   Tree  data             test    tidied          
 ##   &lt;ord&gt; &lt;list&gt;           &lt;list&gt;  &lt;list&gt;          
@@ -353,13 +353,13 @@ div.csl-indent {
 ## 4 4     &lt;tibble [7 × 2]&gt; &lt;htest&gt; &lt;tibble [1 × 8]&gt;
 ## 5 5     &lt;tibble [7 × 2]&gt; &lt;htest&gt; &lt;tibble [1 × 8]&gt;</code></pre>
 <p>Finally, we want to unnest the tidied data frames so we can see the results in a flat tibble. All together, this looks like:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="broom-and-dplyr.html#cb345-1" aria-hidden="true" tabindex="-1"></a>Orange <span class="sc">%&gt;%</span></span>
-<span id="cb345-2"><a href="broom-and-dplyr.html#cb345-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>Tree) <span class="sc">%&gt;%</span></span>
-<span id="cb345-3"><a href="broom-and-dplyr.html#cb345-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb345-4"><a href="broom-and-dplyr.html#cb345-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">cor.test</span>(.x<span class="sc">$</span>age, .x<span class="sc">$</span>circumference)), <span class="co"># S3 list-col</span></span>
-<span id="cb345-5"><a href="broom-and-dplyr.html#cb345-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(test, tidy)</span>
-<span id="cb345-6"><a href="broom-and-dplyr.html#cb345-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb345-7"><a href="broom-and-dplyr.html#cb345-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="broom-and-dplyr.html#cb343-1" aria-hidden="true" tabindex="-1"></a>Orange <span class="sc">%&gt;%</span></span>
+<span id="cb343-2"><a href="broom-and-dplyr.html#cb343-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>Tree) <span class="sc">%&gt;%</span></span>
+<span id="cb343-3"><a href="broom-and-dplyr.html#cb343-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb343-4"><a href="broom-and-dplyr.html#cb343-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">test =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">cor.test</span>(.x<span class="sc">$</span>age, .x<span class="sc">$</span>circumference)), <span class="co"># S3 list-col</span></span>
+<span id="cb343-5"><a href="broom-and-dplyr.html#cb343-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(test, tidy)</span>
+<span id="cb343-6"><a href="broom-and-dplyr.html#cb343-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb343-7"><a href="broom-and-dplyr.html#cb343-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
 <pre><code>## # A tibble: 5 × 11
 ##   Tree  data     test    estimate stati…¹ p.value param…² conf.…³ conf.…⁴ method
 ##   &lt;ord&gt; &lt;list&gt;   &lt;list&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
@@ -371,8 +371,8 @@ div.csl-indent {
 ## # … with 1 more variable: alternative &lt;chr&gt;, and abbreviated variable names
 ## #   ¹​statistic, ²​parameter, ³​conf.low, ⁴​conf.high</code></pre>
 <p>This workflow becomes even more useful when applied to regressions. Untidy output for a regression looks like:</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="broom-and-dplyr.html#cb347-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(age <span class="sc">~</span> circumference, <span class="at">data =</span> Orange)</span>
-<span id="cb347-2"><a href="broom-and-dplyr.html#cb347-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="broom-and-dplyr.html#cb345-1" aria-hidden="true" tabindex="-1"></a>lm_fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(age <span class="sc">~</span> circumference, <span class="at">data =</span> Orange)</span>
+<span id="cb345-2"><a href="broom-and-dplyr.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = age ~ circumference, data = Orange)
@@ -392,20 +392,20 @@ div.csl-indent {
 ## Multiple R-squared:  0.8345, Adjusted R-squared:  0.8295 
 ## F-statistic: 166.4 on 1 and 33 DF,  p-value: 1.931e-14</code></pre>
 <p>where we tidy these results, we get multiple rows of output for each model:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="broom-and-dplyr.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm_fit)</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="broom-and-dplyr.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(lm_fit)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 5
 ##   term          estimate std.error statistic  p.value
 ##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
 ## 1 (Intercept)      16.6     78.1       0.212 8.33e- 1
 ## 2 circumference     7.82     0.606    12.9   1.93e-14</code></pre>
 <p>Now we can handle multiple regressions at once using exactly the same workflow as before:</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="broom-and-dplyr.html#cb351-1" aria-hidden="true" tabindex="-1"></a>Orange <span class="sc">%&gt;%</span></span>
-<span id="cb351-2"><a href="broom-and-dplyr.html#cb351-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>Tree) <span class="sc">%&gt;%</span></span>
-<span id="cb351-3"><a href="broom-and-dplyr.html#cb351-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb351-4"><a href="broom-and-dplyr.html#cb351-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">lm</span>(age <span class="sc">~</span> circumference, <span class="at">data =</span> .x)),</span>
-<span id="cb351-5"><a href="broom-and-dplyr.html#cb351-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy)</span>
-<span id="cb351-6"><a href="broom-and-dplyr.html#cb351-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb351-7"><a href="broom-and-dplyr.html#cb351-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="broom-and-dplyr.html#cb349-1" aria-hidden="true" tabindex="-1"></a>Orange <span class="sc">%&gt;%</span></span>
+<span id="cb349-2"><a href="broom-and-dplyr.html#cb349-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>Tree) <span class="sc">%&gt;%</span></span>
+<span id="cb349-3"><a href="broom-and-dplyr.html#cb349-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb349-4"><a href="broom-and-dplyr.html#cb349-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">lm</span>(age <span class="sc">~</span> circumference, <span class="at">data =</span> .x)),</span>
+<span id="cb349-5"><a href="broom-and-dplyr.html#cb349-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy)</span>
+<span id="cb349-6"><a href="broom-and-dplyr.html#cb349-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb349-7"><a href="broom-and-dplyr.html#cb349-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
 <pre><code>## # A tibble: 10 × 8
 ##    Tree  data             fit    term          estimate std.er…¹ stati…² p.value
 ##    &lt;ord&gt; &lt;list&gt;           &lt;list&gt; &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -421,9 +421,9 @@ div.csl-indent {
 ## 10 5     &lt;tibble [7 × 2]&gt; &lt;lm&gt;   circumference     8.79    0.621  14.1   3.18e-5
 ## # … with abbreviated variable names ¹​std.error, ²​statistic</code></pre>
 <p>You can just as easily use multiple predictors in the regressions, as shown here on the <code>mtcars</code> dataset. We nest the data into automatic and manual cars (the <code>am</code> column), then perform the regression within each nested tibble.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="broom-and-dplyr.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
-<span id="cb353-2"><a href="broom-and-dplyr.html#cb353-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars) <span class="co"># to play nicely with list-cols</span></span>
-<span id="cb353-3"><a href="broom-and-dplyr.html#cb353-3" aria-hidden="true" tabindex="-1"></a>mtcars</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="broom-and-dplyr.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(mtcars)</span>
+<span id="cb351-2"><a href="broom-and-dplyr.html#cb351-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(mtcars) <span class="co"># to play nicely with list-cols</span></span>
+<span id="cb351-3"><a href="broom-and-dplyr.html#cb351-3" aria-hidden="true" tabindex="-1"></a>mtcars</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 11
 ##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 ##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -438,13 +438,13 @@ div.csl-indent {
 ##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
 ## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
 ## # … with 22 more rows</code></pre>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="broom-and-dplyr.html#cb355-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb355-2"><a href="broom-and-dplyr.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>am) <span class="sc">%&gt;%</span></span>
-<span id="cb355-3"><a href="broom-and-dplyr.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb355-4"><a href="broom-and-dplyr.html#cb355-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">lm</span>(wt <span class="sc">~</span> mpg <span class="sc">+</span> qsec <span class="sc">+</span> gear, <span class="at">data =</span> .x)), <span class="co"># S3 list-col</span></span>
-<span id="cb355-5"><a href="broom-and-dplyr.html#cb355-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy)</span>
-<span id="cb355-6"><a href="broom-and-dplyr.html#cb355-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb355-7"><a href="broom-and-dplyr.html#cb355-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="broom-and-dplyr.html#cb353-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb353-2"><a href="broom-and-dplyr.html#cb353-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>am) <span class="sc">%&gt;%</span></span>
+<span id="cb353-3"><a href="broom-and-dplyr.html#cb353-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb353-4"><a href="broom-and-dplyr.html#cb353-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">lm</span>(wt <span class="sc">~</span> mpg <span class="sc">+</span> qsec <span class="sc">+</span> gear, <span class="at">data =</span> .x)), <span class="co"># S3 list-col</span></span>
+<span id="cb353-5"><a href="broom-and-dplyr.html#cb353-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy)</span>
+<span id="cb353-6"><a href="broom-and-dplyr.html#cb353-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb353-7"><a href="broom-and-dplyr.html#cb353-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 8
 ##      am data               fit    term        estimate std.error stati…¹ p.value
 ##   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt; &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
@@ -458,17 +458,17 @@ div.csl-indent {
 ## 8     0 &lt;tibble [19 × 10]&gt; &lt;lm&gt;   gear          0.147     0.368   0.398  6.96e-1
 ## # … with abbreviated variable name ¹​statistic</code></pre>
 <p>What if you want not just the <code>tidy</code> output, but the <code>augment</code> and <code>glance</code> outputs as well, while still performing each regression only once? Since we’re using list-columns, we can just fit the model once and use multiple list-columns to store the tidied, glanced and augmented outputs.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="broom-and-dplyr.html#cb357-1" aria-hidden="true" tabindex="-1"></a>regressions <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb357-2"><a href="broom-and-dplyr.html#cb357-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>am) <span class="sc">%&gt;%</span></span>
-<span id="cb357-3"><a href="broom-and-dplyr.html#cb357-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb357-4"><a href="broom-and-dplyr.html#cb357-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">lm</span>(wt <span class="sc">~</span> mpg <span class="sc">+</span> qsec <span class="sc">+</span> gear, <span class="at">data =</span> .x)),</span>
-<span id="cb357-5"><a href="broom-and-dplyr.html#cb357-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy),</span>
-<span id="cb357-6"><a href="broom-and-dplyr.html#cb357-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">glanced =</span> <span class="fu">map</span>(fit, glance),</span>
-<span id="cb357-7"><a href="broom-and-dplyr.html#cb357-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">augmented =</span> <span class="fu">map</span>(fit, augment)</span>
-<span id="cb357-8"><a href="broom-and-dplyr.html#cb357-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb357-9"><a href="broom-and-dplyr.html#cb357-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-10"><a href="broom-and-dplyr.html#cb357-10" aria-hidden="true" tabindex="-1"></a>regressions <span class="sc">%&gt;%</span></span>
-<span id="cb357-11"><a href="broom-and-dplyr.html#cb357-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="broom-and-dplyr.html#cb355-1" aria-hidden="true" tabindex="-1"></a>regressions <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb355-2"><a href="broom-and-dplyr.html#cb355-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">-</span>am) <span class="sc">%&gt;%</span></span>
+<span id="cb355-3"><a href="broom-and-dplyr.html#cb355-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb355-4"><a href="broom-and-dplyr.html#cb355-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">fit =</span> <span class="fu">map</span>(data, <span class="sc">~</span> <span class="fu">lm</span>(wt <span class="sc">~</span> mpg <span class="sc">+</span> qsec <span class="sc">+</span> gear, <span class="at">data =</span> .x)),</span>
+<span id="cb355-5"><a href="broom-and-dplyr.html#cb355-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">tidied =</span> <span class="fu">map</span>(fit, tidy),</span>
+<span id="cb355-6"><a href="broom-and-dplyr.html#cb355-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">glanced =</span> <span class="fu">map</span>(fit, glance),</span>
+<span id="cb355-7"><a href="broom-and-dplyr.html#cb355-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">augmented =</span> <span class="fu">map</span>(fit, augment)</span>
+<span id="cb355-8"><a href="broom-and-dplyr.html#cb355-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb355-9"><a href="broom-and-dplyr.html#cb355-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb355-10"><a href="broom-and-dplyr.html#cb355-10" aria-hidden="true" tabindex="-1"></a>regressions <span class="sc">%&gt;%</span></span>
+<span id="cb355-11"><a href="broom-and-dplyr.html#cb355-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(tidied)</span></code></pre></div>
 <pre><code>## # A tibble: 8 × 10
 ##      am data     fit    term   estim…¹ std.e…² stati…³ p.value glanced  augmen…⁴
 ##   &lt;dbl&gt; &lt;list&gt;   &lt;list&gt; &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;list&gt;   &lt;list&gt;  
@@ -482,8 +482,8 @@ div.csl-indent {
 ## 8     0 &lt;tibble&gt; &lt;lm&gt;   gear    0.147   0.368   0.398  6.96e-1 &lt;tibble&gt; &lt;tibble&gt;
 ## # … with abbreviated variable names ¹​estimate, ²​std.error, ³​statistic,
 ## #   ⁴​augmented</code></pre>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="broom-and-dplyr.html#cb359-1" aria-hidden="true" tabindex="-1"></a>regressions <span class="sc">%&gt;%</span></span>
-<span id="cb359-2"><a href="broom-and-dplyr.html#cb359-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glanced)</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="broom-and-dplyr.html#cb357-1" aria-hidden="true" tabindex="-1"></a>regressions <span class="sc">%&gt;%</span></span>
+<span id="cb357-2"><a href="broom-and-dplyr.html#cb357-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(glanced)</span></code></pre></div>
 <pre><code>## # A tibble: 2 × 17
 ##      am data     fit    tidied   r.squared adj.r.s…¹ sigma stati…² p.value    df
 ##   &lt;dbl&gt; &lt;list&gt;   &lt;list&gt; &lt;list&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -492,8 +492,8 @@ div.csl-indent {
 ## # … with 7 more variables: logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;, deviance &lt;dbl&gt;,
 ## #   df.residual &lt;int&gt;, nobs &lt;int&gt;, augmented &lt;list&gt;, and abbreviated variable
 ## #   names ¹​adj.r.squared, ²​statistic</code></pre>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="broom-and-dplyr.html#cb361-1" aria-hidden="true" tabindex="-1"></a>regressions <span class="sc">%&gt;%</span></span>
-<span id="cb361-2"><a href="broom-and-dplyr.html#cb361-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(augmented)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="broom-and-dplyr.html#cb359-1" aria-hidden="true" tabindex="-1"></a>regressions <span class="sc">%&gt;%</span></span>
+<span id="cb359-2"><a href="broom-and-dplyr.html#cb359-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(augmented)</span></code></pre></div>
 <pre><code>## # A tibble: 32 × 15
 ##       am data     fit    tidied   glanced     wt   mpg  qsec  gear .fitted
 ##    &lt;dbl&gt; &lt;list&gt;   &lt;list&gt; &lt;list&gt;   &lt;list&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;

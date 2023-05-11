@@ -388,134 +388,134 @@ div.csl-indent {
 <span id="cb219-2"><a href="purrr.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
 <span id="cb219-3"><a href="purrr.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(rnorm, <span class="at">n =</span> <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [[1]]
-##  [1]  2.6385665  0.9306481  1.1269237 -0.5898714  0.2058428 -0.6772337
-##  [7]  2.7950672  0.8615295 -0.2351424 -2.0529198
+##  [1]  0.9847728  1.2134403  1.5271987  0.8699412  1.0326853  1.4969394
+##  [7]  0.1967036  1.2745323  0.8581227 -0.4807560
 ## 
 ## [[2]]
-##  [1] 2.1505530 0.2516289 0.6911756 2.8100376 1.8014326 1.6225670 2.3335206
-##  [8] 0.7813014 2.7463969 1.4565569
+##  [1] 1.954105 2.671244 2.618976 1.374043 2.967331 2.569375 1.547439 0.662164
+##  [9] 3.292868 1.207899
 ## 
 ## [[3]]
-##  [1] 3.501234 3.358048 4.466439 3.691081 1.684611 2.008729 4.274185 4.872111
-##  [9] 1.679362 1.763468
+##  [1] 3.982925 2.989138 3.476106 1.916062 3.991005 4.380055 3.181884 1.457460
+##  [9] 2.561777 3.816446
 ## 
 ## [[4]]
-##  [1] 4.299350 4.701526 4.563663 2.802887 2.936448 4.172293 4.493722 4.534934
-##  [9] 3.671891 4.780191
+##  [1] 3.910191 4.188865 4.890194 2.935118 3.096332 2.446448 4.216989 5.179807
+##  [9] 2.974192 4.166398
 ## 
 ## [[5]]
-##  [1] 3.618356 4.382113 4.620189 5.712996 4.016946 4.898041 5.321194 4.357548
-##  [9] 5.473501 5.677256
+##  [1] 3.846474 6.561309 5.894584 4.956071 3.497541 6.381848 5.840936 4.128073
+##  [9] 4.713686 6.431420
 ## 
 ## [[6]]
-##  [1] 5.547755 5.266566 5.948882 5.530761 6.832234 4.400889 5.615572 5.448438
-##  [9] 3.699474 6.901163
+##  [1] 6.070228 7.870752 6.489020 6.973389 6.849549 6.519332 5.967410 4.984029
+##  [9] 6.683463 3.830970
 ## 
 ## [[7]]
-##  [1] 4.682380 7.968351 7.477201 9.337055 6.630268 5.400870 8.522704 7.617731
-##  [9] 7.410772 7.644136
+##  [1] 6.481638 5.649669 8.548069 6.921537 6.464654 7.726066 6.475998 6.799747
+##  [9] 6.169225 5.658955
 ## 
 ## [[8]]
-##  [1] 8.807855 8.590553 9.332446 7.087403 7.147457 7.675507 9.470776 8.304897
-##  [9] 7.563840 8.158660
+##  [1] 9.359796 7.547208 7.810476 6.848805 8.074348 6.659517 9.657212 6.938745
+##  [9] 9.529321 8.374576
 ## 
 ## [[9]]
-##  [1]  9.247456  9.177706  9.371173  9.183912  7.198303 10.844286  9.914848
-##  [8]  8.437981  9.667493  7.783263
+##  [1] 10.410501  9.689270  8.524527  8.998205  9.130904 10.373338  8.687423
+##  [8]  9.166574  8.966455 10.360590
 ## 
 ## [[10]]
-##  [1] 11.586295 11.643919  9.327234  9.878989  8.519738 10.394865 10.984047
-##  [8] 11.699706  9.862019 10.424229</code></pre>
+##  [1] 10.435808  9.288908  9.668146  7.498355  9.559159 10.678296 10.324279
+##  [8] 10.079509  9.707040  9.433631</code></pre>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="purrr.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You can also use an anonymous function</span></span>
 <span id="cb221-2"><a href="purrr.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
 <span id="cb221-3"><a href="purrr.html#cb221-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="cf">function</span>(x) <span class="fu">rnorm</span>(<span class="dv">10</span>, x))</span></code></pre></div>
 <pre><code>## [[1]]
-##  [1]  2.2429327  2.0629768  2.3713814  0.3916663  0.6717193  0.3115191
-##  [7] -0.9276165  2.0606560  0.9927143  1.0222344
+##  [1] 2.312638896 1.488565671 2.081679763 4.250274556 1.093323096 0.006087448
+##  [7] 2.243602914 0.643165504 1.583823914 0.902019184
 ## 
 ## [[2]]
-##  [1]  1.7137281  2.9356432  4.5978655 -0.5286947  2.8337327  4.0880154
-##  [7]  1.2742213  2.6998118  2.3527015  1.7446090
+##  [1] 0.7957497 3.3901558 1.3464790 2.1211533 1.1673932 1.8070767 1.1887438
+##  [8] 2.3783743 3.2269434 1.7585739
 ## 
 ## [[3]]
-##  [1] 3.690053 2.933756 3.026452 2.412809 1.317245 3.150460 2.965931 2.222467
-##  [9] 3.001422 1.767871
+##  [1] 2.4897358 2.2679499 2.4456183 3.8764642 2.4859849 2.2495324 0.9942630
+##  [8] 0.8884974 3.4104583 3.5567135
 ## 
 ## [[4]]
-##  [1] 3.485364 3.301292 3.807281 3.278620 5.971312 4.760887 3.540766 3.650804
-##  [9] 4.248851 2.728362
+##  [1] 3.091265 2.420960 3.126583 4.907215 4.629660 4.338844 3.589269 3.654768
+##  [9] 4.959958 5.116713
 ## 
 ## [[5]]
-##  [1] 5.122524 3.744201 3.069162 6.296710 4.904618 4.917230 4.054731 4.877129
-##  [9] 5.669188 5.261048
+##  [1] 3.948429 4.559113 4.068604 7.650255 4.956375 6.943495 3.870947 4.772121
+##  [9] 3.631234 4.917196
 ## 
 ## [[6]]
-##  [1] 7.093745 7.301259 5.210623 5.757444 6.604119 6.559381 5.770414 6.470081
-##  [9] 6.307559 5.221461
+##  [1] 4.790284 6.635208 7.222999 5.474786 5.266004 6.712271 6.455652 5.591993
+##  [9] 5.264093 5.841003
 ## 
 ## [[7]]
-##  [1] 6.580602 7.382897 6.848317 7.447236 6.101398 8.669176 6.215251 6.944084
-##  [9] 6.912993 7.399234
+##  [1] 6.260580 6.829698 6.654538 6.641228 5.238742 5.029787 6.815748 8.586614
+##  [9] 6.786050 8.854479
 ## 
 ## [[8]]
-##  [1] 8.390115 9.916458 8.192049 9.329109 8.062900 9.020701 6.985225 7.717826
-##  [9] 7.901918 6.912392
+##  [1] 7.861666 8.658158 7.742446 7.541804 7.291984 8.218550 8.246015 8.691571
+##  [9] 6.119368 7.908149
 ## 
 ## [[9]]
-##  [1] 10.246462  8.692342 10.005330  8.330914  7.100748  8.847435  9.185055
-##  [8]  9.028537  8.110501  8.914459
+##  [1] 6.831690 8.127748 9.961263 9.622232 9.182766 9.195515 9.042667 7.781265
+##  [9] 8.793952 9.323953
 ## 
 ## [[10]]
-##  [1]  9.084119 11.483784  9.676943  9.911006  8.893942  8.429307 10.035513
-##  [8]  8.439820 10.768020 10.524008</code></pre>
+##  [1] 10.071423  9.653958  9.676890 11.486766  9.848096 10.973562 10.593814
+##  [8] 10.007440  9.262317 10.386423</code></pre>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="purrr.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or a formula</span></span>
 <span id="cb223-2"><a href="purrr.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
 <span id="cb223-3"><a href="purrr.html#cb223-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, .x))</span></code></pre></div>
 <pre><code>## [[1]]
-##  [1]  0.7115314 -0.2820944  0.7105385  0.5384687  0.6576780 -0.8414808
-##  [7] -0.9524586  1.3726123  0.6429375  0.4584438
+##  [1]  1.46809093  0.81892040 -0.27699258  1.15883547 -1.27560745  0.66559751
+##  [7]  1.79466289  0.37143972  1.83715287  0.02653139
 ## 
 ## [[2]]
-##  [1] 2.3918098 3.2377431 1.7264112 2.4797405 3.2372974 2.6371652 2.0652283
-##  [8] 0.1710013 2.6673798 0.9858555
+##  [1] 1.5005557 2.5132414 3.1335278 3.2841949 0.2942115 2.0017352 2.1382454
+##  [8] 2.7290475 1.5498179 3.0207087
 ## 
 ## [[3]]
-##  [1] 1.789433 2.388526 2.476775 4.373986 2.647779 3.477464 1.940519 3.420315
-##  [9] 1.534931 3.278349
+##  [1] 2.239764 2.655934 3.271333 2.074757 0.579506 3.292257 4.267165 3.338194
+##  [9] 5.046800 3.526191
 ## 
 ## [[4]]
-##  [1] 2.594209 3.113863 3.299147 5.385972 5.430614 4.244585 3.214138 3.967698
-##  [9] 4.413164 1.798715
+##  [1] 4.741782 5.018736 3.931588 4.270694 3.530900 5.256601 3.266689 2.898363
+##  [9] 5.059677 4.036169
 ## 
 ## [[5]]
-##  [1] 5.826736 4.052183 4.064857 7.363720 2.573369 3.666777 6.043892 5.713365
-##  [9] 3.594904 5.260065
+##  [1] 4.907031 6.329643 4.765220 5.938428 3.772819 4.603587 4.584548 4.182335
+##  [9] 5.338289 6.187431
 ## 
 ## [[6]]
-##  [1] 7.001881 6.668009 6.338709 6.212157 3.840737 6.722385 6.703579 4.663475
-##  [9] 7.430278 6.411852
+##  [1] 6.215457 5.511327 6.836773 6.860728 6.350363 6.572379 4.649024 7.065337
+##  [9] 6.634251 6.566702
 ## 
 ## [[7]]
-##  [1] 8.309749 4.427988 6.896513 6.303007 6.972883 7.180822 6.583214 6.391303
-##  [9] 6.811549 6.826768
+##  [1] 5.706115 7.068877 6.786134 7.035794 5.322005 6.772898 5.443521 8.518114
+##  [9] 7.239341 6.678006
 ## 
 ## [[8]]
-##  [1]  8.296688  6.898260  6.379455  8.986417  7.987964 10.041097  7.879265
-##  [8]  7.309684  6.774480  8.178791
+##  [1] 8.040349 6.472084 7.818219 8.324279 9.113741 7.244781 7.874199 7.807287
+##  [9] 5.498444 7.880996
 ## 
 ## [[9]]
-##  [1]  6.283803  8.939177  9.096994  9.582340  8.421446 10.510542  8.167727
-##  [8]  6.703427  9.181597  8.935818
+##  [1]  7.247952  9.014034 10.576555  8.028198  9.808327  9.428881  9.242694
+##  [8] 10.694102  8.700257  9.616496
 ## 
 ## [[10]]
-##  [1] 10.160817  7.328246 10.176810  9.796377  9.239890  9.798183  9.731020
-##  [8] 10.136640  9.619663  9.894516</code></pre>
+##  [1]  9.349160  9.500872  9.292084  8.530186 10.761558  8.570281 10.077362
+##  [8] 10.161438  8.972482  9.140428</code></pre>
 <div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="purrr.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simplify output to a vector instead of a list by computing the mean of the distributions</span></span>
 <span id="cb225-2"><a href="purrr.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">%&gt;%</span></span>
 <span id="cb225-3"><a href="purrr.html#cb225-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(rnorm, <span class="at">n =</span> <span class="dv">10</span>) <span class="sc">%&gt;%</span>  <span class="co"># output a list</span></span>
 <span id="cb225-4"><a href="purrr.html#cb225-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(mean)           <span class="co"># output an atomic vector</span></span></code></pre></div>
-<pre><code>##  [1] 1.357433 2.372553 2.738382 3.727900 4.551048 5.988597 7.855043 8.073817
-##  [9] 8.784191 9.980013</code></pre>
+<pre><code>##  [1] 1.320401 1.779741 2.756991 4.020664 4.460907 5.857932 6.608631 7.997054
+##  [9] 8.822456 9.815341</code></pre>
 <div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="purrr.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using set_names() with character vectors is handy to keep track</span></span>
 <span id="cb227-2"><a href="purrr.html#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="co"># of the original inputs:</span></span>
 <span id="cb227-3"><a href="purrr.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set_names</span>(<span class="fu">c</span>(<span class="st">&quot;foo&quot;</span>, <span class="st">&quot;bar&quot;</span>)) <span class="sc">%&gt;%</span> </span>
@@ -634,44 +634,8 @@ div.csl-indent {
 ##   13.000  118.000   90.000</code></pre>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="purrr.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A more realistic example: split a data frame into pieces, fit a</span></span>
 <span id="cb251-2"><a href="purrr.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model to each piece, summarise and extract R^2</span></span>
-<span id="cb251-3"><a href="purrr.html#cb251-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb251-4"><a href="purrr.html#cb251-4" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb251-5"><a href="purrr.html#cb251-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cyl) </span></code></pre></div>
-<pre><code>##                     cyl
-## Mazda RX4             6
-## Mazda RX4 Wag         6
-## Datsun 710            4
-## Hornet 4 Drive        6
-## Hornet Sportabout     8
-## Valiant               6
-## Duster 360            8
-## Merc 240D             4
-## Merc 230              4
-## Merc 280              6
-## Merc 280C             6
-## Merc 450SE            8
-## Merc 450SL            8
-## Merc 450SLC           8
-## Cadillac Fleetwood    8
-## Lincoln Continental   8
-## Chrysler Imperial     8
-## Fiat 128              4
-## Honda Civic           4
-## Toyota Corolla        4
-## Toyota Corona         4
-## Dodge Challenger      8
-## AMC Javelin           8
-## Camaro Z28            8
-## Pontiac Firebird      8
-## Fiat X1-9             4
-## Porsche 914-2         4
-## Lotus Europa          4
-## Ford Pantera L        8
-## Ferrari Dino          6
-## Maserati Bora         8
-## Volvo 142E            4</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="purrr.html#cb253-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb253-2"><a href="purrr.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) </span></code></pre></div>
+<span id="cb251-3"><a href="purrr.html#cb251-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb251-4"><a href="purrr.html#cb251-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) </span></code></pre></div>
 <pre><code>## $`4`
 ##                 mpg cyl  disp  hp drat    wt  qsec vs am gear carb
 ## Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
@@ -712,9 +676,9 @@ div.csl-indent {
 ## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
 ## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
 ## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8</code></pre>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="purrr.html#cb255-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb255-2"><a href="purrr.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb255-3"><a href="purrr.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) </span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="purrr.html#cb253-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb253-2"><a href="purrr.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb253-3"><a href="purrr.html#cb253-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) </span></code></pre></div>
 <pre><code>## $`4`
 ## 
 ## Call:
@@ -743,10 +707,10 @@ div.csl-indent {
 ## Coefficients:
 ## (Intercept)           wt  
 ##      23.868       -2.192</code></pre>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="purrr.html#cb257-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb257-2"><a href="purrr.html#cb257-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb257-3"><a href="purrr.html#cb257-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span></span>
-<span id="cb257-4"><a href="purrr.html#cb257-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(summary) </span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="purrr.html#cb255-1" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb255-2"><a href="purrr.html#cb255-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb255-3"><a href="purrr.html#cb255-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span></span>
+<span id="cb255-4"><a href="purrr.html#cb255-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(summary) </span></code></pre></div>
 <pre><code>## $`4`
 ## 
 ## Call:
@@ -810,34 +774,34 @@ div.csl-indent {
 ## Residual standard error: 2.024 on 12 degrees of freedom
 ## Multiple R-squared:  0.423,  Adjusted R-squared:  0.3749 
 ## F-statistic: 8.796 on 1 and 12 DF,  p-value: 0.01179</code></pre>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="purrr.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># original  </span></span>
-<span id="cb259-2"><a href="purrr.html#cb259-2" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb259-3"><a href="purrr.html#cb259-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb259-4"><a href="purrr.html#cb259-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span></span>
-<span id="cb259-5"><a href="purrr.html#cb259-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span></span>
-<span id="cb259-6"><a href="purrr.html#cb259-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="st">&quot;r.squared&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="purrr.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># original  </span></span>
+<span id="cb257-2"><a href="purrr.html#cb257-2" aria-hidden="true" tabindex="-1"></a>  mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb257-3"><a href="purrr.html#cb257-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb257-4"><a href="purrr.html#cb257-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span></span>
+<span id="cb257-5"><a href="purrr.html#cb257-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(summary) <span class="sc">%&gt;%</span></span>
+<span id="cb257-6"><a href="purrr.html#cb257-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="st">&quot;r.squared&quot;</span>)</span></code></pre></div>
 <pre><code>##         4         6         8 
 ## 0.5086326 0.4645102 0.4229655</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="purrr.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If each element of the output is a data frame, use</span></span>
-<span id="cb261-2"><a href="purrr.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="co"># map_dfr to row-bind them together:</span></span>
-<span id="cb261-3"><a href="purrr.html#cb261-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
-<span id="cb261-4"><a href="purrr.html#cb261-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
-<span id="cb261-5"><a href="purrr.html#cb261-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span></span>
-<span id="cb261-6"><a href="purrr.html#cb261-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(<span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">as.matrix</span>(<span class="fu">coef</span>(.)))))</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="purrr.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If each element of the output is a data frame, use</span></span>
+<span id="cb259-2"><a href="purrr.html#cb259-2" aria-hidden="true" tabindex="-1"></a><span class="co"># map_dfr to row-bind them together:</span></span>
+<span id="cb259-3"><a href="purrr.html#cb259-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb259-4"><a href="purrr.html#cb259-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">split</span>(.<span class="sc">$</span>cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb259-5"><a href="purrr.html#cb259-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="sc">~</span> <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .x)) <span class="sc">%&gt;%</span></span>
+<span id="cb259-6"><a href="purrr.html#cb259-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dfr</span>(<span class="sc">~</span> <span class="fu">as.data.frame</span>(<span class="fu">t</span>(<span class="fu">as.matrix</span>(<span class="fu">coef</span>(.)))))</span></code></pre></div>
 <pre><code>##   (Intercept)        wt
 ## 1    39.57120 -5.647025
 ## 2    28.40884 -2.780106
 ## 3    23.86803 -2.192438</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="purrr.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (if you also want to preserve the variable names see</span></span>
-<span id="cb263-2"><a href="purrr.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the broom package)</span></span>
-<span id="cb263-3"><a href="purrr.html#cb263-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-4"><a href="purrr.html#cb263-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-5"><a href="purrr.html#cb263-5" aria-hidden="true" tabindex="-1"></a><span class="co">#nest, unest() estudar!</span></span>
-<span id="cb263-6"><a href="purrr.html#cb263-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-7"><a href="purrr.html#cb263-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-8"><a href="purrr.html#cb263-8" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
-<span id="cb263-9"><a href="purrr.html#cb263-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span> </span>
-<span id="cb263-10"><a href="purrr.html#cb263-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="purrr.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (if you also want to preserve the variable names see</span></span>
+<span id="cb261-2"><a href="purrr.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the broom package)</span></span>
+<span id="cb261-3"><a href="purrr.html#cb261-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-4"><a href="purrr.html#cb261-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-5"><a href="purrr.html#cb261-5" aria-hidden="true" tabindex="-1"></a><span class="co">#nest, unest() estudar!</span></span>
+<span id="cb261-6"><a href="purrr.html#cb261-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-7"><a href="purrr.html#cb261-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-8"><a href="purrr.html#cb261-8" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb261-9"><a href="purrr.html#cb261-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span> </span>
+<span id="cb261-10"><a href="purrr.html#cb261-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>()</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ## # Groups:   cyl [3]
 ##     cyl data              
@@ -845,36 +809,36 @@ div.csl-indent {
 ## 1     6 &lt;tibble [7 × 10]&gt; 
 ## 2     4 &lt;tibble [11 × 10]&gt;
 ## 3     8 &lt;tibble [14 × 10]&gt;</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="purrr.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mtcars %&gt;% </span></span>
-<span id="cb265-2"><a href="purrr.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  group_by(cyl) %&gt;% </span></span>
-<span id="cb265-3"><a href="purrr.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  nest() %&gt;%</span></span>
-<span id="cb265-4"><a href="purrr.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  map(~ lm(mpg ~ wt, data = .x)) </span></span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="purrr.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co">#mtcars %&gt;% </span></span>
+<span id="cb263-2"><a href="purrr.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  group_by(cyl) %&gt;% </span></span>
+<span id="cb263-3"><a href="purrr.html#cb263-3" aria-hidden="true" tabindex="-1"></a><span class="co">#  nest() %&gt;%</span></span>
+<span id="cb263-4"><a href="purrr.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="co">#  map(~ lm(mpg ~ wt, data = .x)) </span></span></code></pre></div>
 </div>
 <div id="map-functions" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> map functions<a href="purrr.html#map-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="purrr.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map&quot;</span>)</span>
-<span id="cb266-2"><a href="purrr.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_at&quot;</span>)</span>
-<span id="cb266-3"><a href="purrr.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_chr&quot;</span>)</span>
-<span id="cb266-4"><a href="purrr.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dbl&quot;</span>)</span>
-<span id="cb266-5"><a href="purrr.html#cb266-5" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_df&quot;</span>)</span>
-<span id="cb266-6"><a href="purrr.html#cb266-6" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dfc&quot;</span>)</span>
-<span id="cb266-7"><a href="purrr.html#cb266-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dfr&quot;</span>)</span>
-<span id="cb266-8"><a href="purrr.html#cb266-8" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_int&quot;</span>)</span>
-<span id="cb266-9"><a href="purrr.html#cb266-9" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_lgl&quot;</span>)</span>
-<span id="cb266-10"><a href="purrr.html#cb266-10" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_vec&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="purrr.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map&quot;</span>)</span>
+<span id="cb264-2"><a href="purrr.html#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_at&quot;</span>)</span>
+<span id="cb264-3"><a href="purrr.html#cb264-3" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_chr&quot;</span>)</span>
+<span id="cb264-4"><a href="purrr.html#cb264-4" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dbl&quot;</span>)</span>
+<span id="cb264-5"><a href="purrr.html#cb264-5" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_df&quot;</span>)</span>
+<span id="cb264-6"><a href="purrr.html#cb264-6" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dfc&quot;</span>)</span>
+<span id="cb264-7"><a href="purrr.html#cb264-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_dfr&quot;</span>)</span>
+<span id="cb264-8"><a href="purrr.html#cb264-8" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_int&quot;</span>)</span>
+<span id="cb264-9"><a href="purrr.html#cb264-9" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_lgl&quot;</span>)</span>
+<span id="cb264-10"><a href="purrr.html#cb264-10" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map_vec&quot;</span>)</span></code></pre></div>
 </div>
 <div id="map2-functions" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> map2 functions<a href="purrr.html#map2-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="purrr.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2&quot;</span>)</span>
-<span id="cb267-2"><a href="purrr.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_chr&quot;</span>)</span>
-<span id="cb267-3"><a href="purrr.html#cb267-3" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dbl&quot;</span>)</span>
-<span id="cb267-4"><a href="purrr.html#cb267-4" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_df&quot;</span>)</span>
-<span id="cb267-5"><a href="purrr.html#cb267-5" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dfc&quot;</span>)</span>
-<span id="cb267-6"><a href="purrr.html#cb267-6" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dfr&quot;</span>)</span>
-<span id="cb267-7"><a href="purrr.html#cb267-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_int&quot;</span>)</span>
-<span id="cb267-8"><a href="purrr.html#cb267-8" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_lgl&quot;</span>)</span>
-<span id="cb267-9"><a href="purrr.html#cb267-9" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_raw&quot;</span>)</span>
-<span id="cb267-10"><a href="purrr.html#cb267-10" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_vec&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="purrr.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2&quot;</span>)</span>
+<span id="cb265-2"><a href="purrr.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_chr&quot;</span>)</span>
+<span id="cb265-3"><a href="purrr.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dbl&quot;</span>)</span>
+<span id="cb265-4"><a href="purrr.html#cb265-4" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_df&quot;</span>)</span>
+<span id="cb265-5"><a href="purrr.html#cb265-5" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dfc&quot;</span>)</span>
+<span id="cb265-6"><a href="purrr.html#cb265-6" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_dfr&quot;</span>)</span>
+<span id="cb265-7"><a href="purrr.html#cb265-7" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_int&quot;</span>)</span>
+<span id="cb265-8"><a href="purrr.html#cb265-8" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_lgl&quot;</span>)</span>
+<span id="cb265-9"><a href="purrr.html#cb265-9" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_raw&quot;</span>)</span>
+<span id="cb265-10"><a href="purrr.html#cb265-10" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(<span class="st">&quot;map2_vec&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

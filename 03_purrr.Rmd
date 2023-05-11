@@ -160,10 +160,6 @@ mtcars %>%
 
 # A more realistic example: split a data frame into pieces, fit a
 # model to each piece, summarise and extract R^2
-
-mtcars %>% 
-  select(cyl) 
-
 mtcars %>%
   split(.$cyl) 
 
