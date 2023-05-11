@@ -1261,7 +1261,7 @@ ggplot(Orange, aes(age, circumference, color = Tree)) +
   geom_line()
 ```
 
-<img src="04_tidyr_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+<img src="04_tidyr_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 Suppose you want to test for correlations individually *within* each tree. You can do this with dplyr's `group_by`:
 
@@ -1601,4 +1601,16 @@ By combining the estimates and p-values across all groups into the same tidy dat
 - Volcano plots comparing p-values to effect size estimates
 
 In each of these cases, we can easily filter, facet, or distinguish based on the `term` column. In short, this makes the tools of tidy data analysis available for the *results* of data analysis and models, not just the inputs.
+
+## links
+
+https://www.youtube.com/watch?v=1bnhT8tlCJQ&list=PLBnFxG6owe1F-3y0_aphRZ5YHH06Qr1Kj
+
+https://bookdown.org/bruno_lucian_costa/CursoIntermediarioR/tidyr.html
+
+https://bookdown.org/Maxine/r4ds/nesting.html
+
+https://livro.curso-r.com/7-3-tidyr.html
+
+http://leg.ufpr.br/~walmes/cursoR/data-vis/slides/04-tidyr.pdf
 >>>>>>> 921c9f1d4aaaee5d965c09e5d0d58cdfc6baba3f
