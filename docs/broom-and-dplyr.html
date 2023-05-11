@@ -230,7 +230,10 @@ div.csl-indent {
 <li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#exemplos-da-ajuda-do-r"><i class="fa fa-check"></i><b>5.3</b> Exemplos da ajuda do R</a></li>
 <li class="chapter" data-level="5.4" data-path="tidyr.html"><a href="tidyr.html#mais-detalhes"><i class="fa fa-check"></i><b>5.4</b> Mais detalhes</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html"><i class="fa fa-check"></i><b>6</b> broom and dplyr</a></li>
+<li class="chapter" data-level="6" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html"><i class="fa fa-check"></i><b>6</b> broom and dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#links"><i class="fa fa-check"></i><b>6.1</b> links</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -287,7 +290,7 @@ div.csl-indent {
 <pre><code>## [1] 0.9135189</code></pre>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="broom-and-dplyr.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Orange, <span class="fu">aes</span>(age, circumference, <span class="at">color =</span> Tree)) <span class="sc">+</span></span>
 <span id="cb337-2"><a href="broom-and-dplyr.html#cb337-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="04_tidyr_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="05_broom_and_dplyr_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>Suppose you want to test for correlations individually <em>within</em> each tree. You can do this with dplyr’s <code>group_by</code>:</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="broom-and-dplyr.html#cb338-1" aria-hidden="true" tabindex="-1"></a>Orange <span class="sc">%&gt;%</span></span>
 <span id="cb338-2"><a href="broom-and-dplyr.html#cb338-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Tree) <span class="sc">%&gt;%</span></span>
@@ -514,7 +517,15 @@ div.csl-indent {
 <li>Volcano plots comparing p-values to effect size estimates</li>
 </ul>
 <p>In each of these cases, we can easily filter, facet, or distinguish based on the <code>term</code> column. In short, this makes the tools of tidy data analysis available for the <em>results</em> of data analysis and models, not just the inputs.</p>
+<div id="links" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> links<a href="broom-and-dplyr.html#links" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://www.youtube.com/watch?v=1bnhT8tlCJQ&amp;list=PLBnFxG6owe1F-3y0_aphRZ5YHH06Qr1Kj" class="uri">https://www.youtube.com/watch?v=1bnhT8tlCJQ&amp;list=PLBnFxG6owe1F-3y0_aphRZ5YHH06Qr1Kj</a></p>
+<p><a href="https://bookdown.org/bruno_lucian_costa/CursoIntermediarioR/tidyr.html" class="uri">https://bookdown.org/bruno_lucian_costa/CursoIntermediarioR/tidyr.html</a></p>
+<p><a href="https://bookdown.org/Maxine/r4ds/nesting.html" class="uri">https://bookdown.org/Maxine/r4ds/nesting.html</a></p>
+<p><a href="https://livro.curso-r.com/7-3-tidyr.html" class="uri">https://livro.curso-r.com/7-3-tidyr.html</a></p>
+<p><a href="http://leg.ufpr.br/~walmes/cursoR/data-vis/slides/04-tidyr.pdf" class="uri">http://leg.ufpr.br/~walmes/cursoR/data-vis/slides/04-tidyr.pdf</a></p>
 
+</div>
 </div>
             </section>
 
@@ -553,7 +564,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04_tidyr.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/05_broom_and_dplyr.Rmd",
 "text": "Edit"
 },
 "history": {
