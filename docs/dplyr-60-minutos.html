@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="Pt-Br" xml:lang="Pt-Br">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>2 dplyr (60 minutos) | Learning R packages</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="2 dplyr (60 minutos) | Learning R packages" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="2 dplyr (60 minutos) | Learning R packages" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Cristian Villegas" />
+
+
+<meta name="date" content="2023-05-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ggplot2-60-minutos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning R packages</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#carrega-pacotes-a-serem-usados"><i class="fa fa-check"></i><b>1.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#alguns-atalhos-no-rstudio"><i class="fa fa-check"></i><b>1.2</b> Alguns atalhos no Rstudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html"><i class="fa fa-check"></i><b>2</b> dplyr (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#carrega-pacotes-a-serem-usados-1"><i class="fa fa-check"></i><b>2.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="2.2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#descrição-dos-dados-mpg"><i class="fa fa-check"></i><b>2.2</b> Descrição dos dados <code>mpg</code></a></li>
+<li class="chapter" data-level="2.3" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#lista-de-funções-do-pacote-dplyr"><i class="fa fa-check"></i><b>2.3</b> Lista de funções do pacote dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#operador-pipe"><i class="fa fa-check"></i><b>2.4</b> Operador Pipe</a></li>
+<li class="chapter" data-level="2.5" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#select-para-colunas"><i class="fa fa-check"></i><b>2.5</b> select() para colunas</a></li>
+<li class="chapter" data-level="2.6" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#rename"><i class="fa fa-check"></i><b>2.6</b> rename()</a></li>
+<li class="chapter" data-level="2.7" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#mutate-para-colunas"><i class="fa fa-check"></i><b>2.7</b> mutate() para colunas</a></li>
+<li class="chapter" data-level="2.8" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#transmute"><i class="fa fa-check"></i><b>2.8</b> transmute()</a></li>
+<li class="chapter" data-level="2.9" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#filter-para-linhas"><i class="fa fa-check"></i><b>2.9</b> filter() para linhas</a></li>
+<li class="chapter" data-level="2.10" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#slice-para-linhas"><i class="fa fa-check"></i><b>2.10</b> slice() para linhas</a></li>
+<li class="chapter" data-level="2.11" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#arrange-para-linhas"><i class="fa fa-check"></i><b>2.11</b> arrange() para linhas</a></li>
+<li class="chapter" data-level="2.12" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#distinct-para-linhas"><i class="fa fa-check"></i><b>2.12</b> distinct() para linhas</a></li>
+<li class="chapter" data-level="2.13" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#summarise"><i class="fa fa-check"></i><b>2.13</b> summarise()</a></li>
+<li class="chapter" data-level="2.14" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#group_by"><i class="fa fa-check"></i><b>2.14</b> group_by()</a></li>
+<li class="chapter" data-level="2.15" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#count"><i class="fa fa-check"></i><b>2.15</b> count()</a></li>
+<li class="chapter" data-level="2.16" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_n"><i class="fa fa-check"></i><b>2.16</b> sample_n()</a></li>
+<li class="chapter" data-level="2.17" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_frac"><i class="fa fa-check"></i><b>2.17</b> sample_frac()</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html"><i class="fa fa-check"></i><b>3</b> ggplot2 (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#carrega-pacotes-a-serem-usados-2"><i class="fa fa-check"></i><b>3.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#lista-de-funções-do-pacote-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Lista de funções do pacote ggplot2</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#primeiros-passos-usando-geom_point"><i class="fa fa-check"></i><b>3.3</b> Primeiros passos usando geom_point</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#mais-detalhes-sobre-geom_point"><i class="fa fa-check"></i><b>3.3.1</b> Mais detalhes sobre geom_point</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#smooth-boxplot-histogram"><i class="fa fa-check"></i><b>3.4</b> smooth, boxplot, histogram</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gridextra-e-patchwork"><i class="fa fa-check"></i><b>3.5</b> gridExtra e patchwork</a></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#bar-col-density-density2d"><i class="fa fa-check"></i><b>3.6</b> bar, col, density, density2d</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#facet_grid-facet_wrap"><i class="fa fa-check"></i><b>3.7</b> facet_grid, facet_wrap</a></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_function"><i class="fa fa-check"></i><b>3.8</b> stat_function</a></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_summary"><i class="fa fa-check"></i><b>3.9</b> stat_summary</a></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#theme_"><i class="fa fa-check"></i><b>3.10</b> theme_*()</a></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gráfico-de-perfis-spaguetti-plot"><i class="fa fa-check"></i><b>3.11</b> Gráfico de perfis (Spaguetti plot)</a></li>
+<li class="chapter" data-level="3.12" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#plotly"><i class="fa fa-check"></i><b>3.12</b> plotly</a></li>
+<li class="chapter" data-level="3.13" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#esquisse"><i class="fa fa-check"></i><b>3.13</b> esquisse</a></li>
+<li class="chapter" data-level="3.14" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#exemplo-esquisse"><i class="fa fa-check"></i><b>3.14</b> Exemplo esquisse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>4</b> purrr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="purrr.html"><a href="purrr.html#apply-a-function-to-each-element-of-a-list-or-atomic-vector"><i class="fa fa-check"></i><b>4.1</b> Apply a function to each element of a list or atomic vector</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="purrr.html"><a href="purrr.html#usage"><i class="fa fa-check"></i><b>4.1.1</b> Usage</a></li>
+<li class="chapter" data-level="4.1.2" data-path="purrr.html"><a href="purrr.html#arguments"><i class="fa fa-check"></i><b>4.1.2</b> Arguments</a></li>
+<li class="chapter" data-level="4.1.3" data-path="purrr.html"><a href="purrr.html#value"><i class="fa fa-check"></i><b>4.1.3</b> Value</a></li>
+<li class="chapter" data-level="4.1.4" data-path="purrr.html"><a href="purrr.html#see-also"><i class="fa fa-check"></i><b>4.1.4</b> See Also</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="purrr.html"><a href="purrr.html#examples"><i class="fa fa-check"></i><b>4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.3" data-path="purrr.html"><a href="purrr.html#map-functions"><i class="fa fa-check"></i><b>4.3</b> map functions</a></li>
+<li class="chapter" data-level="4.4" data-path="purrr.html"><a href="purrr.html#map2-functions"><i class="fa fa-check"></i><b>4.4</b> map2 functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#nest"><i class="fa fa-check"></i><b>5.1</b> nest()</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#unnest"><i class="fa fa-check"></i><b>5.2</b> unnest()</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#exemplos-da-ajuda-do-r"><i class="fa fa-check"></i><b>5.3</b> Exemplos da ajuda do R</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyr.html"><a href="tidyr.html#mais-detalhes"><i class="fa fa-check"></i><b>5.4</b> Mais detalhes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html"><i class="fa fa-check"></i><b>6</b> broom and dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#tidy-bootstrapping"><i class="fa fa-check"></i><b>6.1</b> Tidy bootstrapping</a></li>
+<li class="chapter" data-level="6.2" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#mais-detalhes-glance"><i class="fa fa-check"></i><b>6.2</b> Mais detalhes (glance)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#lm"><i class="fa fa-check"></i><b>6.2.1</b> lm()</a></li>
+<li class="chapter" data-level="6.2.2" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#nls"><i class="fa fa-check"></i><b>6.2.2</b> nls()</a></li>
+<li class="chapter" data-level="6.2.3" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#glm"><i class="fa fa-check"></i><b>6.2.3</b> glm()</a></li>
+<li class="chapter" data-level="6.2.4" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#gam"><i class="fa fa-check"></i><b>6.2.4</b> gam()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#links"><i class="fa fa-check"></i><b>6.3</b> links</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning R packages</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dplyr-60-minutos" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> dplyr (60 minutos)<a href="dplyr-60-minutos.html#dplyr-60-minutos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="carrega-pacotes-a-serem-usados-1" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Carrega pacotes a serem usados<a href="dplyr-60-minutos.html#carrega-pacotes-a-serem-usados-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="dplyr-60-minutos.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;) </span></span>
+<span id="cb2-2"><a href="dplyr-60-minutos.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)     </span></span>
+<span id="cb2-3"><a href="dplyr-60-minutos.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyr&quot;)     </span></span>
+<span id="cb2-4"><a href="dplyr-60-minutos.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;ggplot2&quot;)   </span></span>
+<span id="cb2-5"><a href="dplyr-60-minutos.html#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="dplyr-60-minutos.html#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-7"><a href="dplyr-60-minutos.html#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Manipulação de dados</span></span>
+<span id="cb2-8"><a href="dplyr-60-minutos.html#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#library(dplyr)</span></span>
+<span id="cb2-9"><a href="dplyr-60-minutos.html#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="dplyr-60-minutos.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualização de gráficos</span></span>
+<span id="cb2-11"><a href="dplyr-60-minutos.html#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-12"><a href="dplyr-60-minutos.html#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb2-13"><a href="dplyr-60-minutos.html#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb2-14"><a href="dplyr-60-minutos.html#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb2-15"><a href="dplyr-60-minutos.html#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(esquisse)</span>
+<span id="cb2-16"><a href="dplyr-60-minutos.html#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="dplyr-60-minutos.html#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Para dados gráfico de perfis</span></span>
+<span id="cb2-18"><a href="dplyr-60-minutos.html#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlme)</span></code></pre></div>
+</div>
+<div id="descrição-dos-dados-mpg" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Descrição dos dados <code>mpg</code><a href="dplyr-60-minutos.html#descrição-dos-dados-mpg" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Dados de economia de combustível de 1999 a 2008 para <em>38 modelos populares de carros</em>. Este conjunto de dados contém um subconjunto dos dados de economia de combustível que a EPA disponibiliza em <em><a href="https://fueleconomy.gov/" class="uri">https://fueleconomy.gov/</a></em>. Ele contém apenas modelos que tiveram um novo lançamento a cada ano entre 1999 e 2008 - isso foi usado como um substituto para a popularidade do carro. Um <em>data frame</em> com 234 linhas e 11 variáveis:</p>
+<ul>
+<li><p><em>manufacturer</em> nome do fabricante</p></li>
+<li><p><em>model</em> nome do modelo</p></li>
+<li><p><em>displ</em> cilindrada do motor, em litros</p></li>
+<li><p><em>year</em> ano de fabricação</p></li>
+<li><p><em>cyl</em> número de cilindros</p></li>
+<li><p><em>trans</em> tipo de transmissão</p></li>
+<li><p><em>drv</em> o tipo de trem de força, onde <strong>f = tração dianteira</strong>, <strong>r = tração traseira</strong> e <strong>4 = 4wd</strong></p></li>
+<li><p><em>cty</em> milhas urbanas por galão</p></li>
+<li><p><em>hwy</em> milhas rodoviárias por galão</p></li>
+<li><p><em>fl</em> tipo de combustível</p></li>
+<li><p><em>class</em> “tipo” de carro</p></li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="dplyr-60-minutos.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#help(&quot;mpg&quot;)</span></span>
+<span id="cb3-2"><a href="dplyr-60-minutos.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-3"><a href="dplyr-60-minutos.html#cb3-3" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> mpg</span>
+<span id="cb3-4"><a href="dplyr-60-minutos.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados)</span></code></pre></div>
+<pre><code>## Rows: 234
+## Columns: 11
+## $ manufacturer &lt;chr&gt; &quot;audi&quot;, &quot;audi&quot;, &quot;audi&quot;, &quot;audi&quot;, &quot;audi&quot;, &quot;audi&quot;, &quot;audi&quot;, &quot;…
+## $ model        &lt;chr&gt; &quot;a4&quot;, &quot;a4&quot;, &quot;a4&quot;, &quot;a4&quot;, &quot;a4&quot;, &quot;a4&quot;, &quot;a4&quot;, &quot;a4 quattro&quot;, &quot;…
+## $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…
+## $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…
+## $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …
+## $ trans        &lt;chr&gt; &quot;auto(l5)&quot;, &quot;manual(m5)&quot;, &quot;manual(m6)&quot;, &quot;auto(av)&quot;, &quot;auto…
+## $ drv          &lt;chr&gt; &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;4&quot;, &quot;4&quot;, &quot;4&quot;, &quot;4&quot;, &quot;4…
+## $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…
+## $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…
+## $ fl           &lt;chr&gt; &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p&quot;, &quot;p…
+## $ class        &lt;chr&gt; &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;compact&quot;, &quot;c…</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="dplyr-60-minutos.html#cb5-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">mutate</span>(<span class="at">.data =</span> dados, </span>
+<span id="cb5-2"><a href="dplyr-60-minutos.html#cb5-2" aria-hidden="true" tabindex="-1"></a>                <span class="fu">across</span>(<span class="fu">where</span>(is.character), </span>
+<span id="cb5-3"><a href="dplyr-60-minutos.html#cb5-3" aria-hidden="true" tabindex="-1"></a>                as.factor))</span>
+<span id="cb5-4"><a href="dplyr-60-minutos.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co">#View(df) </span></span>
+<span id="cb5-5"><a href="dplyr-60-minutos.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados)</span></code></pre></div>
+<pre><code>## Rows: 234
+## Columns: 11
+## $ manufacturer &lt;fct&gt; audi, audi, audi, audi, audi, audi, audi, audi, audi, aud…
+## $ model        &lt;fct&gt; a4, a4, a4, a4, a4, a4, a4, a4 quattro, a4 quattro, a4 qu…
+## $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.…
+## $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 200…
+## $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, …
+## $ trans        &lt;fct&gt; auto(l5), manual(m5), manual(m6), auto(av), auto(l5), man…
+## $ drv          &lt;fct&gt; f, f, f, f, f, f, f, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, r, …
+## $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 1…
+## $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 2…
+## $ fl           &lt;fct&gt; p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, p, r, …
+## $ class        &lt;fct&gt; compact, compact, compact, compact, compact, compact, com…</code></pre>
+</div>
+<div id="lista-de-funções-do-pacote-dplyr" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Lista de funções do pacote dplyr<a href="dplyr-60-minutos.html#lista-de-funções-do-pacote-dplyr" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="dplyr-60-minutos.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:dplyr&quot;</span>)</span></code></pre></div>
+<pre><code>##   [1] &quot;%&gt;%&quot;                   &quot;across&quot;                &quot;add_count&quot;            
+##   [4] &quot;add_count_&quot;            &quot;add_row&quot;               &quot;add_rownames&quot;         
+##   [7] &quot;add_tally&quot;             &quot;add_tally_&quot;            &quot;all_equal&quot;            
+##  [10] &quot;all_of&quot;                &quot;all_vars&quot;              &quot;anti_join&quot;            
+##  [13] &quot;any_of&quot;                &quot;any_vars&quot;              &quot;arrange&quot;              
+##  [16] &quot;arrange_&quot;              &quot;arrange_all&quot;           &quot;arrange_at&quot;           
+##  [19] &quot;arrange_if&quot;            &quot;as.tbl&quot;                &quot;as_data_frame&quot;        
+##  [22] &quot;as_label&quot;              &quot;as_tibble&quot;             &quot;auto_copy&quot;            
+##  [25] &quot;band_instruments&quot;      &quot;band_instruments2&quot;     &quot;band_members&quot;         
+##  [28] &quot;bench_tbls&quot;            &quot;between&quot;               &quot;bind_cols&quot;            
+##  [31] &quot;bind_rows&quot;             &quot;c_across&quot;              &quot;case_match&quot;           
+##  [34] &quot;case_when&quot;             &quot;changes&quot;               &quot;check_dbplyr&quot;         
+##  [37] &quot;coalesce&quot;              &quot;collapse&quot;              &quot;collect&quot;              
+##  [40] &quot;combine&quot;               &quot;common_by&quot;             &quot;compare_tbls&quot;         
+##  [43] &quot;compare_tbls2&quot;         &quot;compute&quot;               &quot;consecutive_id&quot;       
+##  [46] &quot;contains&quot;              &quot;copy_to&quot;               &quot;count&quot;                
+##  [49] &quot;count_&quot;                &quot;cross_join&quot;            &quot;cumall&quot;               
+##  [52] &quot;cumany&quot;                &quot;cume_dist&quot;             &quot;cummean&quot;              
+##  [55] &quot;cur_column&quot;            &quot;cur_data&quot;              &quot;cur_data_all&quot;         
+##  [58] &quot;cur_group&quot;             &quot;cur_group_id&quot;          &quot;cur_group_rows&quot;       
+##  [61] &quot;current_vars&quot;          &quot;data_frame&quot;            &quot;db_analyze&quot;           
+##  [64] &quot;db_begin&quot;              &quot;db_commit&quot;             &quot;db_create_index&quot;      
+##  [67] &quot;db_create_indexes&quot;     &quot;db_create_table&quot;       &quot;db_data_type&quot;         
+##  [70] &quot;db_desc&quot;               &quot;db_drop_table&quot;         &quot;db_explain&quot;           
+##  [73] &quot;db_has_table&quot;          &quot;db_insert_into&quot;        &quot;db_list_tables&quot;       
+##  [76] &quot;db_query_fields&quot;       &quot;db_query_rows&quot;         &quot;db_rollback&quot;          
+##  [79] &quot;db_save_query&quot;         &quot;db_write_table&quot;        &quot;dense_rank&quot;           
+##  [82] &quot;desc&quot;                  &quot;dim_desc&quot;              &quot;distinct&quot;             
+##  [85] &quot;distinct_&quot;             &quot;distinct_all&quot;          &quot;distinct_at&quot;          
+##  [88] &quot;distinct_if&quot;           &quot;distinct_prepare&quot;      &quot;do&quot;                   
+##  [91] &quot;do_&quot;                   &quot;dplyr_col_modify&quot;      &quot;dplyr_reconstruct&quot;    
+##  [94] &quot;dplyr_row_slice&quot;       &quot;ends_with&quot;             &quot;enexpr&quot;               
+##  [97] &quot;enexprs&quot;               &quot;enquo&quot;                 &quot;enquos&quot;               
+## [100] &quot;ensym&quot;                 &quot;ensyms&quot;                &quot;eval_tbls&quot;            
+## [103] &quot;eval_tbls2&quot;            &quot;everything&quot;            &quot;explain&quot;              
+## [106] &quot;expr&quot;                  &quot;failwith&quot;              &quot;filter&quot;               
+## [109] &quot;filter_&quot;               &quot;filter_all&quot;            &quot;filter_at&quot;            
+## [112] &quot;filter_if&quot;             &quot;first&quot;                 &quot;full_join&quot;            
+## [115] &quot;funs&quot;                  &quot;funs_&quot;                 &quot;glimpse&quot;              
+## [118] &quot;group_by&quot;              &quot;group_by_&quot;             &quot;group_by_all&quot;         
+## [121] &quot;group_by_at&quot;           &quot;group_by_drop_default&quot; &quot;group_by_if&quot;          
+## [124] &quot;group_by_prepare&quot;      &quot;group_cols&quot;            &quot;group_data&quot;           
+## [127] &quot;group_indices&quot;         &quot;group_indices_&quot;        &quot;group_keys&quot;           
+## [130] &quot;group_map&quot;             &quot;group_modify&quot;          &quot;group_nest&quot;           
+## [133] &quot;group_rows&quot;            &quot;group_size&quot;            &quot;group_split&quot;          
+## [136] &quot;group_trim&quot;            &quot;group_vars&quot;            &quot;group_walk&quot;           
+## [139] &quot;grouped_df&quot;            &quot;groups&quot;                &quot;id&quot;                   
+## [142] &quot;ident&quot;                 &quot;if_all&quot;                &quot;if_any&quot;               
+## [145] &quot;if_else&quot;               &quot;inner_join&quot;            &quot;intersect&quot;            
+## [148] &quot;is.grouped_df&quot;         &quot;is.src&quot;                &quot;is.tbl&quot;               
+## [151] &quot;is_grouped_df&quot;         &quot;join_by&quot;               &quot;lag&quot;                  
+## [154] &quot;last&quot;                  &quot;last_col&quot;              &quot;last_dplyr_warnings&quot;  
+## [157] &quot;lead&quot;                  &quot;left_join&quot;             &quot;location&quot;             
+## [160] &quot;lst&quot;                   &quot;make_tbl&quot;              &quot;matches&quot;              
+## [163] &quot;min_rank&quot;              &quot;mutate&quot;                &quot;mutate_&quot;              
+## [166] &quot;mutate_all&quot;            &quot;mutate_at&quot;             &quot;mutate_each&quot;          
+## [169] &quot;mutate_each_&quot;          &quot;mutate_if&quot;             &quot;n&quot;                    
+## [172] &quot;n_distinct&quot;            &quot;n_groups&quot;              &quot;na_if&quot;                
+## [175] &quot;near&quot;                  &quot;nest_by&quot;               &quot;nest_join&quot;            
+## [178] &quot;new_grouped_df&quot;        &quot;new_rowwise_df&quot;        &quot;nth&quot;                  
+## [181] &quot;ntile&quot;                 &quot;num_range&quot;             &quot;one_of&quot;               
+## [184] &quot;order_by&quot;              &quot;percent_rank&quot;          &quot;pick&quot;                 
+## [187] &quot;progress_estimated&quot;    &quot;pull&quot;                  &quot;quo&quot;                  
+## [190] &quot;quo_name&quot;              &quot;quos&quot;                  &quot;recode&quot;               
+## [193] &quot;recode_factor&quot;         &quot;reframe&quot;               &quot;relocate&quot;             
+## [196] &quot;rename&quot;                &quot;rename_&quot;               &quot;rename_all&quot;           
+## [199] &quot;rename_at&quot;             &quot;rename_if&quot;             &quot;rename_vars&quot;          
+## [202] &quot;rename_vars_&quot;          &quot;rename_with&quot;           &quot;right_join&quot;           
+## [205] &quot;row_number&quot;            &quot;rows_append&quot;           &quot;rows_delete&quot;          
+## [208] &quot;rows_insert&quot;           &quot;rows_patch&quot;            &quot;rows_update&quot;          
+## [211] &quot;rows_upsert&quot;           &quot;rowwise&quot;               &quot;same_src&quot;             
+## [214] &quot;sample_frac&quot;           &quot;sample_n&quot;              &quot;select&quot;               
+## [217] &quot;select_&quot;               &quot;select_all&quot;            &quot;select_at&quot;            
+## [220] &quot;select_if&quot;             &quot;select_var&quot;            &quot;select_vars&quot;          
+## [223] &quot;select_vars_&quot;          &quot;semi_join&quot;             &quot;setdiff&quot;              
+## [226] &quot;setequal&quot;              &quot;show_query&quot;            &quot;slice&quot;                
+## [229] &quot;slice_&quot;                &quot;slice_head&quot;            &quot;slice_max&quot;            
+## [232] &quot;slice_min&quot;             &quot;slice_sample&quot;          &quot;slice_tail&quot;           
+## [235] &quot;sql&quot;                   &quot;sql_escape_ident&quot;      &quot;sql_escape_string&quot;    
+## [238] &quot;sql_join&quot;              &quot;sql_select&quot;            &quot;sql_semi_join&quot;        
+## [241] &quot;sql_set_op&quot;            &quot;sql_subquery&quot;          &quot;sql_translate_env&quot;    
+## [244] &quot;src&quot;                   &quot;src_df&quot;                &quot;src_local&quot;            
+## [247] &quot;src_mysql&quot;             &quot;src_postgres&quot;          &quot;src_sqlite&quot;           
+## [250] &quot;src_tbls&quot;              &quot;starts_with&quot;           &quot;starwars&quot;             
+## [253] &quot;storms&quot;                &quot;summarise&quot;             &quot;summarise_&quot;           
+## [256] &quot;summarise_all&quot;         &quot;summarise_at&quot;          &quot;summarise_each&quot;       
+## [259] &quot;summarise_each_&quot;       &quot;summarise_if&quot;          &quot;summarize&quot;            
+## [262] &quot;summarize_&quot;            &quot;summarize_all&quot;         &quot;summarize_at&quot;         
+## [265] &quot;summarize_each&quot;        &quot;summarize_each_&quot;       &quot;summarize_if&quot;         
+## [268] &quot;sym&quot;                   &quot;symdiff&quot;               &quot;syms&quot;                 
+## [271] &quot;tally&quot;                 &quot;tally_&quot;                &quot;tbl&quot;                  
+## [274] &quot;tbl_df&quot;                &quot;tbl_nongroup_vars&quot;     &quot;tbl_ptype&quot;            
+## [277] &quot;tbl_vars&quot;              &quot;tibble&quot;                &quot;top_frac&quot;             
+## [280] &quot;top_n&quot;                 &quot;transmute&quot;             &quot;transmute_&quot;           
+## [283] &quot;transmute_all&quot;         &quot;transmute_at&quot;          &quot;transmute_if&quot;         
+## [286] &quot;tribble&quot;               &quot;type_sum&quot;              &quot;ungroup&quot;              
+## [289] &quot;union&quot;                 &quot;union_all&quot;             &quot;validate_grouped_df&quot;  
+## [292] &quot;validate_rowwise_df&quot;   &quot;vars&quot;                  &quot;where&quot;                
+## [295] &quot;with_groups&quot;           &quot;with_order&quot;            &quot;wrap_dbplyr_obj&quot;</code></pre>
+</div>
+<div id="operador-pipe" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Operador Pipe<a href="dplyr-60-minutos.html#operador-pipe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="dplyr-60-minutos.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="fu">log</span>(<span class="dv">44</span>))</span></code></pre></div>
+<pre><code>## [1] 1.945299</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="dplyr-60-minutos.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">44</span> <span class="sc">%&gt;%</span> log <span class="sc">%&gt;%</span> sqrt</span></code></pre></div>
+<pre><code>## [1] 1.945299</code></pre>
+</div>
+<div id="select-para-colunas" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> select() para colunas<a href="dplyr-60-minutos.html#select-para-colunas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="dplyr-60-minutos.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, manufacturer, model, year)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 3
+##    manufacturer model       year
+##    &lt;fct&gt;        &lt;fct&gt;      &lt;int&gt;
+##  1 audi         a4          1999
+##  2 audi         a4          1999
+##  3 audi         a4          2008
+##  4 audi         a4          2008
+##  5 audi         a4          1999
+##  6 audi         a4          1999
+##  7 audi         a4          2008
+##  8 audi         a4 quattro  1999
+##  9 audi         a4 quattro  1999
+## 10 audi         a4 quattro  2008
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="dplyr-60-minutos.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="fu">starts_with</span>(<span class="st">&quot;m&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 2
+##    manufacturer model     
+##    &lt;fct&gt;        &lt;fct&gt;     
+##  1 audi         a4        
+##  2 audi         a4        
+##  3 audi         a4        
+##  4 audi         a4        
+##  5 audi         a4        
+##  6 audi         a4        
+##  7 audi         a4        
+##  8 audi         a4 quattro
+##  9 audi         a4 quattro
+## 10 audi         a4 quattro
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="dplyr-60-minutos.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="fu">contains</span>(<span class="st">&quot;r&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 4
+##    manufacturer  year trans      drv  
+##    &lt;fct&gt;        &lt;int&gt; &lt;fct&gt;      &lt;fct&gt;
+##  1 audi          1999 auto(l5)   f    
+##  2 audi          1999 manual(m5) f    
+##  3 audi          2008 manual(m6) f    
+##  4 audi          2008 auto(av)   f    
+##  5 audi          1999 auto(l5)   f    
+##  6 audi          1999 manual(m5) f    
+##  7 audi          2008 auto(av)   f    
+##  8 audi          1999 manual(m5) 4    
+##  9 audi          1999 auto(l5)   4    
+## 10 audi          2008 manual(m6) 4    
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="dplyr-60-minutos.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="fu">ends_with</span>(<span class="st">&quot;y&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 2
+##      cty   hwy
+##    &lt;int&gt; &lt;int&gt;
+##  1    18    29
+##  2    21    29
+##  3    20    31
+##  4    21    30
+##  5    16    26
+##  6    18    26
+##  7    18    27
+##  8    18    26
+##  9    16    25
+## 10    20    28
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="dplyr-60-minutos.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="fu">matches</span>(<span class="st">&quot;[abc]&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 6
+##    manufacturer  year   cyl trans        cty class  
+##    &lt;fct&gt;        &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;int&gt; &lt;fct&gt;  
+##  1 audi          1999     4 auto(l5)      18 compact
+##  2 audi          1999     4 manual(m5)    21 compact
+##  3 audi          2008     4 manual(m6)    20 compact
+##  4 audi          2008     4 auto(av)      21 compact
+##  5 audi          1999     6 auto(l5)      16 compact
+##  6 audi          1999     6 manual(m5)    18 compact
+##  7 audi          2008     6 auto(av)      18 compact
+##  8 audi          1999     4 manual(m5)    18 compact
+##  9 audi          1999     4 auto(l5)      16 compact
+## 10 audi          2008     4 manual(m6)    20 compact
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="dplyr-60-minutos.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="fu">starts_with</span>(<span class="st">&quot;m&quot;</span>), <span class="fu">starts_with</span>(<span class="st">&quot;c&quot;</span>)) </span></code></pre></div>
+<pre><code>## # A tibble: 234 × 5
+##    manufacturer model        cyl   cty class  
+##    &lt;fct&gt;        &lt;fct&gt;      &lt;int&gt; &lt;int&gt; &lt;fct&gt;  
+##  1 audi         a4             4    18 compact
+##  2 audi         a4             4    21 compact
+##  3 audi         a4             4    20 compact
+##  4 audi         a4             4    21 compact
+##  5 audi         a4             6    16 compact
+##  6 audi         a4             6    18 compact
+##  7 audi         a4             6    18 compact
+##  8 audi         a4 quattro     4    18 compact
+##  9 audi         a4 quattro     4    16 compact
+## 10 audi         a4 quattro     4    20 compact
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="dplyr-60-minutos.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="fu">ends_with</span>(<span class="st">&quot;l&quot;</span>), <span class="fu">ends_with</span>(<span class="st">&quot;s&quot;</span>)) </span></code></pre></div>
+<pre><code>## # A tibble: 234 × 6
+##    model      displ   cyl fl    trans      class  
+##    &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;      &lt;fct&gt;  
+##  1 a4           1.8     4 p     auto(l5)   compact
+##  2 a4           1.8     4 p     manual(m5) compact
+##  3 a4           2       4 p     manual(m6) compact
+##  4 a4           2       4 p     auto(av)   compact
+##  5 a4           2.8     6 p     auto(l5)   compact
+##  6 a4           2.8     6 p     manual(m5) compact
+##  7 a4           3.1     6 p     auto(av)   compact
+##  8 a4 quattro   1.8     4 p     manual(m5) compact
+##  9 a4 quattro   1.8     4 p     auto(l5)   compact
+## 10 a4 quattro   2       4 p     manual(m6) compact
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="dplyr-60-minutos.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>)      </span></code></pre></div>
+<pre><code>## # A tibble: 234 × 3
+##    manufacturer model      displ
+##    &lt;fct&gt;        &lt;fct&gt;      &lt;dbl&gt;
+##  1 audi         a4           1.8
+##  2 audi         a4           1.8
+##  3 audi         a4           2  
+##  4 audi         a4           2  
+##  5 audi         a4           2.8
+##  6 audi         a4           2.8
+##  7 audi         a4           3.1
+##  8 audi         a4 quattro   1.8
+##  9 audi         a4 quattro   1.8
+## 10 audi         a4 quattro   2  
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="dplyr-60-minutos.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">7</span>)) </span></code></pre></div>
+<pre><code>## # A tibble: 234 × 3
+##    model        cyl drv  
+##    &lt;fct&gt;      &lt;int&gt; &lt;fct&gt;
+##  1 a4             4 f    
+##  2 a4             4 f    
+##  3 a4             4 f    
+##  4 a4             4 f    
+##  5 a4             6 f    
+##  6 a4             6 f    
+##  7 a4             6 f    
+##  8 a4 quattro     4 4    
+##  9 a4 quattro     4 4    
+## 10 a4 quattro     4 4    
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="dplyr-60-minutos.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, manufacturer<span class="sc">:</span>cyl) </span></code></pre></div>
+<pre><code>## # A tibble: 234 × 5
+##    manufacturer model      displ  year   cyl
+##    &lt;fct&gt;        &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+##  1 audi         a4           1.8  1999     4
+##  2 audi         a4           1.8  1999     4
+##  3 audi         a4           2    2008     4
+##  4 audi         a4           2    2008     4
+##  5 audi         a4           2.8  1999     6
+##  6 audi         a4           2.8  1999     6
+##  7 audi         a4           3.1  2008     6
+##  8 audi         a4 quattro   1.8  1999     4
+##  9 audi         a4 quattro   1.8  1999     4
+## 10 audi         a4 quattro   2    2008     4
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="dplyr-60-minutos.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados,<span class="sc">-</span>(manufacturer<span class="sc">:</span>cyl))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 6
+##    trans      drv     cty   hwy fl    class  
+##    &lt;fct&gt;      &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;  
+##  1 auto(l5)   f        18    29 p     compact
+##  2 manual(m5) f        21    29 p     compact
+##  3 manual(m6) f        20    31 p     compact
+##  4 auto(av)   f        21    30 p     compact
+##  5 auto(l5)   f        16    26 p     compact
+##  6 manual(m5) f        18    26 p     compact
+##  7 auto(av)   f        18    27 p     compact
+##  8 manual(m5) 4        18    26 p     compact
+##  9 auto(l5)   4        16    25 p     compact
+## 10 manual(m6) 4        20    28 p     compact
+## # … with 224 more rows</code></pre>
+</div>
+<div id="rename" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> rename()<a href="dplyr-60-minutos.html#rename" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="dplyr-60-minutos.html#cb35-1" aria-hidden="true" tabindex="-1"></a>dados1 <span class="ot">&lt;-</span> <span class="fu">rename</span>(dados, </span>
+<span id="cb35-2"><a href="dplyr-60-minutos.html#cb35-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">mnfc =</span> manufacturer,</span>
+<span id="cb35-3"><a href="dplyr-60-minutos.html#cb35-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">mod =</span> model)</span>
+<span id="cb35-4"><a href="dplyr-60-minutos.html#cb35-4" aria-hidden="true" tabindex="-1"></a>dados1</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 11
+##    mnfc  mod        displ  year   cyl trans      drv     cty   hwy fl    class  
+##    &lt;fct&gt; &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;  
+##  1 audi  a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
+##  2 audi  a4           1.8  1999     4 manual(m5) f        21    29 p     compact
+##  3 audi  a4           2    2008     4 manual(m6) f        20    31 p     compact
+##  4 audi  a4           2    2008     4 auto(av)   f        21    30 p     compact
+##  5 audi  a4           2.8  1999     6 auto(l5)   f        16    26 p     compact
+##  6 audi  a4           2.8  1999     6 manual(m5) f        18    26 p     compact
+##  7 audi  a4           3.1  2008     6 auto(av)   f        18    27 p     compact
+##  8 audi  a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
+##  9 audi  a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
+## 10 audi  a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="dplyr-60-minutos.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados,</span>
+<span id="cb37-2"><a href="dplyr-60-minutos.html#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mnfc =</span> manufacturer,</span>
+<span id="cb37-3"><a href="dplyr-60-minutos.html#cb37-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mod =</span> model)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 2
+##    mnfc  mod       
+##    &lt;fct&gt; &lt;fct&gt;     
+##  1 audi  a4        
+##  2 audi  a4        
+##  3 audi  a4        
+##  4 audi  a4        
+##  5 audi  a4        
+##  6 audi  a4        
+##  7 audi  a4        
+##  8 audi  a4 quattro
+##  9 audi  a4 quattro
+## 10 audi  a4 quattro
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="dplyr-60-minutos.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados,</span>
+<span id="cb39-2"><a href="dplyr-60-minutos.html#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">mnfc =</span> manufacturer,</span>
+<span id="cb39-3"><a href="dplyr-60-minutos.html#cb39-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">mod =</span> model,</span>
+<span id="cb39-4"><a href="dplyr-60-minutos.html#cb39-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">everything</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 11
+##    mnfc  mod        displ  year   cyl trans      drv     cty   hwy fl    class  
+##    &lt;fct&gt; &lt;fct&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt;      &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;  
+##  1 audi  a4           1.8  1999     4 auto(l5)   f        18    29 p     compact
+##  2 audi  a4           1.8  1999     4 manual(m5) f        21    29 p     compact
+##  3 audi  a4           2    2008     4 manual(m6) f        20    31 p     compact
+##  4 audi  a4           2    2008     4 auto(av)   f        21    30 p     compact
+##  5 audi  a4           2.8  1999     6 auto(l5)   f        16    26 p     compact
+##  6 audi  a4           2.8  1999     6 manual(m5) f        18    26 p     compact
+##  7 audi  a4           3.1  2008     6 auto(av)   f        18    27 p     compact
+##  8 audi  a4 quattro   1.8  1999     4 manual(m5) 4        18    26 p     compact
+##  9 audi  a4 quattro   1.8  1999     4 auto(l5)   4        16    25 p     compact
+## 10 audi  a4 quattro   2    2008     4 manual(m6) 4        20    28 p     compact
+## # … with 224 more rows</code></pre>
+</div>
+<div id="mutate-para-colunas" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> mutate() para colunas<a href="dplyr-60-minutos.html#mutate-para-colunas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="dplyr-60-minutos.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(dados, <span class="at">sqrt_cty =</span> <span class="fu">sqrt</span>(cty))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 12
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
+## # … with 224 more rows, and abbreviated variable names ¹​manufacturer, ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="dplyr-60-minutos.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados)</span></code></pre></div>
+<pre><code>##  [1] &quot;manufacturer&quot; &quot;model&quot;        &quot;displ&quot;        &quot;year&quot;         &quot;cyl&quot;         
+##  [6] &quot;trans&quot;        &quot;drv&quot;          &quot;cty&quot;          &quot;hwy&quot;          &quot;fl&quot;          
+## [11] &quot;class&quot;</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="dplyr-60-minutos.html#cb45-1" aria-hidden="true" tabindex="-1"></a>dados<span class="ot">&lt;-</span> <span class="fu">mutate</span>(dados, <span class="at">sqrt_cty =</span> <span class="fu">sqrt</span>(cty))</span>
+<span id="cb45-2"><a href="dplyr-60-minutos.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados)</span></code></pre></div>
+<pre><code>##  [1] &quot;manufacturer&quot; &quot;model&quot;        &quot;displ&quot;        &quot;year&quot;         &quot;cyl&quot;         
+##  [6] &quot;trans&quot;        &quot;drv&quot;          &quot;cty&quot;          &quot;hwy&quot;          &quot;fl&quot;          
+## [11] &quot;class&quot;        &quot;sqrt_cty&quot;</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="dplyr-60-minutos.html#cb47-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">mutate</span>(dados,</span>
+<span id="cb47-2"><a href="dplyr-60-minutos.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="st">`</span><span class="at">soma de variáveis</span><span class="st">`</span> <span class="ot">=</span> (cty <span class="sc">+</span> hwy) <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb47-3"><a href="dplyr-60-minutos.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dados)</span></code></pre></div>
+<pre><code>##  [1] &quot;manufacturer&quot;      &quot;model&quot;             &quot;displ&quot;            
+##  [4] &quot;year&quot;              &quot;cyl&quot;               &quot;trans&quot;            
+##  [7] &quot;drv&quot;               &quot;cty&quot;               &quot;hwy&quot;              
+## [10] &quot;fl&quot;                &quot;class&quot;             &quot;sqrt_cty&quot;         
+## [13] &quot;soma de variáveis&quot;</code></pre>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dplyr-60-minutos.html#cb49-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">mutate</span>(dados,</span>
+<span id="cb49-2"><a href="dplyr-60-minutos.html#cb49-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">car =</span> <span class="fu">paste</span>(manufacturer, model, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>),</span>
+<span id="cb49-3"><a href="dplyr-60-minutos.html#cb49-3" aria-hidden="true" tabindex="-1"></a>             <span class="st">`</span><span class="at">cyl / trans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(cyl, <span class="st">&quot; cylinders&quot;</span>, <span class="st">&quot; / &quot;</span>, trans, <span class="st">&quot; transmission&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb49-4"><a href="dplyr-60-minutos.html#cb49-4" aria-hidden="true" tabindex="-1"></a>dados</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
+## # … with 224 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+</div>
+<div id="transmute" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> transmute()<a href="dplyr-60-minutos.html#transmute" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="dplyr-60-minutos.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">transmute</span>(dados,</span>
+<span id="cb51-2"><a href="dplyr-60-minutos.html#cb51-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">avg miles per gallon</span><span class="st">`</span> <span class="ot">=</span> (cty <span class="sc">+</span> hwy) <span class="sc">/</span> <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 1
+##    `avg miles per gallon`
+##                     &lt;dbl&gt;
+##  1                   23.5
+##  2                   25  
+##  3                   25.5
+##  4                   25.5
+##  5                   21  
+##  6                   22  
+##  7                   22.5
+##  8                   22  
+##  9                   20.5
+## 10                   24  
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="dplyr-60-minutos.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">transmute</span>(dados,</span>
+<span id="cb53-2"><a href="dplyr-60-minutos.html#cb53-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">car =</span> <span class="fu">paste</span>(manufacturer, model, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>),</span>
+<span id="cb53-3"><a href="dplyr-60-minutos.html#cb53-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">cyl / trans</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">paste</span>(cyl, <span class="st">&quot; cylinders&quot;</span>, <span class="st">&quot; / &quot;</span>, trans, <span class="st">&quot; transmission&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 2
+##    car             `cyl / trans`                        
+##    &lt;chr&gt;           &lt;chr&gt;                                
+##  1 audi a4         4 cylinders / auto(l5) transmission  
+##  2 audi a4         4 cylinders / manual(m5) transmission
+##  3 audi a4         4 cylinders / manual(m6) transmission
+##  4 audi a4         4 cylinders / auto(av) transmission  
+##  5 audi a4         6 cylinders / auto(l5) transmission  
+##  6 audi a4         6 cylinders / manual(m5) transmission
+##  7 audi a4         6 cylinders / auto(av) transmission  
+##  8 audi a4 quattro 4 cylinders / manual(m5) transmission
+##  9 audi a4 quattro 4 cylinders / auto(l5) transmission  
+## 10 audi a4 quattro 4 cylinders / manual(m6) transmission
+## # … with 224 more rows</code></pre>
+</div>
+<div id="filter-para-linhas" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> filter() para linhas<a href="dplyr-60-minutos.html#filter-para-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="dplyr-60-minutos.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 18 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
+## 11 audi      a4 q…   2    2008     4 auto… 4        19    27 p     comp…    4.36
+## 12 audi      a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
+## 13 audi      a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
+## 14 audi      a4 q…   3.1  2008     6 auto… 4        17    25 p     comp…    4.12
+## 15 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
+## 16 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
+## 17 audi      a6 q…   3.1  2008     6 auto… 4        17    25 p     mids…    4.12
+## 18 audi      a6 q…   4.2  2008     8 auto… 4        16    23 p     mids…    4   
+## # … with 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="dplyr-60-minutos.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span> <span class="sc">&amp;</span> year <span class="sc">==</span> <span class="st">&quot;1999&quot;</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 9 × 15
+##   manufact…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##   &lt;fct&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+## 1 audi       a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+## 2 audi       a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+## 3 audi       a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+## 4 audi       a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+## 5 audi       a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+## 6 audi       a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 7 audi       a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
+## 8 audi       a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
+## 9 audi       a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
+## # … with 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="dplyr-60-minutos.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span>, year <span class="sc">==</span> <span class="dv">1999</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 9 × 15
+##   manufact…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##   &lt;fct&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+## 1 audi       a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+## 2 audi       a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+## 3 audi       a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+## 4 audi       a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+## 5 audi       a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+## 6 audi       a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 7 audi       a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
+## 8 audi       a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
+## 9 audi       a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
+## # … with 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="dplyr-60-minutos.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span> <span class="sc">|</span> manufacturer <span class="sc">==</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb61-2"><a href="dplyr-60-minutos.html#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 55 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
+## 11 audi      a4 q…   2    2008     4 auto… 4        19    27 p     comp…    4.36
+## 12 audi      a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
+## 13 audi      a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
+## 14 audi      a4 q…   3.1  2008     6 auto… 4        17    25 p     comp…    4.12
+## 15 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
+## 16 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
+## 17 audi      a6 q…   3.1  2008     6 auto… 4        17    25 p     mids…    4.12
+## 18 audi      a6 q…   4.2  2008     8 auto… 4        16    23 p     mids…    4   
+## 19 dodge     cara…   2.4  1999     4 auto… f        18    24 r     mini…    4.24
+## 20 dodge     cara…   3    1999     6 auto… f        17    24 r     mini…    4.12
+## # … with 35 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="dplyr-60-minutos.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, manufacturer <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;audi&quot;</span>, <span class="st">&quot;dodge&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb63-2"><a href="dplyr-60-minutos.html#cb63-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 55 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
+## 11 audi      a4 q…   2    2008     4 auto… 4        19    27 p     comp…    4.36
+## 12 audi      a4 q…   2.8  1999     6 auto… 4        15    25 p     comp…    3.87
+## 13 audi      a4 q…   2.8  1999     6 manu… 4        17    25 p     comp…    4.12
+## 14 audi      a4 q…   3.1  2008     6 auto… 4        17    25 p     comp…    4.12
+## 15 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
+## 16 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
+## 17 audi      a6 q…   3.1  2008     6 auto… 4        17    25 p     mids…    4.12
+## 18 audi      a6 q…   4.2  2008     8 auto… 4        16    23 p     mids…    4   
+## 19 dodge     cara…   2.4  1999     4 auto… f        18    24 r     mini…    4.24
+## 20 dodge     cara…   3    1999     6 auto… f        17    24 r     mini…    4.12
+## # … with 35 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="dplyr-60-minutos.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, hwy <span class="sc">&gt;=</span> <span class="dv">30</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb65-2"><a href="dplyr-60-minutos.html#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(hwy) <span class="sc">%&gt;%</span></span>
+<span id="cb65-3"><a href="dplyr-60-minutos.html#cb65-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">26</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 26 × 1
+##      hwy
+##    &lt;int&gt;
+##  1    31
+##  2    30
+##  3    30
+##  4    33
+##  5    32
+##  6    32
+##  7    32
+##  8    34
+##  9    36
+## 10    36
+## 11    30
+## 12    31
+## 13    31
+## 14    32
+## 15    31
+## 16    31
+## 17    31
+## 18    31
+## 19    30
+## 20    33
+## 21    35
+## 22    37
+## 23    35
+## 24    44
+## 25    44
+## 26    41</code></pre>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="dplyr-60-minutos.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, year <span class="sc">!=</span> <span class="dv">1999</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb67-2"><a href="dplyr-60-minutos.html#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year) <span class="sc">%&gt;%</span></span>
+<span id="cb67-3"><a href="dplyr-60-minutos.html#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">30</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 117 × 1
+##     year
+##    &lt;int&gt;
+##  1  2008
+##  2  2008
+##  3  2008
+##  4  2008
+##  5  2008
+##  6  2008
+##  7  2008
+##  8  2008
+##  9  2008
+## 10  2008
+## 11  2008
+## 12  2008
+## 13  2008
+## 14  2008
+## 15  2008
+## 16  2008
+## 17  2008
+## 18  2008
+## 19  2008
+## 20  2008
+## 21  2008
+## 22  2008
+## 23  2008
+## 24  2008
+## 25  2008
+## 26  2008
+## 27  2008
+## 28  2008
+## 29  2008
+## 30  2008
+## # … with 87 more rows</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="dplyr-60-minutos.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(dados, <span class="fu">between</span>(cty,<span class="dv">15</span>, <span class="dv">22</span>)) </span></code></pre></div>
+<pre><code>## # A tibble: 143 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
+## # … with 133 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+</div>
+<div id="slice-para-linhas" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> slice() para linhas<a href="dplyr-60-minutos.html#slice-para-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="dplyr-60-minutos.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(dados, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 15
+##   manufact…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##   &lt;fct&gt;      &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+## 1 audi       a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+## 2 audi       a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+## 3 audi       a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+## 4 audi       a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+## 5 audi       a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+## # … with 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="dplyr-60-minutos.html#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dados[1:5,]</span></span>
+<span id="cb73-2"><a href="dplyr-60-minutos.html#cb73-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb73-3"><a href="dplyr-60-minutos.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="fu">slice</span>(dados, <span class="dv">20</span><span class="sc">:</span><span class="dv">30</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 11 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 chevrolet c150…   5.3  2008     8 auto… r        11    15 e     suv      3.32
+##  2 chevrolet c150…   5.3  2008     8 auto… r        14    20 r     suv      3.74
+##  3 chevrolet c150…   5.7  1999     8 auto… r        13    17 r     suv      3.61
+##  4 chevrolet c150…   6    2008     8 auto… r        12    17 r     suv      3.46
+##  5 chevrolet corv…   5.7  1999     8 manu… r        16    26 p     2sea…    4   
+##  6 chevrolet corv…   5.7  1999     8 auto… r        15    23 p     2sea…    3.87
+##  7 chevrolet corv…   6.2  2008     8 manu… r        16    26 p     2sea…    4   
+##  8 chevrolet corv…   6.2  2008     8 auto… r        15    25 p     2sea…    3.87
+##  9 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
+## 10 chevrolet k150…   5.3  2008     8 auto… 4        14    19 r     suv      3.74
+## 11 chevrolet k150…   5.3  2008     8 auto… 4        11    14 e     suv      3.32
+## # … with 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="dplyr-60-minutos.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dados[20:30,]</span></span></code></pre></div>
+</div>
+<div id="arrange-para-linhas" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> arrange() para linhas<a href="dplyr-60-minutos.html#arrange-para-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="dplyr-60-minutos.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ordenar &quot;displ&quot; de menor a maior</span></span>
+<span id="cb76-2"><a href="dplyr-60-minutos.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(dados, displ)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 honda     civic   1.6  1999     4 manu… f        28    33 r     subc…    5.29
+##  2 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
+##  3 honda     civic   1.6  1999     4 manu… f        25    32 r     subc…    5   
+##  4 honda     civic   1.6  1999     4 manu… f        23    29 p     subc…    4.80
+##  5 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
+##  6 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  7 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 honda     civic   1.8  2008     4 manu… f        26    34 r     subc…    5.10
+## # … with 224 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="dplyr-60-minutos.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(dados, displ) <span class="sc">%&gt;%</span> </span>
+<span id="cb78-2"><a href="dplyr-60-minutos.html#cb78-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n=</span><span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 honda     civic   1.6  1999     4 manu… f        28    33 r     subc…    5.29
+##  2 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
+##  3 honda     civic   1.6  1999     4 manu… f        25    32 r     subc…    5   
+##  4 honda     civic   1.6  1999     4 manu… f        23    29 p     subc…    4.80
+##  5 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
+##  6 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  7 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 honda     civic   1.8  2008     4 manu… f        26    34 r     subc…    5.10
+## 11 honda     civic   1.8  2008     4 auto… f        25    36 r     subc…    5   
+## 12 honda     civic   1.8  2008     4 auto… f        24    36 c     subc…    4.90
+## 13 toyota    coro…   1.8  1999     4 auto… f        24    30 r     comp…    4.90
+## 14 toyota    coro…   1.8  1999     4 auto… f        24    33 r     comp…    4.90
+## 15 toyota    coro…   1.8  1999     4 manu… f        26    35 r     comp…    5.10
+## 16 toyota    coro…   1.8  2008     4 manu… f        28    37 r     comp…    5.29
+## 17 toyota    coro…   1.8  2008     4 auto… f        26    35 r     comp…    5.10
+## 18 volkswag… pass…   1.8  1999     4 manu… f        21    29 p     mids…    4.58
+## 19 volkswag… pass…   1.8  1999     4 auto… f        18    29 p     mids…    4.24
+## 20 volkswag… jetta   1.9  1999     4 manu… f        33    44 d     comp…    5.74
+## # … with 214 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="dplyr-60-minutos.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ordenar &quot;displ&quot; de maior a  menor</span></span>
+<span id="cb80-2"><a href="dplyr-60-minutos.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(dados, <span class="fu">desc</span>(displ))</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
+##  2 chevrolet k150…   6.5  1999     8 auto… 4        14    17 d     suv      3.74
+##  3 chevrolet corv…   6.2  2008     8 manu… r        16    26 p     2sea…    4   
+##  4 chevrolet corv…   6.2  2008     8 auto… r        15    25 p     2sea…    3.87
+##  5 jeep      gran…   6.1  2008     8 auto… 4        11    14 p     suv      3.32
+##  6 chevrolet c150…   6    2008     8 auto… r        12    17 r     suv      3.46
+##  7 dodge     dura…   5.9  1999     8 auto… 4        11    15 r     suv      3.32
+##  8 dodge     ram …   5.9  1999     8 auto… 4        11    15 r     pick…    3.32
+##  9 chevrolet c150…   5.7  1999     8 auto… r        13    17 r     suv      3.61
+## 10 chevrolet corv…   5.7  1999     8 manu… r        16    26 p     2sea…    4   
+## # … with 224 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="dplyr-60-minutos.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arrange</span>(dados, <span class="fu">desc</span>(displ)) <span class="sc">%&gt;%</span> </span>
+<span id="cb82-2"><a href="dplyr-60-minutos.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n=</span><span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
+##  2 chevrolet k150…   6.5  1999     8 auto… 4        14    17 d     suv      3.74
+##  3 chevrolet corv…   6.2  2008     8 manu… r        16    26 p     2sea…    4   
+##  4 chevrolet corv…   6.2  2008     8 auto… r        15    25 p     2sea…    3.87
+##  5 jeep      gran…   6.1  2008     8 auto… 4        11    14 p     suv      3.32
+##  6 chevrolet c150…   6    2008     8 auto… r        12    17 r     suv      3.46
+##  7 dodge     dura…   5.9  1999     8 auto… 4        11    15 r     suv      3.32
+##  8 dodge     ram …   5.9  1999     8 auto… 4        11    15 r     pick…    3.32
+##  9 chevrolet c150…   5.7  1999     8 auto… r        13    17 r     suv      3.61
+## 10 chevrolet corv…   5.7  1999     8 manu… r        16    26 p     2sea…    4   
+## 11 chevrolet corv…   5.7  1999     8 auto… r        15    23 p     2sea…    3.87
+## 12 chevrolet k150…   5.7  1999     8 auto… 4        11    15 r     suv      3.32
+## 13 dodge     dura…   5.7  2008     8 auto… 4        13    18 r     suv      3.61
+## 14 dodge     ram …   5.7  2008     8 auto… 4        13    17 r     pick…    3.61
+## 15 jeep      gran…   5.7  2008     8 auto… 4        13    18 r     suv      3.61
+## 16 toyota    land…   5.7  2008     8 auto… 4        13    18 r     suv      3.61
+## 17 nissan    path…   5.6  2008     8 auto… 4        12    18 p     suv      3.46
+## 18 ford      expe…   5.4  1999     8 auto… r        11    17 r     suv      3.32
+## 19 ford      expe…   5.4  2008     8 auto… r        12    18 r     suv      3.46
+## 20 ford      f150…   5.4  1999     8 auto… 4        11    15 r     pick…    3.32
+## # … with 214 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="dplyr-60-minutos.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, displ, cty) <span class="sc">%&gt;%</span> </span>
+<span id="cb84-2"><a href="dplyr-60-minutos.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(displ, cty) <span class="sc">%&gt;%</span> </span>
+<span id="cb84-3"><a href="dplyr-60-minutos.html#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 2
+##    displ   cty
+##    &lt;dbl&gt; &lt;int&gt;
+##  1   1.6    23
+##  2   1.6    24
+##  3   1.6    24
+##  4   1.6    25
+##  5   1.6    28
+##  6   1.8    16
+##  7   1.8    18
+##  8   1.8    18
+##  9   1.8    18
+## 10   1.8    21
+## 11   1.8    21
+## 12   1.8    24
+## 13   1.8    24
+## 14   1.8    24
+## 15   1.8    25
+## 16   1.8    26
+## 17   1.8    26
+## 18   1.8    26
+## 19   1.8    28
+## 20   1.9    29
+## # … with 214 more rows</code></pre>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="dplyr-60-minutos.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(dados, displ, cty) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-2"><a href="dplyr-60-minutos.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(displ, <span class="fu">desc</span>(cty)) <span class="sc">%&gt;%</span> </span>
+<span id="cb86-3"><a href="dplyr-60-minutos.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">20</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 2
+##    displ   cty
+##    &lt;dbl&gt; &lt;int&gt;
+##  1   1.6    28
+##  2   1.6    25
+##  3   1.6    24
+##  4   1.6    24
+##  5   1.6    23
+##  6   1.8    28
+##  7   1.8    26
+##  8   1.8    26
+##  9   1.8    26
+## 10   1.8    25
+## 11   1.8    24
+## 12   1.8    24
+## 13   1.8    24
+## 14   1.8    21
+## 15   1.8    21
+## 16   1.8    18
+## 17   1.8    18
+## 18   1.8    18
+## 19   1.8    16
+## 20   1.9    35
+## # … with 214 more rows</code></pre>
+</div>
+<div id="distinct-para-linhas" class="section level2 hasAnchor" number="2.12">
+<h2><span class="header-section-number">2.12</span> distinct() para linhas<a href="dplyr-60-minutos.html#distinct-para-linhas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="dplyr-60-minutos.html#cb88-1" aria-hidden="true" tabindex="-1"></a>dados_exemplo <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb88-2"><a href="dplyr-60-minutos.html#cb88-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Julia&quot;</span>))</span>
+<span id="cb88-3"><a href="dplyr-60-minutos.html#cb88-3" aria-hidden="true" tabindex="-1"></a>dados_exemplo</span></code></pre></div>
+<pre><code>##   id  name
+## 1  1  John
+## 2  2   Max
+## 3  3 Julia</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="dplyr-60-minutos.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bind_rows == rbind()</span></span>
+<span id="cb90-2"><a href="dplyr-60-minutos.html#cb90-2" aria-hidden="true" tabindex="-1"></a>dados_exemplo<span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(dados_exemplo, <span class="fu">slice</span>(dados_exemplo, <span class="dv">2</span>)) </span>
+<span id="cb90-3"><a href="dplyr-60-minutos.html#cb90-3" aria-hidden="true" tabindex="-1"></a>dados_exemplo</span></code></pre></div>
+<pre><code>##   id  name
+## 1  1  John
+## 2  2   Max
+## 3  3 Julia
+## 4  2   Max</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="dplyr-60-minutos.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(dados_exemplo)</span></code></pre></div>
+<pre><code>##   id  name
+## 1  1  John
+## 2  2   Max
+## 3  3 Julia</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="dplyr-60-minutos.html#cb94-1" aria-hidden="true" tabindex="-1"></a>dados_exemplo2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">id =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb94-2"><a href="dplyr-60-minutos.html#cb94-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;John&quot;</span>, <span class="st">&quot;Max&quot;</span>, <span class="st">&quot;Julia&quot;</span>))</span>
+<span id="cb94-3"><a href="dplyr-60-minutos.html#cb94-3" aria-hidden="true" tabindex="-1"></a>dados_exemplo2</span></code></pre></div>
+<pre><code>##   id  name
+## 1  1  John
+## 2  1   Max
+## 3  2 Julia</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="dplyr-60-minutos.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">distinct</span>(dados_exemplo2)</span></code></pre></div>
+<pre><code>##   id  name
+## 1  1  John
+## 2  1   Max
+## 3  2 Julia</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="dplyr-60-minutos.html#cb98-1" aria-hidden="true" tabindex="-1"></a>dados_duplicados <span class="ot">&lt;-</span> <span class="fu">select</span>(dados, manufacturer, model)</span>
+<span id="cb98-2"><a href="dplyr-60-minutos.html#cb98-2" aria-hidden="true" tabindex="-1"></a>dados_duplicados</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 2
+##    manufacturer model     
+##    &lt;fct&gt;        &lt;fct&gt;     
+##  1 audi         a4        
+##  2 audi         a4        
+##  3 audi         a4        
+##  4 audi         a4        
+##  5 audi         a4        
+##  6 audi         a4        
+##  7 audi         a4        
+##  8 audi         a4 quattro
+##  9 audi         a4 quattro
+## 10 audi         a4 quattro
+## # … with 224 more rows</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="dplyr-60-minutos.html#cb100-1" aria-hidden="true" tabindex="-1"></a>dados_nao_duplicados <span class="ot">&lt;-</span> <span class="fu">distinct</span>(dados_duplicados)</span>
+<span id="cb100-2"><a href="dplyr-60-minutos.html#cb100-2" aria-hidden="true" tabindex="-1"></a>dados_nao_duplicados</span></code></pre></div>
+<pre><code>## # A tibble: 38 × 2
+##    manufacturer model             
+##    &lt;fct&gt;        &lt;fct&gt;             
+##  1 audi         a4                
+##  2 audi         a4 quattro        
+##  3 audi         a6 quattro        
+##  4 chevrolet    c1500 suburban 2wd
+##  5 chevrolet    corvette          
+##  6 chevrolet    k1500 tahoe 4wd   
+##  7 chevrolet    malibu            
+##  8 dodge        caravan 2wd       
+##  9 dodge        dakota pickup 4wd 
+## 10 dodge        durango 4wd       
+## # … with 28 more rows</code></pre>
+</div>
+<div id="summarise" class="section level2 hasAnchor" number="2.13">
+<h2><span class="header-section-number">2.13</span> summarise()<a href="dplyr-60-minutos.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="dplyr-60-minutos.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(dados, <span class="st">`</span><span class="at">média hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(hwy))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   `média hwy`
+##         &lt;dbl&gt;
+## 1        23.4</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="dplyr-60-minutos.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(dados, </span>
+<span id="cb104-2"><a href="dplyr-60-minutos.html#cb104-2" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">num. de dados</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n</span>(),</span>
+<span id="cb104-3"><a href="dplyr-60-minutos.html#cb104-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">num. modelos</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n_distinct</span>(model))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 2
+##   `num. de dados` `num. modelos`
+##             &lt;int&gt;          &lt;int&gt;
+## 1             234             38</code></pre>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="dplyr-60-minutos.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># levels(dados$model)</span></span>
+<span id="cb106-2"><a href="dplyr-60-minutos.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(dados, </span>
+<span id="cb106-3"><a href="dplyr-60-minutos.html#cb106-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">mín. hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>(hwy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb106-4"><a href="dplyr-60-minutos.html#cb106-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">mín. cty</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>(cty, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb106-5"><a href="dplyr-60-minutos.html#cb106-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">máx. hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>(hwy, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb106-6"><a href="dplyr-60-minutos.html#cb106-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">máx. cty</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>(cty, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   `mín. hwy` `mín. cty` `máx. hwy` `máx. cty`
+##        &lt;int&gt;      &lt;int&gt;      &lt;int&gt;      &lt;int&gt;
+## 1         12          9         44         35</code></pre>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="dplyr-60-minutos.html#cb108-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb108-2"><a href="dplyr-60-minutos.html#cb108-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_at</span>(<span class="fu">c</span>(<span class="st">&quot;hwy&quot;</span>, <span class="st">&quot;cty&quot;</span>), <span class="fu">list</span>(min, max), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 4
+##   hwy_fn1 cty_fn1 hwy_fn2 cty_fn2
+##     &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;
+## 1      12       9      44      35</code></pre>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dplyr-60-minutos.html#cb110-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb110-2"><a href="dplyr-60-minutos.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_if</span>(is.numeric, <span class="fu">list</span>(min, max), <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 1 × 14
+##   displ_fn1 year_fn1 cyl_fn1 cty_fn1 hwy_fn1 sqrt_cty_…¹ soma …² displ…³ year_…⁴
+##       &lt;dbl&gt;    &lt;int&gt;   &lt;int&gt;   &lt;int&gt;   &lt;int&gt;       &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;
+## 1       1.6     1999       4       9      12           3    10.5       7    2008
+## # … with 5 more variables: cyl_fn2 &lt;int&gt;, cty_fn2 &lt;int&gt;, hwy_fn2 &lt;int&gt;,
+## #   sqrt_cty_fn2 &lt;dbl&gt;, `soma de variáveis_fn2` &lt;dbl&gt;, and abbreviated variable
+## #   names ¹​sqrt_cty_fn1, ²​`soma de variáveis_fn1`, ³​displ_fn2, ⁴​year_fn2</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="dplyr-60-minutos.html#cb112-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb112-2"><a href="dplyr-60-minutos.html#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_if</span>(is.numeric, min, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 1 × 7
+##   displ  year   cyl   cty   hwy sqrt_cty `soma de variáveis`
+##   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;               &lt;dbl&gt;
+## 1   1.6  1999     4     9    12        3                10.5</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="dplyr-60-minutos.html#cb114-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb114-2"><a href="dplyr-60-minutos.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_if</span>(is.numeric, max, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<pre><code>## # A tibble: 1 × 7
+##   displ  year   cyl   cty   hwy sqrt_cty `soma de variáveis`
+##   &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;dbl&gt;               &lt;dbl&gt;
+## 1     7  2008     8    35    44     5.92                39.5</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="dplyr-60-minutos.html#cb116-1" aria-hidden="true" tabindex="-1"></a>Tiago<span class="ot">&lt;-</span> <span class="cf">function</span>(dados){</span>
+<span id="cb116-2"><a href="dplyr-60-minutos.html#cb116-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sd</span>(dados)<span class="sc">/</span><span class="fu">mean</span>(dados)</span>
+<span id="cb116-3"><a href="dplyr-60-minutos.html#cb116-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb116-4"><a href="dplyr-60-minutos.html#cb116-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-5"><a href="dplyr-60-minutos.html#cb116-5" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span></span>
+<span id="cb116-6"><a href="dplyr-60-minutos.html#cb116-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise_if</span>(is.numeric, Tiago) </span></code></pre></div>
+<pre><code>## # A tibble: 1 × 7
+##   displ    year   cyl   cty   hwy sqrt_cty `soma de variáveis`
+##   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;               &lt;dbl&gt;
+## 1 0.372 0.00225 0.274 0.252 0.254    0.125               0.251</code></pre>
+</div>
+<div id="group_by" class="section level2 hasAnchor" number="2.14">
+<h2><span class="header-section-number">2.14</span> group_by()<a href="dplyr-60-minutos.html#group_by" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="dplyr-60-minutos.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group_by</span>(dados, manufacturer)</span></code></pre></div>
+<pre><code>## # A tibble: 234 × 15
+## # Groups:   manufacturer [15]
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 audi      a4      1.8  1999     4 auto… f        18    29 p     comp…    4.24
+##  2 audi      a4      1.8  1999     4 manu… f        21    29 p     comp…    4.58
+##  3 audi      a4      2    2008     4 manu… f        20    31 p     comp…    4.47
+##  4 audi      a4      2    2008     4 auto… f        21    30 p     comp…    4.58
+##  5 audi      a4      2.8  1999     6 auto… f        16    26 p     comp…    4   
+##  6 audi      a4      2.8  1999     6 manu… f        18    26 p     comp…    4.24
+##  7 audi      a4      3.1  2008     6 auto… f        18    27 p     comp…    4.24
+##  8 audi      a4 q…   1.8  1999     4 manu… 4        18    26 p     comp…    4.24
+##  9 audi      a4 q…   1.8  1999     4 auto… 4        16    25 p     comp…    4   
+## 10 audi      a4 q…   2    2008     4 manu… 4        20    28 p     comp…    4.47
+## # … with 224 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="dplyr-60-minutos.html#cb120-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb120-2"><a href="dplyr-60-minutos.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer) <span class="sc">%&gt;%</span></span>
+<span id="cb120-3"><a href="dplyr-60-minutos.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">`</span><span class="at">num. carros</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 15 × 2
+##    manufacturer `num. carros`
+##    &lt;fct&gt;                &lt;int&gt;
+##  1 audi                    18
+##  2 chevrolet               19
+##  3 dodge                   37
+##  4 ford                    25
+##  5 honda                    9
+##  6 hyundai                 14
+##  7 jeep                     8
+##  8 land rover               4
+##  9 lincoln                  3
+## 10 mercury                  4
+## 11 nissan                  13
+## 12 pontiac                  5
+## 13 subaru                  14
+## 14 toyota                  34
+## 15 volkswagen              27</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="dplyr-60-minutos.html#cb122-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb122-2"><a href="dplyr-60-minutos.html#cb122-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(model) <span class="sc">%&gt;%</span></span>
+<span id="cb122-3"><a href="dplyr-60-minutos.html#cb122-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="st">`</span><span class="at">média hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">mean</span>(hwy),</span>
+<span id="cb122-4"><a href="dplyr-60-minutos.html#cb122-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">min. hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">min</span>(hwy),</span>
+<span id="cb122-5"><a href="dplyr-60-minutos.html#cb122-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">`</span><span class="at">max. hwy</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">max</span>(hwy))</span></code></pre></div>
+<pre><code>## # A tibble: 38 × 4
+##    model              `média hwy` `min. hwy` `max. hwy`
+##    &lt;fct&gt;                    &lt;dbl&gt;      &lt;int&gt;      &lt;int&gt;
+##  1 4runner 4wd               18.8         17         20
+##  2 a4                        28.3         26         31
+##  3 a4 quattro                25.8         25         28
+##  4 a6 quattro                24           23         25
+##  5 altima                    28.7         26         32
+##  6 c1500 suburban 2wd        17.8         15         20
+##  7 camry                     28.3         26         31
+##  8 camry solara              28.1         26         31
+##  9 caravan 2wd               22.4         17         24
+## 10 civic                     32.6         29         36
+## # … with 28 more rows</code></pre>
+</div>
+<div id="count" class="section level2 hasAnchor" number="2.15">
+<h2><span class="header-section-number">2.15</span> count()<a href="dplyr-60-minutos.html#count" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dplyr-60-minutos.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(dados)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##       n
+##   &lt;int&gt;
+## 1   234</code></pre>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="dplyr-60-minutos.html#cb126-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb126-2"><a href="dplyr-60-minutos.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer) <span class="sc">%&gt;%</span></span>
+<span id="cb126-3"><a href="dplyr-60-minutos.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 15 × 2
+## # Groups:   manufacturer [15]
+##    manufacturer     n
+##    &lt;fct&gt;        &lt;int&gt;
+##  1 audi            18
+##  2 chevrolet       19
+##  3 dodge           37
+##  4 ford            25
+##  5 honda            9
+##  6 hyundai         14
+##  7 jeep             8
+##  8 land rover       4
+##  9 lincoln          3
+## 10 mercury          4
+## 11 nissan          13
+## 12 pontiac          5
+## 13 subaru          14
+## 14 toyota          34
+## 15 volkswagen      27</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="dplyr-60-minutos.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Equivalente com o código anterior</span></span>
+<span id="cb128-2"><a href="dplyr-60-minutos.html#cb128-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb128-3"><a href="dplyr-60-minutos.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer) <span class="sc">%&gt;%</span></span>
+<span id="cb128-4"><a href="dplyr-60-minutos.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">cars =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 15 × 2
+##    manufacturer  cars
+##    &lt;fct&gt;        &lt;int&gt;
+##  1 audi            18
+##  2 chevrolet       19
+##  3 dodge           37
+##  4 ford            25
+##  5 honda            9
+##  6 hyundai         14
+##  7 jeep             8
+##  8 land rover       4
+##  9 lincoln          3
+## 10 mercury          4
+## 11 nissan          13
+## 12 pontiac          5
+## 13 subaru          14
+## 14 toyota          34
+## 15 volkswagen      27</code></pre>
+</div>
+<div id="sample_n" class="section level2 hasAnchor" number="2.16">
+<h2><span class="header-section-number">2.16</span> sample_n()<a href="dplyr-60-minutos.html#sample_n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dplyr-60-minutos.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">567</span>)</span>
+<span id="cb130-2"><a href="dplyr-60-minutos.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_n</span>(dados, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> F)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 mercury   moun…   5    1999     8 auto… 4        13    17 r     suv      3.61
+##  2 chevrolet corv…   7    2008     8 manu… r        15    24 p     2sea…    3.87
+##  3 dodge     ram …   4.7  2008     8 manu… 4        12    16 r     pick…    3.46
+##  4 toyota    land…   4.7  1999     8 auto… 4        11    15 r     suv      3.32
+##  5 volkswag… jetta   2    1999     4 auto… f        19    26 r     comp…    4.36
+##  6 dodge     cara…   3.8  1999     6 auto… f        15    21 r     mini…    3.87
+##  7 honda     civic   1.8  2008     4 auto… f        25    36 r     subc…    5   
+##  8 ford      must…   4.6  1999     8 auto… r        15    21 r     subc…    3.87
+##  9 chevrolet c150…   5.3  2008     8 auto… r        14    20 r     suv      3.74
+## 10 ford      expe…   5.4  1999     8 auto… r        11    17 r     suv      3.32
+## # … with 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dplyr-60-minutos.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_n</span>(dados, <span class="at">size =</span> <span class="dv">10</span>, <span class="at">replace =</span> T)</span></code></pre></div>
+<pre><code>## # A tibble: 10 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 chevrolet c150…   5.3  2008     8 auto… r        11    15 e     suv      3.32
+##  2 volkswag… gti     2    2008     4 auto… f        22    29 p     comp…    4.69
+##  3 dodge     dako…   4.7  2008     8 auto… 4        14    19 r     pick…    3.74
+##  4 ford      expl…   4.6  2008     8 auto… 4        13    19 r     suv      3.61
+##  5 dodge     cara…   3.8  2008     6 auto… f        16    23 r     mini…    4   
+##  6 chevrolet k150…   5.3  2008     8 auto… 4        14    19 r     suv      3.74
+##  7 dodge     dura…   5.2  1999     8 auto… 4        11    16 r     suv      3.32
+##  8 toyota    camry   2.4  2008     4 manu… f        21    31 r     mids…    4.58
+##  9 toyota    camry   3    1999     6 manu… f        18    26 r     mids…    4.24
+## 10 subaru    impr…   2.2  1999     4 auto… 4        21    26 r     subc…    4.58
+## # … with 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+</div>
+<div id="sample_frac" class="section level2 hasAnchor" number="2.17">
+<h2><span class="header-section-number">2.17</span> sample_frac()<a href="dplyr-60-minutos.html#sample_frac" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dplyr-60-minutos.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sample_frac</span>(dados, <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">replace =</span> F)</span></code></pre></div>
+<pre><code>## # A tibble: 23 × 15
+##    manufac…¹ model displ  year   cyl trans drv     cty   hwy fl    class sqrt_…²
+##    &lt;fct&gt;     &lt;fct&gt; &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt; &lt;int&gt; &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;dbl&gt;
+##  1 toyota    coro…   1.8  2008     4 manu… f        28    37 r     comp…    5.29
+##  2 lincoln   navi…   5.4  1999     8 auto… r        11    17 r     suv      3.32
+##  3 honda     civic   1.6  1999     4 auto… f        24    32 r     subc…    4.90
+##  4 audi      a6 q…   2.8  1999     6 auto… 4        15    24 p     mids…    3.87
+##  5 nissan    path…   4    2008     6 auto… 4        14    20 p     suv      3.74
+##  6 toyota    camry   3.5  2008     6 auto… f        19    28 r     mids…    4.36
+##  7 subaru    impr…   2.5  2008     4 auto… 4        20    25 p     comp…    4.47
+##  8 toyota    toyo…   3.4  1999     6 auto… 4        15    19 r     pick…    3.87
+##  9 audi      a4 q…   3.1  2008     6 manu… 4        15    25 p     comp…    3.87
+## 10 toyota    coro…   1.8  1999     4 manu… f        26    35 r     comp…    5.10
+## # … with 13 more rows, 3 more variables: `soma de variáveis` &lt;dbl&gt;, car &lt;chr&gt;,
+## #   `cyl / trans` &lt;chr&gt;, and abbreviated variable names ¹​manufacturer,
+## #   ²​sqrt_cty</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2-60-minutos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01_dplyr.RMD",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["learning_R.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="Pt-Br" xml:lang="Pt-Br">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 tidyr | Learning R packages</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 tidyr | Learning R packages" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 tidyr | Learning R packages" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Cristian Villegas" />
+
+
+<meta name="date" content="2023-05-11" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="purrr.html"/>
+<link rel="next" href="broom-and-dplyr.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning R packages</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#carrega-pacotes-a-serem-usados"><i class="fa fa-check"></i><b>1.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#alguns-atalhos-no-rstudio"><i class="fa fa-check"></i><b>1.2</b> Alguns atalhos no Rstudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html"><i class="fa fa-check"></i><b>2</b> dplyr (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#carrega-pacotes-a-serem-usados-1"><i class="fa fa-check"></i><b>2.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="2.2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#descrição-dos-dados-mpg"><i class="fa fa-check"></i><b>2.2</b> Descrição dos dados <code>mpg</code></a></li>
+<li class="chapter" data-level="2.3" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#lista-de-funções-do-pacote-dplyr"><i class="fa fa-check"></i><b>2.3</b> Lista de funções do pacote dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#operador-pipe"><i class="fa fa-check"></i><b>2.4</b> Operador Pipe</a></li>
+<li class="chapter" data-level="2.5" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#select-para-colunas"><i class="fa fa-check"></i><b>2.5</b> select() para colunas</a></li>
+<li class="chapter" data-level="2.6" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#rename"><i class="fa fa-check"></i><b>2.6</b> rename()</a></li>
+<li class="chapter" data-level="2.7" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#mutate-para-colunas"><i class="fa fa-check"></i><b>2.7</b> mutate() para colunas</a></li>
+<li class="chapter" data-level="2.8" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#transmute"><i class="fa fa-check"></i><b>2.8</b> transmute()</a></li>
+<li class="chapter" data-level="2.9" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#filter-para-linhas"><i class="fa fa-check"></i><b>2.9</b> filter() para linhas</a></li>
+<li class="chapter" data-level="2.10" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#slice-para-linhas"><i class="fa fa-check"></i><b>2.10</b> slice() para linhas</a></li>
+<li class="chapter" data-level="2.11" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#arrange-para-linhas"><i class="fa fa-check"></i><b>2.11</b> arrange() para linhas</a></li>
+<li class="chapter" data-level="2.12" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#distinct-para-linhas"><i class="fa fa-check"></i><b>2.12</b> distinct() para linhas</a></li>
+<li class="chapter" data-level="2.13" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#summarise"><i class="fa fa-check"></i><b>2.13</b> summarise()</a></li>
+<li class="chapter" data-level="2.14" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#group_by"><i class="fa fa-check"></i><b>2.14</b> group_by()</a></li>
+<li class="chapter" data-level="2.15" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#count"><i class="fa fa-check"></i><b>2.15</b> count()</a></li>
+<li class="chapter" data-level="2.16" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_n"><i class="fa fa-check"></i><b>2.16</b> sample_n()</a></li>
+<li class="chapter" data-level="2.17" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_frac"><i class="fa fa-check"></i><b>2.17</b> sample_frac()</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html"><i class="fa fa-check"></i><b>3</b> ggplot2 (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#carrega-pacotes-a-serem-usados-2"><i class="fa fa-check"></i><b>3.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#lista-de-funções-do-pacote-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Lista de funções do pacote ggplot2</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#primeiros-passos-usando-geom_point"><i class="fa fa-check"></i><b>3.3</b> Primeiros passos usando geom_point</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#mais-detalhes-sobre-geom_point"><i class="fa fa-check"></i><b>3.3.1</b> Mais detalhes sobre geom_point</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#smooth-boxplot-histogram"><i class="fa fa-check"></i><b>3.4</b> smooth, boxplot, histogram</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gridextra-e-patchwork"><i class="fa fa-check"></i><b>3.5</b> gridExtra e patchwork</a></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#bar-col-density-density2d"><i class="fa fa-check"></i><b>3.6</b> bar, col, density, density2d</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#facet_grid-facet_wrap"><i class="fa fa-check"></i><b>3.7</b> facet_grid, facet_wrap</a></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_function"><i class="fa fa-check"></i><b>3.8</b> stat_function</a></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_summary"><i class="fa fa-check"></i><b>3.9</b> stat_summary</a></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#theme_"><i class="fa fa-check"></i><b>3.10</b> theme_*()</a></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gráfico-de-perfis-spaguetti-plot"><i class="fa fa-check"></i><b>3.11</b> Gráfico de perfis (Spaguetti plot)</a></li>
+<li class="chapter" data-level="3.12" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#plotly"><i class="fa fa-check"></i><b>3.12</b> plotly</a></li>
+<li class="chapter" data-level="3.13" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#esquisse"><i class="fa fa-check"></i><b>3.13</b> esquisse</a></li>
+<li class="chapter" data-level="3.14" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#exemplo-esquisse"><i class="fa fa-check"></i><b>3.14</b> Exemplo esquisse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>4</b> purrr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="purrr.html"><a href="purrr.html#apply-a-function-to-each-element-of-a-list-or-atomic-vector"><i class="fa fa-check"></i><b>4.1</b> Apply a function to each element of a list or atomic vector</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="purrr.html"><a href="purrr.html#usage"><i class="fa fa-check"></i><b>4.1.1</b> Usage</a></li>
+<li class="chapter" data-level="4.1.2" data-path="purrr.html"><a href="purrr.html#arguments"><i class="fa fa-check"></i><b>4.1.2</b> Arguments</a></li>
+<li class="chapter" data-level="4.1.3" data-path="purrr.html"><a href="purrr.html#value"><i class="fa fa-check"></i><b>4.1.3</b> Value</a></li>
+<li class="chapter" data-level="4.1.4" data-path="purrr.html"><a href="purrr.html#see-also"><i class="fa fa-check"></i><b>4.1.4</b> See Also</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="purrr.html"><a href="purrr.html#examples"><i class="fa fa-check"></i><b>4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.3" data-path="purrr.html"><a href="purrr.html#map-functions"><i class="fa fa-check"></i><b>4.3</b> map functions</a></li>
+<li class="chapter" data-level="4.4" data-path="purrr.html"><a href="purrr.html#map2-functions"><i class="fa fa-check"></i><b>4.4</b> map2 functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#nest"><i class="fa fa-check"></i><b>5.1</b> nest()</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#unnest"><i class="fa fa-check"></i><b>5.2</b> unnest()</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#exemplos-da-ajuda-do-r"><i class="fa fa-check"></i><b>5.3</b> Exemplos da ajuda do R</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyr.html"><a href="tidyr.html#mais-detalhes"><i class="fa fa-check"></i><b>5.4</b> Mais detalhes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html"><i class="fa fa-check"></i><b>6</b> broom and dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#tidy-bootstrapping"><i class="fa fa-check"></i><b>6.1</b> Tidy bootstrapping</a></li>
+<li class="chapter" data-level="6.2" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#mais-detalhes-glance"><i class="fa fa-check"></i><b>6.2</b> Mais detalhes (glance)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#lm"><i class="fa fa-check"></i><b>6.2.1</b> lm()</a></li>
+<li class="chapter" data-level="6.2.2" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#nls"><i class="fa fa-check"></i><b>6.2.2</b> nls()</a></li>
+<li class="chapter" data-level="6.2.3" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#glm"><i class="fa fa-check"></i><b>6.2.3</b> glm()</a></li>
+<li class="chapter" data-level="6.2.4" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#gam"><i class="fa fa-check"></i><b>6.2.4</b> gam()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#links"><i class="fa fa-check"></i><b>6.3</b> links</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>7</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning R packages</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidyr" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> tidyr<a href="tidyr.html#tidyr" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>More details in <a href="https://tidyr.tidyverse.org/articles/nest.html">https://tidyr.tidyverse.org/articles/nest.html</a></p>
+<div id="nest" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> nest()<a href="tidyr.html#nest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tidyr.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb266-2"><a href="tidyr.html#cb266-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-3"><a href="tidyr.html#cb266-3" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb266-4"><a href="tidyr.html#cb266-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span> </span>
+<span id="cb266-5"><a href="tidyr.html#cb266-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() </span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+## # Groups:   cyl [3]
+##     cyl data              
+##   &lt;dbl&gt; &lt;list&gt;            
+## 1     6 &lt;tibble [7 × 10]&gt; 
+## 2     4 &lt;tibble [11 × 10]&gt;
+## 3     8 &lt;tibble [14 × 10]&gt;</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="tidyr.html#cb268-1" aria-hidden="true" tabindex="-1"></a>um<span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb268-2"><a href="tidyr.html#cb268-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span> </span>
+<span id="cb268-3"><a href="tidyr.html#cb268-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb268-4"><a href="tidyr.html#cb268-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb268-5"><a href="tidyr.html#cb268-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">linMod =</span> <span class="fu">map</span>(data, <span class="sc">~</span><span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> .)),</span>
+<span id="cb268-6"><a href="tidyr.html#cb268-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">coeffs =</span> <span class="fu">map</span>(linMod, coefficients),</span>
+<span id="cb268-7"><a href="tidyr.html#cb268-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">slope =</span> <span class="fu">map_dbl</span>(coeffs, <span class="dv">2</span>))</span>
+<span id="cb268-8"><a href="tidyr.html#cb268-8" aria-hidden="true" tabindex="-1"></a>um</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 5
+## # Groups:   cyl [3]
+##     cyl data               linMod coeffs    slope
+##   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt; &lt;list&gt;    &lt;dbl&gt;
+## 1     6 &lt;tibble [7 × 10]&gt;  &lt;lm&gt;   &lt;dbl [2]&gt; -2.78
+## 2     4 &lt;tibble [11 × 10]&gt; &lt;lm&gt;   &lt;dbl [2]&gt; -5.65
+## 3     8 &lt;tibble [14 × 10]&gt; &lt;lm&gt;   &lt;dbl [2]&gt; -2.19</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tidyr.html#cb270-1" aria-hidden="true" tabindex="-1"></a>um<span class="sc">$</span>linMod</span></code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##       28.41        -2.78  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      39.571       -5.647  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = .)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      23.868       -2.192</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="tidyr.html#cb272-1" aria-hidden="true" tabindex="-1"></a>um<span class="sc">$</span>coeffs</span></code></pre></div>
+<pre><code>## [[1]]
+## (Intercept)          wt 
+##   28.408845   -2.780106 
+## 
+## [[2]]
+## (Intercept)          wt 
+##   39.571196   -5.647025 
+## 
+## [[3]]
+## (Intercept)          wt 
+##   23.868029   -2.192438</code></pre>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="tidyr.html#cb274-1" aria-hidden="true" tabindex="-1"></a>um<span class="sc">$</span>slope</span></code></pre></div>
+<pre><code>## [1] -2.780106 -5.647025 -2.192438</code></pre>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="tidyr.html#cb276-1" aria-hidden="true" tabindex="-1"></a>um<span class="sc">$</span>linMod[[<span class="dv">1</span>]]</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ wt, data = .)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##       28.41        -2.78</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="tidyr.html#cb278-1" aria-hidden="true" tabindex="-1"></a>dois<span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> </span>
+<span id="cb278-2"><a href="tidyr.html#cb278-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span> </span>
+<span id="cb278-3"><a href="tidyr.html#cb278-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb278-4"><a href="tidyr.html#cb278-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(data, <span class="cf">function</span>(df) <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> df)))</span>
+<span id="cb278-5"><a href="tidyr.html#cb278-5" aria-hidden="true" tabindex="-1"></a>dois</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+## # Groups:   cyl [3]
+##     cyl data               model 
+##   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;
+## 1     6 &lt;tibble [7 × 10]&gt;  &lt;lm&gt;  
+## 2     4 &lt;tibble [11 × 10]&gt; &lt;lm&gt;  
+## 3     8 &lt;tibble [14 × 10]&gt; &lt;lm&gt;</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="tidyr.html#cb280-1" aria-hidden="true" tabindex="-1"></a>dois<span class="sc">$</span>cyl</span></code></pre></div>
+<pre><code>## [1] 6 4 8</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="tidyr.html#cb282-1" aria-hidden="true" tabindex="-1"></a>dois<span class="sc">$</span>data</span></code></pre></div>
+<pre><code>## [[1]]
+## # A tibble: 7 × 10
+##     mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1  21    160    110  3.9   2.62  16.5     0     1     4     4
+## 2  21    160    110  3.9   2.88  17.0     0     1     4     4
+## 3  21.4  258    110  3.08  3.22  19.4     1     0     3     1
+## 4  18.1  225    105  2.76  3.46  20.2     1     0     3     1
+## 5  19.2  168.   123  3.92  3.44  18.3     1     0     4     4
+## 6  17.8  168.   123  3.92  3.44  18.9     1     0     4     4
+## 7  19.7  145    175  3.62  2.77  15.5     0     1     5     6
+## 
+## [[2]]
+## # A tibble: 11 × 10
+##      mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  22.8 108      93  3.85  2.32  18.6     1     1     4     1
+##  2  24.4 147.     62  3.69  3.19  20       1     0     4     2
+##  3  22.8 141.     95  3.92  3.15  22.9     1     0     4     2
+##  4  32.4  78.7    66  4.08  2.2   19.5     1     1     4     1
+##  5  30.4  75.7    52  4.93  1.62  18.5     1     1     4     2
+##  6  33.9  71.1    65  4.22  1.84  19.9     1     1     4     1
+##  7  21.5 120.     97  3.7   2.46  20.0     1     0     3     1
+##  8  27.3  79      66  4.08  1.94  18.9     1     1     4     1
+##  9  26   120.     91  4.43  2.14  16.7     0     1     5     2
+## 10  30.4  95.1   113  3.77  1.51  16.9     1     1     5     2
+## 11  21.4 121     109  4.11  2.78  18.6     1     1     4     2
+## 
+## [[3]]
+## # A tibble: 14 × 10
+##      mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  18.7  360    175  3.15  3.44  17.0     0     0     3     2
+##  2  14.3  360    245  3.21  3.57  15.8     0     0     3     4
+##  3  16.4  276.   180  3.07  4.07  17.4     0     0     3     3
+##  4  17.3  276.   180  3.07  3.73  17.6     0     0     3     3
+##  5  15.2  276.   180  3.07  3.78  18       0     0     3     3
+##  6  10.4  472    205  2.93  5.25  18.0     0     0     3     4
+##  7  10.4  460    215  3     5.42  17.8     0     0     3     4
+##  8  14.7  440    230  3.23  5.34  17.4     0     0     3     4
+##  9  15.5  318    150  2.76  3.52  16.9     0     0     3     2
+## 10  15.2  304    150  3.15  3.44  17.3     0     0     3     2
+## 11  13.3  350    245  3.73  3.84  15.4     0     0     3     4
+## 12  19.2  400    175  3.08  3.84  17.0     0     0     3     2
+## 13  15.8  351    264  4.22  3.17  14.5     0     1     5     4
+## 14  15    301    335  3.54  3.57  14.6     0     1     5     8</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="tidyr.html#cb284-1" aria-hidden="true" tabindex="-1"></a>dois<span class="sc">$</span>model</span></code></pre></div>
+<pre><code>## [[1]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##       28.41        -2.78  
+## 
+## 
+## [[2]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      39.571       -5.647  
+## 
+## 
+## [[3]]
+## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      23.868       -2.192</code></pre>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="tidyr.html#cb286-1" aria-hidden="true" tabindex="-1"></a>dois<span class="sc">$</span>model[[<span class="dv">3</span>]]</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = mpg ~ wt, data = df)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      23.868       -2.192</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="tidyr.html#cb288-1" aria-hidden="true" tabindex="-1"></a>tres<span class="ot">&lt;-</span> dois <span class="sc">%&gt;%</span> </span>
+<span id="cb288-2"><a href="tidyr.html#cb288-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">model =</span> <span class="fu">map</span>(model, predict))</span>
+<span id="cb288-3"><a href="tidyr.html#cb288-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb288-4"><a href="tidyr.html#cb288-4" aria-hidden="true" tabindex="-1"></a>tres</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+## # Groups:   cyl [3]
+##     cyl data               model     
+##   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;    
+## 1     6 &lt;tibble [7 × 10]&gt;  &lt;dbl [7]&gt; 
+## 2     4 &lt;tibble [11 × 10]&gt; &lt;dbl [11]&gt;
+## 3     8 &lt;tibble [14 × 10]&gt; &lt;dbl [14]&gt;</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="tidyr.html#cb290-1" aria-hidden="true" tabindex="-1"></a>tres<span class="sc">$</span>model</span></code></pre></div>
+<pre><code>## [[1]]
+##        1        2        3        4        5        6        7 
+## 21.12497 20.41604 19.47080 18.78968 18.84528 18.84528 20.70795 
+## 
+## [[2]]
+##        1        2        3        4        5        6        7        8 
+## 26.47010 21.55719 21.78307 27.14774 30.45125 29.20890 25.65128 28.64420 
+##        9       10       11 
+## 27.48656 31.02725 23.87247 
+## 
+## [[3]]
+##        1        2        3        4        5        6        7        8 
+## 16.32604 16.04103 14.94481 15.69024 15.58061 12.35773 11.97625 12.14945 
+##        9       10       11       12       13       14 
+## 16.15065 16.33700 15.44907 15.43811 16.91800 16.04103</code></pre>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="tidyr.html#cb292-1" aria-hidden="true" tabindex="-1"></a>tres<span class="sc">$</span>model[[<span class="dv">3</span>]]</span></code></pre></div>
+<pre><code>##        1        2        3        4        5        6        7        8 
+## 16.32604 16.04103 14.94481 15.69024 15.58061 12.35773 11.97625 12.14945 
+##        9       10       11       12       13       14 
+## 16.15065 16.33700 15.44907 15.43811 16.91800 16.04103</code></pre>
+</div>
+<div id="unnest" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> unnest()<a href="tidyr.html#unnest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="tidyr.html#cb294-1" aria-hidden="true" tabindex="-1"></a>um <span class="sc">%&gt;%</span> </span>
+<span id="cb294-2"><a href="tidyr.html#cb294-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(data)</span></code></pre></div>
+<pre><code>## # A tibble: 32 × 14
+## # Groups:   cyl [3]
+##      cyl   mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb linMod
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;list&gt;
+##  1     6  21    160    110  3.9   2.62  16.5     0     1     4     4 &lt;lm&gt;  
+##  2     6  21    160    110  3.9   2.88  17.0     0     1     4     4 &lt;lm&gt;  
+##  3     6  21.4  258    110  3.08  3.22  19.4     1     0     3     1 &lt;lm&gt;  
+##  4     6  18.1  225    105  2.76  3.46  20.2     1     0     3     1 &lt;lm&gt;  
+##  5     6  19.2  168.   123  3.92  3.44  18.3     1     0     4     4 &lt;lm&gt;  
+##  6     6  17.8  168.   123  3.92  3.44  18.9     1     0     4     4 &lt;lm&gt;  
+##  7     6  19.7  145    175  3.62  2.77  15.5     0     1     5     6 &lt;lm&gt;  
+##  8     4  22.8  108     93  3.85  2.32  18.6     1     1     4     1 &lt;lm&gt;  
+##  9     4  24.4  147.    62  3.69  3.19  20       1     0     4     2 &lt;lm&gt;  
+## 10     4  22.8  141.    95  3.92  3.15  22.9     1     0     4     2 &lt;lm&gt;  
+## # … with 22 more rows, and 2 more variables: coeffs &lt;list&gt;, slope &lt;dbl&gt;</code></pre>
+</div>
+<div id="exemplos-da-ajuda-do-r" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Exemplos da ajuda do R<a href="tidyr.html#exemplos-da-ajuda-do-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="tidyr.html#cb296-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>), </span>
+<span id="cb296-2"><a href="tidyr.html#cb296-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, </span>
+<span id="cb296-3"><a href="tidyr.html#cb296-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">z =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb296-4"><a href="tidyr.html#cb296-4" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 3
+##       x     y     z
+##   &lt;dbl&gt; &lt;int&gt; &lt;int&gt;
+## 1     1     1     6
+## 2     1     2     5
+## 3     1     3     4
+## 4     2     4     3
+## 5     2     5     2
+## 6     3     6     1</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="tidyr.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that we get one row of output for each unique combination of</span></span>
+<span id="cb298-2"><a href="tidyr.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="co"># non-nested variables</span></span>
+<span id="cb298-3"><a href="tidyr.html#cb298-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb298-4"><a href="tidyr.html#cb298-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="fu">c</span>(y, z))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##       x data            
+##   &lt;dbl&gt; &lt;list&gt;          
+## 1     1 &lt;tibble [3 × 2]&gt;
+## 2     2 &lt;tibble [2 × 2]&gt;
+## 3     3 &lt;tibble [1 × 2]&gt;</code></pre>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="tidyr.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chop does something similar, but retains individual columns</span></span>
+<span id="cb300-2"><a href="tidyr.html#cb300-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb300-3"><a href="tidyr.html#cb300-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">chop</span>(<span class="fu">c</span>(y, z))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##       x           y           z
+##   &lt;dbl&gt; &lt;list&lt;int&gt;&gt; &lt;list&lt;int&gt;&gt;
+## 1     1         [3]         [3]
+## 2     2         [2]         [2]
+## 3     3         [1]         [1]</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="tidyr.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use tidyselect syntax and helpers, just like in dplyr::select()</span></span>
+<span id="cb302-2"><a href="tidyr.html#cb302-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb302-3"><a href="tidyr.html#cb302-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="fu">any_of</span>(<span class="fu">c</span>(<span class="st">&quot;y&quot;</span>, <span class="st">&quot;z&quot;</span>)))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##       x data            
+##   &lt;dbl&gt; &lt;list&gt;          
+## 1     1 &lt;tibble [3 × 2]&gt;
+## 2     2 &lt;tibble [2 × 2]&gt;
+## 3     3 &lt;tibble [1 × 2]&gt;</code></pre>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="tidyr.html#cb304-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb304-2"><a href="tidyr.html#cb304-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="sc">!</span>Species)</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Species    data             
+##   &lt;fct&gt;      &lt;list&gt;           
+## 1 setosa     &lt;tibble [50 × 4]&gt;
+## 2 versicolor &lt;tibble [50 × 4]&gt;
+## 3 virginica  &lt;tibble [50 × 4]&gt;</code></pre>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="tidyr.html#cb306-1" aria-hidden="true" tabindex="-1"></a>nest_vars <span class="ot">&lt;-</span> <span class="fu">names</span>(iris)[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb306-2"><a href="tidyr.html#cb306-2" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb306-3"><a href="tidyr.html#cb306-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">data =</span> <span class="fu">any_of</span>(nest_vars))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 2
+##   Species    data             
+##   &lt;fct&gt;      &lt;list&gt;           
+## 1 setosa     &lt;tibble [50 × 4]&gt;
+## 2 versicolor &lt;tibble [50 × 4]&gt;
+## 3 virginica  &lt;tibble [50 × 4]&gt;</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="tidyr.html#cb308-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb308-2"><a href="tidyr.html#cb308-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">petal =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Petal&quot;</span>), <span class="at">sepal =</span> <span class="fu">starts_with</span>(<span class="st">&quot;Sepal&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   Species    petal             sepal            
+##   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;           
+## 1 setosa     &lt;tibble [50 × 2]&gt; &lt;tibble [50 × 2]&gt;
+## 2 versicolor &lt;tibble [50 × 2]&gt; &lt;tibble [50 × 2]&gt;
+## 3 virginica  &lt;tibble [50 × 2]&gt; &lt;tibble [50 × 2]&gt;</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="tidyr.html#cb310-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb310-2"><a href="tidyr.html#cb310-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">width =</span> <span class="fu">contains</span>(<span class="st">&quot;Width&quot;</span>), <span class="at">length =</span> <span class="fu">contains</span>(<span class="st">&quot;Length&quot;</span>))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   Species    width             length           
+##   &lt;fct&gt;      &lt;list&gt;            &lt;list&gt;           
+## 1 setosa     &lt;tibble [50 × 2]&gt; &lt;tibble [50 × 2]&gt;
+## 2 versicolor &lt;tibble [50 × 2]&gt; &lt;tibble [50 × 2]&gt;
+## 3 virginica  &lt;tibble [50 × 2]&gt; &lt;tibble [50 × 2]&gt;</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="tidyr.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nesting a grouped data frame nests all variables apart from the group vars</span></span>
+<span id="cb312-2"><a href="tidyr.html#cb312-2" aria-hidden="true" tabindex="-1"></a>fish_encounters <span class="sc">%&gt;%</span></span>
+<span id="cb312-3"><a href="tidyr.html#cb312-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(fish) <span class="sc">%&gt;%</span></span>
+<span id="cb312-4"><a href="tidyr.html#cb312-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>()</span></code></pre></div>
+<pre><code>## # A tibble: 19 × 2
+## # Groups:   fish [19]
+##    fish  data             
+##    &lt;fct&gt; &lt;list&gt;           
+##  1 4842  &lt;tibble [11 × 2]&gt;
+##  2 4843  &lt;tibble [11 × 2]&gt;
+##  3 4844  &lt;tibble [11 × 2]&gt;
+##  4 4845  &lt;tibble [5 × 2]&gt; 
+##  5 4847  &lt;tibble [3 × 2]&gt; 
+##  6 4848  &lt;tibble [4 × 2]&gt; 
+##  7 4849  &lt;tibble [2 × 2]&gt; 
+##  8 4850  &lt;tibble [6 × 2]&gt; 
+##  9 4851  &lt;tibble [2 × 2]&gt; 
+## 10 4854  &lt;tibble [2 × 2]&gt; 
+## 11 4855  &lt;tibble [5 × 2]&gt; 
+## 12 4857  &lt;tibble [9 × 2]&gt; 
+## 13 4858  &lt;tibble [11 × 2]&gt;
+## 14 4859  &lt;tibble [5 × 2]&gt; 
+## 15 4861  &lt;tibble [11 × 2]&gt;
+## 16 4862  &lt;tibble [9 × 2]&gt; 
+## 17 4863  &lt;tibble [2 × 2]&gt; 
+## 18 4864  &lt;tibble [2 × 2]&gt; 
+## 19 4865  &lt;tibble [3 × 2]&gt;</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="tidyr.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nesting is often useful for creating per group models</span></span>
+<span id="cb314-2"><a href="tidyr.html#cb314-2" aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">%&gt;%</span></span>
+<span id="cb314-3"><a href="tidyr.html#cb314-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cyl) <span class="sc">%&gt;%</span></span>
+<span id="cb314-4"><a href="tidyr.html#cb314-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb314-5"><a href="tidyr.html#cb314-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">models =</span> <span class="fu">lapply</span>(data, <span class="cf">function</span>(df) <span class="fu">lm</span>(mpg <span class="sc">~</span> wt, <span class="at">data =</span> df)))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+## # Groups:   cyl [3]
+##     cyl data               models
+##   &lt;dbl&gt; &lt;list&gt;             &lt;list&gt;
+## 1     6 &lt;tibble [7 × 10]&gt;  &lt;lm&gt;  
+## 2     4 &lt;tibble [11 × 10]&gt; &lt;lm&gt;  
+## 3     8 &lt;tibble [14 × 10]&gt; &lt;lm&gt;</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="tidyr.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="co"># unnest() is primarily designed to work with lists of data frames</span></span>
+<span id="cb316-2"><a href="tidyr.html#cb316-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb316-3"><a href="tidyr.html#cb316-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb316-4"><a href="tidyr.html#cb316-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">list</span>(</span>
+<span id="cb316-5"><a href="tidyr.html#cb316-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">NULL</span>,</span>
+<span id="cb316-6"><a href="tidyr.html#cb316-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">a =</span> <span class="dv">1</span>, <span class="at">b =</span> <span class="dv">2</span>),</span>
+<span id="cb316-7"><a href="tidyr.html#cb316-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tibble</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">b =</span> <span class="dv">3</span><span class="sc">:</span><span class="dv">1</span>)</span>
+<span id="cb316-8"><a href="tidyr.html#cb316-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb316-9"><a href="tidyr.html#cb316-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb316-10"><a href="tidyr.html#cb316-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb316-11"><a href="tidyr.html#cb316-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb316-12"><a href="tidyr.html#cb316-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(y)</span></code></pre></div>
+<pre><code>## # A tibble: 4 × 3
+##       x     a     b
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     2     1     2
+## 2     3     1     3
+## 3     3     2     2
+## 4     3     3     1</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="tidyr.html#cb318-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb318-2"><a href="tidyr.html#cb318-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(y, <span class="at">keep_empty =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 3
+##       x     a     b
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    NA    NA
+## 2     2     1     2
+## 3     3     1     3
+## 4     3     2     2
+## 5     3     3     1</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="tidyr.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you have lists of lists, or lists of atomic vectors, instead</span></span>
+<span id="cb320-2"><a href="tidyr.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="co"># see hoist(), unnest_wider(), and unnest_longer()</span></span>
+<span id="cb320-3"><a href="tidyr.html#cb320-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-4"><a href="tidyr.html#cb320-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # You can unnest multiple columns simultaneously</span></span>
+<span id="cb320-5"><a href="tidyr.html#cb320-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb320-6"><a href="tidyr.html#cb320-6" aria-hidden="true" tabindex="-1"></a> <span class="at">a =</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>), <span class="st">&quot;c&quot;</span>),</span>
+<span id="cb320-7"><a href="tidyr.html#cb320-7" aria-hidden="true" tabindex="-1"></a> <span class="at">b =</span> <span class="fu">list</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb320-8"><a href="tidyr.html#cb320-8" aria-hidden="true" tabindex="-1"></a> <span class="at">c =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">22</span>)</span>
+<span id="cb320-9"><a href="tidyr.html#cb320-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb320-10"><a href="tidyr.html#cb320-10" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   a         b             c
+##   &lt;list&gt;    &lt;list&gt;    &lt;dbl&gt;
+## 1 &lt;chr [2]&gt; &lt;int [2]&gt;    11
+## 2 &lt;chr [1]&gt; &lt;dbl [1]&gt;    22</code></pre>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="tidyr.html#cb322-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb322-2"><a href="tidyr.html#cb322-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="fu">c</span>(a, b))</span></code></pre></div>
+<pre><code>## # A tibble: 3 × 3
+##   a         b     c
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a         1    11
+## 2 b         2    11
+## 3 c         3    22</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="tidyr.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare with unnesting one column at a time, which generates</span></span>
+<span id="cb324-2"><a href="tidyr.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the Cartesian product</span></span>
+<span id="cb324-3"><a href="tidyr.html#cb324-3" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb324-4"><a href="tidyr.html#cb324-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(a) <span class="sc">%&gt;%</span> </span>
+<span id="cb324-5"><a href="tidyr.html#cb324-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(b)</span></code></pre></div>
+<pre><code>## # A tibble: 5 × 3
+##   a         b     c
+##   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 a         1    11
+## 2 a         2    11
+## 3 b         1    11
+## 4 b         2    11
+## 5 c         3    22</code></pre>
+</div>
+<div id="mais-detalhes" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Mais detalhes<a href="tidyr.html#mais-detalhes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://github.com/tidymodels/broom/blob/main/vignettes/broom_and_dplyr.Rmd">https://github.com/tidymodels/broom/blob/main/vignettes/broom_and_dplyr.Rmd</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="purrr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="broom-and-dplyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04_tidyr.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["learning_R.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
