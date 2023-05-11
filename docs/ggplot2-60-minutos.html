@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="" xml:lang="">
 <head>
@@ -756,3 +757,760 @@ gitbook.start({
 </body>
 
 </html>
+=======
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 ggplot2 (60 minutos) | Learning R packages</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 ggplot2 (60 minutos) | Learning R packages" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 ggplot2 (60 minutos) | Learning R packages" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+The HTML output format for this example is bookdown::gitbook,
+set in the _output.yml file.</p>" />
+  
+
+<meta name="author" content="Cristian Villegas" />
+
+
+<meta name="date" content="2023-05-10" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dplyr-60-minutos.html"/>
+<link rel="next" href="purrr.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning R packages</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#carrega-pacotes-a-serem-usados"><i class="fa fa-check"></i><b>1.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#alguns-atalhos-no-rstudio"><i class="fa fa-check"></i><b>1.2</b> Alguns atalhos no Rstudio</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#descrição-dos-dados-mpg"><i class="fa fa-check"></i><b>1.3</b> Descrição dos dados <code>mpg</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html"><i class="fa fa-check"></i><b>2</b> dplyr (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#carrega-pacotes-a-serem-usados-1"><i class="fa fa-check"></i><b>2.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="2.2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#descrição-dos-dados-mpg-1"><i class="fa fa-check"></i><b>2.2</b> Descrição dos dados <code>mpg</code></a></li>
+<li class="chapter" data-level="2.3" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#lista-de-funções-do-pacote-dplyr"><i class="fa fa-check"></i><b>2.3</b> Lista de funções do pacote dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#operador-pipe"><i class="fa fa-check"></i><b>2.4</b> Operador Pipe</a></li>
+<li class="chapter" data-level="2.5" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#select-para-colunas"><i class="fa fa-check"></i><b>2.5</b> select() para colunas</a></li>
+<li class="chapter" data-level="2.6" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#rename"><i class="fa fa-check"></i><b>2.6</b> rename()</a></li>
+<li class="chapter" data-level="2.7" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#mutate-para-colunas"><i class="fa fa-check"></i><b>2.7</b> mutate() para colunas</a></li>
+<li class="chapter" data-level="2.8" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#transmute"><i class="fa fa-check"></i><b>2.8</b> transmute()</a></li>
+<li class="chapter" data-level="2.9" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#filter-para-linhas"><i class="fa fa-check"></i><b>2.9</b> filter() para linhas</a></li>
+<li class="chapter" data-level="2.10" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#slice-para-linhas"><i class="fa fa-check"></i><b>2.10</b> slice() para linhas</a></li>
+<li class="chapter" data-level="2.11" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#arrange-para-linhas"><i class="fa fa-check"></i><b>2.11</b> arrange() para linhas</a></li>
+<li class="chapter" data-level="2.12" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#distinct-para-linhas"><i class="fa fa-check"></i><b>2.12</b> distinct() para linhas</a></li>
+<li class="chapter" data-level="2.13" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#summarise"><i class="fa fa-check"></i><b>2.13</b> summarise()</a></li>
+<li class="chapter" data-level="2.14" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#group_by"><i class="fa fa-check"></i><b>2.14</b> group_by()</a></li>
+<li class="chapter" data-level="2.15" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#count"><i class="fa fa-check"></i><b>2.15</b> count()</a></li>
+<li class="chapter" data-level="2.16" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_n"><i class="fa fa-check"></i><b>2.16</b> sample_n()</a></li>
+<li class="chapter" data-level="2.17" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_frac"><i class="fa fa-check"></i><b>2.17</b> sample_frac()</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html"><i class="fa fa-check"></i><b>3</b> ggplot2 (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#carrega-pacotes-a-serem-usados-2"><i class="fa fa-check"></i><b>3.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#lista-de-funções-do-pacote-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Lista de funções do pacote ggplot2</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#primeiros-passos-usando-geom_point"><i class="fa fa-check"></i><b>3.3</b> Primeiros passos usando geom_point</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#mais-detalhes-sobre-geom_point"><i class="fa fa-check"></i><b>3.3.1</b> Mais detalhes sobre geom_point</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#smooth-boxplot-histogram"><i class="fa fa-check"></i><b>3.4</b> smooth, boxplot, histogram</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gridextra-e-patchwork"><i class="fa fa-check"></i><b>3.5</b> gridExtra e patchwork</a></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#bar-col-density-density2d"><i class="fa fa-check"></i><b>3.6</b> bar, col, density, density2d</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#facet_grid-facet_wrap"><i class="fa fa-check"></i><b>3.7</b> facet_grid, facet_wrap</a></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_function"><i class="fa fa-check"></i><b>3.8</b> stat_function</a></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_summary"><i class="fa fa-check"></i><b>3.9</b> stat_summary</a></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#theme_"><i class="fa fa-check"></i><b>3.10</b> theme_*()</a></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gráfico-de-perfis-spaguetti-plot"><i class="fa fa-check"></i><b>3.11</b> Gráfico de perfis (Spaguetti plot)</a></li>
+<li class="chapter" data-level="3.12" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#plotly"><i class="fa fa-check"></i><b>3.12</b> plotly</a></li>
+<li class="chapter" data-level="3.13" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#esquisse"><i class="fa fa-check"></i><b>3.13</b> esquisse</a></li>
+<li class="chapter" data-level="3.14" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#exemplo-esquisse"><i class="fa fa-check"></i><b>3.14</b> Exemplo esquisse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>4</b> purrr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="purrr.html"><a href="purrr.html#apply-a-function-to-each-element-of-a-list-or-atomic-vector"><i class="fa fa-check"></i><b>4.1</b> Apply a function to each element of a list or atomic vector</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="purrr.html"><a href="purrr.html#usage"><i class="fa fa-check"></i><b>4.1.1</b> Usage</a></li>
+<li class="chapter" data-level="4.1.2" data-path="purrr.html"><a href="purrr.html#arguments"><i class="fa fa-check"></i><b>4.1.2</b> Arguments</a></li>
+<li class="chapter" data-level="4.1.3" data-path="purrr.html"><a href="purrr.html#value"><i class="fa fa-check"></i><b>4.1.3</b> Value</a></li>
+<li class="chapter" data-level="4.1.4" data-path="purrr.html"><a href="purrr.html#see-also"><i class="fa fa-check"></i><b>4.1.4</b> See Also</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="purrr.html"><a href="purrr.html#examples"><i class="fa fa-check"></i><b>4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.3" data-path="purrr.html"><a href="purrr.html#map-functions"><i class="fa fa-check"></i><b>4.3</b> map functions</a></li>
+<li class="chapter" data-level="4.4" data-path="purrr.html"><a href="purrr.html#map2-functions"><i class="fa fa-check"></i><b>4.4</b> map2 functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#nest"><i class="fa fa-check"></i><b>5.1</b> nest()</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#unnest"><i class="fa fa-check"></i><b>5.2</b> unnest()</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#exemplos-da-ajuda-do-r"><i class="fa fa-check"></i><b>5.3</b> Exemplos da ajuda do R</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyr.html"><a href="tidyr.html#mais-detalhes"><i class="fa fa-check"></i><b>5.4</b> Mais detalhes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html"><i class="fa fa-check"></i><b>6</b> broom and dplyr</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning R packages</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot2-60-minutos" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> ggplot2 (60 minutos)<a href="ggplot2-60-minutos.html#ggplot2-60-minutos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="carrega-pacotes-a-serem-usados-2" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Carrega pacotes a serem usados<a href="ggplot2-60-minutos.html#carrega-pacotes-a-serem-usados-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="ggplot2-60-minutos.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyverse&quot;) </span></span>
+<span id="cb140-2"><a href="ggplot2-60-minutos.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;dplyr&quot;)     </span></span>
+<span id="cb140-3"><a href="ggplot2-60-minutos.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;tidyr&quot;)     </span></span>
+<span id="cb140-4"><a href="ggplot2-60-minutos.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;ggplot2&quot;)   </span></span>
+<span id="cb140-5"><a href="ggplot2-60-minutos.html#cb140-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="ggplot2-60-minutos.html#cb140-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb140-7"><a href="ggplot2-60-minutos.html#cb140-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Manipulação de dados</span></span>
+<span id="cb140-8"><a href="ggplot2-60-minutos.html#cb140-8" aria-hidden="true" tabindex="-1"></a><span class="co">#library(dplyr)</span></span>
+<span id="cb140-9"><a href="ggplot2-60-minutos.html#cb140-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-10"><a href="ggplot2-60-minutos.html#cb140-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualização de gráficos</span></span>
+<span id="cb140-11"><a href="ggplot2-60-minutos.html#cb140-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb140-12"><a href="ggplot2-60-minutos.html#cb140-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb140-13"><a href="ggplot2-60-minutos.html#cb140-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb140-14"><a href="ggplot2-60-minutos.html#cb140-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb140-15"><a href="ggplot2-60-minutos.html#cb140-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(esquisse)</span>
+<span id="cb140-16"><a href="ggplot2-60-minutos.html#cb140-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-17"><a href="ggplot2-60-minutos.html#cb140-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Para dados gráfico de perfis</span></span>
+<span id="cb140-18"><a href="ggplot2-60-minutos.html#cb140-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlme)</span></code></pre></div>
+<p>Alguns links</p>
+<p><a href="https://r-graph-gallery.com/">The R Graph Gallery</a></p>
+<p><a href="https://exts.ggplot2.tidyverse.org/gallery/">120 registered extensions available to explore</a></p>
+<p><a href="https://patchwork.data-imaginist.com/articles/guides/assembly.html">link 1: patchwork</a></p>
+<p><a href="https://patchwork.data-imaginist.com/articles/patchwork.html">link 2: patchwork</a></p>
+</div>
+<div id="lista-de-funções-do-pacote-ggplot2" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Lista de funções do pacote ggplot2<a href="ggplot2-60-minutos.html#lista-de-funções-do-pacote-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="ggplot2-60-minutos.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:ggplot2&quot;</span>)</span></code></pre></div>
+</div>
+<div id="primeiros-passos-usando-geom_point" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Primeiros passos usando geom_point<a href="ggplot2-60-minutos.html#primeiros-passos-usando-geom_point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="ggplot2-60-minutos.html#cb142-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> mpg</span>
+<span id="cb142-2"><a href="ggplot2-60-minutos.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="ggplot2-60-minutos.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="ggplot2-60-minutos.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternativas</span></span>
+<span id="cb144-2"><a href="ggplot2-60-minutos.html#cb144-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb144-3"><a href="ggplot2-60-minutos.html#cb144-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="ggplot2-60-minutos.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span> </span>
+<span id="cb145-2"><a href="ggplot2-60-minutos.html#cb145-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-4.png" width="672" /></p>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="ggplot2-60-minutos.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb146-2"><a href="ggplot2-60-minutos.html#cb146-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-5.png" width="672" /></p>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="ggplot2-60-minutos.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fim </span></span>
+<span id="cb147-2"><a href="ggplot2-60-minutos.html#cb147-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb147-3"><a href="ggplot2-60-minutos.html#cb147-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb147-4"><a href="ggplot2-60-minutos.html#cb147-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-6.png" width="672" /></p>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="ggplot2-60-minutos.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb148-2"><a href="ggplot2-60-minutos.html#cb148-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">6</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-7.png" width="672" /></p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="ggplot2-60-minutos.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb149-2"><a href="ggplot2-60-minutos.html#cb149-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">shape =</span> <span class="dv">10</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-8.png" width="672" /></p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="ggplot2-60-minutos.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternativa</span></span>
+<span id="cb150-2"><a href="ggplot2-60-minutos.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb150-3"><a href="ggplot2-60-minutos.html#cb150-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">shape =</span> <span class="st">&quot;circle plus&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-9.png" width="672" /></p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="ggplot2-60-minutos.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb151-2"><a href="ggplot2-60-minutos.html#cb151-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">shape =</span> <span class="dv">10</span>)<span class="sc">+</span></span>
+<span id="cb151-3"><a href="ggplot2-60-minutos.html#cb151-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;cty (city miles per gallon hwy)&quot;</span>, </span>
+<span id="cb151-4"><a href="ggplot2-60-minutos.html#cb151-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;hwy (highway miles per gallon)&quot;</span>, </span>
+<span id="cb151-5"><a href="ggplot2-60-minutos.html#cb151-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Pensar em algum título...&quot;</span>, </span>
+<span id="cb151-6"><a href="ggplot2-60-minutos.html#cb151-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Escrever alguma coisa&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-3-10.png" width="672" /></p>
+<div id="mais-detalhes-sobre-geom_point" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Mais detalhes sobre geom_point<a href="ggplot2-60-minutos.html#mais-detalhes-sobre-geom_point" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>geom_point() understands the following aesthetics (required aesthetics are in bold):</p>
+</blockquote>
+<ul>
+<li><p>x</p></li>
+<li><p>y</p></li>
+<li><p>alpha</p></li>
+<li><p>colour</p></li>
+<li><p>fill</p></li>
+<li><p>group</p></li>
+<li><p>shape</p></li>
+<li><p>size</p></li>
+<li><p>stroke</p></li>
+</ul>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="ggplot2-60-minutos.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb152-2"><a href="ggplot2-60-minutos.html#cb152-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="ggplot2-60-minutos.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">col =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span> </span>
+<span id="cb153-2"><a href="ggplot2-60-minutos.html#cb153-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb153-3"><a href="ggplot2-60-minutos.html#cb153-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="ggplot2-60-minutos.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternativa</span></span>
+<span id="cb154-2"><a href="ggplot2-60-minutos.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">col =</span> <span class="fu">factor</span>(class))) <span class="sc">+</span> </span>
+<span id="cb154-3"><a href="ggplot2-60-minutos.html#cb154-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb154-4"><a href="ggplot2-60-minutos.html#cb154-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;class&quot;</span>)<span class="sc">+</span></span>
+<span id="cb154-5"><a href="ggplot2-60-minutos.html#cb154-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;qual&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="ggplot2-60-minutos.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">col =</span> <span class="fu">factor</span>(class))) <span class="sc">+</span> </span>
+<span id="cb155-2"><a href="ggplot2-60-minutos.html#cb155-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb155-3"><a href="ggplot2-60-minutos.html#cb155-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;class&quot;</span>)<span class="sc">+</span></span>
+<span id="cb155-4"><a href="ggplot2-60-minutos.html#cb155-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">type =</span> <span class="st">&quot;div&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="ggplot2-60-minutos.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">col =</span> <span class="fu">factor</span>(class))) <span class="sc">+</span> </span>
+<span id="cb156-2"><a href="ggplot2-60-minutos.html#cb156-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb156-3"><a href="ggplot2-60-minutos.html#cb156-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;class&quot;</span>)<span class="sc">+</span></span>
+<span id="cb156-4"><a href="ggplot2-60-minutos.html#cb156-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set1&quot;</span>, <span class="at">name =</span> <span class="st">&quot;Tipo de carro&quot;</span>)<span class="sc">+</span></span>
+<span id="cb156-5"><a href="ggplot2-60-minutos.html#cb156-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">60</span>,<span class="dv">3</span>))<span class="sc">+</span></span>
+<span id="cb156-6"><a href="ggplot2-60-minutos.html#cb156-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">10</span>,<span class="dv">40</span>,<span class="dv">3</span>))<span class="sc">+</span></span>
+<span id="cb156-7"><a href="ggplot2-60-minutos.html#cb156-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-5.png" width="672" /></p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="ggplot2-60-minutos.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">alpha =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span> </span>
+<span id="cb157-2"><a href="ggplot2-60-minutos.html#cb157-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb157-3"><a href="ggplot2-60-minutos.html#cb157-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">alpha =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-6.png" width="672" /></p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="ggplot2-60-minutos.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">size =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span> </span>
+<span id="cb158-2"><a href="ggplot2-60-minutos.html#cb158-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb158-3"><a href="ggplot2-60-minutos.html#cb158-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">size =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-7.png" width="672" /></p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="ggplot2-60-minutos.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Alternativa</span></span>
+<span id="cb159-2"><a href="ggplot2-60-minutos.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">col =</span> cty <span class="sc">&lt;=</span> <span class="dv">20</span>)) <span class="sc">+</span> </span>
+<span id="cb159-3"><a href="ggplot2-60-minutos.html#cb159-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb159-4"><a href="ggplot2-60-minutos.html#cb159-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">20</span>)<span class="sc">+</span></span>
+<span id="cb159-5"><a href="ggplot2-60-minutos.html#cb159-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-8.png" width="672" /></p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="ggplot2-60-minutos.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Erro comum</span></span>
+<span id="cb160-2"><a href="ggplot2-60-minutos.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)) <span class="sc">+</span> </span>
+<span id="cb160-3"><a href="ggplot2-60-minutos.html#cb160-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
+<span id="cb160-4"><a href="ggplot2-60-minutos.html#cb160-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-9.png" width="672" /></p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="ggplot2-60-minutos.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb161-2"><a href="ggplot2-60-minutos.html#cb161-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>)<span class="sc">+</span></span>
+<span id="cb161-3"><a href="ggplot2-60-minutos.html#cb161-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-10.png" width="672" /></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="ggplot2-60-minutos.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fim  Erro comum</span></span>
+<span id="cb162-2"><a href="ggplot2-60-minutos.html#cb162-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-3"><a href="ggplot2-60-minutos.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">shape =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span> </span>
+<span id="cb162-4"><a href="ggplot2-60-minutos.html#cb162-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb162-5"><a href="ggplot2-60-minutos.html#cb162-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;year&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-11.png" width="672" /></p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="ggplot2-60-minutos.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">size =</span> class)) <span class="sc">+</span> </span>
+<span id="cb163-2"><a href="ggplot2-60-minutos.html#cb163-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb163-3"><a href="ggplot2-60-minutos.html#cb163-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">size =</span> <span class="st">&quot;class&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-12.png" width="672" /></p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="ggplot2-60-minutos.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, </span>
+<span id="cb164-2"><a href="ggplot2-60-minutos.html#cb164-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> class, </span>
+<span id="cb164-3"><a href="ggplot2-60-minutos.html#cb164-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> class)) <span class="sc">+</span> </span>
+<span id="cb164-4"><a href="ggplot2-60-minutos.html#cb164-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb164-5"><a href="ggplot2-60-minutos.html#cb164-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">colour =</span> <span class="fu">guide_legend</span>(<span class="st">&quot;Tipo de carro (color)&quot;</span>),</span>
+<span id="cb164-6"><a href="ggplot2-60-minutos.html#cb164-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="st">&quot;Tipo de carro (size)&quot;</span>))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-13.png" width="672" /></p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="ggplot2-60-minutos.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, </span>
+<span id="cb165-2"><a href="ggplot2-60-minutos.html#cb165-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">size =</span> class, </span>
+<span id="cb165-3"><a href="ggplot2-60-minutos.html#cb165-3" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> class)) <span class="sc">+</span> </span>
+<span id="cb165-4"><a href="ggplot2-60-minutos.html#cb165-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb165-5"><a href="ggplot2-60-minutos.html#cb165-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">col =</span> <span class="st">&quot;Tipo de Carro&quot;</span>, <span class="at">size =</span> <span class="st">&quot;Tipo de Carro&quot;</span>)<span class="sc">+</span></span>
+<span id="cb165-6"><a href="ggplot2-60-minutos.html#cb165-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">col =</span> <span class="st">&quot;legend&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-4-14.png" width="672" /></p>
+</div>
+</div>
+<div id="smooth-boxplot-histogram" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> smooth, boxplot, histogram<a href="ggplot2-60-minutos.html#smooth-boxplot-histogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="ggplot2-60-minutos.html#cb166-1" aria-hidden="true" tabindex="-1"></a>v1<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb166-2"><a href="ggplot2-60-minutos.html#cb166-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb166-3"><a href="ggplot2-60-minutos.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> mgcv<span class="sc">::</span>gam,</span>
+<span id="cb166-4"><a href="ggplot2-60-minutos.html#cb166-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">formula =</span> y <span class="sc">~</span> <span class="fu">s</span>(x, <span class="at">bs =</span> <span class="st">&quot;cs&quot;</span>) ,</span>
+<span id="cb166-5"><a href="ggplot2-60-minutos.html#cb166-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb166-6"><a href="ggplot2-60-minutos.html#cb166-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb166-7"><a href="ggplot2-60-minutos.html#cb166-7" aria-hidden="true" tabindex="-1"></a>v1</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="ggplot2-60-minutos.html#cb167-1" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty)) <span class="sc">+</span> </span>
+<span id="cb167-2"><a href="ggplot2-60-minutos.html#cb167-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb167-3"><a href="ggplot2-60-minutos.html#cb167-3" aria-hidden="true" tabindex="-1"></a>v2</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="ggplot2-60-minutos.html#cb168-1" aria-hidden="true" tabindex="-1"></a>v3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty)) <span class="sc">+</span> </span>
+<span id="cb168-2"><a href="ggplot2-60-minutos.html#cb168-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">fill =</span> <span class="st">&quot;red&quot;</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd=</span><span class="dv">2</span>)</span>
+<span id="cb168-3"><a href="ggplot2-60-minutos.html#cb168-3" aria-hidden="true" tabindex="-1"></a>v3</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="ggplot2-60-minutos.html#cb169-1" aria-hidden="true" tabindex="-1"></a>v4<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty)) <span class="sc">+</span> </span>
+<span id="cb169-2"><a href="ggplot2-60-minutos.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fu">after_stat</span>(density)),</span>
+<span id="cb169-3"><a href="ggplot2-60-minutos.html#cb169-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">bins =</span> <span class="dv">10</span>, <span class="at">fill =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb169-4"><a href="ggplot2-60-minutos.html#cb169-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lwd =</span><span class="dv">3</span>)</span>
+<span id="cb169-5"><a href="ggplot2-60-minutos.html#cb169-5" aria-hidden="true" tabindex="-1"></a>v4</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="ggplot2-60-minutos.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicional (estatístic experimental)</span></span>
+<span id="cb170-2"><a href="ggplot2-60-minutos.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> cty, <span class="at">col =</span> drv)) <span class="sc">+</span> </span>
+<span id="cb170-3"><a href="ggplot2-60-minutos.html#cb170-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb170-4"><a href="ggplot2-60-minutos.html#cb170-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()<span class="sc">+</span></span>
+<span id="cb170-5"><a href="ggplot2-60-minutos.html#cb170-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-5-5.png" width="672" /></p>
+</div>
+<div id="gridextra-e-patchwork" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> gridExtra e patchwork<a href="ggplot2-60-minutos.html#gridextra-e-patchwork" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Alguns links</p>
+<p><a href="https://patchwork.data-imaginist.com/articles/guides/assembly.html">link 1: patchwork</a></p>
+<p><a href="https://patchwork.data-imaginist.com/articles/patchwork.html">link 2: patchwork</a></p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="ggplot2-60-minutos.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gridExtra</span></span>
+<span id="cb171-2"><a href="ggplot2-60-minutos.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(v1, v2, v3, v4) </span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="ggplot2-60-minutos.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># patchwork</span></span>
+<span id="cb172-2"><a href="ggplot2-60-minutos.html#cb172-2" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="ggplot2-60-minutos.html#cb173-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">|</span> v2</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-3.png" width="672" /></p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="ggplot2-60-minutos.html#cb174-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">/</span> v2</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-4.png" width="672" /></p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="ggplot2-60-minutos.html#cb175-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2 <span class="sc">+</span> v3</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-5.png" width="672" /></p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="ggplot2-60-minutos.html#cb176-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> (v2 <span class="sc">+</span> v3)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-6.png" width="672" /></p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="ggplot2-60-minutos.html#cb177-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">|</span> (v2 <span class="sc">/</span> v3)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-7.png" width="672" /></p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="ggplot2-60-minutos.html#cb178-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">/</span> (v2 <span class="sc">+</span> v3)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-8.png" width="672" /></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="ggplot2-60-minutos.html#cb179-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="sc">+</span> v2 <span class="sc">+</span> v3 <span class="sc">+</span> v4 </span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-9.png" width="672" /></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="ggplot2-60-minutos.html#cb180-1" aria-hidden="true" tabindex="-1"></a>v1<span class="sc">/</span>(v2<span class="sc">+</span>v3<span class="sc">+</span>v4)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-10.png" width="672" /></p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="ggplot2-60-minutos.html#cb181-1" aria-hidden="true" tabindex="-1"></a>v1  <span class="sc">+</span> (v2 <span class="sc">+</span> v3 <span class="sc">+</span> v4)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-11.png" width="672" /></p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="ggplot2-60-minutos.html#cb182-1" aria-hidden="true" tabindex="-1"></a>v1  <span class="sc">+</span> v2 <span class="sc">+</span> (v3 <span class="sc">+</span> v4)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-12.png" width="672" /></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="ggplot2-60-minutos.html#cb183-1" aria-hidden="true" tabindex="-1"></a>(v1 <span class="sc">|</span> v2 <span class="sc">|</span> v3) <span class="sc">/</span> v4</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-6-13.png" width="672" /></p>
+</div>
+<div id="bar-col-density-density2d" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> bar, col, density, density2d<a href="ggplot2-60-minutos.html#bar-col-density-density2d" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="ggplot2-60-minutos.html#cb184-1" aria-hidden="true" tabindex="-1"></a>v5 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados , <span class="fu">aes</span>(<span class="at">x =</span> manufacturer)) <span class="sc">+</span> </span>
+<span id="cb184-2"><a href="ggplot2-60-minutos.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()<span class="sc">+</span> </span>
+<span id="cb184-3"><a href="ggplot2-60-minutos.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span>
+<span id="cb184-4"><a href="ggplot2-60-minutos.html#cb184-4" aria-hidden="true" tabindex="-1"></a>v5</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="ggplot2-60-minutos.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Dúvidas no geom_col</span></span>
+<span id="cb185-2"><a href="ggplot2-60-minutos.html#cb185-2" aria-hidden="true" tabindex="-1"></a>v6 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados , <span class="fu">aes</span>(<span class="at">x =</span> manufacturer, <span class="at">y =</span> cty)) <span class="sc">+</span> </span>
+<span id="cb185-3"><a href="ggplot2-60-minutos.html#cb185-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()<span class="sc">+</span></span>
+<span id="cb185-4"><a href="ggplot2-60-minutos.html#cb185-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span>
+<span id="cb185-5"><a href="ggplot2-60-minutos.html#cb185-5" aria-hidden="true" tabindex="-1"></a>v6</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="ggplot2-60-minutos.html#cb186-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> </span>
+<span id="cb186-2"><a href="ggplot2-60-minutos.html#cb186-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(manufacturer, cty) <span class="sc">%&gt;%</span> </span>
+<span id="cb186-3"><a href="ggplot2-60-minutos.html#cb186-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer) <span class="sc">%&gt;%</span> </span>
+<span id="cb186-4"><a href="ggplot2-60-minutos.html#cb186-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">soma_total_cty =</span> <span class="fu">sum</span>(cty),</span>
+<span id="cb186-5"><a href="ggplot2-60-minutos.html#cb186-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="fu">n</span>())</span></code></pre></div>
+<pre><code>## # A tibble: 15 × 3
+##    manufacturer soma_total_cty     n
+##    &lt;chr&gt;                 &lt;int&gt; &lt;int&gt;
+##  1 audi                    317    18
+##  2 chevrolet               285    19
+##  3 dodge                   486    37
+##  4 ford                    350    25
+##  5 honda                   220     9
+##  6 hyundai                 261    14
+##  7 jeep                    108     8
+##  8 land rover               46     4
+##  9 lincoln                  34     3
+## 10 mercury                  53     4
+## 11 nissan                  235    13
+## 12 pontiac                  85     5
+## 13 subaru                  270    14
+## 14 toyota                  630    34
+## 15 volkswagen              565    27</code></pre>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="ggplot2-60-minutos.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># dados %&gt;% </span></span>
+<span id="cb188-2"><a href="ggplot2-60-minutos.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="co">#   filter(manufacturer == &quot;audi&quot;) %&gt;% </span></span>
+<span id="cb188-3"><a href="ggplot2-60-minutos.html#cb188-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   select(cty) %&gt;% </span></span>
+<span id="cb188-4"><a href="ggplot2-60-minutos.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="co">#   sum()</span></span>
+<span id="cb188-5"><a href="ggplot2-60-minutos.html#cb188-5" aria-hidden="true" tabindex="-1"></a>v7 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados , <span class="fu">aes</span>(<span class="at">x =</span> cty)) <span class="sc">+</span> </span>
+<span id="cb188-6"><a href="ggplot2-60-minutos.html#cb188-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span>
+<span id="cb188-7"><a href="ggplot2-60-minutos.html#cb188-7" aria-hidden="true" tabindex="-1"></a>v7</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-7-3.png" width="672" /></p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="ggplot2-60-minutos.html#cb189-1" aria-hidden="true" tabindex="-1"></a>v8 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb189-2"><a href="ggplot2-60-minutos.html#cb189-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density2d</span>()<span class="sc">+</span></span>
+<span id="cb189-3"><a href="ggplot2-60-minutos.html#cb189-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb189-4"><a href="ggplot2-60-minutos.html#cb189-4" aria-hidden="true" tabindex="-1"></a>v8</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-7-4.png" width="672" /></p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="ggplot2-60-minutos.html#cb190-1" aria-hidden="true" tabindex="-1"></a>(v5<span class="sc">+</span>v6)<span class="sc">/</span> (v7 <span class="sc">+</span> v8)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-7-5.png" width="672" /></p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="ggplot2-60-minutos.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deixar pra depois...</span></span>
+<span id="cb191-2"><a href="ggplot2-60-minutos.html#cb191-2" aria-hidden="true" tabindex="-1"></a> dados <span class="sc">%&gt;%</span> </span>
+<span id="cb191-3"><a href="ggplot2-60-minutos.html#cb191-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(manufacturer, hwy, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb191-4"><a href="ggplot2-60-minutos.html#cb191-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(manufacturer <span class="sc">==</span> <span class="st">&quot;audi&quot;</span>, year <span class="sc">==</span> <span class="st">&quot;1999&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb191-5"><a href="ggplot2-60-minutos.html#cb191-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">max</span>(hwy))</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 1
+##   media
+##   &lt;int&gt;
+## 1    29</code></pre>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="ggplot2-60-minutos.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plotly</span></span>
+<span id="cb193-2"><a href="ggplot2-60-minutos.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(</span>
+<span id="cb193-3"><a href="ggplot2-60-minutos.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> manufacturer, <span class="at">y =</span> hwy, <span class="at">fill =</span> <span class="fu">factor</span>(year))) <span class="sc">+</span> </span>
+<span id="cb193-4"><a href="ggplot2-60-minutos.html#cb193-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb193-5"><a href="ggplot2-60-minutos.html#cb193-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;year&quot;</span>) <span class="sc">+</span></span>
+<span id="cb193-6"><a href="ggplot2-60-minutos.html#cb193-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>)))</span>
+<span id="cb193-7"><a href="ggplot2-60-minutos.html#cb193-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-8"><a href="ggplot2-60-minutos.html#cb193-8" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">select</span>(manufacturer, hwy, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb193-9"><a href="ggplot2-60-minutos.html#cb193-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb193-10"><a href="ggplot2-60-minutos.html#cb193-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(hwy))</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="ggplot2-60-minutos.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Para pensar</span></span>
+<span id="cb194-2"><a href="ggplot2-60-minutos.html#cb194-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-3"><a href="ggplot2-60-minutos.html#cb194-3" aria-hidden="true" tabindex="-1"></a>(dados_trat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">tratamento =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], </span>
+<span id="cb194-4"><a href="ggplot2-60-minutos.html#cb194-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">resposta =</span> <span class="fu">c</span>(<span class="fl">2.3</span>, <span class="fl">1.9</span>, <span class="fl">3.2</span>)))</span></code></pre></div>
+<pre><code>##   tratamento resposta
+## 1          A      2.3
+## 2          B      1.9
+## 3          C      3.2</code></pre>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="ggplot2-60-minutos.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_trat, <span class="fu">aes</span>(tratamento, resposta)) <span class="sc">+</span></span>
+<span id="cb196-2"><a href="ggplot2-60-minutos.html#cb196-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="ggplot2-60-minutos.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mais detalhes...</span></span>
+<span id="cb197-2"><a href="ggplot2-60-minutos.html#cb197-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">%&gt;%</span> <span class="fu">select</span>(manufacturer, hwy, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-3"><a href="ggplot2-60-minutos.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manufacturer, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-4"><a href="ggplot2-60-minutos.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media =</span> <span class="fu">mean</span>(hwy), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb197-5"><a href="ggplot2-60-minutos.html#cb197-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> manufacturer, <span class="at">y =</span> media, <span class="at">fill =</span> <span class="fu">factor</span>(year)))<span class="sc">+</span></span>
+<span id="cb197-6"><a href="ggplot2-60-minutos.html#cb197-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)<span class="sc">+</span></span>
+<span id="cb197-7"><a href="ggplot2-60-minutos.html#cb197-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">fill =</span> <span class="st">&quot;year&quot;</span>) <span class="sc">+</span></span>
+<span id="cb197-8"><a href="ggplot2-60-minutos.html#cb197-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+</div>
+<div id="facet_grid-facet_wrap" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> facet_grid, facet_wrap<a href="ggplot2-60-minutos.html#facet_grid-facet_wrap" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="ggplot2-60-minutos.html#cb198-1" aria-hidden="true" tabindex="-1"></a>p1<span class="ot">&lt;-</span> <span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy)) <span class="sc">+</span></span>
+<span id="cb198-2"><a href="ggplot2-60-minutos.html#cb198-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb198-3"><a href="ggplot2-60-minutos.html#cb198-3" aria-hidden="true" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="ggplot2-60-minutos.html#cb199-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(cyl))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="ggplot2-60-minutos.html#cb200-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(cyl))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-3.png" width="672" /></p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="ggplot2-60-minutos.html#cb201-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="sc">~</span>cyl)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-4.png" width="672" /></p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="ggplot2-60-minutos.html#cb202-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(year), <span class="at">cols =</span><span class="fu">vars</span>(cyl))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-5.png" width="672" /></p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="ggplot2-60-minutos.html#cb203-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_grid</span>(year<span class="sc">~</span>cyl)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-6.png" width="672" /></p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="ggplot2-60-minutos.html#cb204-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_wrap</span>(year <span class="sc">~</span> cyl)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-7.png" width="672" /></p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="ggplot2-60-minutos.html#cb205-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_wrap</span>(cyl <span class="sc">~</span> year)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-8.png" width="672" /></p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="ggplot2-60-minutos.html#cb206-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>cyl <span class="sc">+</span> year)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-9.png" width="672" /></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="ggplot2-60-minutos.html#cb207-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>year <span class="sc">+</span> cyl)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-10.png" width="672" /></p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="ggplot2-60-minutos.html#cb208-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_wrap</span>(year <span class="sc">~</span> cyl, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-11.png" width="672" /></p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="ggplot2-60-minutos.html#cb209-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="sc">+</span> <span class="fu">facet_wrap</span>(cyl <span class="sc">~</span> year, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-10-12.png" width="672" /></p>
+</div>
+<div id="stat_function" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> stat_function<a href="ggplot2-60-minutos.html#stat_function" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="ggplot2-60-minutos.html#cb210-1" aria-hidden="true" tabindex="-1"></a>a<span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span> <span class="co"># média</span></span>
+<span id="cb210-2"><a href="ggplot2-60-minutos.html#cb210-2" aria-hidden="true" tabindex="-1"></a>b<span class="ot">&lt;-</span> <span class="dv">4</span>  <span class="co"># desv. padrão</span></span>
+<span id="cb210-3"><a href="ggplot2-60-minutos.html#cb210-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(a <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span>b, a <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>b)), <span class="fu">aes</span>(x)) <span class="sc">+</span> </span>
+<span id="cb210-4"><a href="ggplot2-60-minutos.html#cb210-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> dnorm, <span class="at">args =</span> <span class="fu">list</span>(<span class="at">mean =</span> a, <span class="at">sd =</span> b))<span class="sc">+</span></span>
+<span id="cb210-5"><a href="ggplot2-60-minutos.html#cb210-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">c</span>(a <span class="sc">-</span> <span class="dv">3</span><span class="sc">*</span>b, a, a <span class="sc">+</span> <span class="dv">3</span><span class="sc">*</span>b), <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb210-6"><a href="ggplot2-60-minutos.html#cb210-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="stat_summary" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> stat_summary<a href="ggplot2-60-minutos.html#stat_summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="ggplot2-60-minutos.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> manufacturer, <span class="at">y =</span> hwy)) <span class="sc">+</span> </span>
+<span id="cb211-2"><a href="ggplot2-60-minutos.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()<span class="sc">+</span></span>
+<span id="cb211-3"><a href="ggplot2-60-minutos.html#cb211-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size=</span><span class="fl">0.8</span>)<span class="sc">+</span></span>
+<span id="cb211-4"><a href="ggplot2-60-minutos.html#cb211-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="at">fun =</span> mean, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb211-5"><a href="ggplot2-60-minutos.html#cb211-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb211-6"><a href="ggplot2-60-minutos.html#cb211-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="theme_" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> theme_*()<a href="ggplot2-60-minutos.html#theme_" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="ggplot2-60-minutos.html#cb212-1" aria-hidden="true" tabindex="-1"></a>a1<span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;theme_bw()&quot;</span>)</span>
+<span id="cb212-2"><a href="ggplot2-60-minutos.html#cb212-2" aria-hidden="true" tabindex="-1"></a>a2<span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;theme_classic()&quot;</span>)</span>
+<span id="cb212-3"><a href="ggplot2-60-minutos.html#cb212-3" aria-hidden="true" tabindex="-1"></a>a3<span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;theme_light()&quot;</span>)</span>
+<span id="cb212-4"><a href="ggplot2-60-minutos.html#cb212-4" aria-hidden="true" tabindex="-1"></a>a4<span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">theme_minimal</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;theme_minimal()&quot;</span>)</span>
+<span id="cb212-5"><a href="ggplot2-60-minutos.html#cb212-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb212-6"><a href="ggplot2-60-minutos.html#cb212-6" aria-hidden="true" tabindex="-1"></a>a1 <span class="sc">+</span> a2 <span class="sc">+</span> a3 <span class="sc">+</span> a4</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+</div>
+<div id="gráfico-de-perfis-spaguetti-plot" class="section level2 hasAnchor" number="3.11">
+<h2><span class="header-section-number">3.11</span> Gráfico de perfis (Spaguetti plot)<a href="ggplot2-60-minutos.html#gráfico-de-perfis-spaguetti-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="ggplot2-60-minutos.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(Orange)</span></code></pre></div>
+<pre><code>## Rows: 35
+## Columns: 3
+## $ Tree          &lt;ord&gt; 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3,…
+## $ age           &lt;dbl&gt; 118, 484, 664, 1004, 1231, 1372, 1582, 118, 484, 664, 10…
+## $ circumference &lt;dbl&gt; 30, 58, 87, 115, 120, 142, 145, 33, 69, 111, 156, 172, 2…</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="ggplot2-60-minutos.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Orange, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> circumference, <span class="at">group =</span> Tree, </span>
+<span id="cb215-2"><a href="ggplot2-60-minutos.html#cb215-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">col =</span> Tree)) <span class="sc">+</span></span>
+<span id="cb215-3"><a href="ggplot2-60-minutos.html#cb215-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb215-4"><a href="ggplot2-60-minutos.html#cb215-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="dv">1</span>), <span class="at">fun =</span> mean, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb215-5"><a href="ggplot2-60-minutos.html#cb215-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">show.legend =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb215-6"><a href="ggplot2-60-minutos.html#cb215-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">linetype =</span> <span class="dv">2</span>)<span class="sc">+</span></span>
+<span id="cb215-7"><a href="ggplot2-60-minutos.html#cb215-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1600</span>)<span class="sc">+</span></span>
+<span id="cb215-8"><a href="ggplot2-60-minutos.html#cb215-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="ggplot2-60-minutos.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Orange, <span class="fu">aes</span>(<span class="at">x =</span> age, <span class="at">y =</span> circumference, <span class="at">group =</span> Tree)) <span class="sc">+</span></span>
+<span id="cb216-2"><a href="ggplot2-60-minutos.html#cb216-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb216-3"><a href="ggplot2-60-minutos.html#cb216-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1600</span>)<span class="sc">+</span></span>
+<span id="cb216-4"><a href="ggplot2-60-minutos.html#cb216-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Tree)<span class="sc">+</span></span>
+<span id="cb216-5"><a href="ggplot2-60-minutos.html#cb216-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
+<span id="cb216-6"><a href="ggplot2-60-minutos.html#cb216-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-14-2.png" width="672" /></p>
+</div>
+<div id="plotly" class="section level2 hasAnchor" number="3.12">
+<h2><span class="header-section-number">3.12</span> plotly<a href="ggplot2-60-minutos.html#plotly" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://cran.r-project.org/web/packages/plotly/index.html">plotly cran</a></p>
+<p><a href="https://plotly-r.com/">Interactive web-based data visualization with R, plotly, and shiny</a></p>
+<p><a href="https://plotly.com/r/">Plotly R Open Source Graphing Library</a></p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="ggplot2-60-minutos.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(v1)</span>
+<span id="cb217-2"><a href="ggplot2-60-minutos.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(v2)</span>
+<span id="cb217-3"><a href="ggplot2-60-minutos.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(v4)</span>
+<span id="cb217-4"><a href="ggplot2-60-minutos.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(v5)</span></code></pre></div>
+</div>
+<div id="esquisse" class="section level2 hasAnchor" number="3.13">
+<h2><span class="header-section-number">3.13</span> esquisse<a href="ggplot2-60-minutos.html#esquisse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Alguns links de interesse</p>
+<p><a href="https://cran.r-project.org/web/packages/esquisse/vignettes/get-started.html">esquisse</a></p>
+<p><a href="https://cran.r-project.org/web/packages/esquisse/vignettes/shiny-usage.html">esquisse + shiny</a></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="ggplot2-60-minutos.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">esquisser</span>(dados)</span></code></pre></div>
+</div>
+<div id="exemplo-esquisse" class="section level2 hasAnchor" number="3.14">
+<h2><span class="header-section-number">3.14</span> Exemplo esquisse<a href="ggplot2-60-minutos.html#exemplo-esquisse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="ggplot2-60-minutos.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span></span>
+<span id="cb219-2"><a href="ggplot2-60-minutos.html#cb219-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy, <span class="at">colour =</span> drv) <span class="sc">+</span></span>
+<span id="cb219-3"><a href="ggplot2-60-minutos.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">&quot;circle&quot;</span>, <span class="at">size =</span> <span class="fl">1.85</span>) <span class="sc">+</span></span>
+<span id="cb219-4"><a href="ggplot2-60-minutos.html#cb219-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb219-5"><a href="ggplot2-60-minutos.html#cb219-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb219-6"><a href="ggplot2-60-minutos.html#cb219-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>)</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="ggplot2-60-minutos.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados) <span class="sc">+</span></span>
+<span id="cb220-2"><a href="ggplot2-60-minutos.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> cty, <span class="at">colour =</span> class, <span class="at">size =</span> cty) <span class="sc">+</span></span>
+<span id="cb220-3"><a href="ggplot2-60-minutos.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">&quot;circle&quot;</span>) <span class="sc">+</span></span>
+<span id="cb220-4"><a href="ggplot2-60-minutos.html#cb220-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_hue</span>(<span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb220-5"><a href="ggplot2-60-minutos.html#cb220-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;top&quot;</span>) <span class="sc">+</span></span>
+<span id="cb220-6"><a href="ggplot2-60-minutos.html#cb220-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(drv))</span></code></pre></div>
+<p><img src="02_ggplot2_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dplyr-60-minutos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="purrr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02_ggplot2.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["learning_R.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
+>>>>>>> 921c9f1d4aaaee5d965c09e5d0d58cdfc6baba3f
