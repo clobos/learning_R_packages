@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 References | Learning R packages</title>
+  <title>8 Single-predictor (simple) regression | Learning R packages</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
 The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 References | Learning R packages" />
+  <meta property="og:title" content="8 Single-predictor (simple) regression | Learning R packages" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 References | Learning R packages" />
+  <meta name="twitter:title" content="8 Single-predictor (simple) regression | Learning R packages" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
@@ -36,8 +36,8 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="multiple-regression.html"/>
-
+<link rel="prev" href="extra.html"/>
+<link rel="next" href="multiple-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -293,34 +293,79 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">10</span> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Wickham, Hadley. 2023. <em>tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+<div id="single-predictor-simple-regression" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Single-predictor (simple) regression<a href="single-predictor-simple-regression.html#single-predictor-simple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Next, let’s turn to ‘simple’ linear regression (one predictor, one outcome), then scale to multiple regression (many predictors, one outcome). The standard linear regression model is implemented by the <code>lm</code> function in R. The <code>lm</code> function uses ordinary least squares (OLS) which estimates the parameter by minimizing the squared residuals.</p>
+<p>In simple regression, we are interested in a relationship of the form:</p>
+<p><span class="math display">\[
+Y = B_0 + B_1 X
+\]</span></p>
+<p>where <span class="math inline">\(Y\)</span> is the dependent variable (criterion) and <span class="math inline">\(X\)</span> is the predictor (covariate). The intercept is represented by <span class="math inline">\(B0\)</span> and the slope for the <span class="math inline">\(X\)</span> predictor by <span class="math inline">\(B1\)</span>.</p>
+<p>Let’s take a look at the simple case of stopping distance (braking) as a function of car speed.</p>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="single-predictor-simple-regression.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(cars, <span class="fu">aes</span>(<span class="at">x=</span>speed, <span class="at">y=</span>dist)) <span class="sc">+</span> </span>
+<span id="cb451-2"><a href="single-predictor-simple-regression.html#cb451-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&#39;darkblue&#39;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb451-3"><a href="single-predictor-simple-regression.html#cb451-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span><span class="cn">FALSE</span>, <span class="at">fullrange=</span><span class="cn">TRUE</span>, <span class="at">color=</span><span class="st">&#39;black&#39;</span>, <span class="at">size=</span><span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb451-4"><a href="single-predictor-simple-regression.html#cb451-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Speed (mph)&quot;</span>, <span class="at">y=</span><span class="st">&quot;Stopping distance (ft)&quot;</span>)</span></code></pre></div>
+<p><img src="06_extra_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>When conducting regression, we typically try to capture linear relationships among variables. We can introduce higher-order polynomial terms (e.g., quadratic models) or splines (more flexible shapes), but this beyond the scope here.</p>
+<p>Fortunately, this relationship looks quite linear! The faster the car, the longer it takes to brake.</p>
+<p>In R regression models, we use the <code>~</code> operator to denote ‘regressed on’. It’s not especially intuitive, but we say the criterion is regressed on the predictor. Here, if we think speed is a key cause of stopping distance, we’d say ‘braking distance regressed on speed’ or ‘speed predicts braking distance.’</p>
+<p>In formula terms, this is <code>dist ~ speed</code>, which we pass as the first argument to <code>lm()</code>.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="single-predictor-simple-regression.html#cb452-1" aria-hidden="true" tabindex="-1"></a>lm_cars <span class="ot">&lt;-</span> <span class="fu">lm</span>(dist <span class="sc">~</span> speed, <span class="at">data=</span>cars)</span>
+<span id="cb452-2"><a href="single-predictor-simple-regression.html#cb452-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_cars)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = dist ~ speed, data = cars)
+## 
+## Residuals:
+##    Min     1Q Median     3Q    Max 
+## -29.07  -9.53  -2.27   9.21  43.20 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  -17.579      6.758   -2.60    0.012 *  
+## speed          3.932      0.416    9.46  1.5e-12 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 15.4 on 48 degrees of freedom
+## Multiple R-squared:  0.651,  Adjusted R-squared:  0.644 
+## F-statistic: 89.6 on 1 and 48 DF,  p-value: 1.49e-12</code></pre>
+<p>The output contains individual parameter estimates of the model (here, just the intercept and slope), their standard errors, significance tests, and p-values (one degree of freedom). We also get global information such as the sum of squared errors and the coefficient of determination (<span class="math inline">\(R^2\)</span>).</p>
+<div id="regression-diagnostics" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Regression diagnostics<a href="single-predictor-simple-regression.html#regression-diagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We can also get useful diagnostic plots for free using the <code>plot()</code> function:</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="single-predictor-simple-regression.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb454-2"><a href="single-predictor-simple-regression.html#cb454-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lm_cars)</span></code></pre></div>
+<p><img src="06_extra_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>The <code>ggfortify</code> package also provides an <code>autoplot</code> function that gives similar diagnostics within a handy ggplot-based graph.</p>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="single-predictor-simple-regression.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(lm_cars)</span></code></pre></div>
+<p><img src="06_extra_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 </div>
-<div class="csl-entry">
-Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>"Welcome to the <span>tidyverse</span>"</span>. <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
-</div>
-<div class="csl-entry">
-Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, e Dewey Dunnington. 2023. <em>ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.
-</div>
-<div class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, e Davis Vaughan. 2023. <em>dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
-</div>
-<div class="csl-entry">
-Wickham, Hadley, e Lionel Henry. 2023. <em>purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.
-</div>
-<div class="csl-entry">
-Wickham, Hadley, Davis Vaughan, e Maximilian Girlich. 2023. <em>tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
-</div>
-<div class="csl-entry">
-Xie, Yihui. 2023a. <em>bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
-</div>
-<div class="csl-entry">
-———. 2023b. <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
-</div>
+<div id="bootstrap-estimates-and-confidence-intervals" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Bootstrap estimates and confidence intervals<a href="single-predictor-simple-regression.html#bootstrap-estimates-and-confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Using functionality from the <code>car</code> and <code>boot</code> packges, we can easily get estimates of the regression coefficients and standard errors using nonparametric bootstrapping, which relaxes the normal theory assumption on the standard errors and, therefore, the significance tests. Likewise, the model does not assume normally distributed error.</p>
+<p>Nonparametric bootstrapping approximates the sampling distribution for a statistic of interest (e.g., a slope) by resampling the existing data with replacement many times and examining the resulting density.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="single-predictor-simple-regression.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(lm_cars.boot <span class="ot">&lt;-</span> <span class="fu">Boot</span>(lm_cars, <span class="at">R=</span><span class="dv">2000</span>))</span></code></pre></div>
+<pre><code>##   usuário   sistema decorrido 
+##      2.66      0.07      2.87</code></pre>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="single-predictor-simple-regression.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_cars.boot, <span class="at">high.moments=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## 
+## Number of bootstrap replications R = 2000 
+##             original bootBias bootSE bootMed bootSkew bootKurtosis
+## (Intercept)   -17.58 -0.04777   5.91  -17.44   -0.176       0.1168
+## speed           3.93 -0.00189   0.42    3.92    0.113       0.0393</code></pre>
+<p>We can use the object to obtain 95% bootstrapped confidence intervals using the ‘bias corrected, accelerated’ method (aka bca).</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="single-predictor-simple-regression.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(lm_cars.boot, <span class="at">level=</span>.<span class="dv">95</span>, <span class="at">type=</span><span class="st">&quot;bca&quot;</span>)</span></code></pre></div>
+<pre><code>## Bootstrap bca confidence intervals
+## 
+##              2.5 % 97.5 %
+## (Intercept) -30.64  -7.18
+## speed         3.21   4.92</code></pre>
+<p>And we can easily compare the bootstrapped and standard OLS models:</p>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="single-predictor-simple-regression.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(lm_cars.boot, <span class="at">legend=</span><span class="st">&quot;separate&quot;</span>)</span></code></pre></div>
+<p><img src="06_extra_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>Notice that the <code>speed</code> regression coefficient is slightly positively skewed. Additional details are provided in John Fox’s useful book “An R Companion to Applied Regression” (2nd edition): <a href="https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendix/Appendix-Bootstrapping.pdf" class="uri">https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendix/Appendix-Bootstrapping.pdf</a>.</p>
 </div>
 </div>
             </section>
@@ -328,8 +373,8 @@ Xie, Yihui. 2023a. <em>bookdown: Authoring Books and Technical Documents with R 
           </div>
         </div>
       </div>
-<a href="multiple-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="extra.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multiple-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -360,7 +405,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/99_referencias.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06_extra.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -4,6 +4,7 @@ While broom is useful for summarizing the result of a single analysis in a consi
 
 
 ```r
+#ls("package:tidyr")
 library(broom)
 library(tibble)
 library(ggplot2)

@@ -4,13 +4,13 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 References | Learning R packages</title>
+  <title>7 Extra | Learning R packages</title>
   <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
 The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 References | Learning R packages" />
+  <meta property="og:title" content="7 Extra | Learning R packages" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
@@ -19,7 +19,7 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 References | Learning R packages" />
+  <meta name="twitter:title" content="7 Extra | Learning R packages" />
   
   <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
 set in the _output.yml file.
@@ -36,8 +36,8 @@ The HTML output format for this example is bookdown::gitbook,</p>" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="multiple-regression.html"/>
-
+<link rel="prev" href="broom-and-dplyr.html"/>
+<link rel="next" href="single-predictor-simple-regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -293,34 +293,290 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">10</span> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div class="csl-entry">
-Wickham, Hadley. 2023. <em>tidyverse: Easily Install and Load the Tidyverse</em>. <a href="https://CRAN.R-project.org/package=tidyverse">https://CRAN.R-project.org/package=tidyverse</a>.
+<div id="extra" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Extra<a href="extra.html#extra" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Introduction<a href="extra.html#introduction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The overall goal is to give you a very quick introduction to conducting correlation and regression analyses in R.</p>
 </div>
-<div class="csl-entry">
-Wickham, Hadley, Mara Averick, Jennifer Bryan, Winston Chang, Lucy D’Agostino McGowan, Romain François, Garrett Grolemund, et al. 2019. <span>"Welcome to the <span>tidyverse</span>"</span>. <em>Journal of Open Source Software</em> 4 (43): 1686. <a href="https://doi.org/10.21105/joss.01686">https://doi.org/10.21105/joss.01686</a>.
+<div id="correlation" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Correlation<a href="extra.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Pearson product moment correlation seeks to measure the linear association between two variables, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> on a standardized scale ranging from <span class="math inline">\(r = -1 -- 1\)</span>.</p>
+<p>The correlation of x and y is a covariance that has been standardized by the standard deviations of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. This yields a scale-insensitive measure of the linear association of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. For much more conceptual detail, see this: <a href="https://psu-psychology.github.io/psy-597-SEM/01_correlation_regression/01_Correlation_and_Regression.html" class="uri">https://psu-psychology.github.io/psy-597-SEM/01_correlation_regression/01_Correlation_and_Regression.html</a>.</p>
+<p><span class="math display">\[r_{XY}= \frac{s_{XY}}{s_{X} s_{Y}}\]</span></p>
 </div>
-<div class="csl-entry">
-Wickham, Hadley, Winston Chang, Lionel Henry, Thomas Lin Pedersen, Kohske Takahashi, Claus Wilke, Kara Woo, Hiroaki Yutani, e Dewey Dunnington. 2023. <em>ggplot2: Create Elegant Data Visualisations Using the Grammar of Graphics</em>. <a href="https://CRAN.R-project.org/package=ggplot2">https://CRAN.R-project.org/package=ggplot2</a>.
+<div id="correlation-matrix" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Correlation matrix<a href="extra.html#correlation-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="extra.html#cb422-1" aria-hidden="true" tabindex="-1"></a>to_correlate <span class="ot">&lt;-</span> mtcars <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(qsec, cyl, disp, hp)</span>
+<span id="cb422-2"><a href="extra.html#cb422-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(to_correlate)</span></code></pre></div>
+<pre><code>##        qsec    cyl   disp     hp
+## qsec  1.000 -0.591 -0.434 -0.708
+## cyl  -0.591  1.000  0.902  0.832
+## disp -0.434  0.902  1.000  0.791
+## hp   -0.708  0.832  0.791  1.000</code></pre>
 </div>
-<div class="csl-entry">
-Wickham, Hadley, Romain François, Lionel Henry, Kirill Müller, e Davis Vaughan. 2023. <em>dplyr: A Grammar of Data Manipulation</em>. <a href="https://CRAN.R-project.org/package=dplyr">https://CRAN.R-project.org/package=dplyr</a>.
+<div id="testing-a-bivariate-association" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Testing a bivariate association<a href="extra.html#testing-a-bivariate-association" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Recall that the significance of correlations are computed on <span class="math inline">\(n - 2\)</span> degrees of freedom.</p>
+<p>The t-test is:</p>
+<p><span class="math display">\[
+t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+\]</span></p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="extra.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>qsec, mtcars<span class="sc">$</span>cyl)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  mtcars$qsec and mtcars$cyl
+## t = -4, df = 30, p-value = 4e-04
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  -0.779 -0.306
+## sample estimates:
+##    cor 
+## -0.591</code></pre>
+<p>Note that we can use the <code>conf.int</code> argument to <code>cor.test</code> to get different levels of confidence.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="extra.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>qsec, mtcars<span class="sc">$</span>cyl, <span class="at">conf.level =</span> <span class="fl">0.9</span>)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  mtcars$qsec and mtcars$cyl
+## t = -4, df = 30, p-value = 4e-04
+## alternative hypothesis: true correlation is not equal to 0
+## 90 percent confidence interval:
+##  -0.755 -0.358
+## sample estimates:
+##    cor 
+## -0.591</code></pre>
 </div>
-<div class="csl-entry">
-Wickham, Hadley, e Lionel Henry. 2023. <em>purrr: Functional Programming Tools</em>. <a href="https://CRAN.R-project.org/package=purrr">https://CRAN.R-project.org/package=purrr</a>.
+<div id="visualizing-the-association" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Visualizing the association<a href="extra.html#visualizing-the-association" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="extra.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(to_correlate, <span class="fu">aes</span>(<span class="at">x=</span>cyl, <span class="at">y=</span>qsec)) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">width=</span><span class="fl">0.1</span>) <span class="sc">+</span> <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="06_extra_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
-<div class="csl-entry">
-Wickham, Hadley, Davis Vaughan, e Maximilian Girlich. 2023. <em>tidyr: Tidy Messy Data</em>. <a href="https://CRAN.R-project.org/package=tidyr">https://CRAN.R-project.org/package=tidyr</a>.
+<div id="testing-the-significance-of-all-correlations-in-the-matrix" class="section level2 hasAnchor" number="7.6">
+<h2><span class="header-section-number">7.6</span> Testing the significance of all correlations in the matrix<a href="extra.html#testing-the-significance-of-all-correlations-in-the-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="extra.html#cb429-1" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">rcorr</span>(to_correlate <span class="sc">%&gt;%</span> <span class="fu">as.matrix</span>())</span></code></pre></div>
+<pre><code>##       qsec   cyl  disp    hp
+## qsec  1.00 -0.59 -0.43 -0.71
+## cyl  -0.59  1.00  0.90  0.83
+## disp -0.43  0.90  1.00  0.79
+## hp   -0.71  0.83  0.79  1.00
+## 
+## n= 32 
+## 
+## 
+## P
+##      qsec   cyl    disp   hp    
+## qsec        0.0004 0.0131 0.0000
+## cyl  0.0004        0.0000 0.0000
+## disp 0.0131 0.0000        0.0000
+## hp   0.0000 0.0000 0.0000</code></pre>
+<p>Notice that we now get a matrix of p-values, too…</p>
 </div>
-<div class="csl-entry">
-Xie, Yihui. 2023a. <em>bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.
+<div id="pretty-output" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Pretty output<a href="extra.html#pretty-output" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="extra.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="fu">stargazer</span>(<span class="fu">cor</span>(to_correlate), <span class="at">type =</span> <span class="st">&quot;html&quot;</span>)</span></code></pre></div>
+<table style="text-align:center">
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+qsec
+</td>
+<td>
+cyl
+</td>
+<td>
+disp
+</td>
+<td>
+hp
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+qsec
+</td>
+<td>
+1
+</td>
+<td>
+-0.591
+</td>
+<td>
+-0.434
+</td>
+<td>
+-0.708
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+cyl
+</td>
+<td>
+-0.591
+</td>
+<td>
+1
+</td>
+<td>
+0.902
+</td>
+<td>
+0.832
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+disp
+</td>
+<td>
+-0.434
+</td>
+<td>
+0.902
+</td>
+<td>
+1
+</td>
+<td>
+0.791
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+hp
+</td>
+<td>
+-0.708
+</td>
+<td>
+0.832
+</td>
+<td>
+0.791
+</td>
+<td>
+1
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="extra.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="co">#you can use the filename argument to write out the table as a Word doc!</span></span>
+<span id="cb432-2"><a href="extra.html#cb432-2" aria-hidden="true" tabindex="-1"></a>apaTables<span class="sc">::</span><span class="fu">apa.cor.table</span>(to_correlate)</span></code></pre></div>
+<pre><code>## 
+## 
+## Means, standard deviations, and correlations with confidence intervals
+##  
+## 
+##   Variable M      SD     1            2          3         
+##   1. qsec  17.85  1.79                                     
+##                                                            
+##   2. cyl   6.19   1.79   -.59**                            
+##                          [-.78, -.31]                      
+##                                                            
+##   3. disp  230.72 123.94 -.43*        .90**                
+##                          [-.68, -.10] [.81, .95]           
+##                                                            
+##   4. hp    146.69 68.56  -.71**       .83**      .79**     
+##                          [-.85, -.48] [.68, .92] [.61, .89]
+##                                                            
+## 
+## Note. M and SD are used to represent mean and standard deviation, respectively.
+## Values in square brackets indicate the 95% confidence interval.
+## The confidence interval is a plausible range of population correlations 
+## that could have caused the sample correlation (Cumming, 2014).
+##  * indicates p &lt; .05. ** indicates p &lt; .01.
+## </code></pre>
 </div>
-<div class="csl-entry">
-———. 2023b. <em>knitr: A General-Purpose Package for Dynamic Report Generation in R</em>. <a href="https://yihui.org/knitr/">https://yihui.org/knitr/</a>.
+<div id="keeping-the-correlations-for-further-analysis" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Keeping the correlations for further analysis<a href="extra.html#keeping-the-correlations-for-further-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Here, we store all details of the bivariate correlation test as an R object <code>ctest</code>.</p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="extra.html#cb434-1" aria-hidden="true" tabindex="-1"></a>ctest <span class="ot">&lt;-</span> <span class="fu">cor.test</span>(mtcars<span class="sc">$</span>qsec, mtcars<span class="sc">$</span>cyl)</span></code></pre></div>
+<p>Let’s poke under the hood:</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="extra.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(ctest)</span></code></pre></div>
+<pre><code>## List of 9
+##  $ statistic  : Named num -4.02
+##   ..- attr(*, &quot;names&quot;)= chr &quot;t&quot;
+##  $ parameter  : Named int 30
+##   ..- attr(*, &quot;names&quot;)= chr &quot;df&quot;
+##  $ p.value    : num 0.000366
+##  $ estimate   : Named num -0.591
+##   ..- attr(*, &quot;names&quot;)= chr &quot;cor&quot;
+##  $ null.value : Named num 0
+##   ..- attr(*, &quot;names&quot;)= chr &quot;correlation&quot;
+##  $ alternative: chr &quot;two.sided&quot;
+##  $ method     : chr &quot;Pearson&#39;s product-moment correlation&quot;
+##  $ data.name  : chr &quot;mtcars$qsec and mtcars$cyl&quot;
+##  $ conf.int   : num [1:2] -0.779 -0.306
+##   ..- attr(*, &quot;conf.level&quot;)= num 0.95
+##  - attr(*, &quot;class&quot;)= chr &quot;htest&quot;</code></pre>
+<p>So, we can poke around and grab specific things:</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="extra.html#cb437-1" aria-hidden="true" tabindex="-1"></a>ctest<span class="sc">$</span>p.value</span></code></pre></div>
+<pre><code>## [1] 0.000366</code></pre>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="extra.html#cb439-1" aria-hidden="true" tabindex="-1"></a>ctest<span class="sc">$</span>estimate</span></code></pre></div>
+<pre><code>##    cor 
+## -0.591</code></pre>
+<p>And there are useful helper packages, especially <code>broom</code>, that will help you work with statistics objects as <code>data.frame</code> objects.</p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="extra.html#cb441-1" aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">glance</span>(ctest)</span></code></pre></div>
+<pre><code>## # A tibble: 1 × 8
+##   estimate statistic  p.value parameter conf.low conf.high method        alter…¹
+##      &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;     &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;  
+## 1   -0.591     -4.02 0.000366        30   -0.779    -0.306 Pearson&#39;s pr… two.si…
+## # … with abbreviated variable name ¹​alternative</code></pre>
 </div>
+<div id="correlation-method" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Correlation method<a href="extra.html#correlation-method" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You can use a different correlation method (e.g., Spearman) using the <code>method</code> argument:</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="extra.html#cb443-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(mtcars<span class="sc">$</span>qsec, mtcars<span class="sc">$</span>cyl, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+##  Spearman&#39;s rank correlation rho
+## 
+## data:  mtcars$qsec and mtcars$cyl
+## S = 8579, p-value = 6e-04
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##    rho 
+## -0.572</code></pre>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="extra.html#cb445-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(to_correlate, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span></code></pre></div>
+<pre><code>##        qsec    cyl   disp     hp
+## qsec  1.000 -0.572 -0.460 -0.667
+## cyl  -0.572  1.000  0.928  0.902
+## disp -0.460  0.928  1.000  0.851
+## hp   -0.667  0.902  0.851  1.000</code></pre>
+</div>
+<div id="missing-data" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Missing data<a href="extra.html#missing-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By default, <code>cor</code> will return an <code>NA</code> (missing) for every pair in which at least one observation is missing. We can ask for correlations to be estimated on the complete cases for each pair. This is <code>use="pairwise.complete.obs"</code>.</p>
+<p>Here’s the difference (I introduced some missing data to make the point):</p>
+<p>First, with ‘everything’ as the <code>use</code> argument (any missing on a variable drops it from the correlation table).</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="extra.html#cb447-1" aria-hidden="true" tabindex="-1"></a>to_correlate_miss <span class="ot">&lt;-</span> to_correlate</span>
+<span id="cb447-2"><a href="extra.html#cb447-2" aria-hidden="true" tabindex="-1"></a>to_correlate_miss<span class="sc">$</span>qsec[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">5</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb447-3"><a href="extra.html#cb447-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(to_correlate_miss) <span class="co">#implicitly use=&quot;everything&quot;</span></span></code></pre></div>
+<pre><code>##      qsec   cyl  disp    hp
+## qsec    1    NA    NA    NA
+## cyl    NA 1.000 0.902 0.832
+## disp   NA 0.902 1.000 0.791
+## hp     NA 0.832 0.791 1.000</code></pre>
+<p>Now with pairwise complete calculation:</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="extra.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(to_correlate_miss, <span class="at">use=</span><span class="st">&quot;pairwise.complete.obs&quot;</span>)</span></code></pre></div>
+<pre><code>##        qsec    cyl   disp     hp
+## qsec  1.000 -0.596 -0.448 -0.731
+## cyl  -0.596  1.000  0.902  0.832
+## disp -0.448  0.902  1.000  0.791
+## hp   -0.731  0.832  0.791  1.000</code></pre>
 </div>
 </div>
             </section>
@@ -328,8 +584,8 @@ Xie, Yihui. 2023a. <em>bookdown: Authoring Books and Technical Documents with R 
           </div>
         </div>
       </div>
-<a href="multiple-regression.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="broom-and-dplyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="single-predictor-simple-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -360,7 +616,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/99_referencias.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/06_extra.Rmd",
 "text": "Edit"
 },
 "history": {
