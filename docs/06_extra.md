@@ -301,7 +301,7 @@ cor(to_correlate_miss, use="pairwise.complete.obs")
 ## hp   -0.7313008  0.8324475  0.7909486  1.0000000
 ```
 
-# Single-predictor (simple) regression
+## Single-predictor (simple) regression
 
 Next, let's turn to 'simple' linear regression (one predictor, one outcome), then scale to multiple regression (many predictors, one outcome). The standard linear regression model is implemented by the `lm` function in R. The `lm` function uses ordinary least squares (OLS) which estimates the parameter by minimizing the squared residuals.
 
@@ -437,7 +437,7 @@ hist(lm_cars.boot, legend="separate")
 
 Notice that the `speed` regression coefficient is slightly positively skewed. Additional details are provided in John Fox's useful book "An R Companion to Applied Regression" (2nd edition): https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendix/Appendix-Bootstrapping.pdf.
 
-# Multiple regression
+## Multiple regression
 
 We can easily extend to larger regression models by adding terms to the right side of the formula. For example, in the `mtcars` dataset (car performance statistics from 1974 Motor Trend), we could examine the extent to which the gas mileage (`mpg`) is a function of both gross horsepower (`hp`) and transmission (`am`, where 0 is 'automatic' and 1 is 'manual').
 

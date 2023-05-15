@@ -5894,7 +5894,7 @@ Now with pairwise complete calculation:
 \end{verbatim}
 
 \hypertarget{single-predictor-simple-regression}{%
-\chapter{Single-predictor (simple) regression}\label{single-predictor-simple-regression}}
+\section{Single-predictor (simple) regression}\label{single-predictor-simple-regression}}
 
 Next, let's turn to `simple' linear regression (one predictor, one outcome), then scale to multiple regression (many predictors, one outcome). The standard linear regression model is implemented by the \texttt{lm} function in R. The \texttt{lm} function uses ordinary least squares (OLS) which estimates the parameter by minimizing the squared residuals.
 
@@ -6042,7 +6042,7 @@ And we can easily compare the bootstrapped and standard OLS models:
 Notice that the \texttt{speed} regression coefficient is slightly positively skewed. Additional details are provided in John Fox's useful book ``An R Companion to Applied Regression'' (2nd edition): \url{https://socialsciences.mcmaster.ca/jfox/Books/Companion/appendix/Appendix-Bootstrapping.pdf}.
 
 \hypertarget{multiple-regression}{%
-\chapter{Multiple regression}\label{multiple-regression}}
+\section{Multiple regression}\label{multiple-regression}}
 
 We can easily extend to larger regression models by adding terms to the right side of the formula. For example, in the \texttt{mtcars} dataset (car performance statistics from 1974 Motor Trend), we could examine the extent to which the gas mileage (\texttt{mpg}) is a function of both gross horsepower (\texttt{hp}) and transmission (\texttt{am}, where 0 is `automatic' and 1 is `manual').
 
