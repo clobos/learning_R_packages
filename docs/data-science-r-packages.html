@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="Pt-Br" xml:lang="Pt-Br">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Data Science r packages | Learning R packages</title>
+  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Data Science r packages | Learning R packages" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Data Science r packages | Learning R packages" />
+  
+  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
+set in the _output.yml file.
+The HTML output format for this example is bookdown::gitbook,</p>" />
+  
+
+<meta name="author" content="Cristian Villegas" />
+
+
+<meta name="date" content="2023-06-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="extra.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning R packages</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Intro</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#carrega-pacotes-a-serem-usados"><i class="fa fa-check"></i><b>1.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#alguns-atalhos-no-rstudio"><i class="fa fa-check"></i><b>1.2</b> Alguns atalhos no Rstudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html"><i class="fa fa-check"></i><b>2</b> dplyr (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#carrega-pacotes-a-serem-usados-1"><i class="fa fa-check"></i><b>2.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="2.2" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#descrição-dos-dados-mpg"><i class="fa fa-check"></i><b>2.2</b> Descrição dos dados <code>mpg</code></a></li>
+<li class="chapter" data-level="2.3" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#lista-de-funções-do-pacote-dplyr"><i class="fa fa-check"></i><b>2.3</b> Lista de funções do pacote dplyr</a></li>
+<li class="chapter" data-level="2.4" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#operador-pipe"><i class="fa fa-check"></i><b>2.4</b> Operador Pipe</a></li>
+<li class="chapter" data-level="2.5" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#select-para-colunas"><i class="fa fa-check"></i><b>2.5</b> select() para colunas</a></li>
+<li class="chapter" data-level="2.6" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#rename"><i class="fa fa-check"></i><b>2.6</b> rename()</a></li>
+<li class="chapter" data-level="2.7" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#mutate-para-colunas"><i class="fa fa-check"></i><b>2.7</b> mutate() para colunas</a></li>
+<li class="chapter" data-level="2.8" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#transmute"><i class="fa fa-check"></i><b>2.8</b> transmute()</a></li>
+<li class="chapter" data-level="2.9" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#filter-para-linhas"><i class="fa fa-check"></i><b>2.9</b> filter() para linhas</a></li>
+<li class="chapter" data-level="2.10" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#slice-para-linhas"><i class="fa fa-check"></i><b>2.10</b> slice() para linhas</a></li>
+<li class="chapter" data-level="2.11" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#arrange-para-linhas"><i class="fa fa-check"></i><b>2.11</b> arrange() para linhas</a></li>
+<li class="chapter" data-level="2.12" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#distinct-para-linhas"><i class="fa fa-check"></i><b>2.12</b> distinct() para linhas</a></li>
+<li class="chapter" data-level="2.13" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#summarise"><i class="fa fa-check"></i><b>2.13</b> summarise()</a></li>
+<li class="chapter" data-level="2.14" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#group_by"><i class="fa fa-check"></i><b>2.14</b> group_by()</a></li>
+<li class="chapter" data-level="2.15" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#count"><i class="fa fa-check"></i><b>2.15</b> count()</a></li>
+<li class="chapter" data-level="2.16" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_n"><i class="fa fa-check"></i><b>2.16</b> sample_n()</a></li>
+<li class="chapter" data-level="2.17" data-path="dplyr-60-minutos.html"><a href="dplyr-60-minutos.html#sample_frac"><i class="fa fa-check"></i><b>2.17</b> sample_frac()</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html"><i class="fa fa-check"></i><b>3</b> ggplot2 (60 minutos)</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#carrega-pacotes-a-serem-usados-2"><i class="fa fa-check"></i><b>3.1</b> Carrega pacotes a serem usados</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#lista-de-funções-do-pacote-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Lista de funções do pacote ggplot2</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#primeiros-passos-usando-geom_point"><i class="fa fa-check"></i><b>3.3</b> Primeiros passos usando geom_point</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#mais-detalhes-sobre-geom_point"><i class="fa fa-check"></i><b>3.3.1</b> Mais detalhes sobre geom_point</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#smooth-boxplot-histogram"><i class="fa fa-check"></i><b>3.4</b> smooth, boxplot, histogram</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gridextra-e-patchwork"><i class="fa fa-check"></i><b>3.5</b> gridExtra e patchwork</a></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#bar-col-density-density2d"><i class="fa fa-check"></i><b>3.6</b> bar, col, density, density2d</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#facet_grid-facet_wrap"><i class="fa fa-check"></i><b>3.7</b> facet_grid, facet_wrap</a></li>
+<li class="chapter" data-level="3.8" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_function"><i class="fa fa-check"></i><b>3.8</b> stat_function</a></li>
+<li class="chapter" data-level="3.9" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#stat_summary"><i class="fa fa-check"></i><b>3.9</b> stat_summary</a></li>
+<li class="chapter" data-level="3.10" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#theme_"><i class="fa fa-check"></i><b>3.10</b> theme_*()</a></li>
+<li class="chapter" data-level="3.11" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#gráfico-de-perfis-spaguetti-plot"><i class="fa fa-check"></i><b>3.11</b> Gráfico de perfis (Spaguetti plot)</a></li>
+<li class="chapter" data-level="3.12" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#plotly"><i class="fa fa-check"></i><b>3.12</b> plotly</a></li>
+<li class="chapter" data-level="3.13" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#esquisse"><i class="fa fa-check"></i><b>3.13</b> esquisse</a></li>
+<li class="chapter" data-level="3.14" data-path="ggplot2-60-minutos.html"><a href="ggplot2-60-minutos.html#exemplo-esquisse"><i class="fa fa-check"></i><b>3.14</b> Exemplo esquisse</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="purrr.html"><a href="purrr.html"><i class="fa fa-check"></i><b>4</b> purrr</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="purrr.html"><a href="purrr.html#apply-a-function-to-each-element-of-a-list-or-atomic-vector"><i class="fa fa-check"></i><b>4.1</b> Apply a function to each element of a list or atomic vector</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="purrr.html"><a href="purrr.html#usage"><i class="fa fa-check"></i><b>4.1.1</b> Usage</a></li>
+<li class="chapter" data-level="4.1.2" data-path="purrr.html"><a href="purrr.html#arguments"><i class="fa fa-check"></i><b>4.1.2</b> Arguments</a></li>
+<li class="chapter" data-level="4.1.3" data-path="purrr.html"><a href="purrr.html#value"><i class="fa fa-check"></i><b>4.1.3</b> Value</a></li>
+<li class="chapter" data-level="4.1.4" data-path="purrr.html"><a href="purrr.html#see-also"><i class="fa fa-check"></i><b>4.1.4</b> See Also</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="purrr.html"><a href="purrr.html#examples"><i class="fa fa-check"></i><b>4.2</b> Examples</a></li>
+<li class="chapter" data-level="4.3" data-path="purrr.html"><a href="purrr.html#map-functions"><i class="fa fa-check"></i><b>4.3</b> map functions</a></li>
+<li class="chapter" data-level="4.4" data-path="purrr.html"><a href="purrr.html#map2-functions"><i class="fa fa-check"></i><b>4.4</b> map2 functions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyr.html"><a href="tidyr.html"><i class="fa fa-check"></i><b>5</b> tidyr</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="tidyr.html"><a href="tidyr.html#nest"><i class="fa fa-check"></i><b>5.1</b> nest()</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyr.html"><a href="tidyr.html#unnest"><i class="fa fa-check"></i><b>5.2</b> unnest()</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyr.html"><a href="tidyr.html#exemplos-da-ajuda-do-r"><i class="fa fa-check"></i><b>5.3</b> Exemplos da ajuda do R</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyr.html"><a href="tidyr.html#mais-detalhes"><i class="fa fa-check"></i><b>5.4</b> Mais detalhes</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html"><i class="fa fa-check"></i><b>6</b> broom and dplyr</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#tidy-bootstrapping"><i class="fa fa-check"></i><b>6.1</b> Tidy bootstrapping</a></li>
+<li class="chapter" data-level="6.2" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#mais-detalhes-glance"><i class="fa fa-check"></i><b>6.2</b> Mais detalhes (glance)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#lm"><i class="fa fa-check"></i><b>6.2.1</b> lm()</a></li>
+<li class="chapter" data-level="6.2.2" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#nls"><i class="fa fa-check"></i><b>6.2.2</b> nls()</a></li>
+<li class="chapter" data-level="6.2.3" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#glm"><i class="fa fa-check"></i><b>6.2.3</b> glm()</a></li>
+<li class="chapter" data-level="6.2.4" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#gam"><i class="fa fa-check"></i><b>6.2.4</b> gam()</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="broom-and-dplyr.html"><a href="broom-and-dplyr.html#links"><i class="fa fa-check"></i><b>6.3</b> links</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="extra.html"><a href="extra.html"><i class="fa fa-check"></i><b>7</b> Extra</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="extra.html"><a href="extra.html#introduction"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="extra.html"><a href="extra.html#correlation"><i class="fa fa-check"></i><b>7.2</b> Correlation</a></li>
+<li class="chapter" data-level="7.3" data-path="extra.html"><a href="extra.html#correlation-matrix"><i class="fa fa-check"></i><b>7.3</b> Correlation matrix</a></li>
+<li class="chapter" data-level="7.4" data-path="extra.html"><a href="extra.html#testing-a-bivariate-association"><i class="fa fa-check"></i><b>7.4</b> Testing a bivariate association</a></li>
+<li class="chapter" data-level="7.5" data-path="extra.html"><a href="extra.html#visualizing-the-association"><i class="fa fa-check"></i><b>7.5</b> Visualizing the association</a></li>
+<li class="chapter" data-level="7.6" data-path="extra.html"><a href="extra.html#testing-the-significance-of-all-correlations-in-the-matrix"><i class="fa fa-check"></i><b>7.6</b> Testing the significance of all correlations in the matrix</a></li>
+<li class="chapter" data-level="7.7" data-path="extra.html"><a href="extra.html#pretty-output"><i class="fa fa-check"></i><b>7.7</b> Pretty output</a></li>
+<li class="chapter" data-level="7.8" data-path="extra.html"><a href="extra.html#keeping-the-correlations-for-further-analysis"><i class="fa fa-check"></i><b>7.8</b> Keeping the correlations for further analysis</a></li>
+<li class="chapter" data-level="7.9" data-path="extra.html"><a href="extra.html#correlation-method"><i class="fa fa-check"></i><b>7.9</b> Correlation method</a></li>
+<li class="chapter" data-level="7.10" data-path="extra.html"><a href="extra.html#missing-data"><i class="fa fa-check"></i><b>7.10</b> Missing data</a></li>
+<li class="chapter" data-level="7.11" data-path="extra.html"><a href="extra.html#single-predictor-simple-regression"><i class="fa fa-check"></i><b>7.11</b> Single-predictor (simple) regression</a></li>
+<li class="chapter" data-level="7.12" data-path="extra.html"><a href="extra.html#regression-diagnostics"><i class="fa fa-check"></i><b>7.12</b> Regression diagnostics</a></li>
+<li class="chapter" data-level="7.13" data-path="extra.html"><a href="extra.html#bootstrap-estimates-and-confidence-intervals"><i class="fa fa-check"></i><b>7.13</b> Bootstrap estimates and confidence intervals</a></li>
+<li class="chapter" data-level="7.14" data-path="extra.html"><a href="extra.html#multiple-regression"><i class="fa fa-check"></i><b>7.14</b> Multiple regression</a></li>
+<li class="chapter" data-level="7.15" data-path="extra.html"><a href="extra.html#visualizing-regression-data"><i class="fa fa-check"></i><b>7.15</b> Visualizing regression data</a></li>
+<li class="chapter" data-level="7.16" data-path="extra.html"><a href="extra.html#getting-results-into-a-tidy-useful-format"><i class="fa fa-check"></i><b>7.16</b> Getting results into a tidy, useful format</a></li>
+<li class="chapter" data-level="7.17" data-path="extra.html"><a href="extra.html#modeling-interactions"><i class="fa fa-check"></i><b>7.17</b> Modeling interactions</a></li>
+<li class="chapter" data-level="7.18" data-path="extra.html"><a href="extra.html#contrasts-in-regression"><i class="fa fa-check"></i><b>7.18</b> Contrasts in regression</a></li>
+<li class="chapter" data-level="7.19" data-path="extra.html"><a href="extra.html#expected-means-for-protein-source"><i class="fa fa-check"></i><b>7.19</b> Expected means for protein source</a></li>
+<li class="chapter" data-level="7.20" data-path="extra.html"><a href="extra.html#expected-means-for-protein-level"><i class="fa fa-check"></i><b>7.20</b> Expected means for protein level</a></li>
+<li class="chapter" data-level="7.21" data-path="extra.html"><a href="extra.html#means-in-each-cell-of-the-factorial-design"><i class="fa fa-check"></i><b>7.21</b> Means in each cell of the factorial design</a></li>
+<li class="chapter" data-level="7.22" data-path="extra.html"><a href="extra.html#pairwise-comparisons-among-protein-sources"><i class="fa fa-check"></i><b>7.22</b> Pairwise comparisons among protein sources</a></li>
+<li class="chapter" data-level="7.23" data-path="extra.html"><a href="extra.html#pairwise-differences-and-simple-slopes-in-regression"><i class="fa fa-check"></i><b>7.23</b> Pairwise differences and simple slopes in regression</a></li>
+<li class="chapter" data-level="7.24" data-path="extra.html"><a href="extra.html#a-few-other-emmeans-features"><i class="fa fa-check"></i><b>7.24</b> A few other emmeans features</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-science-r-packages.html"><a href="data-science-r-packages.html"><i class="fa fa-check"></i><b>8</b> Data Science r packages</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-science-r-packages.html"><a href="data-science-r-packages.html#knn"><i class="fa fa-check"></i><b>8.1</b> knn</a></li>
+<li class="chapter" data-level="8.2" data-path="data-science-r-packages.html"><a href="data-science-r-packages.html#rpart"><i class="fa fa-check"></i><b>8.2</b> rpart</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>9</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning R packages</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-science-r-packages" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Data Science r packages<a href="data-science-r-packages.html#data-science-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="data-science-r-packages.html#cb507-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(caret)</span>
+<span id="cb507-2"><a href="data-science-r-packages.html#cb507-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glmnet)</span>
+<span id="cb507-3"><a href="data-science-r-packages.html#cb507-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)</span>
+<span id="cb507-4"><a href="data-science-r-packages.html#cb507-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart.plot)</span></code></pre></div>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="data-science-r-packages.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:caret&quot;</span>)</span></code></pre></div>
+<pre><code>##   [1] &quot;anovaScores&quot;           &quot;avNNet&quot;                &quot;bag&quot;                  
+##   [4] &quot;bagControl&quot;            &quot;bagEarth&quot;              &quot;bagEarthStats&quot;        
+##   [7] &quot;bagFDA&quot;                &quot;best&quot;                  &quot;BoxCoxTrans&quot;          
+##  [10] &quot;calibration&quot;           &quot;caretFuncs&quot;            &quot;caretGA&quot;              
+##  [13] &quot;caretSA&quot;               &quot;caretSBF&quot;              &quot;caretTheme&quot;           
+##  [16] &quot;cforestStats&quot;          &quot;checkConditionalX&quot;     &quot;checkInstall&quot;         
+##  [19] &quot;checkResamples&quot;        &quot;class2ind&quot;             &quot;classDist&quot;            
+##  [22] &quot;cluster&quot;               &quot;compare_models&quot;        &quot;confusionMatrix&quot;      
+##  [25] &quot;confusionMatrix.train&quot; &quot;contr.dummy&quot;           &quot;contr.ltfr&quot;           
+##  [28] &quot;createDataPartition&quot;   &quot;createFolds&quot;           &quot;createModel&quot;          
+##  [31] &quot;createMultiFolds&quot;      &quot;createResample&quot;        &quot;createTimeSlices&quot;     
+##  [34] &quot;ctreeBag&quot;              &quot;defaultSummary&quot;        &quot;dotPlot&quot;              
+##  [37] &quot;downSample&quot;            &quot;dummyVars&quot;             &quot;expandParameters&quot;     
+##  [40] &quot;expoTrans&quot;             &quot;extractPrediction&quot;     &quot;extractProb&quot;          
+##  [43] &quot;F_meas&quot;                &quot;featurePlot&quot;           &quot;filterVarImp&quot;         
+##  [46] &quot;findCorrelation&quot;       &quot;findLinearCombos&quot;      &quot;flatTable&quot;            
+##  [49] &quot;gafs&quot;                  &quot;gafs.default&quot;          &quot;gafs_initial&quot;         
+##  [52] &quot;gafs_lrSelection&quot;      &quot;gafs_raMutation&quot;       &quot;gafs_rwSelection&quot;     
+##  [55] &quot;gafs_spCrossover&quot;      &quot;gafs_tourSelection&quot;    &quot;gafs_uCrossover&quot;      
+##  [58] &quot;gafsControl&quot;           &quot;gamFormula&quot;            &quot;gamFuncs&quot;             
+##  [61] &quot;gamScores&quot;             &quot;getModelInfo&quot;          &quot;getSamplingInfo&quot;      
+##  [64] &quot;getTrainPerf&quot;          &quot;ggplot.gafs&quot;           &quot;ggplot.safs&quot;          
+##  [67] &quot;groupKFold&quot;            &quot;hasTerms&quot;              &quot;icr&quot;                  
+##  [70] &quot;index2vec&quot;             &quot;ipredStats&quot;            &quot;knn3&quot;                 
+##  [73] &quot;knn3Train&quot;             &quot;knnreg&quot;                &quot;knnregTrain&quot;          
+##  [76] &quot;ldaBag&quot;                &quot;ldaFuncs&quot;              &quot;ldaSBF&quot;               
+##  [79] &quot;learning_curve_dat&quot;    &quot;lift&quot;                  &quot;lmFuncs&quot;              
+##  [82] &quot;lmSBF&quot;                 &quot;LPH07_1&quot;               &quot;LPH07_2&quot;              
+##  [85] &quot;lrFuncs&quot;               &quot;MAE&quot;                   &quot;maxDissim&quot;            
+##  [88] &quot;MeanSD&quot;                &quot;minDiss&quot;               &quot;mnLogLoss&quot;            
+##  [91] &quot;modelCor&quot;              &quot;modelLookup&quot;           &quot;multiClassSummary&quot;    
+##  [94] &quot;nbBag&quot;                 &quot;nbFuncs&quot;               &quot;nbSBF&quot;                
+##  [97] &quot;nearZeroVar&quot;           &quot;negPredValue&quot;          &quot;nnetBag&quot;              
+## [100] &quot;nullModel&quot;             &quot;nzv&quot;                   &quot;oneSE&quot;                
+## [103] &quot;outcome_conversion&quot;    &quot;panel.calibration&quot;     &quot;panel.lift&quot;           
+## [106] &quot;panel.lift2&quot;           &quot;panel.needle&quot;          &quot;pcaNNet&quot;              
+## [109] &quot;pickSizeBest&quot;          &quot;pickSizeTolerance&quot;     &quot;pickVars&quot;             
+## [112] &quot;plot.gafs&quot;             &quot;plot.rfe&quot;              &quot;plot.safs&quot;            
+## [115] &quot;plot.train&quot;            &quot;plotClassProbs&quot;        &quot;plotObsVsPred&quot;        
+## [118] &quot;plsBag&quot;                &quot;plsda&quot;                 &quot;posPredValue&quot;         
+## [121] &quot;postResample&quot;          &quot;precision&quot;             &quot;predict.bagEarth&quot;     
+## [124] &quot;predict.gafs&quot;          &quot;predict.train&quot;         &quot;predictionFunction&quot;   
+## [127] &quot;predictors&quot;            &quot;preProcess&quot;            &quot;print.train&quot;          
+## [130] &quot;probFunction&quot;          &quot;progress&quot;              &quot;prSummary&quot;            
+## [133] &quot;R2&quot;                    &quot;recall&quot;                &quot;resampleHist&quot;         
+## [136] &quot;resamples&quot;             &quot;resampleSummary&quot;       &quot;resampleWrapper&quot;      
+## [139] &quot;rfe&quot;                   &quot;rfeControl&quot;            &quot;rfeIter&quot;              
+## [142] &quot;rfFuncs&quot;               &quot;rfGA&quot;                  &quot;rfSA&quot;                 
+## [145] &quot;rfSBF&quot;                 &quot;rfStats&quot;               &quot;RMSE&quot;                 
+## [148] &quot;safs&quot;                  &quot;safs_initial&quot;          &quot;safs_perturb&quot;         
+## [151] &quot;safs_prob&quot;             &quot;safsControl&quot;           &quot;sbf&quot;                  
+## [154] &quot;sbfControl&quot;            &quot;sbfIter&quot;               &quot;sensitivity&quot;          
+## [157] &quot;SLC14_1&quot;               &quot;SLC14_2&quot;               &quot;sortImp&quot;              
+## [160] &quot;spatialSign&quot;           &quot;specificity&quot;           &quot;splsda&quot;               
+## [163] &quot;sumDiss&quot;               &quot;summary.bagEarth&quot;      &quot;svmBag&quot;               
+## [166] &quot;thresholder&quot;           &quot;tolerance&quot;             &quot;train&quot;                
+## [169] &quot;trainControl&quot;          &quot;treebagFuncs&quot;          &quot;treebagGA&quot;            
+## [172] &quot;treebagSA&quot;             &quot;treebagSBF&quot;            &quot;twoClassSim&quot;          
+## [175] &quot;twoClassSummary&quot;       &quot;upSample&quot;              &quot;var_seq&quot;              
+## [178] &quot;varImp&quot;                &quot;well_numbered&quot;</code></pre>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="data-science-r-packages.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:glmnet&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;assess.glmnet&quot;    &quot;bigGlm&quot;           &quot;buildPredmat&quot;     &quot;Cindex&quot;          
+##  [5] &quot;coef.glmnet&quot;      &quot;coef.relaxed&quot;     &quot;confusion.glmnet&quot; &quot;coxgrad&quot;         
+##  [9] &quot;coxnet.deviance&quot;  &quot;cv.glmnet&quot;        &quot;glmnet&quot;           &quot;glmnet.control&quot;  
+## [13] &quot;glmnet.measures&quot;  &quot;makeX&quot;            &quot;na.replace&quot;       &quot;na_sparse_fix&quot;   
+## [17] &quot;predict.glmnet&quot;   &quot;predict.relaxed&quot;  &quot;prepareX&quot;         &quot;print.cv.glmnet&quot; 
+## [21] &quot;relax.glmnet&quot;     &quot;rmult&quot;            &quot;roc.glmnet&quot;       &quot;stratifySurv&quot;</code></pre>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="data-science-r-packages.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:rpart&quot;</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;car.test.frame&quot; &quot;car90&quot;          &quot;cu.summary&quot;     &quot;kyphosis&quot;      
+##  [5] &quot;meanvar&quot;        &quot;na.rpart&quot;       &quot;path.rpart&quot;     &quot;plotcp&quot;        
+##  [9] &quot;post&quot;           &quot;printcp&quot;        &quot;prune&quot;          &quot;prune.rpart&quot;   
+## [13] &quot;rpart&quot;          &quot;rpart.control&quot;  &quot;rpart.exp&quot;      &quot;rsq.rpart&quot;     
+## [17] &quot;snip.rpart&quot;     &quot;solder&quot;         &quot;solder.balance&quot; &quot;stagec&quot;        
+## [21] &quot;xpred.rpart&quot;</code></pre>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="data-science-r-packages.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="st">&quot;package:rpart.plot&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;prp&quot;               &quot;ptitanic&quot;          &quot;rpart.plot&quot;       
+## [4] &quot;rpart.predict&quot;     &quot;rpart.rules&quot;       &quot;show.prp.palettes&quot;</code></pre>
+<div id="knn" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> knn<a href="data-science-r-packages.html#knn" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="data-science-r-packages.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(BloodBrain)</span>
+<span id="cb516-2"><a href="data-science-r-packages.html#cb516-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-3"><a href="data-science-r-packages.html#cb516-3" aria-hidden="true" tabindex="-1"></a>inTrain <span class="ot">&lt;-</span> <span class="fu">createDataPartition</span>(logBBB, <span class="at">p =</span> .<span class="dv">8</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb516-4"><a href="data-science-r-packages.html#cb516-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-5"><a href="data-science-r-packages.html#cb516-5" aria-hidden="true" tabindex="-1"></a>trainX <span class="ot">&lt;-</span> bbbDescr[inTrain,]</span>
+<span id="cb516-6"><a href="data-science-r-packages.html#cb516-6" aria-hidden="true" tabindex="-1"></a>trainY <span class="ot">&lt;-</span> logBBB[inTrain]</span>
+<span id="cb516-7"><a href="data-science-r-packages.html#cb516-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-8"><a href="data-science-r-packages.html#cb516-8" aria-hidden="true" tabindex="-1"></a>testX <span class="ot">&lt;-</span> bbbDescr[<span class="sc">-</span>inTrain,]</span>
+<span id="cb516-9"><a href="data-science-r-packages.html#cb516-9" aria-hidden="true" tabindex="-1"></a>testY <span class="ot">&lt;-</span> logBBB[<span class="sc">-</span>inTrain]</span>
+<span id="cb516-10"><a href="data-science-r-packages.html#cb516-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb516-11"><a href="data-science-r-packages.html#cb516-11" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">knnreg</span>(trainX, trainY, <span class="at">k =</span> <span class="dv">3</span>)</span>
+<span id="cb516-12"><a href="data-science-r-packages.html#cb516-12" aria-hidden="true" tabindex="-1"></a>fit</span></code></pre></div>
+<pre><code>## 3-nearest neighbor regression model</code></pre>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="data-science-r-packages.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
+<pre><code>##         Length Class  Mode   
+## learn   2      -none- list   
+## k       1      -none- numeric
+## theDots 0      -none- list</code></pre>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="data-science-r-packages.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(testY, <span class="fu">predict</span>(fit, testX))</span></code></pre></div>
+<p><img src="07_datascience_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="data-science-r-packages.html#cb521-1" aria-hidden="true" tabindex="-1"></a>irisFit1 <span class="ot">&lt;-</span> <span class="fu">knn3</span>(Species <span class="sc">~</span> ., iris)</span>
+<span id="cb521-2"><a href="data-science-r-packages.html#cb521-2" aria-hidden="true" tabindex="-1"></a>irisFit1</span></code></pre></div>
+<pre><code>## 5-nearest neighbor model
+## Training set outcome distribution:
+## 
+##     setosa versicolor  virginica 
+##         50         50         50</code></pre>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="data-science-r-packages.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(irisFit1)</span></code></pre></div>
+<pre><code>## [1] &quot;learn&quot;   &quot;k&quot;       &quot;terms&quot;   &quot;xlevels&quot; &quot;theDots&quot;</code></pre>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="data-science-r-packages.html#cb525-1" aria-hidden="true" tabindex="-1"></a>irisFit2 <span class="ot">&lt;-</span> <span class="fu">knn3</span>(<span class="fu">as.matrix</span>(iris[, <span class="sc">-</span><span class="dv">5</span>]), iris[,<span class="dv">5</span>])</span>
+<span id="cb525-2"><a href="data-science-r-packages.html#cb525-2" aria-hidden="true" tabindex="-1"></a>irisFit2</span></code></pre></div>
+<pre><code>## 5-nearest neighbor model
+## Training set outcome distribution:
+## 
+##     setosa versicolor  virginica 
+##         50         50         50</code></pre>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="data-science-r-packages.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(iris3)</span>
+<span id="cb527-2"><a href="data-science-r-packages.html#cb527-2" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> <span class="fu">rbind</span>(iris3[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,,<span class="dv">1</span>], iris3[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,,<span class="dv">2</span>], iris3[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>,,<span class="dv">3</span>])</span>
+<span id="cb527-3"><a href="data-science-r-packages.html#cb527-3" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span> <span class="fu">rbind</span>(iris3[<span class="dv">26</span><span class="sc">:</span><span class="dv">50</span>,,<span class="dv">1</span>], iris3[<span class="dv">26</span><span class="sc">:</span><span class="dv">50</span>,,<span class="dv">2</span>], iris3[<span class="dv">26</span><span class="sc">:</span><span class="dv">50</span>,,<span class="dv">3</span>])</span>
+<span id="cb527-4"><a href="data-science-r-packages.html#cb527-4" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;s&quot;</span>,<span class="dv">25</span>), <span class="fu">rep</span>(<span class="st">&quot;c&quot;</span>,<span class="dv">25</span>), <span class="fu">rep</span>(<span class="st">&quot;v&quot;</span>,<span class="dv">25</span>)))</span>
+<span id="cb527-5"><a href="data-science-r-packages.html#cb527-5" aria-hidden="true" tabindex="-1"></a><span class="fu">knn3Train</span>(train, test, cl, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">prob =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot;
+## [20] &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;s&quot; &quot;c&quot; &quot;c&quot; &quot;v&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;v&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot;
+## [39] &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;c&quot; &quot;v&quot; &quot;c&quot; &quot;c&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot;
+## [58] &quot;v&quot; &quot;c&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;c&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot; &quot;v&quot;
+## attr(,&quot;prob&quot;)
+##               c s         v
+##  [1,] 0.0000000 1 0.0000000
+##  [2,] 0.0000000 1 0.0000000
+##  [3,] 0.0000000 1 0.0000000
+##  [4,] 0.0000000 1 0.0000000
+##  [5,] 0.0000000 1 0.0000000
+##  [6,] 0.0000000 1 0.0000000
+##  [7,] 0.0000000 1 0.0000000
+##  [8,] 0.0000000 1 0.0000000
+##  [9,] 0.0000000 1 0.0000000
+## [10,] 0.0000000 1 0.0000000
+## [11,] 0.0000000 1 0.0000000
+## [12,] 0.0000000 1 0.0000000
+## [13,] 0.0000000 1 0.0000000
+## [14,] 0.0000000 1 0.0000000
+## [15,] 0.0000000 1 0.0000000
+## [16,] 0.0000000 1 0.0000000
+## [17,] 0.0000000 1 0.0000000
+## [18,] 0.0000000 1 0.0000000
+## [19,] 0.0000000 1 0.0000000
+## [20,] 0.0000000 1 0.0000000
+## [21,] 0.0000000 1 0.0000000
+## [22,] 0.0000000 1 0.0000000
+## [23,] 0.0000000 1 0.0000000
+## [24,] 0.0000000 1 0.0000000
+## [25,] 0.0000000 1 0.0000000
+## [26,] 1.0000000 0 0.0000000
+## [27,] 1.0000000 0 0.0000000
+## [28,] 0.4000000 0 0.6000000
+## [29,] 1.0000000 0 0.0000000
+## [30,] 1.0000000 0 0.0000000
+## [31,] 1.0000000 0 0.0000000
+## [32,] 1.0000000 0 0.0000000
+## [33,] 1.0000000 0 0.0000000
+## [34,] 0.4000000 0 0.6000000
+## [35,] 0.8000000 0 0.2000000
+## [36,] 1.0000000 0 0.0000000
+## [37,] 1.0000000 0 0.0000000
+## [38,] 1.0000000 0 0.0000000
+## [39,] 1.0000000 0 0.0000000
+## [40,] 1.0000000 0 0.0000000
+## [41,] 1.0000000 0 0.0000000
+## [42,] 1.0000000 0 0.0000000
+## [43,] 1.0000000 0 0.0000000
+## [44,] 1.0000000 0 0.0000000
+## [45,] 1.0000000 0 0.0000000
+## [46,] 1.0000000 0 0.0000000
+## [47,] 1.0000000 0 0.0000000
+## [48,] 1.0000000 0 0.0000000
+## [49,] 1.0000000 0 0.0000000
+## [50,] 1.0000000 0 0.0000000
+## [51,] 0.0000000 0 1.0000000
+## [52,] 0.8000000 0 0.2000000
+## [53,] 0.6000000 0 0.4000000
+## [54,] 0.0000000 0 1.0000000
+## [55,] 0.0000000 0 1.0000000
+## [56,] 0.0000000 0 1.0000000
+## [57,] 0.0000000 0 1.0000000
+## [58,] 0.0000000 0 1.0000000
+## [59,] 0.6666667 0 0.3333333
+## [60,] 0.2000000 0 0.8000000
+## [61,] 0.0000000 0 1.0000000
+## [62,] 0.0000000 0 1.0000000
+## [63,] 0.0000000 0 1.0000000
+## [64,] 0.6000000 0 0.4000000
+## [65,] 0.0000000 0 1.0000000
+## [66,] 0.0000000 0 1.0000000
+## [67,] 0.0000000 0 1.0000000
+## [68,] 0.0000000 0 1.0000000
+## [69,] 0.0000000 0 1.0000000
+## [70,] 0.0000000 0 1.0000000
+## [71,] 0.0000000 0 1.0000000
+## [72,] 0.2000000 0 0.8000000
+## [73,] 0.0000000 0 1.0000000
+## [74,] 0.0000000 0 1.0000000
+## [75,] 0.2000000 0 0.8000000</code></pre>
+</div>
+<div id="rpart" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> rpart<a href="data-science-r-packages.html#rpart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="data-science-r-packages.html#cb529-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Kyphosis <span class="sc">~</span> Age <span class="sc">+</span> Number <span class="sc">+</span> Start, <span class="at">data =</span> kyphosis)</span>
+<span id="cb529-2"><a href="data-science-r-packages.html#cb529-2" aria-hidden="true" tabindex="-1"></a>fit</span></code></pre></div>
+<pre><code>## n= 81 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+##  1) root 81 17 absent (0.79012346 0.20987654)  
+##    2) Start&gt;=8.5 62  6 absent (0.90322581 0.09677419)  
+##      4) Start&gt;=14.5 29  0 absent (1.00000000 0.00000000) *
+##      5) Start&lt; 14.5 33  6 absent (0.81818182 0.18181818)  
+##       10) Age&lt; 55 12  0 absent (1.00000000 0.00000000) *
+##       11) Age&gt;=55 21  6 absent (0.71428571 0.28571429)  
+##         22) Age&gt;=111 14  2 absent (0.85714286 0.14285714) *
+##         23) Age&lt; 111 7  3 present (0.42857143 0.57142857) *
+##    3) Start&lt; 8.5 19  8 present (0.42105263 0.57894737) *</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="data-science-r-packages.html#cb531-1" aria-hidden="true" tabindex="-1"></a>fit2 <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Kyphosis <span class="sc">~</span> Age <span class="sc">+</span> Number <span class="sc">+</span> Start, <span class="at">data =</span> kyphosis,</span>
+<span id="cb531-2"><a href="data-science-r-packages.html#cb531-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">parms =</span> <span class="fu">list</span>(<span class="at">prior =</span> <span class="fu">c</span>(.<span class="dv">65</span>,.<span class="dv">35</span>), <span class="at">split =</span> <span class="st">&quot;information&quot;</span>))</span>
+<span id="cb531-3"><a href="data-science-r-packages.html#cb531-3" aria-hidden="true" tabindex="-1"></a>fit2</span></code></pre></div>
+<pre><code>## n= 81 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+## 1) root 81 28.350000 absent (0.65000000 0.35000000)  
+##   2) Start&gt;=12.5 46  3.335294 absent (0.91563089 0.08436911) *
+##   3) Start&lt; 12.5 35 16.453120 present (0.39676840 0.60323160)  
+##     6) Age&lt; 34.5 10  1.667647 absent (0.81616742 0.18383258) *
+##     7) Age&gt;=34.5 25  9.049219 present (0.27932897 0.72067103) *</code></pre>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="data-science-r-packages.html#cb533-1" aria-hidden="true" tabindex="-1"></a>fit3 <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Kyphosis <span class="sc">~</span> Age <span class="sc">+</span> Number <span class="sc">+</span> Start, <span class="at">data =</span> kyphosis,</span>
+<span id="cb533-2"><a href="data-science-r-packages.html#cb533-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.05</span>))</span>
+<span id="cb533-3"><a href="data-science-r-packages.html#cb533-3" aria-hidden="true" tabindex="-1"></a>fit3</span></code></pre></div>
+<pre><code>## n= 81 
+## 
+## node), split, n, loss, yval, (yprob)
+##       * denotes terminal node
+## 
+## 1) root 81 17 absent (0.79012346 0.20987654)  
+##   2) Start&gt;=8.5 62  6 absent (0.90322581 0.09677419) *
+##   3) Start&lt; 8.5 19  8 present (0.42105263 0.57894737) *</code></pre>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="data-science-r-packages.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">xpd =</span> <span class="cn">NA</span>) <span class="co"># otherwise on some devices the text is clipped</span></span>
+<span id="cb535-2"><a href="data-science-r-packages.html#cb535-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit)</span>
+<span id="cb535-3"><a href="data-science-r-packages.html#cb535-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(fit, <span class="at">use.n =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb535-4"><a href="data-science-r-packages.html#cb535-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(fit2)</span>
+<span id="cb535-5"><a href="data-science-r-packages.html#cb535-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(fit2, <span class="at">use.n =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="07_datascience_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="data-science-r-packages.html#cb536-1" aria-hidden="true" tabindex="-1"></a>old.par <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))            <span class="co"># put 4 figures on one page</span></span>
+<span id="cb536-2"><a href="data-science-r-packages.html#cb536-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-3"><a href="data-science-r-packages.html#cb536-3" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ptitanic)</span>
+<span id="cb536-4"><a href="data-science-r-packages.html#cb536-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-5"><a href="data-science-r-packages.html#cb536-5" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------------------------------------------------------------</span></span>
+<span id="cb536-6"><a href="data-science-r-packages.html#cb536-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-7"><a href="data-science-r-packages.html#cb536-7" aria-hidden="true" tabindex="-1"></a>binary.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(survived <span class="sc">~</span> ., <span class="at">data =</span> ptitanic, <span class="at">cp =</span> .<span class="dv">02</span>)</span>
+<span id="cb536-8"><a href="data-science-r-packages.html#cb536-8" aria-hidden="true" tabindex="-1"></a>                                        <span class="co"># cp = .02 for small demo tree</span></span>
+<span id="cb536-9"><a href="data-science-r-packages.html#cb536-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-10"><a href="data-science-r-packages.html#cb536-10" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(binary.model,</span>
+<span id="cb536-11"><a href="data-science-r-packages.html#cb536-11" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&quot;titanic survived</span><span class="sc">\n</span><span class="st">(binary response)&quot;</span>)</span>
+<span id="cb536-12"><a href="data-science-r-packages.html#cb536-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-13"><a href="data-science-r-packages.html#cb536-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(binary.model, <span class="at">type =</span> <span class="dv">3</span>, <span class="at">clip.right.labs =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb536-14"><a href="data-science-r-packages.html#cb536-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">branch =</span> .<span class="dv">4</span>,</span>
+<span id="cb536-15"><a href="data-science-r-packages.html#cb536-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">box.palette =</span> <span class="st">&quot;Grays&quot;</span>,       <span class="co"># override default GnBu palette</span></span>
+<span id="cb536-16"><a href="data-science-r-packages.html#cb536-16" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&quot;type = 3, clip.right.labs = FALSE, ...</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb536-17"><a href="data-science-r-packages.html#cb536-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-18"><a href="data-science-r-packages.html#cb536-18" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------------------------------------------------------------</span></span>
+<span id="cb536-19"><a href="data-science-r-packages.html#cb536-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-20"><a href="data-science-r-packages.html#cb536-20" aria-hidden="true" tabindex="-1"></a>anova.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Mileage <span class="sc">~</span> ., <span class="at">data =</span> cu.summary)</span>
+<span id="cb536-21"><a href="data-science-r-packages.html#cb536-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-22"><a href="data-science-r-packages.html#cb536-22" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(anova.model,</span>
+<span id="cb536-23"><a href="data-science-r-packages.html#cb536-23" aria-hidden="true" tabindex="-1"></a>           <span class="at">shadow.col =</span> <span class="st">&quot;gray&quot;</span>,         <span class="co"># add shadows just for kicks</span></span>
+<span id="cb536-24"><a href="data-science-r-packages.html#cb536-24" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&quot;miles per gallon</span><span class="sc">\n</span><span class="st">(continuous response)</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb536-25"><a href="data-science-r-packages.html#cb536-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-26"><a href="data-science-r-packages.html#cb536-26" aria-hidden="true" tabindex="-1"></a><span class="co">#---------------------------------------------------------------------------</span></span>
+<span id="cb536-27"><a href="data-science-r-packages.html#cb536-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-28"><a href="data-science-r-packages.html#cb536-28" aria-hidden="true" tabindex="-1"></a>multi.class.model <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Reliability <span class="sc">~</span> ., <span class="at">data =</span> cu.summary)</span>
+<span id="cb536-29"><a href="data-science-r-packages.html#cb536-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb536-30"><a href="data-science-r-packages.html#cb536-30" aria-hidden="true" tabindex="-1"></a><span class="fu">rpart.plot</span>(multi.class.model,</span>
+<span id="cb536-31"><a href="data-science-r-packages.html#cb536-31" aria-hidden="true" tabindex="-1"></a>           <span class="at">main =</span> <span class="st">&quot;vehicle reliability</span><span class="sc">\n</span><span class="st">(multi class response)&quot;</span>)</span></code></pre></div>
+<p><img src="07_datascience_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="data-science-r-packages.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(old.par)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="extra.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07_datascience.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["learning_R.pdf"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

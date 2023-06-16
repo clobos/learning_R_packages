@@ -2,7 +2,7 @@
 lang: "Pt-Br"
 title: "Learning R packages"
 author: "Cristian Villegas"
-date: "2023-05-15"
+date: "2023-06-16"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography:
