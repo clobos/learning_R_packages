@@ -1,8 +1,8 @@
 Learning R packages
 Cristian Villegas
 
-ggplot2
-dplyr 
-broom
-tidyr
-purrr
+<br/> ggplot2
+<br/> dplyr 
+<br/> broom
+<br/> tidyr
+<br/> purrr
